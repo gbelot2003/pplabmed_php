@@ -18,7 +18,7 @@ class CreateCitologiasTable extends Migration
             $table->integer('factura_id');
             $table->boolean('deteccion_cancer');
             $table->boolean('indice_maduracion');
-            $table->string('otros');
+            $table->string('otros_a');
             $table->text('diagnostico_clinico');
             $table->string('fur');
             $table->string('fup');
