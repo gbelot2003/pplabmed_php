@@ -15,6 +15,14 @@ class CreateFacturasTable extends Migration
     {
         Schema::create('facturas', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('factural');
+            $table->string('paciente');
+            $table->text('direccion');
+            $table->string('medico');
+            $table->integer('edad');
+            $table->string('sexo');
+            $table->integer('identidad', 10);
+            $table->dateTime('nacimiento');
             $table->timestamps();
         });
     }

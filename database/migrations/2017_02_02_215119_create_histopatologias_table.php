@@ -15,6 +15,19 @@ class CreateHistopatologiasTable extends Migration
     {
         Schema::create('histopatologias', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('factura_id');
+            $table->text('diagnostico');
+            $table->string('mor1');
+            $table->string('muestra');
+            $table->string('mor2');
+            $table->date('fecha_informe');
+            $table->integer('firma_id');
+            $table->string('topog');
+            $table->date('fecha_biopcia');
+            $table->integer('firma2_id');
+            $table->date('fecha_muestra');
+            $table->text('description_biopsia');
+            $table->text('diagnostico');
             $table->timestamps();
         });
     }
