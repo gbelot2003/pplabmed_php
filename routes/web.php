@@ -16,3 +16,6 @@ Route::get('/', 'PagesController@index' );
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+Route::resource('citologias', 'CitologiaController');
+Route::resource('histopatologia', 'HistopatologiaController');
