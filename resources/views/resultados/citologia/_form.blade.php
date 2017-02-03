@@ -104,8 +104,10 @@
 
     <div class="row">
         <div class="col-md-12">
-            <button type="submit" class="btn btn-primary">Grabar</button>
-            <a class="btn btn-danger" href="{{ action('CitologiaController@index') }}">Cancelar</a>
+            <div class="text-right">
+                <a class="btn btn-danger" href="{{ action('CitologiaController@index') }}">Cancelar</a>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
         </div>
     </div>
 
