@@ -35,12 +35,11 @@
                     </a>
                     <ul class="dropdown-menu" role="menu">
                         <li class="dropdown-header">Áreas</li>
-                        <li><a href="">Agregar Nueva Área</a></li>
-                        <li><a href="">Lista de Áreas</a></li>
+                        <li><a href="{{ action('AreaController@index') }}">Lista de Áreas</a></li>
+                        <li><a href="{{ action('AreaController@create') }}">Agregar Nueva Área</a></li>
                         <li class="divider"></li>
                     </ul>
                 </li>
-
             </ul>
 
             <!-- Right Side Of Navbar -->

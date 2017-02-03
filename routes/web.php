@@ -19,3 +19,4 @@ Route::get('/home', 'HomeController@index');
 
 Route::resource('citologias', 'CitologiaController');
 Route::resource('histopatologia', 'HistopatologiaController');
+Route::resource('areas', 'AreaController');

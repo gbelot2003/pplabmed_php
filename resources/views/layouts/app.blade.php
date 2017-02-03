@@ -21,7 +21,7 @@
     </script>
 </head>
 <body>
-    <div id="app">
+    <div id="">
         @include('layouts.partials.layout._nav')
         @yield('content')
     </div>
