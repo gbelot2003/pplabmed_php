@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="text-muted pull-right">
-                        <a href="#" class="btn btn-default">Create</a>
+                        <a href="#" class="btn btn-default">Cargar Registros</a>
                     </div>
                     <h4>Cargar Registros</h4>
                 </div>

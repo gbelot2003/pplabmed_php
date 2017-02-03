@@ -21,6 +21,7 @@ class CitologiaController extends Controller
 
     public function create()
     {
+        return View('resultados.citologia.create');
     }
 
     public function store()

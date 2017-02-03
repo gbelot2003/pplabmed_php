@@ -28,6 +28,19 @@
                         <li><a href="{{ action('HistopatologiaController@index') }}">Histopatologia</a></li>
                     </ul>
                 </li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        Parametrización<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li class="dropdown-header">Áreas</li>
+                        <li><a href="">Agregar Nueva Área</a></li>
+                        <li><a href="">Lista de Áreas</a></li>
+                        <li class="divider"></li>
+                    </ul>
+                </li>
+
             </ul>
 
             <!-- Right Side Of Navbar -->
