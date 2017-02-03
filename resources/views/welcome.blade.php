@@ -8,7 +8,7 @@
             {{ csrf_field() }}
             <div id="login-box">
                 <div class="logo">
-                    <img src="/img/Logo.jpg" class="img img-responsive center-block"/>
+                    <img src="{{ asset('img/Logo.jpg') }}" class="img img-responsive center-block"/>
                     <h1 class="logo-caption"><span class="tweak">PPlab</span>med</h1>
                 </div><!-- /.logo -->
                 <div class="controls">
@@ -148,5 +148,5 @@
     </script>
 @endsection
 @section('styles')
-    <link href="/css/login.css" rel="stylesheet">
+    <link href="{{ asset('css/login.css') }}" rel="stylesheet">
 @stop
