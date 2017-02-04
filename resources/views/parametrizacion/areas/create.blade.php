@@ -13,24 +13,7 @@
                 </div>
 
                 <div class="panel-body">
-
-                    <div class="row">
-                        <div class="col-md-10 col-md-push-1 form-group box-style">
-                            <label for="nombre">Nombre de Área</label>
-                            {!! Form::text('name', null, ['class' => 'form-control']) !!}
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-1 col-md-push-1 form-group box-style">
-                            <label for="state">Estado</label>
-                            <div id="dimension-switch" class="make-switch">
-                                {!! Form::checkbox('state', 'checked') !!}
-                            </div>
-                        </div>
-                    </div>
-
-
+                    @include('parametrizacion.areas._form')
                 </div>
 
                 <div class="panel-footer">
