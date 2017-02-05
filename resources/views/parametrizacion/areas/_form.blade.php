@@ -6,15 +6,22 @@
 </div>
 
 <div class="row">
-    <div class="col-md-2 col-md-push-1 box-style">
+    <div class="col-md-3 col-md-push-1 box-style">
         <label for="state">Estado</label>
         <br>
         <div class="control">
-            {!! Form::select('state', [0 => 'OFF', 1 => 'ON'], null, ['class' => 'switch control']) !!}
+            {!! Form::checkbox('status', null , 1,
+           [
+           'data-toggle' => 'toggle',
+           'data-on' => 'Activo',
+           'data-off' => 'Desactivado',
+           'class' => 'emiter'
+           ])
+       !!}
         </div>
-        <span class="glyphicon glyphicon-ok-sign" style="color: red">
-
-        </span>
+        <div class="lcontrol">
+            <span class="sing glyphicon"></span>
+        </div>
     </div>
 </div>
 
@@ -22,5 +29,11 @@
     .control{
         display: inline-block;
         position: relative;
+    }
+
+    .lcontrol {
+        display: inline-block;
+        position: absolute;
+        padding: 0px 0px 6px 10px;
     }
 </style>

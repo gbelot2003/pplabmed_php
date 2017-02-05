@@ -1,18 +1,22 @@
-$(document).ready(function() {
-    $('.datatable-area').DataTable({});
-    $('.switch').switchy();
 
-    var actualState = $('.switch').val();
-    console.log(actualState);
+/**
+ * First we will load all of this project's JavaScript dependencies which
+ * include Vue and Vue Resource. This gives a great starting point for
+ * building robust, powerful web applications using Vue and Laravel.
+ */
 
-    $('.switch').on('change', function(){
-        var value = $(this).val();
-        var bgColor = '#ccb3dc';
-        if(value === "1"){
-            $('.switchy-bar').css("background", "blue");
-        } else if(value === "0") {
-            $('.switchy-bar').css("background", "red");
-        }
-    });
+require('./bootstrap');
+
+/**
+ * Next, we will create a fresh Vue application instance and attach it to
+ * the page. Then, you may begin adding components to this application
+ * or customize the JavaScript scaffolding to fit your unique needs.
+ */
+
+Vue.component('example', require('./components/Example.vue'));
+Vue.component('areas', require('./components/AreasIndex.vue'));
+Vue.component('area-state', require('./components/area/areaStates.vue'));
+
+const app = new Vue({
+    el: '#app'
 });
-
