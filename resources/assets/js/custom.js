@@ -1,6 +1,8 @@
 (function(){
     var selector = $("#selector1");
     var url = (selector.val());
+
+
     $(function() {
         $('.datatable-area').dataTable({
             "ordering": true,
@@ -13,7 +15,6 @@
             },
             "order": [[0, 'desc']],
             "language": {
-                "decimal":        "",
                 "emptyTable":     "No hay datos disponibles para esta tabla",
                 "info":           "Mostrando _START_ a _END_ de _TOTAL_ entradas",
                 "infoEmpty":      "Mostrando 0 a 0 de 0 entradas",
@@ -63,25 +64,9 @@
             }
         }
 
-/*        $('.emiter').each(function() {
-            $(this).on('change', function(){
-                var id = $(this).val();
-                var ch = $(this).is(':checked');
-
-                if(ch === true){
-                    var state = 1;
-                    $.get('/areas/state/' + id + '/' + state, function (data) {
-                        toastr.success('Has activado el permiso de <strong style="text-decoration: underline">' + data + '</strong> exitosamente!!')
-                    });
-
-                } else if(ch === false) {
-                    var state = 0;
-                    $.get('/areas/state/' + id + '/' + state, function (data) {
-                        toastr.info('Has desactivado el permiso de <strong style="text-decoration: underline">' + data + '</strong> exitosamente!!')
-                    });
-                }
-            })
-        })*/
+        $('.select2multiple').select2({
+            multiple: true
+        });
     })
 
 })(jQuery);

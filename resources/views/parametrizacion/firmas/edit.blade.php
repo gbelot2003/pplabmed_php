@@ -8,7 +8,7 @@
 
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Agregar Área
+                        Editar Firmas
                     </div>
                 </div>
 

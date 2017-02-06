@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Permission;
 use App\Role;
 use Illuminate\Http\Request;
 
@@ -40,17 +41,6 @@ class RolesController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -58,7 +48,9 @@ class RolesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $item = Role::findOrFail($id);
+        $perms = Permission::pluck('name', 'id');
+        return View('seguridad.roles.edit', compact('item', 'perms'));
     }
 
     /**

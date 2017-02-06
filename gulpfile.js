@@ -15,5 +15,13 @@ require('laravel-elixir-vue-2');
 
 elixir((mix) => {
     mix.sass('app.scss')
-        .webpack('custom.js');
+        .webpack('custom.js')
+        .scripts([
+            'assets/jquery.js',
+            'assets/bootstrap.js',
+            'assets/jquery.dataTables.js',
+            'assets/bootstrap-toggle.min.js',
+            'assets/toastr.min.js',
+            'assets/select2.full.min.js'
+        ], 'public/js/app.js');
 });
