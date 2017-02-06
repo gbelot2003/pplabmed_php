@@ -26,7 +26,9 @@ class RolesController extends Controller
      */
     public function create()
     {
-        //
+        //TODO: metodo para que la casilla de nombre solo en crear y desabilitada en edit
+        $perms = Permission::pluck('display_name', 'id');
+        return View('seguridad.roles.create', compact('item', 'perms'));
     }
 
     /**
@@ -37,7 +39,9 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $role = Role::create($request->all());
+        $role->perms()->sync($request->input('perms_lists'));
+        return redirect()->to('/roles');
     }
 
     /**
