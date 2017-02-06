@@ -29,6 +29,28 @@
                     </ul>
                 </li>
 
+                <li><a href="{{ action('AreaController@index') }}">Hojas de Trabajo</a></li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        Resultados<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li class="dropdown-header">Permisos</li>
+                        <li><a href="{{ action('CitologiaController@index') }}">Permisos</a></li>
+                        <li><a href="{{ action('HistopatologiaController@index') }}">Roles</a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header">Usuarios</li>
+                        <li><a href="{{ action('CitologiaController@index') }}">Listado de Usuarios</a></li>
+                        <li><a href="{{ action('CitologiaController@index') }}">Creación de Usuarios</a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header">Bitacora</li>
+                        <li><a href="{{ action('CitologiaController@index') }}">Reporte de Actividades</a></li>
+
+                    </ul>
+                </li>
+
+
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                         Parametrización<span class="caret"></span>
