@@ -33,3 +33,12 @@ Route::resource('roles', 'RolesController');
 
 Route::resource('usuarios', 'UserController');
 Route::get('usuarios/state/{id}/{state}', 'UserController@state');
+
+Route::resource('gravidad', 'GravidadController');
+Route::get('gravidad/state/{id}/{state}', 'UserController@state');
+
+Route::resource('morfologia', 'MorfologiaController');
+Route::get('morfologia/state/{id}/{state}', 'UserController@state');
+
+Route::resource('topologia', 'TopologiaController');
+Route::get('topologia/state/{id}/{state}', 'UserController@state');

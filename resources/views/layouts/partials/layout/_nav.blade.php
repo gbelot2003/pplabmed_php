@@ -70,12 +70,16 @@
                         <li><a href="{{ action('CategoryController@create') }}">Agregar Nueva Id. Citologías</a></li>
                         <li class="divider"></li>
                         <li class="dropdown-header">Gravidad</li>
-                        <li><a href="{{ action('CategoryController@index') }}">Lista de Gravidades</a></li>
-                        <li><a href="{{ action('CategoryController@create') }}">Agregar Nueva  Gravidad</a></li>
+                        <li><a href="{{ action('GravidadController@index') }}">Lista de Gravidades</a></li>
+                        <li><a href="{{ action('GravidadController@create') }}">Agregar Nueva  Gravidad</a></li>
                         <li class="divider"></li>
                         <li class="dropdown-header">Morfologías</li>
-                        <li><a href="{{ action('CategoryController@index') }}">Lista de Morfologías</a></li>
-                        <li><a href="{{ action('CategoryController@create') }}">Agregar Nueva Morfologías</a></li>
+                        <li><a href="{{ action('MorfologiaController@index') }}">Lista de Morfologías</a></li>
+                        <li><a href="{{ action('MorfologiaController@create') }}">Agregar Nueva Morfologías</a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header">Topología</li>
+                        <li><a href="{{ action('TopologiaController@index') }}">Lista de Morfologías</a></li>
+                        <li><a href="{{ action('TopologiaController@create') }}">Agregar Nueva Morfologías</a></li>
                     </ul>
                 </li>
             </ul>
