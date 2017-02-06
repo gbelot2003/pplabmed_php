@@ -6,7 +6,7 @@ use Zizaco\Entrust\EntrustRole;
 class Role extends EntrustRole
 {
 
-    protected $fillable = ['name, display_name', 'decription'];
+    protected $fillable = ['name', 'display_name', 'description'];
 
     public function getPermsListsAttribute()
     {

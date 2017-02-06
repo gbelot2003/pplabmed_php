@@ -49,9 +49,7 @@ class RolesController extends Controller
     public function edit($id)
     {
         $item = Role::findOrFail($id);
-        $perms = Permission::pluck('name', 'id');
-        $permsA = $item->perms->pluck('id');
-        //dd($permsA);
+        $perms = Permission::pluck('display_name', 'id');
         return View('seguridad.roles.edit', compact('item', 'perms', 'permsA'));
     }
 
@@ -64,7 +62,11 @@ class RolesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //dd($request->all());
+        $role = Role::findOrFail($id);
+        $role->update($request->all());
+        $role->perms()->sync($request->input('perms_lists'));
+        return redirect()->to('/roles');
     }
 
     /**
