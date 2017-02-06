@@ -25,7 +25,15 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Area::class, function (Faker\Generator $faker) {
     return [
+        'name' => $faker->word,
+        'status' => rand(0, 1)
+    ];
+});
+
+$factory->define(App\Firma::class, function (Faker\Generator $faker) {
+    return [
         'name' => $faker->name,
+        'code' => $faker->word,
         'status' => rand(0, 1)
     ];
 });

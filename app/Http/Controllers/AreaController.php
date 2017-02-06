@@ -61,7 +61,11 @@ class AreaController extends Controller
 
     }
 
-
+    /**
+     * @param $id
+     * @param $state
+     * @return mixed
+     */
     public function state($id, $state){
         $item = Area::findOrFail($id);
         $item->status = $state;

@@ -21,3 +21,6 @@ Route::resource('citologias', 'CitologiaController');
 Route::resource('histopatologia', 'HistopatologiaController');
 Route::resource('areas', 'AreaController');
 Route::get('areas/state/{id}/{state}', 'AreaController@state');
+
+Route::resource('firmas', 'FirmasController');
+Route::get('firmas/state/{id}/{state}', 'FirmasController@state');
