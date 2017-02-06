@@ -40,7 +40,7 @@
                         <li class="divider"></li>
                         <li class="dropdown-header">Firmas</li>
                         <li><a href="{{ action('FirmasController@index') }}">Lista de Firmas</a></li>
-                        <li><a href="{{ action('AreaController@create') }}">Agregar Nueva Firma</a></li>
+                        <li><a href="{{ action('FirmasController@create') }}">Agregar Nueva Firma</a></li>
                     </ul>
                 </li>
             </ul>

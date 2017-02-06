@@ -15,7 +15,7 @@ class FirmasController extends Controller
     public function index()
     {
         $items = Firma::orderBy('id', 'DESC')->get();
-        return View('firmas.index', compact('items'));
+        return View('parametrizacion.firmas.index', compact('items'));
     }
 
     /**
@@ -25,7 +25,7 @@ class FirmasController extends Controller
      */
     public function create()
     {
-        //
+        return View('parametrizacion.firmas.create');
     }
 
     /**
@@ -36,18 +36,14 @@ class FirmasController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        if($request['status'] == 'on'):
+            $request['status'] = 1;
+        else:
+            $request['status'] = 0;
+        endif;
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        $firma = Firma::create($request->all());
+        return redirect()->to('/firmas');
     }
 
     /**
@@ -58,7 +54,8 @@ class FirmasController extends Controller
      */
     public function edit($id)
     {
-        //
+        $item = Firma::findOrFail($id);
+        return View('parametrizacion.firmas.edit', compact('item'));
     }
 
     /**
@@ -70,7 +67,16 @@ class FirmasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $item = Firma::findOrFail($id);
+
+        if($request['status'] == 'on'):
+            $request['status'] = 1;
+        else:
+            $request['status'] = 0;
+        endif;
+
+        $item->update($request->all());
+        return redirect()->to('/firmas');
     }
 
     /**

@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            {!! Form::open(['action' => ['AreaController@store']]) !!}
+            {!! Form::model($item, ['action' => ['FirmasController@update', $item->id], 'method' => 'put']) !!}
             <div class="col-md-10 col-md-offset-1">
 
                 <div class="panel panel-default">
@@ -13,7 +13,7 @@
                 </div>
 
                 <div class="panel-body">
-                    @include('parametrizacion.areas._form')
+                    @include('parametrizacion.firmas._form')
                 </div>
 
                 <div class="panel-footer">

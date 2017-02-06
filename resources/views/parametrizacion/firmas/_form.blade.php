@@ -6,6 +6,14 @@
 </div>
 
 <div class="row">
+    <div class="col-md-10 col-md-push-1 form-group box-style">
+        <label for="code">Código de Busqueda</label>
+        {!! Form::text('code', null, ['class' => 'form-control']) !!}
+    </div>
+</div>
+
+
+<div class="row">
     <div class="col-md-3 col-md-push-1 box-style">
         <label for="state">Estado</label>
         <br>
