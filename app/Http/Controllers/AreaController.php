@@ -14,7 +14,7 @@ class AreaController extends Controller
 
     public function index()
     {
-        $items = Area::OrderBY('id', 'DESC')->paginate(15);
+        $items = Area::OrderBY('id', 'DESC')->get();
         return View('parametrizacion.areas.index', compact('items'));
     }
 
@@ -23,20 +23,36 @@ class AreaController extends Controller
         return View('parametrizacion.areas.create');
     }
 
-    public function store()
+    public function store(Request $request)
     {
+        if($request['status'] == 'on'):
+            $request['status'] = 1;
+         else:
+             $request['status'] = 0;
+         endif;
 
+        $area = Area::create($request->all());
+        return redirect()->to('/areas');
     }
 
     public function edit($id)
     {
         $item = Area::findOrFail($id);
-        return View('parametrizacion.area.edit');
+        return View('parametrizacion.areas.edit', compact('item'));
     }
 
     public function update(Request $request, $id)
     {
+        $item = Area::findOrFail($id);
 
+        if($request['status'] == 'on'):
+            $request['status'] = 1;
+        else:
+            $request['status'] = 0;
+        endif;
+
+        $item->update($request->all());
+        return redirect()->to('/areas');
     }
 
 

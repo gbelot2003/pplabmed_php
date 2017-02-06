@@ -1,6 +1,16 @@
 (function(){
+
     $(function() {
         $('.datatable-area').dataTable({
+            "ordering": true,
+            "fnDrawCallback": function(){
+                $('.toggle .emiter').on('change', function(){
+                    var id = $(this).val();
+                    var ch = $(this).is(':checked');
+                    sendDataToServer(id, ch);
+                });
+            },
+            "order": [[0, 'desc']],
             "language": {
                 "decimal":        "",
                 "emptyTable":     "No hay datos disponibles para esta tabla",
@@ -23,10 +33,36 @@
                 "aria": {
                     "sortAscending":  ": Ordenando por columnas asendente",
                     "sortDescending": ": Ordenando por columnas desendente"
-                }
+                },
             }
         });
-        $('.emiter').each(function() {
+
+        function sendDataToServer(id, ch){
+            if(ch === true){
+                var state = 1;
+                $.get('/areas/state/' + id + '/' + state)
+                    .done(function(data){
+                    toastr.success('Has activado el permiso de <strong style="text-decoration: underline">' + data + '</strong> exitosamente!!');
+                }).fail(function(data){
+                    var status = data.status;
+                    var statusText = data.statusText;
+                    toastr.error(`Hubo algun problema, el servidor tiene "Status:" ${status}, mensaje de error es: ${statusText}`);
+                });
+
+            } else if(ch === false) {
+                var state = 0;
+                $.get('/areas/state/' + id + '/' + state)
+                .done(function(data){
+                    toastr.info('Has desactivado el permiso de <strong style="text-decoration: underline">' + data + '</strong> exitosamente!!');
+                }).fail(function(data){
+                    var status = data.status;
+                    var statusText = data.statusText;
+                    toastr.error(`Hubo algun problema, el servidor tiene "Status:" ${status}, mensaje de error es: ${statusText}. Los cambios no se salvaron`);
+                });
+            }
+        }
+
+/*        $('.emiter').each(function() {
             $(this).on('change', function(){
                 var id = $(this).val();
                 var ch = $(this).is(':checked');
@@ -44,7 +80,7 @@
                     });
                 }
             })
-        })
+        })*/
     })
 
 })(jQuery);
