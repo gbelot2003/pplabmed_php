@@ -37,7 +37,7 @@
                     </a>
                     <ul class="dropdown-menu" role="menu">
                         <li class="dropdown-header">Permisos</li>
-                        <li><a href="{{ action('CitologiaController@index') }}">Permisos</a></li>
+                        <li><a href="{{ action('PermissionController@index') }}">Permisos</a></li>
                         <li><a href="{{ action('HistopatologiaController@index') }}">Roles</a></li>
                         <li class="divider"></li>
                         <li class="dropdown-header">Usuarios</li>

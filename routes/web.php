@@ -27,3 +27,5 @@ Route::get('firmas/state/{id}/{state}', 'FirmasController@state');
 
 Route::resource('categorias', 'CategoryController');
 Route::get('categorias/state/{id}/{state}', 'CategoryController@state');
+
+Route::get('permisos', 'PermissionController@index');
