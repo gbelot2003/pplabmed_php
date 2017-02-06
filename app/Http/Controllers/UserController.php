@@ -20,9 +20,30 @@ class UserController extends Controller
         return View('seguridad.usuarios.create', compact('roles'));
     }
 
-    public function store()
+    public function store(Request $request)
     {
+        if($request->input('password')):
+            $request['password'] = bcrypt($request->input('password'));
+            unset($request['password_confirmation']);
+        else:
+            unset($request['password']);
+            unset($request['password_confirmation']);
+        endif;
 
+        if($request['status'] == 'on'):
+            $request['status'] = 1;
+        else:
+            $request['status'] = 0;
+        endif;
+
+        $item = User::create($request->all());
+        if($request->input('roles_list')){
+            if(!is_array($request->input('roles_list'))){
+            }else {
+                $item->roles()->sync($request->input('roles_list'));
+            }
+        }
+        return redirect()->to('/usuarios');
     }
 
     /**
@@ -55,13 +76,12 @@ class UserController extends Controller
         endif;
 
         $user->update($request->all());
-        if($request->input('roles_lists')){
-            if(!is_array($request->input('roles_lists'))){
+        if($request->input('roles_list')){
+            if(!is_array($request->input('roles_list'))){
             }else {
-                $user->roles()->sync($request->input('roles_lists'));
+                $user->roles()->sync($request->input('roles_list'));
             }
         }
-
         return redirect()->to('/usuarios');
     }
 
