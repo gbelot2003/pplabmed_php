@@ -59,7 +59,7 @@
     <div class="row">
         <div class="form-group col-md-12 box-style">
             <label for="diagnostico">Diagnosticco Clinico</label>
-            {!! Form::textarea('diagnostico', null, ['class' => 'form-control']) !!}
+            {!! Form::textarea('diagnostico', null, ['class' => 'form-control ckeditor']) !!}
         </div>
     </div>
 
@@ -98,7 +98,7 @@
     <div class="row">
         <div class="form-group col-md-12 box-style">
             <label for="informe">Informe</label>
-            {!! Form::textarea('informe', null, ['class' => 'form-control']) !!}
+            {!! Form::textarea('informe', null, ['class' => 'form-control ckeditor']) !!}
         </div>
     </div>
 
@@ -110,5 +110,5 @@
             </div>
         </div>
     </div>
-
+    <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
 </fieldset>
