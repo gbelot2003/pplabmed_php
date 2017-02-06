@@ -1,23 +1,23 @@
 <div class="row">
     <div class="col-md-5 col-md-push-1 form-group box-style">
-        <label for="nombre">Nombre de Área</label>
+        <label for="nombre">Nombre de Usuario</label>
         {!! Form::text('name', null, ['class' => 'form-control']) !!}
     </div>
 
     <div class="col-md-5 col-md-push-1 form-group box-style">
-        <label for="email">Correo Electronico</label>
+        <label for="email">Correo Electrónico</label>
         {!! Form::email('email', null, ['class' => 'form-control']) !!}
     </div>
 </div>
 
 <div class="row">
     <div class="col-md-5 col-md-push-1 form-group box-style">
-        <label for="nombre">Password</label>
+        <label for="nombre">Contraseña</label>
         {!! Form::password('password', ['class' => 'form-control']) !!}
     </div>
 
     <div class="col-md-5 col-md-push-1 form-group box-style">
-        <label for="nombre">Password repeate</label>
+        <label for="nombre">Repita Contraseña</label>
         {!! Form::password('password', ['class' => 'form-control']) !!}
     </div>
 </div>
@@ -29,13 +29,13 @@
         <br>
         <div class="control">
             {!! Form::checkbox('status', null , 1,
-           [
-           'data-toggle' => 'toggle',
-           'data-on' => 'Activo',
-           'data-off' => 'Desactivado',
-           'class' => 'emiter'
-           ])
-       !!}
+               [
+               'data-toggle' => 'toggle',
+               'data-on' => 'Activo',
+               'data-off' => 'Desactivado',
+               'class' => 'emiter'
+               ])
+            !!}
         </div>
         <div class="lcontrol">
             <span class="sing glyphicon"></span>

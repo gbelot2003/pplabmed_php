@@ -64,9 +64,18 @@
                         <li><a href="{{ action('FirmasController@index') }}">Lista de Firmas</a></li>
                         <li><a href="{{ action('FirmasController@create') }}">Agregar Nueva Firma</a></li>
                         <li class="divider"></li>
-                        <li class="dropdown-header">Id. Categorias</li>
-                        <li><a href="{{ action('CategoryController@index') }}">Lista de Id. Categorias</a></li>
-                        <li><a href="{{ action('CategoryController@create') }}">Agregar Nueva Id. Categoria</a></li>
+                        <li class="dropdown-header">Id. Citologías</li>
+                        <li><a href="{{ action('CategoryController@index') }}">Lista de Id. Citologías</a></li>
+                        <li><a href="{{ action('CategoryController@create') }}">Agregar Nueva Id. Citologías</a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header">Gravidad</li>
+                        <li><a href="{{ action('CategoryController@index') }}">Lista de Gravidades</a></li>
+                        <li><a href="{{ action('CategoryController@create') }}">Agregar Nueva  Gravidad</a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header">Morfologías</li>
+                        <li><a href="{{ action('CategoryController@index') }}">Lista de Morfologías</a></li>
+                        <li><a href="{{ action('CategoryController@create') }}">Agregar Nueva Morfologías</a></li>
+
                     </ul>
                 </li>
             </ul>
