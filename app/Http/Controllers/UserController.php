@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    //
+    public function index()
+    {
+        $items = User::all();
+        return View('seguridad.usuarios.index', compact('items'));
+    }
 }
