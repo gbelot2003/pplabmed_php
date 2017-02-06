@@ -30,3 +30,5 @@ Route::get('categorias/state/{id}/{state}', 'CategoryController@state');
 
 Route::get('permisos', 'PermissionController@index');
 Route::resource('roles', 'RolesController');
+
+Route::resource('usuarios', 'UserController');
