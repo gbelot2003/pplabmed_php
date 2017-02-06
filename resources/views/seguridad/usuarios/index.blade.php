@@ -47,7 +47,7 @@
                                             !!}
                                         </label>
                                     </td>
-                                    <td><a href="{{ action('AreaController@edit', $item->id) }}">Editar</a></td>
+                                    <td><a href="{{ action('UserController@edit', $item->id) }}">Editar</a></td>
                                 </tr>
                             @endforeach
                             </tbody>

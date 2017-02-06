@@ -67,6 +67,8 @@
         $('.select2multiple').select2({
             multiple: true
         });
+        
+
     })
 
 })(jQuery);

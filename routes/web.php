@@ -32,3 +32,4 @@ Route::get('permisos', 'PermissionController@index');
 Route::resource('roles', 'RolesController');
 
 Route::resource('usuarios', 'UserController');
+Route::get('usuarios/state/{id}/{state}', 'UserController@state');
