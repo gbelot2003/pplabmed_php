@@ -50,7 +50,9 @@ class RolesController extends Controller
     {
         $item = Role::findOrFail($id);
         $perms = Permission::pluck('name', 'id');
-        return View('seguridad.roles.edit', compact('item', 'perms'));
+        $permsA = $item->perms->pluck('id');
+        //dd($permsA);
+        return View('seguridad.roles.edit', compact('item', 'perms', 'permsA'));
     }
 
     /**
