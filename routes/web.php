@@ -24,3 +24,6 @@ Route::get('areas/state/{id}/{state}', 'AreaController@state');
 
 Route::resource('firmas', 'FirmasController');
 Route::get('firmas/state/{id}/{state}', 'FirmasController@state');
+
+Route::resource('categorias', 'CategoryController');
+Route::get('categorias/state/{id}/{state}', 'CategoryController@state');

@@ -3,22 +3,22 @@
 @section('content')
     <div class="container">
         <div class="row">
-            {!! Form::open(['action' => ['FirmasController@store']]) !!}
+            {!! Form::model($item, ['action' => ['CategoryController@update', $item->id], 'method' => 'put']) !!}
             <div class="col-md-10 col-md-offset-1">
 
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Agregar Firmas
+                        Agregar Área
                     </div>
                 </div>
 
                 <div class="panel-body">
-                    @include('parametrizacion.firmas._form')
+                    @include('parametrizacion.categorias._form')
                 </div>
 
                 <div class="panel-footer">
                     <div class="text-right">
-                        <a href="{{ action('FirmasController@index') }}" class="btn btn-danger">Cancelar</a>
+                        <a href="{{ action('AreaController@index') }}" class="btn btn-danger">Cancelar</a>
                         <button type="submit" class="btn btn-primary">
                             Guardar <span class="glyphicon glyphicon-save"></span>
                         </button>
