@@ -20,7 +20,7 @@ class UsersTableSeeder extends Seeder
             0 => 
             array (
                 'id' => 1,
-                'name' => 'Gerardo',
+                'username' => 'gbelot',
                 'email' => 'gbelot2003@hotmail.com',
                 'password' => '$2y$10$LcknuRPTG3zADQ.yg5tWNOG.JSSp5V8rijUlFZYmM.hjx.DM7u6I.',
                 'status' => 1,

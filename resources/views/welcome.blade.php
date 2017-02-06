@@ -12,7 +12,7 @@
                     <h1 class="logo-caption"><span class="tweak">PPlab</span>med</h1>
                 </div><!-- /.logo -->
                 <div class="controls">
-                    <input type="email" name="email" placeholder="email" class="form-control" />
+                    <input type="text" name="username" placeholder="username" class="form-control" />
                     <input type="password" name="password" placeholder="Password" class="form-control" />
                     <button type="submit" class="btn btn-default btn-block btn-custom">Login</button>
                 </div><!-- /.controls -->
