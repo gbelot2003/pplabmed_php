@@ -1,10 +1,11 @@
-<?php namespace App;
+<?php
+
+namespace App;
 
 use Zizaco\Entrust\EntrustPermission;
 
-class Persission extends EntrustPermission
+class Permission extends EntrustPermission
 {
-
     protected $fillable = ['name, display_name', 'decription'];
 
 }
