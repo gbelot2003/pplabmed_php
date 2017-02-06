@@ -39,9 +39,18 @@ class AreaController extends Controller
 
     }
 
+
     public function delete($id)
     {
 
+    }
+
+
+    public function state($id, $state){
+        $item = Area::findOrFail($id);
+        $item->status = $state;
+        $item->update();
+        return $item->name;
     }
 }
 

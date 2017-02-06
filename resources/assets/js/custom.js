@@ -1,5 +1,4 @@
 (function(){
-
     $(function() {
         $('.datatable-area').dataTable({
             "language": {
@@ -31,10 +30,18 @@
             $(this).on('change', function(){
                 var id = $(this).val();
                 var ch = $(this).is(':checked');
+
                 if(ch === true){
-                    toastr.success('Has activado el permiso exitosamente!!')
+                    var state = 1;
+                    $.get('/areas/state/' + id + '/' + state, function (data) {
+                        toastr.success('Has activado el permiso de <strong style="text-decoration: underline">' + data + '</strong> exitosamente!!')
+                    });
+
                 } else if(ch === false) {
-                    toastr.info('Has desactivado el permiso exitosamente!!')
+                    var state = 0;
+                    $.get('/areas/state/' + id + '/' + state, function (data) {
+                        toastr.info('Has desactivado el permiso de <strong style="text-decoration: underline">' + data + '</strong> exitosamente!!')
+                    });
                 }
             })
         })
