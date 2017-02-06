@@ -14,6 +14,7 @@
             <a class="navbar-brand" href="{{ url('/') }}">
                 PIF Patología
             </a>
+
         </div>
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -75,7 +76,6 @@
                         <li class="dropdown-header">Morfologías</li>
                         <li><a href="{{ action('CategoryController@index') }}">Lista de Morfologías</a></li>
                         <li><a href="{{ action('CategoryController@create') }}">Agregar Nueva Morfologías</a></li>
-
                     </ul>
                 </li>
             </ul>
