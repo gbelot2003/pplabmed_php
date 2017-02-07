@@ -97,6 +97,86 @@ class MorfologiasTableSeeder extends Seeder
                 'created_at' => '2017-02-07 00:15:36',
                 'updated_at' => '2017-02-07 00:15:36',
             ),
+            10 => 
+            array (
+                'id' => 11,
+                'name' => 'nisi',
+                'status' => 0,
+                'created_at' => '2017-02-07 17:05:02',
+                'updated_at' => '2017-02-07 17:05:02',
+            ),
+            11 => 
+            array (
+                'id' => 12,
+                'name' => 'aliquam',
+                'status' => 0,
+                'created_at' => '2017-02-07 17:05:03',
+                'updated_at' => '2017-02-07 17:05:03',
+            ),
+            12 => 
+            array (
+                'id' => 13,
+                'name' => 'sint',
+                'status' => 1,
+                'created_at' => '2017-02-07 17:05:03',
+                'updated_at' => '2017-02-07 17:05:03',
+            ),
+            13 => 
+            array (
+                'id' => 14,
+                'name' => 'molestiae',
+                'status' => 0,
+                'created_at' => '2017-02-07 17:05:03',
+                'updated_at' => '2017-02-07 17:05:03',
+            ),
+            14 => 
+            array (
+                'id' => 15,
+                'name' => 'qui',
+                'status' => 1,
+                'created_at' => '2017-02-07 17:05:03',
+                'updated_at' => '2017-02-07 17:05:03',
+            ),
+            15 => 
+            array (
+                'id' => 16,
+                'name' => 'cumque',
+                'status' => 0,
+                'created_at' => '2017-02-07 17:05:03',
+                'updated_at' => '2017-02-07 17:05:03',
+            ),
+            16 => 
+            array (
+                'id' => 17,
+                'name' => 'aperiam',
+                'status' => 1,
+                'created_at' => '2017-02-07 17:05:03',
+                'updated_at' => '2017-02-07 17:05:03',
+            ),
+            17 => 
+            array (
+                'id' => 18,
+                'name' => 'hic',
+                'status' => 0,
+                'created_at' => '2017-02-07 17:05:03',
+                'updated_at' => '2017-02-07 17:05:03',
+            ),
+            18 => 
+            array (
+                'id' => 19,
+                'name' => 'deserunt',
+                'status' => 0,
+                'created_at' => '2017-02-07 17:05:03',
+                'updated_at' => '2017-02-07 17:05:03',
+            ),
+            19 => 
+            array (
+                'id' => 20,
+                'name' => 'laudantium',
+                'status' => 1,
+                'created_at' => '2017-02-07 17:05:03',
+                'updated_at' => '2017-02-07 17:05:03',
+            ),
         ));
         
         
