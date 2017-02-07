@@ -10,7 +10,7 @@
                         <div class="text-muted pull-right">
                             <a href="{{ action('TopologiaController@create') }}" class="btn btn-info" alt="Crear Citologia"><span class="glyphicon glyphicon-plus"></span></a>
                         </div>
-                        <h4>Listado de Morfologías</h4>
+                        <h4>Listado de Topología</h4>
                     </div>
                     <div class="panel-body">
                         <table class="table table-bordered datatable-area">
