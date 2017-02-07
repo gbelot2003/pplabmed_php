@@ -24,9 +24,20 @@ class UsersTableSeeder extends Seeder
                 'email' => 'gbelot2003@hotmail.com',
                 'password' => '$2y$10$LcknuRPTG3zADQ.yg5tWNOG.JSSp5V8rijUlFZYmM.hjx.DM7u6I.',
                 'status' => 1,
-                'remember_token' => NULL,
+                'remember_token' => 'LzWt0hCgDozn419dI7wXnXQJbMItxxNeg3YGMmsKjAPPh3VtxMBlWpOi6Ena',
                 'created_at' => '2017-02-05 06:33:40',
                 'updated_at' => '2017-02-05 06:33:40',
+            ),
+            1 => 
+            array (
+                'id' => 2,
+                'username' => 'admin',
+                'email' => 'admin@yahoo.com',
+                'password' => '$2y$10$H43IwqZjemo7AInZNyKZm.2g6fOXLoUwlLomlIhzaAkfVA74WG/tO',
+                'status' => 1,
+                'remember_token' => NULL,
+                'created_at' => '2017-02-07 19:21:56',
+                'updated_at' => '2017-02-07 19:23:39',
             ),
         ));
         

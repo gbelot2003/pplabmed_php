@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-5 col-md-push-1 form-group box-style">
         <label for="nombre">Nombre de Usuario</label>
-        {!! Form::text('name', null, ['class' => 'form-control']) !!}
+        {!! Form::text('username', null, ['class' => 'form-control']) !!}
     </div>
 
     <div class="col-md-5 col-md-push-1 form-group box-style">

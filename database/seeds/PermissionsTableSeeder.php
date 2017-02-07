@@ -143,6 +143,15 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => '2017-02-06 02:10:48',
                 'updated_at' => '2017-02-06 02:10:50',
             ),
+            14 => 
+            array (
+                'id' => 15,
+                'name' => ' create-gravidad',
+                'display_name' => 'Crear Gravidades',
+                'description' => 'Permisos para la creación de Gravidades',
+                'created_at' => '2017-02-07 13:31:30',
+                'updated_at' => '2017-02-07 13:31:32',
+            ),
         ));
         
         

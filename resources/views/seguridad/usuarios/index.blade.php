@@ -28,11 +28,11 @@
                             @foreach($items as $item)
                                 <tr>
                                     <td class="id">{{ $item->id }}</td>
-                                    <td>{{ $item->name }}</td>
+                                    <td>{{ $item->username }}</td>
                                     <td>{{ $item->email }}</td>
                                     <td>
                                         @foreach($item->roles as $rol)
-                                            {{ $rol->name }}
+                                            {{ $rol->display_name }}
                                         @endforeach
                                     </td>
                                     <td class="checkcol">
