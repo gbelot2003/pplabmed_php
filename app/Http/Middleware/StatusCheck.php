@@ -17,7 +17,10 @@ class StatusCheck
     public function handle($request, Closure $next)
     {
 
-        return $next($request);
+        if(Auth::user()->status === 0){
+            return redirect()->to('home');
+        }
 
+        return $next($request);
     }
 }
