@@ -11,7 +11,8 @@ class MorfologiaController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('checkActive');
-
+        $this->middleware('createMorfo', ['only' => ['create', 'store']]);
+        $this->middleware('editMorfo', ['only' => ['edit', 'update', 'state']]);
     }
 
     public function index()

@@ -75,7 +75,7 @@
                         <li class="divider"></li>
                         <li class="dropdown-header">Id. Citologías</li>
                         <li><a href="{{ action('CategoryController@index') }}">Lista de Id. Citologías</a></li>
-                        @if(Entrust::can('create-citologias'))
+                        @if(Entrust::can('create-cito'))
                         <li><a href="{{ action('CategoryController@create') }}">Agregar Nueva Id. Citologías</a></li>
                         @endif
                         <li class="divider"></li>

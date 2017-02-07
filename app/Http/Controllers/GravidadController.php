@@ -11,7 +11,8 @@ class GravidadController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('checkActive');
-
+        $this->middleware('createGravidad', ['only' => ['create', 'store']]);
+        $this->middleware('editGravidad', ['only' => ['edit', 'update', 'state']]);
     }
 
     public function index()

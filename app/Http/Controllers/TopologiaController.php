@@ -12,6 +12,8 @@ class TopologiaController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('checkActive');
+        $this->middleware('createTopo', ['only' => ['create', 'store']]);
+        $this->middleware('editTopo', ['only' => ['edit', 'update', 'state']]);
     }
 
     public function index()
