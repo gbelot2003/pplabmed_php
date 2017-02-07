@@ -78,8 +78,8 @@
                         <li><a href="{{ action('MorfologiaController@create') }}">Agregar Nueva Morfologías</a></li>
                         <li class="divider"></li>
                         <li class="dropdown-header">Topología</li>
-                        <li><a href="{{ action('TopologiaController@index') }}">Lista de Morfologías</a></li>
-                        <li><a href="{{ action('TopologiaController@create') }}">Agregar Nueva Morfologías</a></li>
+                        <li><a href="{{ action('TopologiaController@index') }}">Lista de Topología</a></li>
+                        <li><a href="{{ action('TopologiaController@create') }}">Agregar Nueva Topología</a></li>
                     </ul>
                 </li>
             </ul>
