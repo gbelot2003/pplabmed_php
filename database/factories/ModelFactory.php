@@ -46,3 +46,27 @@ $factory->define(App\Categoria::class, function (Faker\Generator $faker) {
     ];
 });
 
+$factory->define(App\Morfologia::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->word,
+        'status' => rand(0, 1)
+    ];
+});
+
+$factory->define(App\Topologia::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->word,
+        'status' => rand(0, 1)
+    ];
+});
+
+$factory->define(App\Gravidad::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->word,
+        'status' => rand(0, 1)
+    ];
+});
+
+
+
+

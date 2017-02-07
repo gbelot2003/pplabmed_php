@@ -15,6 +15,8 @@ class CreateMorfologiasTable extends Migration
     {
         Schema::create('morfologias', function (Blueprint $table) {
             $table->increments('id');
+            $table->text('name');
+            $table->boolean('status');
             $table->timestamps();
         });
     }

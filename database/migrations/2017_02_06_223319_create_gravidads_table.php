@@ -15,6 +15,8 @@ class CreateGravidadsTable extends Migration
     {
         Schema::create('gravidads', function (Blueprint $table) {
             $table->increments('id');
+            $table->text('name');
+            $table->boolean('status');
             $table->timestamps();
         });
     }
