@@ -13,16 +13,24 @@ class CreateFacturasTable extends Migration
      */
     public function up()
     {
+
+        Schema::create('examenes', function(Blueprint $table){
+           $table->integer('factura_id');
+           $table->string('name');
+           $table->timestamps();
+        });
+
         Schema::create('facturas', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('factura');
-            $table->string('paciente');
-            $table->text('direccion');
-            $table->string('medico');
-            $table->integer('edad');
-            $table->string('sexo');
             $table->integer('identidad');
+            $table->string('nombre');
             $table->date('nacimiento');
+            $table->string('email');
+            $table->text('direccion_entrega');
+            $table->string('medico');
+            $table->string('sexo');
+            $table->integer('edad');
             $table->timestamps();
         });
     }
@@ -34,6 +42,7 @@ class CreateFacturasTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('examenes');
         Schema::dropIfExists('facturas');
     }
 }
