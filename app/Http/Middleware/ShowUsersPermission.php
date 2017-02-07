@@ -15,6 +15,11 @@ class ShowUsersPermission
      */
     public function handle($request, Closure $next)
     {
+        if(Auth::user()->can('show-users') === false)
+        {
+            return redirect()->back();
+        }
+
         return $next($request);
     }
 }

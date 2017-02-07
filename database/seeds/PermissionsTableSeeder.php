@@ -128,7 +128,7 @@ class PermissionsTableSeeder extends Seeder
             12 => 
             array (
                 'id' => 13,
-                'name' => 'show-citologias',
+                'name' => 'show-cito',
                 'display_name' => 'Ver Citologias',
                 'description' => 'Permiso para ver Histopatologías y Citologías ',
                 'created_at' => '2017-02-06 02:08:16',
@@ -137,7 +137,7 @@ class PermissionsTableSeeder extends Seeder
             13 => 
             array (
                 'id' => 14,
-                'name' => 'create-citologias',
+                'name' => 'create-cito',
                 'display_name' => 'Crear Citologías',
                 'description' => 'Permiso para crear Histopatologías y Citologías',
                 'created_at' => '2017-02-06 02:10:48',
@@ -146,11 +146,110 @@ class PermissionsTableSeeder extends Seeder
             14 => 
             array (
                 'id' => 15,
-                'name' => ' create-gravidad',
+                'name' => 'create-gravidad',
                 'display_name' => 'Crear Gravidades',
                 'description' => 'Permisos para la creación de Gravidades',
                 'created_at' => '2017-02-07 13:31:30',
                 'updated_at' => '2017-02-07 13:31:32',
+            ),
+            15 => 
+            array (
+                'id' => 16,
+                'name' => 'edit-gravidad',
+                'display_name' => 'Editar Gravidad',
+                'description' => 'Permisos para la edición de Gravidades',
+                'created_at' => '2017-02-07 15:11:04',
+                'updated_at' => '2017-02-07 15:11:05',
+            ),
+            16 => 
+            array (
+                'id' => 17,
+                'name' => 'create-morfologia',
+                'display_name' => 'Crear Morfologías',
+                'description' => 'Permisos para crear Morfoloías',
+                'created_at' => '2017-02-07 15:12:30',
+                'updated_at' => '2017-02-07 15:12:37',
+            ),
+            17 => 
+            array (
+                'id' => 18,
+                'name' => 'create-topologia',
+                'display_name' => 'Create Topologías',
+                'description' => 'Permisos para la edición de Topografias',
+                'created_at' => '2017-02-07 15:14:09',
+                'updated_at' => '2017-02-07 15:14:10',
+            ),
+            18 => 
+            array (
+                'id' => 20,
+                'name' => 'edit-morfologia',
+                'display_name' => 'Editar Morfologias',
+                'description' => 'Permisos para editar Morfologías',
+                'created_at' => '2017-02-07 15:15:09',
+                'updated_at' => '2017-02-07 15:15:10',
+            ),
+            19 => 
+            array (
+                'id' => 21,
+                'name' => 'edit-topologias',
+                'display_name' => 'Editar Topologias',
+                'description' => 'Permisos par edutar Topologías',
+                'created_at' => '2017-02-07 15:15:51',
+                'updated_at' => '2017-02-07 15:15:55',
+            ),
+            20 => 
+            array (
+                'id' => 22,
+                'name' => 'show-perms',
+                'display_name' => 'Ver Permisos',
+                'description' => 'Permisos para desplegar permisos',
+                'created_at' => '2017-02-07 15:39:57',
+                'updated_at' => '2017-02-07 15:39:58',
+            ),
+            21 => 
+            array (
+                'id' => 23,
+                'name' => 'edit-roles',
+                'display_name' => 'Edutar Roles',
+                'description' => 'Permisos Para editar roles',
+                'created_at' => '2017-02-07 15:51:38',
+                'updated_at' => '2017-02-07 15:51:40',
+            ),
+            22 => 
+            array (
+                'id' => 24,
+                'name' => 'create-histo',
+                'display_name' => 'Crear Histografia',
+                'description' => 'Permisos para crear Histografias',
+                'created_at' => '2017-02-07 16:18:08',
+                'updated_at' => '2017-02-07 16:18:09',
+            ),
+            23 => 
+            array (
+                'id' => 25,
+                'name' => 'edit-histo',
+                'display_name' => 'Editar Histografias',
+                'description' => 'Permisos Para Histografias',
+                'created_at' => '2017-02-07 16:18:41',
+                'updated_at' => '2017-02-07 16:18:42',
+            ),
+            24 => 
+            array (
+                'id' => 26,
+                'name' => 'edit-cito',
+                'display_name' => 'Editar Citología',
+                'description' => 'Permisos para Editar Citologias',
+                'created_at' => '2017-02-07 16:20:09',
+                'updated_at' => '2017-02-07 16:20:10',
+            ),
+            25 => 
+            array (
+                'id' => 27,
+                'name' => 'show-histo',
+                'display_name' => 'Ver Histopatologia',
+                'description' => 'Permisos para ver Histopatologia',
+                'created_at' => '2017-02-07 16:29:04',
+                'updated_at' => '2017-02-07 16:29:05',
             ),
         ));
         

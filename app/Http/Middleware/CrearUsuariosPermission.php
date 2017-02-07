@@ -15,6 +15,11 @@ class CrearUsuariosPermission
      */
     public function handle($request, Closure $next)
     {
+        if(Auth::user()->can('create-usuarios') === false)
+        {
+            return redirect()->back();
+        }
+
         return $next($request);
     }
 }

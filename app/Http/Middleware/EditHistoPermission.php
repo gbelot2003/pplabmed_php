@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class EditIdCitologiaPermission
+class EditHistoPermission
 {
     /**
      * Handle an incoming request.
@@ -15,7 +15,7 @@ class EditIdCitologiaPermission
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user()->can('edit-categorias') === false)
+        if(Auth::user()->can('edit-histo') === false)
         {
             return redirect()->back();
         }

@@ -15,6 +15,11 @@ class CreateCitologiasPermission
      */
     public function handle($request, Closure $next)
     {
+        if(Auth::user()->can('create-cito') === false)
+        {
+            return redirect()->back();
+        }
+
         return $next($request);
     }
 }

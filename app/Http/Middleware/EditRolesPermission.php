@@ -15,6 +15,11 @@ class EditRolesPermission
      */
     public function handle($request, Closure $next)
     {
+        if(Auth::user()->can('edit-roles') === false)
+        {
+            return redirect()->back();
+        }
+
         return $next($request);
     }
 }

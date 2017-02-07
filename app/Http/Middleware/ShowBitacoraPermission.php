@@ -15,6 +15,11 @@ class ShowBitacoraPermission
      */
     public function handle($request, Closure $next)
     {
+        if(Auth::user()->can('show-bitacora') === false)
+        {
+            return redirect()->back();
+        }
+
         return $next($request);
     }
 }

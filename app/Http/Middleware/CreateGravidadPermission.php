@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class EditIdCitologiaPermission
+class CreateGravidadPermission
 {
     /**
      * Handle an incoming request.
@@ -15,11 +15,10 @@ class EditIdCitologiaPermission
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user()->can('edit-categorias') === false)
+        if(Auth::user()->can('create-gravidad') === false)
         {
             return redirect()->back();
         }
 
-        return $next($request);
-    }
+        return $next($request);    }
 }

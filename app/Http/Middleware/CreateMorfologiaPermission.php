@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class CrearRolesPermission
+class CreateMorfologiaPermission
 {
     /**
      * Handle an incoming request.
@@ -15,6 +15,11 @@ class CrearRolesPermission
      */
     public function handle($request, Closure $next)
     {
+        if(Auth::user()->can('create-morfologia') === false)
+        {
+            return redirect()->back();
+        }
+
         return $next($request);
     }
 }

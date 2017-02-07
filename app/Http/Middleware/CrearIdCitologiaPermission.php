@@ -15,6 +15,11 @@ class CrearIdCitologiaPermission
      */
     public function handle($request, Closure $next)
     {
+        if(Auth::user()->can('create-categorias') === false)
+        {
+            return redirect()->back();
+        }
+
         return $next($request);
     }
 }

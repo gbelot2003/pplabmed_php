@@ -37,9 +37,13 @@
                         Seguridad<span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" role="menu">
+                        @if(Entrust::can('show-perms'))
                         <li class="dropdown-header">Permisos</li>
                         <li><a href="{{ action('PermissionController@index') }}">Permisos</a></li>
+                        @endif
+                        @if(Entrust::can('edit-roles', 'creat-roles'))
                         <li><a href="{{ action('RolesController@index') }}">Roles</a></li>
+                        @endif
                         <li class="divider"></li>
                         <li class="dropdown-header">Usuarios</li>
                         <li><a href="{{ action('UserController@index') }}">Listado de Usuarios</a></li>
@@ -63,7 +67,6 @@
                         <li><a href="{{ action('AreaController@create') }}">Agregar Nueva Área</a></li>
                         @endif
                         <li class="divider"></li>
-
                         <li class="dropdown-header">Firmas</li>
                         <li><a href="{{ action('FirmasController@index') }}">Lista de Firmas</a></li>
                         @if(Entrust::can('create-firmas'))
@@ -72,19 +75,28 @@
                         <li class="divider"></li>
                         <li class="dropdown-header">Id. Citologías</li>
                         <li><a href="{{ action('CategoryController@index') }}">Lista de Id. Citologías</a></li>
+                        @if(Entrust::can('create-citologias'))
                         <li><a href="{{ action('CategoryController@create') }}">Agregar Nueva Id. Citologías</a></li>
+                        @endif
                         <li class="divider"></li>
                         <li class="dropdown-header">Gravidad</li>
-                        <li><a href="{{ action('GravidadController@index') }}">Lista de Gravidades</a></li>
-                        <li><a href="{{ action('GravidadController@create') }}">Agregar Nueva  Gravidad</a></li>
+                        <li><a href="{{ action('GravidadController@index') }}">Lista de Gravidades</a></li
+                        @if(Entrust::can('create-gravidad'))
+                        <li></li>
+                        <li><a href="{{ action('GravidadController@create') }}">Agregar Nueva Gravidad</a></li>
+                        @endif
                         <li class="divider"></li>
                         <li class="dropdown-header">Morfologías</li>
                         <li><a href="{{ action('MorfologiaController@index') }}">Lista de Morfologías</a></li>
+                        @if(Entrust::can('create-morfologia'))
                         <li><a href="{{ action('MorfologiaController@create') }}">Agregar Nueva Morfologías</a></li>
+                        @endif
                         <li class="divider"></li>
                         <li class="dropdown-header">Topología</li>
                         <li><a href="{{ action('TopologiaController@index') }}">Lista de Topología</a></li>
+                        @if(Entrust::can('create-topologia'))
                         <li><a href="{{ action('TopologiaController@create') }}">Agregar Nueva Topología</a></li>
+                        @endif
                     </ul>
                 </li>
             </ul>
