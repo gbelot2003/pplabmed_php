@@ -59,11 +59,16 @@
                     <ul class="dropdown-menu" role="menu">
                         <li class="dropdown-header">Áreas</li>
                         <li><a href="{{ action('AreaController@index') }}">Lista de Áreas</a></li>
+                        @if(Entrust::can('create-area'))
                         <li><a href="{{ action('AreaController@create') }}">Agregar Nueva Área</a></li>
+                        @endif
                         <li class="divider"></li>
+
                         <li class="dropdown-header">Firmas</li>
                         <li><a href="{{ action('FirmasController@index') }}">Lista de Firmas</a></li>
+                        @if(Entrust::can('create-firmas'))
                         <li><a href="{{ action('FirmasController@create') }}">Agregar Nueva Firma</a></li>
+                        @endif
                         <li class="divider"></li>
                         <li class="dropdown-header">Id. Citologías</li>
                         <li><a href="{{ action('CategoryController@index') }}">Lista de Id. Citologías</a></li>

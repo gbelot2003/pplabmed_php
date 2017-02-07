@@ -8,7 +8,9 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <div class="text-muted pull-right">
-                            <a href="{{ action('AreaController@create') }}" class="btn btn-info" alt="Crear Citologia"><span class="glyphicon glyphicon-plus"></span></a>
+                            @if(Entrust::can('create-area'))
+                                <a href="{{ action('AreaController@create') }}" class="btn btn-info" alt="Crear Citologia"><span class="glyphicon glyphicon-plus"></span></a>
+                            @endif
                         </div>
                         <h4>Listado de Areas</h4>
                     </div>
@@ -18,8 +20,10 @@
                                 <tr>
                                     <th>No.</th>
                                     <th>Nombre</th>
+                                    @if(Entrust::can('edit-area'))
                                     <th>Estado</th>
                                     <th>Editar</th>
+                                    @endif
                                 </tr>
                             </thead>
                             <tbody>
@@ -27,6 +31,7 @@
                                 <tr>
                                     <td class="id">{{ $item->id }}</td>
                                     <td>{{ $item->name }}</td>
+                                    @if(Entrust::can('edit-area'))
                                     <td class="checkcol">
                                         <label>
                                             {!! Form::checkbox('status', $item->id , $item->status,
@@ -40,6 +45,8 @@
                                         </label>
                                     </td>
                                     <td><a href="{{ action('AreaController@edit', $item->id) }}">Editar</a></td>
+                                    @endif
+
                                 </tr>
                             @endforeach
                             </tbody>

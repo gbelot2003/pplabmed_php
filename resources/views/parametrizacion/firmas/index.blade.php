@@ -8,7 +8,9 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <div class="text-muted pull-right">
+                            @if(Entrust::can('create-firmas'))
                             <a href="{{ action('FirmasController@create') }}" class="btn btn-info" alt="Crear Citologia"><span class="glyphicon glyphicon-plus"></span></a>
+                            @endif
                         </div>
                         <h4>Listado de Firmas</h4>
                     </div>
@@ -19,8 +21,10 @@
                                 <th>No.</th>
                                 <th>Nombre</th>
                                 <th>Codigo de Busqueda</th>
+                                @if(Entrust::can('edit-area'))
                                 <th>Estado</th>
                                 <th>Editar</th>
+                                @endif
                             </tr>
                             </thead>
                             <tbody>
@@ -29,6 +33,7 @@
                                     <td class="id">{{ $item->id }}</td>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->code }}</td>
+                                    @if(Entrust::can('edit-area'))
                                     <td class="checkcol">
                                         <label>
                                             {!! Form::checkbox('status', $item->id , $item->status,
@@ -42,6 +47,7 @@
                                         </label>
                                     </td>
                                     <td><a href="{{ action('FirmasController@edit', $item->id) }}">Editar</a></td>
+                                    @endif
                                 </tr>
                             @endforeach
                             </tbody>

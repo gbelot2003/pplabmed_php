@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Auth;
 
 class EditarFirmasPermission
 {
@@ -15,6 +16,10 @@ class EditarFirmasPermission
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
-    }
+        if(Auth::user()->can('edit-firmas') === false)
+        {
+            return redirect()->back();
+        }
+
+        return $next($request);    }
 }

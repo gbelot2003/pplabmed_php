@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Auth;
 
 class CrearFirmasPermission
 {
@@ -15,6 +16,10 @@ class CrearFirmasPermission
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
-    }
+        if(Auth::user()->can('create-area') === false)
+        {
+            return redirect()->back();
+        }
+
+        return $next($request);    }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Auth;
 
 class CreateArreaPermission
 {
@@ -15,6 +16,11 @@ class CreateArreaPermission
      */
     public function handle($request, Closure $next)
     {
+        if(Auth::user()->can('create-area') === false)
+        {
+            return redirect()->back();
+        }
+
         return $next($request);
     }
 }

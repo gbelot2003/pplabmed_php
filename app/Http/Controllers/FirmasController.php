@@ -12,6 +12,8 @@ class FirmasController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('checkActive');
+        $this->middleware('createFirma', ['only' => ['create', 'store']]);
+        $this->middleware('EditFirma', ['only' => ['edit', 'update', 'state']]);
     }
 
     /**

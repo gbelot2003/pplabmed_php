@@ -58,5 +58,11 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'checkActive' =>  \App\Http\Middleware\StatusCheck::class,
+
+        'createArea' => \App\Http\Middleware\CreateArreaPermission::class,
+        'editArea' => \App\Http\Middleware\EditAreaPermission::class,
+        'createFirma' => \App\Http\Middleware\CrearFirmasPermission::class,
+        'editarFirma' => \App\Http\Middleware\EditarFima::class,
+
     ];
 }

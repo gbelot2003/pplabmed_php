@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Area;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AreaController extends Controller
 {
@@ -11,7 +12,8 @@ class AreaController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('checkActive');
-
+        $this->middleware('createArea', ['only' => ['create', 'store']]);
+        $this->middleware('editarFirma', ['only' => ['edit', 'update', 'state']]);
     }
 
     public function index()
@@ -43,6 +45,7 @@ class AreaController extends Controller
         return View('parametrizacion.areas.edit', compact('item'));
     }
 
+
     public function update(Request $request, $id)
     {
         $item = Area::findOrFail($id);
@@ -55,12 +58,6 @@ class AreaController extends Controller
 
         $item->update($request->all());
         return redirect()->to('/areas');
-    }
-
-
-    public function delete($id)
-    {
-
     }
 
     /**
