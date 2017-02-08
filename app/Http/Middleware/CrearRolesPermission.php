@@ -24,3 +24,4 @@ class CrearRolesPermission
         return $next($request);
     }
 }
+
