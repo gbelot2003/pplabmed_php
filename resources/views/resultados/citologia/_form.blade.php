@@ -26,13 +26,13 @@
         </div>
 
         <div class="form-group col-md-2 box-style">
-            <label for="edad">sexo</label>
+            <label for="edad">Sexo</label>
             {!! Form::text('sexo', null, ['class' => 'form-control', 'disabled']) !!}
         </div>
 
         <div class="col-md-7"></div>
         <div class="col-md-5 form-group box-style">
-            <label for="edad">medico</label>
+            <label for="edad">Medico</label>
             {!! Form::text('medico', null, ['class' => 'form-control', 'disabled']) !!}
         </div>
     </div>
@@ -58,7 +58,7 @@
     </div>
     <div class="row">
         <div class="form-group col-md-12 box-style">
-            <label for="diagnostico">Diagnosticco Clinico</label>
+            <label for="diagnostico">Diagnostico Clínico</label>
             {!! Form::textarea('diagnostico', null, ['class' => 'form-control ckeditor']) !!}
         </div>
     </div>
@@ -90,7 +90,7 @@
         </div>
 
         <div class="form-group col-md-4 box-style">
-            <label for="edad">abortos</label>
+            <label for="edad">Abortos</label>
             {!! Form::number('abortos', null, ['class' => 'form-control']) !!}
         </div>
     </div>
