@@ -20,15 +20,22 @@
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav navbar-left">
+                @if(Entrust::can('show-cito') || Entrust::can('show-histo'))
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                         Resultados<span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" role="menu">
+                        @if(Entrust::can('show-cito'))
                         <li class="dropdown-header">Citología</li>
                         <li><a href="{{ action('CitologiaController@index') }}">Listado de Citología</a></li>
+                        @endif
+
+                        @if(Entrust::can('create-cito'))
                         <li><a href="{{ action('CitologiaController@create') }}">Nueva Citología</a></li>
                         <li class="divider"></li>
+                        @endif
+
                         @if(Entrust::can('show-histo'))
                         <li><a href="{{ action('HistopatologiaController@index') }}">Listado de Histopatología</a></li>
                         @endif
@@ -37,7 +44,7 @@
                         @endif
                     </ul>
                 </li>
-
+                @endif
                 <li><a href="{{ action('AreaController@index') }}">Hojas de Trabajo</a></li>
 
                 <li class="dropdown">
