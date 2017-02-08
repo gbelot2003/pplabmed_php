@@ -25,8 +25,16 @@
                         Resultados<span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="{{ action('CitologiaController@index') }}">Citologia</a></li>
-                        <li><a href="{{ action('HistopatologiaController@index') }}">Histopatologia</a></li>
+                        <li class="dropdown-header">Citología</li>
+                        <li><a href="{{ action('CitologiaController@index') }}">Listado de Citología</a></li>
+                        <li><a href="{{ action('CitologiaController@create') }}">Nueva Citología</a></li>
+                        <li class="divider"></li>
+                        @if(Entrust::can('show-histo'))
+                        <li><a href="{{ action('HistopatologiaController@index') }}">Listado de Histopatología</a></li>
+                        @endif
+                        @if(Entrust::can('create-histo'))
+                        <li><a href="{{ action('HistopatologiaController@create') }}">Nueva Histopatología</a></li>
+                        @endif
                     </ul>
                 </li>
 
