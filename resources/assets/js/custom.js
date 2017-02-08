@@ -2,7 +2,6 @@
     var selector = $("#selector1");
     var url = (selector.val());
 
-
     $(function() {
         $('.datatable-area').dataTable({
             "ordering": true,
@@ -13,6 +12,10 @@
                     sendDataToServer(id, ch, url);
                 });
             },
+            "columnDefs": [
+                { orderable: false, targets: [2] },
+                { orderable: false, targets: [3] }
+                ],
             "order": [[0, 'desc']],
             "language": {
                 "emptyTable":     "No hay datos disponibles para esta tabla",
@@ -67,8 +70,6 @@
         $('.select2multiple').select2({
             multiple: true
         });
-        
-
-    })
+    });
 
 })(jQuery);
