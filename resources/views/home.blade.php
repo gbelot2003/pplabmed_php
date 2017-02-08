@@ -4,6 +4,9 @@
 <div class="container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
+            <br>
+            <br>
+            <br>
             <img src="{{ asset('img/Logo.jpg') }}" alt="Logo" width="100%">
         </div>
     </div>
