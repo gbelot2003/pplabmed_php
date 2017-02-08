@@ -1,41 +1,5 @@
 <fieldset>
-    <div class="row">
-        <div class="form-group col-md-2 box-style">
-            <label for="factura">No. Factura</label>
-            {!! Form::text('factura', null, ['class' => 'form-control']) !!}
-        </div>
-        <div class="form-group col-md-8 box-style">
-            <label for="paciente">Paciente</label>
-            {!! Form::text('paciente', null, ['class' => 'form-control', 'disabled']) !!}
-        </div>
 
-        <div class="form-group col-md-2 box-style">
-            <label for="edad">Edad</label>
-            {!! Form::text('edad', null, ['class' => 'form-control', 'disabled']) !!}
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="form-group col-md-4 box-style">
-            <label for="email">Correo Electronico</label>
-            {!! Form::email('email', null, ['class' => 'form-control', 'disabled']) !!}
-        </div>
-        <div class="form-group col-md-6 box-style">
-            <label for="direccion">Dirección</label>
-            {!! Form::text('direccion', null, ['class' => 'form-control', 'disabled']) !!}
-        </div>
-
-        <div class="form-group col-md-2 box-style">
-            <label for="edad">Sexo</label>
-            {!! Form::text('sexo', null, ['class' => 'form-control', 'disabled']) !!}
-        </div>
-
-        <div class="col-md-7"></div>
-        <div class="col-md-5 form-group box-style">
-            <label for="edad">Medico</label>
-            {!! Form::text('medico', null, ['class' => 'form-control', 'disabled']) !!}
-        </div>
-    </div>
     <hr class="white-hr">
 
     <div class="row">

@@ -67,6 +67,17 @@ $factory->define(App\Gravidad::class, function (Faker\Generator $faker) {
     ];
 });
 
-
+$factory->define(App\Factura::class, function (Faker\Generattor $faker){
+    return [
+        'factura' => $faker->rand(2000, 4000),
+        'identidad' => $faker->personalIdentityNumber(),
+        'nombre' => $faker->name(),
+        'nacimiento' => $faker->dateTime(),
+        'email' => $faker->freeEmail(),
+        'direccion_entrega' => $faker->sentence(),
+        'medico' => $faker->name(),
+        'sexo' => $faker->title()
+    ];
+});
 
 
