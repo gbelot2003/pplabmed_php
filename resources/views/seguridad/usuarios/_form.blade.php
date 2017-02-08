@@ -44,7 +44,7 @@
 
     <div class="col-md-7 col-md-push-1 box-style">
         <label for="roles">Rol</label>
-        {!! Form::select('roles_list[]', $roles, null, ['class' => 'form-control select2multiple '. 'multiple']) !!}
+        {!! Form::select('roles_lists[]', $roles, null, ['class' => 'form-control select2multiple '. 'multiple']) !!}
     </div>
 </div>
 
