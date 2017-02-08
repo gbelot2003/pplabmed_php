@@ -16,7 +16,7 @@ class CrearFirmasPermission
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user()->can('create-area') === false)
+        if(Auth::user()->can('create-firmas') === false)
         {
             return redirect()->back();
         }

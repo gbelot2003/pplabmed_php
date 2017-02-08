@@ -21,7 +21,7 @@
                                 <th>No.</th>
                                 <th>Nombre</th>
                                 <th>Codigo de Busqueda</th>
-                                @if(Entrust::can('edit-area'))
+                                @if(Entrust::can('edit-firmas'))
                                 <th>Estado</th>
                                 <th>Editar</th>
                                 @endif
@@ -33,7 +33,7 @@
                                     <td class="id">{{ $item->id }}</td>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->code }}</td>
-                                    @if(Entrust::can('edit-area'))
+                                    @if(Entrust::can('edit-firmas'))
                                     <td class="checkcol">
                                         <label>
                                             {!! Form::checkbox('status', $item->id , $item->status,
