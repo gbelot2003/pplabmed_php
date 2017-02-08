@@ -25,4 +25,6 @@ elixir((mix) => {
             'assets/toastr.min.js',
             'assets/select2.full.min.js'
         ], 'public/js/app.js');
+
+    mix.less('login2.less');
 });
