@@ -16,22 +16,23 @@ class CreateCitologiasTable extends Migration
         Schema::create('citologias', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('factura_id');
-            $table->boolean('deteccion_cancer');
-            $table->boolean('indice_maduracion');
-            $table->string('otros_a');
+            $table->boolean('deteccion_cancer')->nullable();
+            $table->boolean('indice_maduracion')->nullable();
+            $table->string('otros_a')->nullable();
             $table->text('diagnostico_clinico');
-            $table->string('fur');
-            $table->string('fup');
+            $table->string('fur')->nullable();
+            $table->string('fup')->nullable();
             $table->string('gravidad');
-            $table->string('para');
-            $table->integer('abortos');
+            $table->string('para')->nullable();
+            $table->integer('abortos')->nullable();
             $table->integer('citologia_id');
             $table->integer('firma_id');
             $table->date('fecha_informe');
-            $table->string('otros');
-            $table->integer('firma2_id');
+            $table->string('otros')->nullable();
+            $table->integer('firma2_id')->nullable();
             $table->date('fecha_muestra');
             $table->text('informe');
+            $table->text('adendum')->nullable();
             $table->timestamps();
         });
     }

@@ -21,10 +21,10 @@ class RolesTableSeeder extends Seeder
             array (
                 'id' => 1,
                 'name' => 'admin',
-                'display_name' => 'Administrador Génera',
+                'display_name' => 'Administrador Géneral',
                 'description' => 'administrador Géneral de la aplicación',
                 'created_at' => '2017-02-06 07:11:39',
-                'updated_at' => '2017-02-07 19:37:12',
+                'updated_at' => '2017-02-08 15:22:15',
             ),
             1 => 
             array (

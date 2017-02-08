@@ -47,10 +47,10 @@ class UserController extends Controller
         endif;
 
         $item = User::create($request->all());
-        if($request->input('roles_list')){
-            if(!is_array($request->input('roles_list'))){
+        if($request->input('roles_lists')){
+            if(!is_array($request->input('roles_lists'))){
             }else {
-                $item->roles()->sync($request->input('roles_list'));
+                $item->roles()->sync($request->input('roles_lists'));
             }
         }
         return redirect()->to('/usuarios');
@@ -86,10 +86,10 @@ class UserController extends Controller
         endif;
 
         $user->update($request->all());
-        if($request->input('roles_list')){
-            if(!is_array($request->input('roles_list'))){
+        if($request->input('roles_lists')){
+            if(!is_array($request->input('roles_lists'))){
             }else {
-                $user->roles()->sync($request->input('roles_list'));
+                $user->roles()->sync($request->input('roles_lists'));
             }
         }
         return redirect()->to('/usuarios');

@@ -39,6 +39,17 @@ class UsersTableSeeder extends Seeder
                 'created_at' => '2017-02-07 19:21:56',
                 'updated_at' => '2017-02-07 19:23:39',
             ),
+            2 => 
+            array (
+                'id' => 3,
+                'username' => 'ekibyo',
+                'email' => 'cmorales@sinergiacala.net',
+                'password' => '$2y$10$wGLTagQQii/9XnFSISDhqOoAyQ9uw/aqvfH4a7cX9qMS5rXu5KkaK',
+                'status' => 1,
+                'remember_token' => NULL,
+                'created_at' => '2017-02-08 15:07:21',
+                'updated_at' => '2017-02-08 15:08:18',
+            ),
         ));
         
         
