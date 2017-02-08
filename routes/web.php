@@ -34,3 +34,5 @@ Route::resource('morfologia', 'MorfologiaController');
 Route::get('morfologia/state/{id}/{state}', 'MorfologiaController@state');
 Route::resource('topologia', 'TopologiaController');
 Route::get('topologia/state/{id}/{state}', 'TopologiaController@state');
+
+Route::get('reportes/', 'ReportesController@index');

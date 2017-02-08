@@ -15,7 +15,7 @@ body, html {
   width: 350px;
   margin: 0 auto;
   border: 1px solid black;
-  background: rgba(48, 46, 45, 1);
+  background: rgba(97, 91, 88, 0.67);
   min-height: 250px;
   padding: 20px;
   z-index: 9999;

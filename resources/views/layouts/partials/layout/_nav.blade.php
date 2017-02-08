@@ -45,7 +45,7 @@
                     </ul>
                 </li>
                 @endif
-                <li><a href="{{ action('AreaController@index') }}">Hojas de Trabajo</a></li>
+                <li><a href="{{ action('ReportesController@index') }}">Hojas de Trabajo</a></li>
 
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
