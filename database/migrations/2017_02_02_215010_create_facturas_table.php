@@ -20,16 +20,16 @@ class CreateFacturasTable extends Migration
            $table->timestamps();
         });
 
-
         Schema::create('facturas', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('factura');
-            $table->integer('identidad');
-            $table->string('nombre');
-            $table->date('nacimiento');
-            $table->string('email');
-            $table->text('direccion_entrega');
+            $table->integer('num_factura');
+            $table->integer('num_cedula');
+            $table->string('nombre_completo_cliente');
+            $table->date('fecha_nacimiento');
+            $table->string('correo');
+            $table->string('direccion_entrega_sede');
             $table->string('medico');
+            $table->string('status');
             $table->string('sexo');
             $table->timestamps();
         });

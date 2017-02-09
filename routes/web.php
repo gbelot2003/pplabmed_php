@@ -36,3 +36,5 @@ Route::resource('topologia', 'TopologiaController');
 Route::get('topologia/state/{id}/{state}', 'TopologiaController@state');
 
 Route::get('reportes/', 'ReportesController@index');
+
+Route::get('facturas/{id}', 'FacturasController@show');

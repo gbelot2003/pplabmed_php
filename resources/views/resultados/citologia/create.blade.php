@@ -12,7 +12,6 @@
                     <div class="panel-body" id="app">
                         <form action="post">
                             <cito-form></cito-form>
-                            <hr>
                             @include('resultados.citologia._form')
                         </form>
                     </div>

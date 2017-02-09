@@ -7,32 +7,31 @@
                     <input type="number" id="factura" name="code" class="form-control box-style" v-model="factura" @blur="onBlurOut()">
                 </div>
 
-                <div class="col-md-8 form-group">
+                <div class="col-md-7 form-group">
                     <label for="paciente">Paciente</label>
-                    <input type="text" id="paciente" class="form-control box-style" v-model="paciente">
+                    <input type="text" id="paciente" class="form-control box-style" v-model="facturas.nombre_completo_cliente">
                 </div>
 
-                <div class="col-md-2 form-group">
-                    <label for="edad">Paciente</label>
-                    <input type="text" id="edad" class="form-control box-style" v-model="edad">
+                <div class="col-md-3 form-group">
+                    <label for="edad">Edad</label>
+                    <input type="text" id="edad" class="form-control box-style" v-model="facturas.fecha_nacimiento">
                 </div>
-
             </div>
 
             <div class="row">
                 <div class="col-md-4 form-group">
                     <label for="email">Correo Electrónico</label>
-                    <input type="text" id="email" class="form-control box-style" v-model="email">
+                    <input type="text" id="email" class="form-control box-style" v-model="facturas.correo">
                 </div>
 
                 <div class="col-md-6 form-group">
                     <label for="email">Dirección</label>
-                    <input type="text" id="direccion" class="form-control box-style" v-model="direccion">
+                    <input type="text" id="direccion" class="form-control box-style" v-model="facturas.direccion_entrega_sede">
                 </div>
 
                 <div class="col-md-2 form-group">
                     <label for="sexo">Sexo</label>
-                    <input type="text" id="sexo" class="form-control box-style" v-model="sexo">
+                    <input type="text" id="sexo" class="form-control box-style" v-model="facturas.sexo">
                 </div>
             </div>
 
@@ -40,13 +39,13 @@
                 <div class="col-md-7"></div>
                 <div class="col-md-5 form-group">
                     <label for="medico">Medico</label>
-                    <input type="text" id="medico" class="form-control box-style" v-model="medico">
+                    <input type="text" id="medico" class="form-control box-style" v-model="facturas.medico">
                 </div>
             </div>
         </fieldset>
         <div class="row">
             <div class="col-md-12">
-                <pre>{{ $data }}</pre>
+
             </div>
         </div>
     </div>
@@ -54,29 +53,27 @@
 
 <script>
     import axios from 'axios'
+    import {Errors} from './Errors'
 
     export default {
         data(){
             return{
-                factura:'',
-                paciente:'',
-                edad:'',
-                email:'',
-                direccion:'',
-                sexo:'',
-                medico:''
+                error: new Errors(),
+                facturas:[]
             }
         },
 
-        methods:{
+        methods:{//TODO: Cambiar dirección windos/linux
             onBlurOut: function(){
-                axios.get('/pplab/public/facturas/' + this.factura)
+               axios.get('/facturas/' + this.factura)
                     .then(function(response){
-                        console.log(response);
-                    })
+                        this.facturas = response.data
+                        console.log(this.facturas)
+
+                    }.bind(this))
                     .catch(function (error){
                         console.log(error);
-                    });
+                    }.bind(this));
             },
         }
     };

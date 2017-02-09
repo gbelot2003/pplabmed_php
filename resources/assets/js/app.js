@@ -13,8 +13,6 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('areas', require('./components/AreasIndex.vue'));
-Vue.component('area-state', require('./components/area/areaStates.vue'));
 Vue.component('cito-form', require('./components/cito-form.vue'));
 
 const app = new Vue({

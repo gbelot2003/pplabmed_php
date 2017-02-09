@@ -23,6 +23,7 @@
     "axios": "^0.15.3",
     "datatables.net": "^2.1.1",
     "datatables.net-bs": "^2.1.1",
+    "vue-resource": "^1.2.0",
     "vue-switch": "^1.2.5",
     "vue-switches": "^1.0.1"
   }
