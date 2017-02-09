@@ -14,7 +14,9 @@
 
                 <div class="col-md-3 form-group">
                     <label for="edad">Edad</label>
-                    <input type="text" id="edad" class="form-control box-style" v-model="facturas.fecha_nacimiento">
+                    {{ resposes }}
+                    <!--<input type="text" id="edad" class="form-control box-style" v-model="facturas.fecha_nacimiento">-->
+
                 </div>
             </div>
 
@@ -45,7 +47,6 @@
         </fieldset>
         <div class="row">
             <div class="col-md-12">
-
             </div>
         </div>
     </div>
@@ -59,22 +60,28 @@
         data(){
             return{
                 error: new Errors(),
-                facturas:[]
+                factura:'',
+                facturas:[],
+                resposes:''
+
             }
         },
 
         methods:{//TODO: Cambiar dirección windos/linux
             onBlurOut: function(){
-               axios.get('/facturas/' + this.factura)
+               axios.get('/pplab/public/facturas/' + this.factura)
                     .then(function(response){
-                        this.facturas = response.data
-                        console.log(this.facturas)
+                        console.log(response)
+                        this.facturas = response.data;
+                        changeText(this.facturas.fecha_nacimiento)
 
                     }.bind(this))
                     .catch(function (error){
                         console.log(error);
                     }.bind(this));
             },
-        }
+
+        },
+
     };
 </script>
