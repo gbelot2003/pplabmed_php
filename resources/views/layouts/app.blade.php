@@ -30,7 +30,7 @@
         @yield('content')
     </div>
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/app2.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
     @yield('jscode')
     <style>

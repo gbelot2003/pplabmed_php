@@ -25,7 +25,7 @@ elixir((mix) => {
             'assets/bootstrap-toggle.min.js',
             'assets/toastr.min.js',
             'assets/select2.full.min.js'
-        ], 'public/js/app.js');
+        ], 'public/js/app2.js');
 
     mix.less('login2.less');
 });
