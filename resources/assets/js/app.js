@@ -13,7 +13,7 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('cito-form', require('./components/cito-form.vue'));
+Vue.component('cito-form', require('./components/citologia/cito-form.vue'));
 
 const app = new Vue({
     el: '#app'

@@ -43,7 +43,24 @@
                     <input type="text" id="medico" class="form-control box-style" v-model="facturas.medico">
                 </div>
             </div>
+            <hr>
+            <div class="row">
+                <div class="form-group col-md-3 box-style">
+                    <label for="DetCancer">Detección de Cancer</label>
+                    <input type="checkbox" id="DetCancer" class="box-style" v-model="datos.DetCancer">
+                </div>
 
+                <div class="form-group col-md-3 box-style">
+                    <label for="IndMaduracion">Indice de Maduración</label>
+                    <input type="checkbox" id="IndMaduracion" class="box-style" v-model="datos.IndMaduracion">
+
+                </div>
+
+                <div class="form-group col-md-6 box-style">
+                    <label for="otros1">Otros</label>
+                    <input type="text" id="otros1" class="form-control box-style" v-model="datos.otros1">
+                </div>
+            </div>
 
         </fieldset>
     </div>
@@ -72,8 +89,13 @@
                     "status": "",
                     "sexo": "",
                 },
+                datos:{
+                    "DetCancer": false,
+                    "IndMaduracion": false,
+                    "otros1": false
+                },
 
-                newValue:''
+
 
             }
         },
