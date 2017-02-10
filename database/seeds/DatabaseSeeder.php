@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
         $this->call(GravidadsTableSeeder::class);
         $this->call(TopologiasTableSeeder::class);
         $this->call(MorfologiasTableSeeder::class);
+        $this->call(FacturasTableSeeder::class);
     }
 }

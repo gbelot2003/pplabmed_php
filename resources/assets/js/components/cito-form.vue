@@ -13,21 +13,20 @@
                 </div>
 
                 <div class="col-md-3 form-group">
-                    <label for="edad">Edad</label>
-                    {{ resposes }}
-                    <!--<input type="text" id="edad" class="form-control box-style" v-model="facturas.fecha_nacimiento">-->
-
+                    <label>Edad</label>
+                    <input type="text" id="paciente" class="form-control box-style" v-model="changeDate" disabled>
                 </div>
             </div>
 
             <div class="row">
+
                 <div class="col-md-4 form-group">
                     <label for="email">Correo Electrónico</label>
                     <input type="text" id="email" class="form-control box-style" v-model="facturas.correo">
                 </div>
 
                 <div class="col-md-6 form-group">
-                    <label for="email">Dirección</label>
+                    <label for="email">Dirección de Entrega</label>
                     <input type="text" id="direccion" class="form-control box-style" v-model="facturas.direccion_entrega_sede">
                 </div>
 
@@ -44,36 +43,46 @@
                     <input type="text" id="medico" class="form-control box-style" v-model="facturas.medico">
                 </div>
             </div>
+
+
         </fieldset>
-        <div class="row">
-            <div class="col-md-12">
-            </div>
-        </div>
     </div>
 </template>
 
 <script>
-    import axios from 'axios'
-    import {Errors} from './Errors'
+    import axios from 'axios';
+    import {Errors} from './Errors';
+    import moment from 'moment';
+
 
     export default {
         data(){
             return{
                 error: new Errors(),
                 factura:'',
-                facturas:[],
-                resposes:''
+                facturas:{
+                    "id": 1,
+                    "num_factura": '',
+                    "num_cedula": '',
+                    "nombre_completo_cliente": "",
+                    "fecha_nacimiento": "",
+                    "correo": "",
+                    "direccion_entrega_sede": "",
+                    "medico": "",
+                    "status": "",
+                    "sexo": "",
+                },
+
+                newValue:''
 
             }
         },
 
         methods:{//TODO: Cambiar dirección windos/linux
             onBlurOut: function(){
-               axios.get('/pplab/public/facturas/' + this.factura)
+               axios.get('/facturas/' + this.factura)
                     .then(function(response){
-                        console.log(response)
                         this.facturas = response.data;
-                        changeText(this.facturas.fecha_nacimiento)
 
                     }.bind(this))
                     .catch(function (error){
@@ -82,6 +91,26 @@
             },
 
         },
+        computed:{
+            changeDate:function(){
+
+                if(this.facturas.fecha_nacimiento){
+                    const mydate = new Date(this.facturas.fecha_nacimiento);
+                    var a = moment(new Date());
+                    var b = moment(mydate);
+                    var years = a.diff(b, 'year');
+                    b.add(years, 'years');
+
+                    var months = a.diff(b, 'months');
+                    b.add(months, 'months');
+
+                    var days = a.diff(b, 'days');
+                    return years + ' años ' + months + ' meses ' + days + ' días';
+
+                }
+
+            }
+        }
 
     };
 </script>
