@@ -161,25 +161,110 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <textarea type="text" name="diagnostico" class="textarea form-control ckeditor" v-model="diagnostico"></textarea>
-
-                </div>
-                <div class="col-md-12">
-                    <h6>Plantillas</h6>
-                    <ul class="nav nav-pills">
-                        <li role="presentation"><a href="#">Diagnostico 1</a></li>
-                        <li role="presentation"><a href="#">Diagnostico 2</a></li>
-                    </ul>
-                    <hr/>
+                    <textarea type="text" name="diagnostico" class="textarea form-control" v-model="diagnostico"></textarea>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-md-12">
-                    <pre>{{ $data }}</pre>
+                <div class="col-md-3 form-group">
+                    <label for="fur">F.U.R</label>
+                    <input type="text" id="fur" name="fur" class="form-control" v-model="fur">
+                </div>
+
+                <div class="col-md-3 form-group">
+                    <label for="fup">F.U.P</label>
+                    <input type="text" id="fup" name="fup" class="form-control" v-model="fup">
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <label>Gravidad</label>
+                    <v-select v-model="gravidad" :options="gravidad_req"></v-select>
                 </div>
             </div>
 
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Id Cito:</label>
+                    <v-select v-model="idcito" :options="cito_req"></v-select>
+                </div>
+                <div class="col-md-3 form-group">
+                    <label for="para">Para: </label>
+                    <input type="text" id="para" name="para" class="form-control" v-model="para">
+                </div>
+                <div class="col-md-3">
+                    <label for="abortos">Abortos: </label>
+                    <input type="number" id="abortos" name="abortos" class="form-control" v-model="abortos">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label>Firma 1:</label>
+                    <v-select v-model="firma1" :options="firmas_req"></v-select>
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <label>Fecha de Informe</label>
+                    <input type="date" name="fechainforme" class="form-control" v-model="fecha_informe" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label>Firma 2:</label>
+                    <v-select v-model="firma2" :options="firmas_req"></v-select>
+                </div>
+
+                <div class="col-md-6 form-group">
+                    <label>Fecha de Muestra</label>
+                    <input type="date" name="fechainforme" class="form-control" v-model="fecha_muestra" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="otros2">Otros:</label>
+                    <input type="text" id="otros2" name="otros" class="form-control" v-model="otros2" placeholder="Otros">
+                </div>
+
+                <div class="col-md-3">
+                    <br>
+                    <div class="checkbox checkbox-info">
+                        <input id="checkbox3" type="checkbox" v-model="impimir_nota">
+                        <label for="checkbox3">
+                            /MM
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <br>
+                    <div class="checkbox checkbox-info">
+                        <input id="checkbox4" type="checkbox" v-model="queda_muestra">
+                        <label for="checkbox4">
+                            Retenemos Muestra?
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <dov class="col-md-12">
+                    <hr>
+                    <label>Informe</label>
+                    <textarea name="informe" class="form-control" cols="30" rows="10" v-model="informe"></textarea>
+                </dov>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="nav nav-pills">
+                        <li role="presentation"><a href="#">Diagnostico 1</a></li>
+                        <li role="presentation"><a href="#">Diagnostico 2</a></li>
+                    </ul>
+                </div>
+            </div>
         </fieldset>
     </div>
 </template>
@@ -187,17 +272,23 @@
 <script>
     import axios from 'axios';
     import {Errors} from './Errors';
+    import vSelect from "vue-select"
     import moment from 'moment';
 
     export default {
+        components: {vSelect},
         data(){
             return{
                 error: new Errors(),
+
                 factura:'',
+                gravidad_req: [],
+                cito_req: [],
+                firmas_req: [],
                 facturas:{
                     "id": 1,
-                    "num_factura": '',
-                    "num_cedula": '',
+                    "num_factura": "",
+                    "num_cedula": "",
                     "nombre_completo_cliente": "",
                     "fecha_nacimiento": "",
                     "correo": "",
@@ -209,12 +300,39 @@
                 "DetCancer": false,
                 "IndMaduracion": false,
                 "otros1": "",
-                "diagnostico": '',
+                "diagnostico": "",
+                "fur":"",
+                "gravidad": "",
+                "para": "",
+                "abortos":"",
+                "idcito":"",
+                "firma1": "",
+                "fecha_informe":"",
+                "firma2": "",
+                "fecha_muestra":"",
+                "otros2":"",
+                "informe":"",
+                "queda_muestra": "",
+                "impimir_nota": "",
+
+
+
             }
         },
-                 //TODO: Hacer sistema de plantillas!!!
+        mounted() {
+            axios.get('/pplabmed/public/api/formcito').then(function (response){
+                console.log(response);
+               this.gravidad_req = response.data.gravidad;
+               this.cito_req = response.data.idcito;
+               this.firmas_req = response.data.firmas;
+            }.bind(this));
+        },
+                 //TODO: Hacer sistema de plantillas !!!
         methods:{//TODO: Cambiar dirección windos/linux
+
             onBlurOut: function(){
+
+
                axios.get('/pplabmed/public/facturas/' + this.factura)
                     .then(function(response){
                         this.facturas = response.data;
@@ -222,14 +340,10 @@
                     .catch(function (error){
                         console.log(error);
                     }.bind(this));
-            },
-
-            onSubmit: function(e){
-                e.preventDefault();
-
-            },
+            }
         },
         computed:{
+
             changeDate:function(){
                 if(this.facturas.fecha_nacimiento){
                     const mydate = new Date(this.facturas.fecha_nacimiento);

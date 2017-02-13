@@ -38,3 +38,8 @@ Route::get('topologia/state/{id}/{state}', 'TopologiaController@state');
 Route::get('reportes/', 'ReportesController@index');
 
 Route::get('facturas/{id}', 'FacturasController@show');
+
+Route::group(['prefix' => 'api'], function () {
+    Route::get('formcito', 'FormsApiController@citologiaFormData');
+
+});
