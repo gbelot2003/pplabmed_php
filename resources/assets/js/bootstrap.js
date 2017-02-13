@@ -20,6 +20,8 @@ window.Vue = require('vue');
 var VueResource = require('vue-resource');
 require('vue-resource');
 Vue.use(VueResource);
+
+
 /**
  * We'll register a HTTP interceptor to attach the "CSRF" header to each of
  * the outgoing requests issued by this application. The CSRF middleware
@@ -32,6 +34,9 @@ Vue.http.interceptors.push((request, next) => {
     next();
 });
 
+import VeeValidate from 'vee-validate';
+
+Vue.use(VeeValidate);
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

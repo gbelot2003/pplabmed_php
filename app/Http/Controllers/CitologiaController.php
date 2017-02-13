@@ -30,6 +30,7 @@ class CitologiaController extends Controller
 
     public function store()
     {
+
     }
 
     public function edit($id)

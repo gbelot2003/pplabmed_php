@@ -40,8 +40,7 @@
     .checkbox input[type="checkbox"]:checked + label::after {
         font-family: 'FontAwesome';
         content: "\f00c"; }
-    .checkbox input[type="checkbox"]:disabled + label {
-        opacity: 0.65; }
+
     .checkbox input[type="checkbox"]:disabled + label::before {
         background-color: #eeeeee;
         cursor: not-allowed; }
@@ -79,20 +78,27 @@
         border-color: #5cb85c; }
     .checkbox-success input[type="checkbox"]:checked + label::after {
         color: #fff; }
-
 </style>
+
 <template>
     <div class="panel-body">
-        <fieldset class="box-style">
-            <div class="row">
-                <div class="form-group col-md-2">
+        <form>
+            <fieldset class="box-style">
+                <div class="row">
+                <div class="form-group col-md-2
+
+">
                     <label for="factura">No. Factura</label>
-                    <input type="number" id="factura" name="code" class="form-control box-style" v-model="factura" @blur="onBlurOut()">
+                    <input type="number" id="factura"  name="code" class="form-control box-style"
+                           v-model="factura" @blur="onBlurOut()" @factura="'required'"
+                    >
+                    <i v-show="errors.has('factura')" class="fa fa-warning"></i>
+                    <span v-show="errors.has('factura')" class="help is-danger"></span>
                 </div>
 
                 <div class="col-md-7 form-group">
                     <label for="paciente">Paciente</label>
-                    <input type="text" id="paciente" class="form-control box-style" v-model="facturas.nombre_completo_cliente">
+                    <input type="text" id="paciente" name="paciente"  class="form-control box-style" v-model="facturas.nombre_completo_cliente">
                 </div>
 
                 <div class="col-md-3 form-group">
@@ -101,7 +107,7 @@
                 </div>
             </div>
 
-            <div class="row">
+                <div class="row">
 
                 <div class="col-md-4 form-group">
                     <label for="email">Correo Electrónico</label>
@@ -119,7 +125,7 @@
                 </div>
             </div>
 
-            <div class="row">
+                <div class="row">
                 <div class="col-md-7"></div>
                 <div class="col-md-5 form-group">
                     <label for="medico">Medico</label>
@@ -130,148 +136,177 @@
                 </div>
             </div>
 
-            <div class="row">
+                <div class="row">
 
-                <div class="form-group col-md-3">
-                    <br>
-                    <div class="checkbox checkbox-info">
-                        <input id="checkbox2" type="checkbox" v-model="DetCancer">
-                        <label for="checkbox2">
-                            Detección de Cancer
-                        </label>
+                    <div class="form-group col-md-3">
+                        <br>
+                        <div class="checkbox checkbox-info">
+                            <input id="checkbox2" type="checkbox" v-model="DetCancer">
+                            <label for="checkbox2">
+                                Detección de Cancer
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <br>
+                        <div class="checkbox checkbox-info">
+                            <input id="checkbox1" type="checkbox" v-model="IndMaduracion">
+                            <label for="checkbox1">
+                                Indice de Maduración
+                            </label>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="otros1">Otros</label>
+                        <input type="text" id="otros1" name="otros" class="form-control" v-model="otros1" placeholder="Otros">
                     </div>
                 </div>
 
-                <div class="form-group col-md-3">
-                    <br>
-                    <div class="checkbox checkbox-info">
-                        <input id="checkbox1" type="checkbox" v-model="IndMaduracion">
-                        <label for="checkbox1">
-                            Indice de Maduración
-                        </label>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label>Diagnóstico Clinico</label>
+                        <textarea type="text" name="diagnostico" class="textarea form-control" v-model="diagnostico"></textarea>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 form-group">
+                        <label for="fur">F.U.R</label>
+                        <input type="text" id="fur" name="fur" class="form-control" v-model="fur">
+                    </div>
+
+                    <div class="col-md-3 form-group">
+                        <label for="fup">F.U.P</label>
+                        <input type="text" id="fup" name="fup" class="form-control" v-model="fup">
+                    </div>
+
+                    <div class="col-md-6 form-group">
+                        <label>Gravidad</label>
+                        <v-select v-model="gravidad" :options="gravidad_req"></v-select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Id Cito:</label>
+                        <v-select v-model="idcito" :options="cito_req"></v-select>
+                    </div>
+                    <div class="col-md-3 form-group">
+                        <label for="para">Para: </label>
+                        <input type="text" id="para" name="para" class="form-control" v-model="para">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="abortos">Abortos: </label>
+                        <input type="number" id="abortos" name="abortos" class="form-control" v-model="abortos">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <label>Firma 1:</label>
+                        <v-select v-model="firma1" :options="firmas_req"></v-select>
+                    </div>
+
+                    <div class="col-md-6 form-group">
+                        <label>Fecha de Informe</label>
+                        <input type="date" name="fechainforme" class="form-control" v-model="fecha_informe" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <label>Firma 2:</label>
+                        <v-select v-model="firma2" :options="firmas_req"></v-select>
+                    </div>
+
+                    <div class="col-md-6 form-group">
+                        <label>Fecha de Muestra</label>
+                        <input type="date" name="fechainforme" class="form-control" v-model="fecha_muestra" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="otros2">Otros:</label>
+                        <input type="text" id="otros2" name="otros" class="form-control" v-model="otros2" placeholder="Otros">
+                    </div>
+
+                    <div class="col-md-3">
+                        <br>
+                        <div class="checkbox checkbox-info">
+                            <input id="checkbox3" type="checkbox" v-model="impimir_nota">
+                            <label for="checkbox3">
+                                /MM
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <br>
+                        <div class="checkbox checkbox-info">
+                            <input id="checkbox4" type="checkbox" v-model="queda_muestra">
+                            <label for="checkbox4">
+                                Se retiene muestra?
+                            </label>
+                        </div>
                     </div>
 
                 </div>
 
-                <div class="form-group col-md-6">
-                    <label for="otros1">Otros</label>
-                    <input type="text" id="otros1" name="otros" class="form-control" v-model="otros1" placeholder="Otros">
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-12">
-                    <textarea type="text" name="diagnostico" class="textarea form-control" v-model="diagnostico"></textarea>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-3 form-group">
-                    <label for="fur">F.U.R</label>
-                    <input type="text" id="fur" name="fur" class="form-control" v-model="fur">
-                </div>
-
-                <div class="col-md-3 form-group">
-                    <label for="fup">F.U.P</label>
-                    <input type="text" id="fup" name="fup" class="form-control" v-model="fup">
-                </div>
-
-                <div class="col-md-6 form-group">
-                    <label>Gravidad</label>
-                    <v-select v-model="gravidad" :options="gravidad_req"></v-select>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6">
-                    <label>Id Cito:</label>
-                    <v-select v-model="idcito" :options="cito_req"></v-select>
-                </div>
-                <div class="col-md-3 form-group">
-                    <label for="para">Para: </label>
-                    <input type="text" id="para" name="para" class="form-control" v-model="para">
-                </div>
-                <div class="col-md-3">
-                    <label for="abortos">Abortos: </label>
-                    <input type="number" id="abortos" name="abortos" class="form-control" v-model="abortos">
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6 form-group">
-                    <label>Firma 1:</label>
-                    <v-select v-model="firma1" :options="firmas_req"></v-select>
-                </div>
-
-                <div class="col-md-6 form-group">
-                    <label>Fecha de Informe</label>
-                    <input type="date" name="fechainforme" class="form-control" v-model="fecha_informe" />
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6 form-group">
-                    <label>Firma 2:</label>
-                    <v-select v-model="firma2" :options="firmas_req"></v-select>
-                </div>
-
-                <div class="col-md-6 form-group">
-                    <label>Fecha de Muestra</label>
-                    <input type="date" name="fechainforme" class="form-control" v-model="fecha_muestra" />
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6">
-                    <label for="otros2">Otros:</label>
-                    <input type="text" id="otros2" name="otros" class="form-control" v-model="otros2" placeholder="Otros">
-                </div>
-
-                <div class="col-md-3">
-                    <br>
-                    <div class="checkbox checkbox-info">
-                        <input id="checkbox3" type="checkbox" v-model="impimir_nota">
-                        <label for="checkbox3">
-                            /MM
-                        </label>
+                <div class="row">
+                    <div class="col-md-12">
+                        <hr>
+                        <label>Informe</label>
+                        <textarea name="informe" class="form-control" cols="30" rows="10" v-model="informe"></textarea>
                     </div>
                 </div>
 
-                <div class="col-md-3">
-                    <br>
-                    <div class="checkbox checkbox-info">
-                        <input id="checkbox4" type="checkbox" v-model="queda_muestra">
-                        <label for="checkbox4">
-                            Retenemos Muestra?
-                        </label>
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="nav nav-pills">
+                            <li role="presentation"><a href="#">Diagnostico 1</a></li>
+                            <li role="presentation"><a href="#">Diagnostico 2</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <br>
+                        <div class="checkbox checkbox-info">
+                            <input id="checkbox5" type="checkbox" v-model="show_ademdum">
+                            <label for="checkbox5">
+                                Adendum?
+                            </label>
+                        </div>
                     </div>
                 </div>
 
-            </div>
-
-            <div class="row">
-                <dov class="col-md-12">
-                    <hr>
-                    <label>Informe</label>
-                    <textarea name="informe" class="form-control" cols="30" rows="10" v-model="informe"></textarea>
-                </dov>
-            </div>
-            
-            <div class="row">
-                <div class="col-md-12">
-                    <ul class="nav nav-pills">
-                        <li role="presentation"><a href="#">Diagnostico 1</a></li>
-                        <li role="presentation"><a href="#">Diagnostico 2</a></li>
-                    </ul>
+                <div class="row" v-if="show_ademdum">
+                    <div class="col-md-12 group-form">
+                        <label for="adendum">Adendum</label>
+                        <textarea name="adendum" id="adendum" cols="30" rows="10" class="form-control"></textarea>
+                    </div>
                 </div>
-            </div>
-        </fieldset>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <hr class="white-hr">
+                        <div class="text-right">
+                            <a class="btn btn-danger" href="/pplabmed/public/citologias">Cancelar</a>
+                            <!-- TODO: cambiar direccion al cambio de server-->
+                            <button type="submit" class="btn btn-primary" @click="onSubmit($event)">Guardar</button>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
     </div>
 </template>
 
 <script>
     import axios from 'axios';
-    import {Errors} from './Errors';
     import vSelect from "vue-select"
     import moment from 'moment';
 
@@ -279,8 +314,6 @@
         components: {vSelect},
         data(){
             return{
-                error: new Errors(),
-
                 factura:'',
                 gravidad_req: [],
                 cito_req: [],
@@ -312,16 +345,16 @@
                 "fecha_muestra":"",
                 "otros2":"",
                 "informe":"",
-                "queda_muestra": "",
+                "retien_muestra":false,
                 "impimir_nota": "",
-
-
-
+                "motrar_adendum": false,
+                "show_ademdum": false,
+                "adendum":"",
             }
         },
         mounted() {
             axios.get('/pplabmed/public/api/formcito').then(function (response){
-                console.log(response);
+                //console.log(response);
                this.gravidad_req = response.data.gravidad;
                this.cito_req = response.data.idcito;
                this.firmas_req = response.data.firmas;
@@ -329,21 +362,29 @@
         },
                  //TODO: Hacer sistema de plantillas !!!
         methods:{//TODO: Cambiar dirección windos/linux
+            onSubmit: function(e){
+                e.preventDefault();
+
+              axios.post("/pplabmed/public/citologias", function(data, status, request){
+                }.bind(this));
+                window.location.href = "/pplabmed/public/citologias";
+            },
 
             onBlurOut: function(){
+               if(this.factura){
+                   axios.get('/pplabmed/public/facturas/' + this.factura)
+                       .then(function(response){
+                           this.facturas = response.data;
+                       }.bind(this))
+                       .catch(function (error){
+                           console.log(error);
+                           this.factura = '';
+                       }.bind(this));
+               }
 
-
-               axios.get('/pplabmed/public/facturas/' + this.factura)
-                    .then(function(response){
-                        this.facturas = response.data;
-                    }.bind(this))
-                    .catch(function (error){
-                        console.log(error);
-                    }.bind(this));
             }
         },
         computed:{
-
             changeDate:function(){
                 if(this.facturas.fecha_nacimiento){
                     const mydate = new Date(this.facturas.fecha_nacimiento);
@@ -362,3 +403,4 @@
         }
     };
 </script>
+

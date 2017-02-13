@@ -10,9 +10,8 @@
                         <h4>Agregar de Citología</h4>
                     </div>
                     <div class="panel-body" id="app">
-                        <form action="post">
+
                             <cito-form></cito-form>
-                            @include('resultados.citologia._form')
                         </form>
                     </div>
                 </div>
