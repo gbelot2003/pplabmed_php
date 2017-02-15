@@ -22,17 +22,20 @@ class CreateCitologiasTable extends Migration
             $table->text('diagnostico_clinico');
             $table->string('fur')->nullable();
             $table->string('fup')->nullable();
-            $table->string('gravidad');
+            $table->integer('gravidad_id');
             $table->string('para')->nullable();
             $table->integer('abortos')->nullable();
             $table->integer('citologia_id');
             $table->integer('firma_id');
             $table->date('fecha_informe');
-            $table->string('otros')->nullable();
+            $table->string('otros_b')->nullable();
             $table->integer('firma2_id')->nullable();
             $table->date('fecha_muestra');
+            $table->boolean('mm')->nullable();
+            $table->boolean('muestra')->nullable();
             $table->text('informe');
             $table->text('adendum')->nullable();
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

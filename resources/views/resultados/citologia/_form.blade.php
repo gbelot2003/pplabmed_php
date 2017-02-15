@@ -1,10 +1,10 @@
 <div class="panel-body">
-    <form>
+
         <fieldset class="box-style">
             <div class="row">
                 <div class="form-group col-md-2">
                     <label for="factura">No. Factura</label>
-                    {{ Form::text('factura', null, ['class' => 'form-control box-style', 'id' => 'factura', 'require'] ) }}
+                    {{ Form::text('factura_id', null, ['class' => 'form-control box-style', 'id' => 'factura', 'require'] ) }}
                 </div>
 
                 <div class="col-md-7 form-group">
@@ -14,7 +14,7 @@
 
                 <div class="col-md-3 form-group">
                     <label>Edad</label>
-                    {{ Form::text('edad', null, ['class' => 'form-control box-style', 'id' => 'edad', 'require']) }}
+                    {{ Form::text('edad', null, ['class' => 'form-control box-style', 'id' => 'edad', 'require', 'disabled']) }}
                 </div>
             </div>
 
@@ -39,7 +39,7 @@
                 <div class="col-md-7"></div>
                 <div class="col-md-5 form-group">
                     <label for="medico">Medico</label>
-                    <input type="text" id="medico" class="form-control box-style">
+                    {!! Form::text('medico', null, ['class' => 'form-control box-style', 'id' => 'medico', 'disabled']) !!}
                 </div>
                 <div class="col-md-12">
                     <hr class="white-hr">
@@ -51,7 +51,7 @@
                 <div class="form-group col-md-3">
                     <br>
                     <div class="checkbox checkbox-info">
-                        <input id="checkbox2" type="checkbox">
+                        <input id="checkbox2" type="checkbox" name="deteccion_cancer" value="1">
                         <label for="checkbox2">
                             Detección de Cancer
                         </label>
@@ -61,7 +61,7 @@
                 <div class="form-group col-md-3">
                     <br>
                     <div class="checkbox checkbox-info">
-                        <input id="checkbox1" type="checkbox">
+                        <input id="checkbox1" type="checkbox" name="indice_maduracion" value="1">
                         <label for="checkbox1">
                             Indice de Maduración
                         </label>
@@ -71,14 +71,14 @@
 
                 <div class="form-group col-md-6">
                     <label for="otros1">Otros</label>
-                    {{ Form::text('otros1', null, ['class' => 'form-control', 'id' => 'otros1']) }}
+                    {{ Form::text('otros_a', null, ['class' => 'form-control', 'id' => 'otros_a']) }}
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-12">
                     <label>Diagnóstico Clinico</label>
-                    {{ Form::textarea('diagnostico', null, ['class' => 'textarea form-control ckeditor', 'id' => 'diagnostico']) }}
+                    {{ Form::textarea('diagnostico_clinico', null, ['class' => 'textarea form-control ckeditor', 'id' => 'diagnostico']) }}
                 </div>
             </div>
 
@@ -94,6 +94,9 @@
                 </div>
 
                 <div class="col-md-6 form-group">
+                    <label for="fup">Gravidad</label>
+
+                    {{ Form::select('gravidad_id', $gravidad, null, ['class' => 'form-control']) }}
                 </div>
 
             </div>
@@ -101,7 +104,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <label>Id Cito:</label>
-                    {{ Form::select('IdCito', $idCIto, null, ['class' => 'form-control']) }}
+                    {{ Form::select('citologia_id', $idCIto, null, ['class' => 'form-control']) }}
 
                 </div>
                 <div class="col-md-3 form-group">
@@ -117,12 +120,12 @@
             <div class="row">
                 <div class="col-md-6 form-group">
                     <label>Firma 1:</label>
-                    {{ Form::select('firma1', $firmas, null, ['class' => 'form-control']) }}
+                    {{ Form::select('firma_id', $firmas, null, ['class' => 'form-control']) }}
                 </div>
 
                 <div class="col-md-6 form-group">
                     <label>Fecha de Informe</label>
-                    {{ Form::date('fechainforme', null, ['class' => 'form-control', 'id' => 'fechainforme']) }}
+                    {{ Form::date('fecha_informe', null, ['class' => 'form-control', 'id' => 'fechainforme']) }}
 
                 </div>
             </div>
@@ -130,12 +133,12 @@
             <div class="row">
                 <div class="col-md-6 form-group">
                     <label>Firma 2:</label>
-                    {{ Form::select('firma2', $firmas, null, ['class' => 'form-control']) }}
+                    {{ Form::select('firma2_id', $firmas, null, ['class' => 'form-control']) }}
                 </div>
 
                 <div class="col-md-6 form-group">
                     <label>Fecha de Muestra</label>
-                    {{ Form::date('fechamuestra', null, ['class' => 'form-control', 'id' => 'fechamuestra']) }}
+                    {{ Form::date('fecha_muestra', null, ['class' => 'form-control', 'id' => 'fechamuestra']) }}
 
                 </div>
             </div>
@@ -143,13 +146,13 @@
             <div class="row">
                 <div class="col-md-6">
                     <label for="otros2">Otros:</label>
-                    {{ Form::text('otros2', null, ['class' => 'form-control', 'id' => 'otros2']) }}
+                    {{ Form::text('otros_b', null, ['class' => 'form-control', 'id' => 'otros_b']) }}
                 </div>
 
                 <div class="col-md-3">
                     <br>
                     <div class="checkbox checkbox-info">
-                        <input id="checkbox3" type="checkbox">
+                        <input id="checkbox3" type="checkbox" name="mm" value="1">
                         <label for="checkbox3">
                             /MM
                         </label>
@@ -159,7 +162,7 @@
                 <div class="col-md-3">
                     <br>
                     <div class="checkbox checkbox-info">
-                        <input id="checkbox4" type="checkbox">
+                        <input id="checkbox4" type="checkbox" name="muestra" value="1">
                         <label for="checkbox4">
                             Se retiene muestra?
                         </label>
@@ -172,10 +175,9 @@
                 <div class="col-md-12">
                     <hr>
                     <label>Informe</label>
-                    <textarea name="informe" class="form-control ckeditor" cols="30" rows="10"></textarea>
+                    {!! Form::textarea('informe', null, ['class' => 'form-control textarea']) !!}
                 </div>
             </div>
-
             <div class="row">
                 <div class="col-md-12">
                     <ul class="nav nav-pills">
@@ -198,7 +200,6 @@
             <div class="row" v-if="show_ademdum">
                 <div class="col-md-12 group-form">
                     <label>Adendum</label>
-                    <textarea name="adendum" id="ademdum" cols="30" rows="10" class="form-control"></textarea>
                     {{ Form::textarea('adendum', null, ['class' => 'form-control ckeditor', 'id' => 'adendum']) }}
                 </div>
             </div>
@@ -214,7 +215,6 @@
                 </div>
             </div>
         </fieldset>
-    </form>
 </div>
 <style>
     .checkbox {

@@ -17,13 +17,19 @@
                         <table class="table table-striped table-bordered">
                             <thead>
                             <tr>
-                                <th>Id</th>
                                 <th>No. Factura</th>
                                 <th>Nombre</th>
+                                <th>Fecha de Informe</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr></tr>
+                            @foreach($items as $item)
+                                <tr>
+                                    <td>{{ $item->factura_id }}</td>
+                                    <td><a href="{{ action('CitologiaController@edit', $item->id) }}">{{ $item->facturas->nombre_completo_cliente }}</a></td>
+                                    <td>{{ $item->fecha_informe }}</td>
+                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

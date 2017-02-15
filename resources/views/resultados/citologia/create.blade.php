@@ -10,8 +10,9 @@
                         <h4>Agregar de Citología</h4>
                     </div>
                     <div class="panel-body" id="app">
+                        {!! Form::open(['action' => 'CitologiaController@store']) !!}
                             @include('resultados.citologia._form')
-                        </form>
+                        {{ Form::close() }}
                     </div>
                 </div>
             </div>
