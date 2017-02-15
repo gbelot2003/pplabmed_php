@@ -25,6 +25,8 @@
     "datatables.net-bs": "^2.1.1",
     "moment": "^2.17.1",
     "vee-validate": "^2.0.0-beta.22",
+    "vue-ckeditor": "^1.0.0",
+    "vue-ckeditor2": "^1.0.3",
     "vue-resource": "^1.2.0",
     "vue-select": "github:sagalbot/vue-select",
     "vue-switch": "^1.2.5",

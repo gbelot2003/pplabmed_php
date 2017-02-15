@@ -6,7 +6,8 @@ use App\Citologia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 
-class CitologiaController extends Controller
+class
+CitologiaController extends Controller
 {
     public function __construct()
     {
@@ -28,9 +29,9 @@ class CitologiaController extends Controller
         return View('resultados.citologia.create');
     }
 
-    public function store()
+    public function store(Request $request)
     {
-
+        dd($request);
     }
 
     public function edit($id)
