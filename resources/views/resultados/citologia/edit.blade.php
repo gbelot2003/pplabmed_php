@@ -12,7 +12,7 @@
                     <div class="panel-body" id="app">
                         {!! Form::model($item, ['action' => 'CitologiaController@update', $item->id]) !!}
                             @include('resultados.citologia._form')
-                        {{ Form::close() }}
+                        {!!  Form::close() !!}
                     </div>
                 </div>
             </div>
