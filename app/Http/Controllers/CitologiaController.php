@@ -8,7 +8,7 @@ use App\Factura;
 use App\Firma;
 use App\Gravidad;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\View;
+use Auth;
 
 class
 CitologiaController extends Controller
@@ -69,17 +69,22 @@ CitologiaController extends Controller
             'muestra' => $request->input('muestra'),
             'informe' => $request->input('sexo'),
             'adendum' => $request->input('adendum'),
+            'user_id' => Auth::User()->id,
         ]);
 
 
 
         return redirect()->action('CitologiaController@index');
 
-
     }
 
     public function edit($id)
     {
+        $item = Citologia::findOrFail($id);
+        $idCIto = Categoria::pluck('name', 'id');
+        $firmas = Firma::pluck('name', 'id');
+        $gravidad = Gravidad::pluck('name', 'id');
+        return View('resultados.citologia.create', compact('item','idCIto', 'firmas', 'gravidad'));
     }
 
     public function update(Request $request, $id)

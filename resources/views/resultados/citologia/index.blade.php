@@ -18,8 +18,9 @@
                             <thead>
                             <tr>
                                 <th>No. Factura</th>
-                                <th>Nombre</th>
+                                <th>Nombre del Paciente</th>
                                 <th>Fecha de Informe</th>
+                                <th>Usuario</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -28,6 +29,7 @@
                                     <td>{{ $item->factura_id }}</td>
                                     <td><a href="{{ action('CitologiaController@edit', $item->id) }}">{{ $item->facturas->nombre_completo_cliente }}</a></td>
                                     <td>{{ $item->fecha_informe }}</td>
+                                    <td>{{ $item->usuario->username }}</td>
                                 </tr>
                             @endforeach
                             </tbody>

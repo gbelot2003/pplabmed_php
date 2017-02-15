@@ -175,7 +175,7 @@
                 <div class="col-md-12">
                     <hr>
                     <label>Informe</label>
-                    {!! Form::textarea('informe', null, ['class' => 'form-control textarea']) !!}
+                    {!! Form::textarea('informe', null, ['class' => 'form-control textarea ckeditor']) !!}
                 </div>
             </div>
             <div class="row">
@@ -216,6 +216,7 @@
             </div>
         </fieldset>
 </div>
+<script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
 <style>
     .checkbox {
         padding-left: 20px; }

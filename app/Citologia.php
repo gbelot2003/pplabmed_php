@@ -13,16 +13,25 @@ class Citologia extends Model
      */
     protected $fillable = ['factura_id', 'deteccion_cancer', 'indice_maduracion', 'otros_a', 'diagnostico_clinico',
                             'fur', 'fup', 'gravidad_id', 'para', 'abortos', 'citologia_id', 'firma_id', 'fecha_informe',
-                            'otros_b', 'firma2_id', 'fecha_muestra', 'mm', 'muestra', 'informe', 'adendum'];
+                            'otros_b', 'firma2_id', 'fecha_muestra', 'mm', 'muestra', 'informe', 'adendum', 'user_id'];
 
 
     /**
-     * Relacion Facturas Cittología
+     * Relacion Facturas Citología
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function facturas()
     {
         return $this->belongsTo(Factura::class, 'factura_id', 'num_factura');
+    }
+
+    /**
+     * Relación Usuarios Citlogía
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function usuario()
+    {
+        return$this->belongsTo(User::class, 'user_id', 'id');
     }
 
 
