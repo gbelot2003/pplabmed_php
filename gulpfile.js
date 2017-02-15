@@ -17,13 +17,14 @@ elixir((mix) => {
     mix.sass('app.scss')
         .sass('login.scss')
         .webpack('app.js')
-        .webpack('custom.js')
+        .scripts('custom2.js')
         .scripts([
             'assets/jquery.js',
             'assets/bootstrap.js',
             'assets/jquery.dataTables.js',
             'assets/bootstrap-toggle.min.js',
             'assets/toastr.min.js',
+            'assets/moment.js',
             'assets/select2.full.min.js'
         ], 'public/js/app2.js');
 

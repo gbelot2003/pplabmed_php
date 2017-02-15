@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Categoria;
 use App\Citologia;
+use App\Firma;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 
@@ -26,7 +28,9 @@ CitologiaController extends Controller
 
     public function create()
     {
-        return View('resultados.citologia.create');
+        $idCIto = Categoria::pluck('name', 'id');
+        $firmas = Firma::pluck('name', 'id');
+        return View('resultados.citologia.create', compact('idCIto', 'firmas'));
     }
 
     public function store(Request $request)

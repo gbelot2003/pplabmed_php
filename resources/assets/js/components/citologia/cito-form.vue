@@ -90,7 +90,8 @@
 ">
                     <label for="factura">No. Factura</label>
                     <input type="number" id="factura"  name="code" class="form-control box-style"
-                           v-model="factura" @blur="onBlurOut()" required>
+                           v-model="factura" @blur="onBlurOut()" v-validate:factura="'required'"
+                    >
                     <i v-show="errors.has('factura')" class="fa fa-warning"></i>
                     <span v-show="errors.has('factura')" class="help is-danger"></span>
                 </div>
@@ -167,7 +168,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <label>Diagnóstico Clinico</label>
-                        <textarea type="text" name="diagnostico" :id="editorA" class="textarea form-control" v-model="diagnostico"></textarea>
+                        <textarea type="text" name="diagnostico" class="textarea form-control" v-model="diagnostico"></textarea>
                     </div>
                 </div>
 
@@ -211,7 +212,7 @@
 
                     <div class="col-md-6 form-group">
                         <label>Fecha de Informe</label>
-                        <input type="date" :id="editorB" name="fechainforme" class="form-control" v-model="fecha_informe" />
+                        <input type="date" name="fechainforme" class="form-control" v-model="fecha_informe" />
                     </div>
                 </div>
 
@@ -285,7 +286,7 @@
                 <div class="row" v-if="show_ademdum">
                     <div class="col-md-12 group-form">
                         <label for="adendum">Adendum</label>
-                        <textarea name="adendum" :id="editorC" cols="30" rows="10" class="form-control"></textarea>
+                        <textarea name="adendum" id="adendum" cols="30" rows="10" class="form-control"></textarea>
                     </div>
                 </div>
 
@@ -295,7 +296,7 @@
                         <div class="text-right">
                             <a class="btn btn-danger" href="/pplabmed/public/citologias">Cancelar</a>
                             <!-- TODO: cambiar direccion al cambio de server-->
-                            <button type="submit" class="btn btn-primary" @click="onSubmit($event)">Guardar</button>
+                            <button type="submit" class="btn btn-primary" v-on:click="onSubmit($event)">Guardar</button>
                         </div>
                     </div>
                 </div>
@@ -308,7 +309,6 @@
     import axios from 'axios';
     import vSelect from "vue-select"
     import moment from 'moment';
-    import Ckeditor from 'vue-ckeditor2'
 
     export default {
         components: {vSelect},
@@ -318,9 +318,6 @@
                 gravidad_req: [],
                 cito_req: [],
                 firmas_req: [],
-                editorA: 'editor-a',
-                editorB: 'editor-b',
-                editorC: 'editor-c',
                 facturas:{
                     "id": 1,
                     "num_factura": "",
@@ -336,7 +333,7 @@
                 "DetCancer": false,
                 "IndMaduracion": false,
                 "otros1": "",
-                "diagnostico": "", //ckeditor
+                "diagnostico": "",
                 "fur":"",
                 "gravidad": "",
                 "para": "",
@@ -347,12 +344,12 @@
                 "firma2": "",
                 "fecha_muestra":"",
                 "otros2":"",
-                "informe":"",  //ckeditor
+                "informe":"",
                 "retien_muestra":false,
                 "impimir_nota": "",
                 "motrar_adendum": false,
                 "show_ademdum": false,
-                "adendum":"", //ckeditor
+                "adendum":"",
             }
         },
         mounted() {
@@ -367,10 +364,9 @@
         methods:{//TODO: Cambiar dirección windos/linux
             onSubmit: function(e){
                 e.preventDefault();
-
-              axios.post("/pplabmed/public/citologias", function(data, status, request){
+              /*axios.post("/pplabmed/public/citologias", function(data, status, request){
                 }.bind(this));
-                window.location.href = "/pplabmed/public/citologias";
+                window.location.href = "/pplabmed/public/citologias";*/
             },
 
             onBlurOut: function(){
@@ -390,17 +386,7 @@
         computed:{
             changeDate:function(){
                 if(this.facturas.fecha_nacimiento){
-                    const mydate = new Date(this.facturas.fecha_nacimiento);
-                    var a = moment(new Date());
-                    var b = moment(mydate);
-                    var years = a.diff(b, 'year');
-                    b.add(years, 'years');
 
-                    var months = a.diff(b, 'months');
-                    b.add(months, 'months');
-
-                    var days = a.diff(b, 'days');
-                    return years + ' años ' + months + ' meses ' + days + ' días';
                 }
             }
         }
