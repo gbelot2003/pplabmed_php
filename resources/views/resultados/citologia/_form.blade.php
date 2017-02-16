@@ -14,7 +14,7 @@
 
                 <div class="col-md-3 form-group">
                     <label>Edad</label>
-                    {{ Form::text('edad', null, ['class' => 'form-control box-style', 'id' => 'edad', 'require', 'disabled']) }}
+                    {{ Form::text('edad', null, ['class' => 'form-control box-style', 'id' => 'edad']) }}
                 </div>
             </div>
 

@@ -23,5 +23,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TopologiasTableSeeder::class);
         $this->call(MorfologiasTableSeeder::class);
         $this->call(FacturasTableSeeder::class);
+        $this->call(CitologiasTableSeeder::class);
     }
 }

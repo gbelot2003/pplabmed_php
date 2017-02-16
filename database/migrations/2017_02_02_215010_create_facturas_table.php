@@ -26,6 +26,7 @@ class CreateFacturasTable extends Migration
             $table->integer('num_cedula');
             $table->string('nombre_completo_cliente');
             $table->date('fecha_nacimiento');
+            $table->string('edad')->nullable();
             $table->string('correo');
             $table->string('direccion_entrega_sede');
             $table->string('medico');

@@ -27,6 +27,7 @@
                     const fulldate =  getDate(data.fecha_nacimiento);
 
                     $('#edad').val(fulldate);
+                    $('#edad2').val(fulldate);
 
                     $('#email').val(data.correo);
 
