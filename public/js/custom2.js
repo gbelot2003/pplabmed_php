@@ -41,8 +41,18 @@
                .fail(function () {
                    alert('failure');
                })
-
         })
+    });
+
+    $('a.bt-insert').click(function(e){
+        e.preventDefault();
+        const id = $(this).attr("href");
+        $.get('/pplabmed/public/plantillas/info/' + id)
+            .done(function(data){
+                console.log(data);
+                CKEDITOR.instances['informe'].insertHtml(data.body);
+            });
+
     });
 })(jQuery);
 //# sourceMappingURL=custom2.js.map

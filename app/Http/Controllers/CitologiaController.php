@@ -7,6 +7,7 @@ use App\Citologia;
 use App\Factura;
 use App\Firma;
 use App\Gravidad;
+use App\Plantilla;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -33,7 +34,10 @@ CitologiaController extends Controller
         $idCIto = Categoria::pluck('name', 'id');
         $firmas = Firma::pluck('name', 'id');
         $gravidad = Gravidad::pluck('name', 'id');
-        return View('resultados.citologia.create', compact('idCIto', 'firmas', 'gravidad'));
+        $plan = Plantilla::where('type', 1)
+            ->where('status', 1)->get();
+
+        return View('resultados.citologia.create', compact('idCIto', 'firmas', 'gravidad', 'plan'));
     }
 
     public function store(Request $request)
@@ -86,7 +90,9 @@ CitologiaController extends Controller
         $idCIto = Categoria::pluck('name', 'id');
         $firmas = Firma::pluck('name', 'id');
         $gravidad = Gravidad::pluck('name', 'id');
-        return View('resultados.citologia.edit', compact('item','idCIto', 'firmas', 'gravidad', 'fact'));
+        $plan = Plantilla::where('type', 1)
+            ->where('status', 1)->get();
+        return View('resultados.citologia.edit', compact('item','idCIto', 'firmas', 'gravidad', 'fact', 'plan'));
     }
 
     public function update(Request $request, $id)

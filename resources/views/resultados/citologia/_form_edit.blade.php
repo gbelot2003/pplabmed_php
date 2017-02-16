@@ -189,8 +189,9 @@
         <div class="row">
             <div class="col-md-12">
                 <ul class="nav nav-pills">
-                    <li role="presentation"><a href="#">Diagnostico 1</a></li>
-                    <li role="presentation"><a href="#">Diagnostico 2</a></li>
+                    @foreach($plan as $bt)
+                        <li role="presentation"><a class="bt-insert" href="{{ $bt->id }}">{{ $bt->name }}</a></li>
+                    @endforeach
                 </ul>
             </div>
 

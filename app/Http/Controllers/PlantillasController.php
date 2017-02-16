@@ -66,6 +66,12 @@ class PlantillasController extends Controller
         return $item->name;
     }
 
+    public function listado($type)
+    {
+        $item = Plantilla::where('type', $type)->get();
+        return $item;
+    }
+
     public function getPlantilla($id)
     {
         $item = Plantilla::findOrFail($id);

@@ -18,6 +18,7 @@
                             <tr>
                                 <th>No.</th>
                                 <th>Nombre</th>
+                                <th>Tipo</th>
                                 <th>Estado</th>
                                 <th>Editar</th>
                             </tr>
@@ -27,6 +28,13 @@
                                 <tr>
                                     <td class="id">{{ $item->id }}</td>
                                     <td>{{ $item->name }}</td>
+                                    <td>
+                                        @if($item->type == 1)
+                                            Citología
+                                         @else
+                                            Histopatología
+                                        @endif
+                                    </td>
                                     <td class="checkcol">
                                         <label>
                                             {!! Form::checkbox('status', $item->id , $item->status,

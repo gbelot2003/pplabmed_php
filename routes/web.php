@@ -37,6 +37,9 @@ Route::get('topologia/state/{id}/{state}', 'TopologiaController@state');
 
 Route::resource('plantillas', 'PlantillasController');
 Route::get('plantillas/state/{id}/{state}', 'PlantillasController@state');
+Route::get('plantillas/info/{id}', 'PlantillasController@getPlantilla');
+Route::get('plantillas/lista/{id}', 'PlantillasController@listado');
+
 
 Route::get('reportes/', 'ReportesController@index');
 
