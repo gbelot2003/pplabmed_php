@@ -36,12 +36,13 @@ Route::resource('topologia', 'TopologiaController');
 Route::get('topologia/state/{id}/{state}', 'TopologiaController@state');
 
 Route::resource('plantillas', 'PlantillasController');
+Route::get('plantillas/state/{id}/{state}', 'PlantillasController@state');
 
 Route::get('reportes/', 'ReportesController@index');
 
 Route::get('facturas/{id}', 'FacturasController@show');
 
+
 Route::group(['prefix' => 'api'], function () {
     Route::get('formcito', 'FormsApiController@citologiaFormData');
-
 });

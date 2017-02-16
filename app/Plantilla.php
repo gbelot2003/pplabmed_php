@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Plantilla extends Model
 {
-    protected $fillable = ['name', 'body', 'type'];
+    protected $fillable = ['name', 'body', 'type', 'status'];
 }

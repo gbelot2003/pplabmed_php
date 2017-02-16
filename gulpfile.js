@@ -17,6 +17,7 @@ elixir((mix) => {
     mix.sass('app.scss')
         .sass('login.scss')
         .webpack('app.js')
+        .webpack('custom.js')
         .scripts('custom2.js')
         .scripts([
             'assets/jquery.js',
