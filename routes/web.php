@@ -35,6 +35,8 @@ Route::get('morfologia/state/{id}/{state}', 'MorfologiaController@state');
 Route::resource('topologia', 'TopologiaController');
 Route::get('topologia/state/{id}/{state}', 'TopologiaController@state');
 
+Route::resource('plantillas', 'PlantillasController');
+
 Route::get('reportes/', 'ReportesController@index');
 
 Route::get('facturas/{id}', 'FacturasController@show');

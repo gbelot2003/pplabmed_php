@@ -15,6 +15,10 @@ class CreatePlantillasTable extends Migration
     {
         Schema::create('plantillas', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
+            $table->text('body');
+            $table->smallInteger('type');
+            $table->boolean('status');
             $table->timestamps();
         });
     }

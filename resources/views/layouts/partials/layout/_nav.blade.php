@@ -112,6 +112,8 @@
                         @if(Entrust::can('create-topologia'))
                         <li><a href="{{ action('TopologiaController@create') }}">Agregar Nueva Topología</a></li>
                         @endif
+                        <li class="divider"></li>
+                        <li><a href="{{ action('PlantillasController@index') }}">Formatos y plantillas</a></li>
                     </ul>
                 </li>
             </ul>
