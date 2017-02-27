@@ -19,7 +19,7 @@
         $("#factura").focusout(function () {
            let id = $(this).val();
            //alert(id);
-           $.get('/pplabmed/public/facturas/' + id)
+           $.get('/pplabmed_php/public//facturas/' + id)
                .done(function (data) {
                    console.log(data.nombre_completo_cliente);
                    $('#paciente').val(data.nombre_completo_cliente);
@@ -50,7 +50,7 @@
     $('a.bt-insert').click(function(e){
         e.preventDefault();
         const id = $(this).attr("href");
-        $.get('/pplabmed/public/plantillas/info/' + id)
+        $.get('/pplabmed_php/public/plantillas/info/' + id)
             .done(function(data){
                 console.log(data);
                 CKEDITOR.instances['adendum'].insertHtml(data.body);
