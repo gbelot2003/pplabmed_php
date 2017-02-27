@@ -45,7 +45,8 @@
         function sendDataToServer(id, ch, selector){
             if(ch === true){
                 var state = 1;//TODO: Cambiar dirección windos/linux
-                $.get('/pplabmed/public/' + selector + '/' + id + '/' + state)
+                //TODO: cambiar url
+                $.get('/' + selector + '/' + id + '/' + state)
                     .done(function(data){
                     toastr.success('Has activado el permiso de <strong style="text-decoration: underline">' + data + '</strong> exitosamente!!');
                 }).fail(function(data){
@@ -56,7 +57,8 @@
 
             } else if(ch === false) {
                 var state = 0;
-                $.get('/pplabmed/public/' + selector + '/' + id + '/' + state)
+                //TODO: cambiar url
+                $.get('/' + selector + '/' + id + '/' + state)
                 .done(function(data){
                     toastr.info('Has desactivado el permiso de <strong style="text-decoration: underline">' + data + '</strong> exitosamente!!');
                 }).fail(function(data){
