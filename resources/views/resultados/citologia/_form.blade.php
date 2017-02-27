@@ -179,13 +179,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">
-                    <ul class="nav nav-pills">
-                         @foreach($plan as $bt)
-                        <li role="presentation"><a class="bt-insert" href="{{ $bt->id }}">{{ $bt->name }}</a></li>
-                        @endforeach
-                    </ul>
-                </div>
+
 
                 <div class="form-group col-md-3">
                     <br>
@@ -199,9 +193,17 @@
             </div>
 
             <div class="row" v-if="show_ademdum">
+                <br>
                 <div class="col-md-12 group-form">
                     <label>Adendum</label>
                     {{ Form::textarea('adendum', null, ['class' => 'form-control ckeditor', 'id' => 'adendum']) }}
+                </div>
+                <div class="col-md-12">
+                    <ul class="nav nav-pills">
+                        @foreach($plan as $bt)
+                            <li role="presentation"><a class="bt-insert" href="{{ $bt->id }}">{{ $bt->name }}</a></li>
+                        @endforeach
+                    </ul>
                 </div>
             </div>
 

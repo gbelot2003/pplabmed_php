@@ -186,7 +186,14 @@
                 {!! Form::textarea('informe', null, ['class' => 'form-control textarea ckeditor']) !!}
             </div>
         </div>
-        <div class="row">
+
+        <div class="row" id="adendum_area">
+            <br>
+            <div class="col-md-12 group-form">
+                <label>Adendum</label>
+                {{ Form::textarea('adendum', null, ['class' => 'form-control ckeditor', 'id' => 'adendum']) }}
+            </div>
+
             <div class="col-md-12">
                 <ul class="nav nav-pills">
                     @foreach($plan as $bt)
@@ -195,26 +202,11 @@
                 </ul>
             </div>
 
-            <div class="form-group col-md-3">
-                <br>
-                <div class="checkbox checkbox-info">
-                    <input id="checkbox5" type="checkbox" >
-                    <label for="checkbox5">
-                        Adendum?
-                    </label>
-                </div>
-            </div>
-        </div>
-
-        <div class="row" v-if="show_ademdum">
-            <div class="col-md-12 group-form">
-                <label>Adendum</label>
-                {{ Form::textarea('adendum', null, ['class' => 'form-control ckeditor', 'id' => 'adendum']) }}
-            </div>
         </div>
 
         <div class="row">
             <div class="col-md-12">
+
                 <hr class="white-hr">
                 <div class="text-right">
                     <a class="btn btn-danger" href="/pplabmed/public/citologias">Cancelar</a>

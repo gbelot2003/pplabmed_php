@@ -27,6 +27,16 @@ class PlantillasTableSeeder extends Seeder
                 'created_at' => '2017-02-27 15:45:27',
                 'updated_at' => '2017-02-27 16:02:55',
             ),
+            1 => 
+            array (
+                'id' => 2,
+                'name' => 'Nueva Plantilla',
+                'body' => '<p>Escribe lo que necesitas entre []</p>',
+                'type' => 1,
+                'status' => 1,
+                'created_at' => '2017-02-27 17:52:32',
+                'updated_at' => '2017-02-27 17:52:32',
+            ),
         ));
         
         

@@ -19,7 +19,7 @@
         $("#factura").focusout(function () {
            let id = $(this).val();
            //alert(id);
-           $.get('/facturas/' + id)
+           $.get('/pplabmed/public/facturas/' + id)
                .done(function (data) {
                    console.log(data.nombre_completo_cliente);
                    $('#paciente').val(data.nombre_completo_cliente);
@@ -44,14 +44,19 @@
         })
     });
 
+
+
+
     $('a.bt-insert').click(function(e){
         e.preventDefault();
         const id = $(this).attr("href");
-        $.get('/plantillas/info/' + id)
+        $.get('/pplabmed/public/plantillas/info/' + id)
             .done(function(data){
                 console.log(data);
-                CKEDITOR.instances['informe'].insertHtml(data.body);
+                CKEDITOR.instances['adendum'].insertHtml(data.body);
             });
 
     });
+
+
 })(jQuery);
