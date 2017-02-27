@@ -117,14 +117,14 @@
             margin: 0;
             padding: 0;
             overflow: hidden;
-            background: #2d9b95;
-            background: -moz-radial-gradient(center, ellipse cover, #2d9b95 0%, #0e1329 100%);
+            background: #dbd3d3;
+/*            background: -moz-radial-gradient(center, ellipse cover, #2d9b95 0%, #0e1329 100%);
             background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #2d9b95), color-stop(100%, #0e1329));
             background: -webkit-radial-gradient(center, ellipse cover, #2d9b95 0%, #0e1329 100%);
             background: -o-radial-gradient(center, ellipse cover, #2d9b95 0%, #0e1329 100%);
-            background: -ms-radial-gradient(center, ellipse cover, #2d9b95 0%, #0e1329 100%);
+            background: -ms-radial-gradient(center, ellipse cover, #f3edfd 0%, #dbd3d3 100%);
             background: radial-gradient(ellipse at center, #2d9b95 0%, #0e1329 90%);
-            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2d9b95', endColorstr='#0e1329', GradientType=1
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2d9b95', endColorstr='#0e1329', GradientType=1*/
             );
         }
 
