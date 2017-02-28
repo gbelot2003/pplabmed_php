@@ -103,10 +103,14 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-md-10 col-md-push-1">
+                                <button type="submit" class="btn btn-default btn-block btn-custom">Login</button>
+                            </div>
+
                         </div>
 
 
-                        <button type="submit" class="btn btn-default btn-block btn-custom">Login</button>
+
                     </div><!-- /.controls -->
                 </div><!-- /#login-box -->
             </form>
