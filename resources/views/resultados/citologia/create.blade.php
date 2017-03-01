@@ -19,3 +19,7 @@
         </div>
     </div>
 @stop
+
+@section('jscode')
+    <script src="{{ asset('js/citologias-form.js') }}"></script>
+@stop

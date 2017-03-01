@@ -3,7 +3,7 @@
     <fieldset class="box-style">
         <div class="row">
             <div class="form-group col-md-2">
-                <label for="factura">asd. Factura</label>
+                <label for="factura">No. Factura</label>
                 {{ Form::text('factura_id', null, ['class' => 'form-control box-style', 'id' => 'factura', 'require'] ) }}
             </div>
 

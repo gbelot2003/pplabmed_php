@@ -10,9 +10,20 @@ class Factura extends Model
     protected $fillable = ['num_factura', 'num_cedula', 'nombre_completo_cliente', 'fecha_nacimiento',
                             'correo', 'direccion_entrega_sede', 'medico', 'status', 'edad'];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function citologias()
     {
-        $this->hasMany(Citologia::class, 'factura_id', 'fac_numero');
+       return $this->hasMany(Citologia::class, 'factura_id', 'num_factura');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function histopatologias()
+    {
+        return $this->hasMany(Histopatologia::class, 'factura_id', 'fac_numero');
     }
 
 }

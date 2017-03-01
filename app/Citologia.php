@@ -31,8 +31,12 @@ class Citologia extends Model
      */
     public function usuario()
     {
-        return$this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
+    public function firma()
+    {
+        return $this->belongsTo(Firma::class, 'firma_id', 'id');
+    }
 
 }

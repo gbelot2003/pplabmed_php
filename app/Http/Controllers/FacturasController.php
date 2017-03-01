@@ -9,12 +9,24 @@ use Illuminate\Http\Request;
 class FacturasController extends Controller
 {
 
+
     /**
      * @return View
      */
     public function index()
     {
-        return View('resultados.facturas.index');
+        $facturas = Factura::all();
+        return View('resultados.facturas.index', compact('facturas'));
+    }
+
+    /**
+     * @param $id
+     * @return View
+     */
+    public function edit($id)
+    {
+        $factura = Factura::findOrFail($id);
+        return View('resultados.facturas.edit', compact('factura'));
     }
 
     /**

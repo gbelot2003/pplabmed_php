@@ -72,7 +72,7 @@ CitologiaController extends Controller
             'fecha_muestra' => $request->input('fecha_muestra'),
             'mm' => $request->input('mm'),
             'muestra' => $request->input('muestra'),
-            'informe' => $request->input('sexo'),
+            'informe' => $request->input('informe'),
             'adendum' => $request->input('adendum'),
             'user_id' => Auth::User()->id,
         ]);

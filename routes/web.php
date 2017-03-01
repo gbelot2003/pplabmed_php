@@ -43,9 +43,9 @@ Route::get('plantillas/lista/{id}', 'PlantillasController@listado');
 
 Route::get('reportes/', 'ReportesController@index');
 
-Route::get('facturas/{id}', 'FacturasController@show');
+Route::resource('facturas', 'FacturasController');
+Route::resource('facturas/listados', 'FacturasListController');
 
-Route::get('facturas', 'FacturasController@index');
 
 
 Route::group(['prefix' => 'api'], function () {
