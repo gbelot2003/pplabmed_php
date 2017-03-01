@@ -37,11 +37,19 @@
                         @endif
 
                         @if(Entrust::can('show-histo'))
+                        <li class="dropdown-header">Histotología</li>
                         <li><a href="{{ action('HistopatologiaController@index') }}">Listado de Histopatología</a></li>
                         @endif
                         @if(Entrust::can('create-histo'))
                         <li><a href="{{ action('HistopatologiaController@create') }}">Nueva Histopatología</a></li>
                         @endif
+
+                        {{-- Permisos para ver facturas --}}
+                        <li class="divider"></li>
+                        <li class="dropdown-header">Facturas</li>
+
+                        <li><a href="{{ action('FacturasController@index') }}">Listado de Facturas</a></li>
+
                     </ul>
                 </li>
                 @endif

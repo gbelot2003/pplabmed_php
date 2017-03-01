@@ -18,7 +18,7 @@ elixir((mix) => {
         .sass('login.scss')
         .webpack('app.js')
         .webpack('custom.js')
-        .scripts('custom2.js')
+        .scripts('scripts/citologias-form.js')
         .scripts([
             'assets/jquery.js',
             'assets/bootstrap.js',

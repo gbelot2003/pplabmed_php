@@ -31,8 +31,6 @@
     </div>
     <!-- Scripts -->
     <script src="{{ asset('js/app2.js') }}"></script>
-    <script src="{{ asset('js/custom2.js') }}"></script>
-
     @yield('jscode')
     <style>
         <!--

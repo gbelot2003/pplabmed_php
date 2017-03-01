@@ -45,6 +45,8 @@ Route::get('reportes/', 'ReportesController@index');
 
 Route::get('facturas/{id}', 'FacturasController@show');
 
+Route::get('facturas', 'FacturasController@index');
+
 
 Route::group(['prefix' => 'api'], function () {
     Route::get('formcito', 'FormsApiController@citologiaFormData');
