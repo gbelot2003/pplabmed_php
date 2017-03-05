@@ -34,9 +34,23 @@ class Citologia extends Model
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function firma()
     {
         return $this->belongsTo(Firma::class, 'firma_id', 'id');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function firma2()
+    {
+        return $this->belongsTo(Firma::class, 'firmas_id', 'id');
+    }
+
+
+
 
 }

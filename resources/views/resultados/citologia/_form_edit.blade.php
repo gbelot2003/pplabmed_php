@@ -89,12 +89,12 @@
         <div class="row">
             <div class="col-md-3 form-group">
                 <label for="fur">F.U.R</label>
-                {{ Form::text('fur', null, ['class' => 'form-control', 'id' => 'fur']) }}
+                {{ Form::date('fur', null, ['class' => 'form-control', 'id' => 'fur']) }}
             </div>
 
             <div class="col-md-3 form-group">
                 <label for="fup">F.U.P</label>
-                {{ Form::text('fup', null, ['class' => 'form-control', 'id' => 'fup']) }}
+                {{ Form::date('fup', null, ['class' => 'form-control', 'id' => 'fup']) }}
             </div>
 
             <div class="col-md-6 form-group">
@@ -165,7 +165,7 @@
                 </div>
             </div>
 
-            <div class="col-md-3">
+{{--            <div class="col-md-3">
                 <br>
                 <div class="checkbox checkbox-info">
                     <input id="checkbox4" type="checkbox" name="muestra" value="1"
@@ -175,7 +175,7 @@
                         Se retiene muestra?
                     </label>
                 </div>
-            </div>
+            </div>--}}
 
         </div>
 
@@ -187,22 +187,6 @@
             </div>
         </div>
 
-        <div class="row" id="adendum_area">
-            <br>
-            <div class="col-md-12 group-form">
-                <label>Adendum</label>
-                {{ Form::textarea('adendum', null, ['class' => 'form-control ckeditor', 'id' => 'adendum']) }}
-            </div>
-
-            <div class="col-md-12">
-                <ul class="nav nav-pills">
-                    @foreach($plan as $bt)
-                        <li role="presentation"><a class="bt-insert" href="{{ $bt->id }}">{{ $bt->name }}</a></li>
-                    @endforeach
-                </ul>
-            </div>
-
-        </div>
 
         <div class="row">
             <div class="col-md-12">
@@ -218,84 +202,3 @@
     </fieldset>
 </div>
 <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
-<style>
-    .checkbox {
-        padding-left: 20px; }
-    .checkbox label {
-        display: inline-block;
-        position: relative;
-        padding-left: 5px; }
-    .checkbox label::before {
-        content: "";
-        display: inline-block;
-        position: absolute;
-        width: 17px;
-        height: 17px;
-        left: 0;
-        margin-left: -20px;
-        border: 1px solid #cccccc;
-        border-radius: 3px;
-        background-color: #fff;
-        -webkit-transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
-        -o-transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
-        transition: border 0.15s ease-in-out, color 0.15s ease-in-out; }
-    .checkbox label::after {
-        display: inline-block;
-        position: absolute;
-        width: 16px;
-        height: 16px;
-        left: 0;
-        top: 0;
-        margin-left: -20px;
-        padding-left: 3px;
-        padding-top: 1px;
-        font-size: 11px;
-        color: #555555; }
-    .checkbox input[type="checkbox"] {
-        opacity: 0; }
-    .checkbox input[type="checkbox"]:focus + label::before {
-        outline: thin dotted;
-        outline: 5px auto -webkit-focus-ring-color;
-        outline-offset: -2px; }
-    .checkbox input[type="checkbox"]:checked + label::after {
-        font-family: 'FontAwesome';
-        content: "\f00c"; }
-
-    .checkbox input[type="checkbox"]:disabled + label::before {
-        background-color: #eeeeee;
-        cursor: not-allowed; }
-    .checkbox.checkbox-circle label::before {
-        border-radius: 50%; }
-    .checkbox.checkbox-inline {
-        margin-top: 0; }
-
-    .checkbox-primary input[type="checkbox"]:checked + label::before {
-        background-color: #428bca;
-        border-color: #428bca; }
-    .checkbox-primary input[type="checkbox"]:checked + label::after {
-        color: #fff; }
-
-    .checkbox-danger input[type="checkbox"]:checked + label::before {
-        background-color: #d9534f;
-        border-color: #d9534f; }
-    .checkbox-danger input[type="checkbox"]:checked + label::after {
-        color: #fff; }
-
-    .checkbox-info input[type="checkbox"]:checked + label::before {
-        background-color: #5bc0de;
-        border-color: #5bc0de; }
-    .checkbox-info input[type="checkbox"]:checked + label::after {
-        color: #fff; }
-
-    .checkbox-warning input[type="checkbox"]:checked + label::before {
-        background-color: #f0ad4e;
-        border-color: #f0ad4e; }
-    .checkbox-warning input[type="checkbox"]:checked + label::after {
-        color: #fff; }
-
-    .checkbox-success input[type="checkbox"]:checked + label::before {
-        background-color: #5cb85c;
-        border-color: #5cb85c; }
-    .checkbox-success input[type="checkbox"]:checked + label::after {
-        color: #fff; }
-</style>

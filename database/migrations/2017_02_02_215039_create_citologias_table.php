@@ -20,8 +20,8 @@ class CreateCitologiasTable extends Migration
             $table->boolean('indice_maduracion')->nullable();
             $table->string('otros_a')->nullable();
             $table->text('diagnostico_clinico');
-            $table->string('fur')->nullable();
-            $table->string('fup')->nullable();
+            $table->date('fur')->nullable();
+            $table->date('fup')->nullable();
             $table->integer('gravidad_id');
             $table->string('para')->nullable();
             $table->integer('abortos')->nullable();
