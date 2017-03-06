@@ -17,6 +17,7 @@
                         <table class="table table-striped table-bordered">
                             <thead>
                             <tr>
+                                <th>Serial</th>
                                 <th>No. Factura</th>
                                 <th>Nombre del Paciente</th>
                                 <th>Fecha de Informe</th>
@@ -26,6 +27,7 @@
                             <tbody>
                             @foreach($items as $item)
                                 <tr>
+                                    <td>{{ $item->serial }}</td>
                                     <td>{{ $item->factura_id }}</td>
                                     <td><a href="{{ action('CitologiaController@edit', $item->id) }}">{{ $item->facturas->nombre_completo_cliente }}</a></td>
                                     <td></td>

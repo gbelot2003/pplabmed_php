@@ -2,6 +2,14 @@
 
     <fieldset class="box-style">
         <div class="row">
+            <div class="form-group col-md-10"></div>
+            <div class="form-group col-md-2">
+                <label>Numero Serial</label>
+                {{ Form::text('serial', null , ['class' => 'form-control box-style', 'id' => 'serial1', 'disabled'] ) }}
+            </div>
+        </div>
+
+        <div class="row">
             <div class="form-group col-md-2">
                 <label for="factura">No. Factura</label>
                 {{ Form::text('factura_id', null, ['class' => 'form-control box-style', 'id' => 'factura', 'require'] ) }}
@@ -187,7 +195,7 @@
            <div class="col-md-6">
                @if(Entrust::can('unbind-cito'))
                <div class="text-left">
-                   <a class="btn btn-danger">Anular</a>
+                   <a id="unbind" class="btn btn-danger"  data-toggle="modal" data-target="#unbindModal">Anular</a>
                </div>
                @endif
            </div>
@@ -199,8 +207,26 @@
                    <button type="submit" class="btn btn-primary">Guardar</button>
                </div>
            </div>
-
        </div>
+
+        <div class="modal fade" id="unbindModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Anular Resultados</h4>
+                    </div>
+                    <div class="modal-body">
+                        La operaciòn de anular esta Citología no se puede deshacer, esto afectara la numeración de las consecuentes Citologías, el numero serial de esta estara disponible al crear
+                        una nueva Citologìa
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <a href="{{ action('CitologiaController@unbind', $item->id) }}" class="btn btn-danger">Anular Citología</a>
+                    </div>
+                </div>
+            </div>
+        </div>
    </fieldset>
 </div>
 <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>

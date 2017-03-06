@@ -29,7 +29,7 @@ CitologiaController extends Controller
 
     public function index()
     {
-        $items = Citologia::orderBy('id', 'DESC')->paginate(15);
+        $items = Citologia::orderBy('id', 'DESC')->where('state', 1)->paginate(15);
         return View('resultados.citologia.index', compact('items'));
     }
 
@@ -139,8 +139,20 @@ CitologiaController extends Controller
         return redirect()->action('CitologiaController@index');
     }
 
-    public function delete($id)
+    public function unbind($id)
     {
+        $citologia = Citologia::findOrFail($id);
+
+        CitoUnbind::create([
+            'unbind' => $citologia->serial
+        ]);
+
+        $citologia->state = 2;
+        $citologia->serial = 0;
+        $citologia->update();
+
+        return redirect()->to(action('CitologiaController@index'));
+
     }
 
     public function getSerial()

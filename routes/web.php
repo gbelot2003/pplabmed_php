@@ -51,6 +51,8 @@ Route::group(['middleware' => 'auth'], function(){
 
 
     Route::resource('citologias', 'CitologiaController');
+    Route::get('citologias/unbind/{id}', 'CitologiaController@unbind')->name('citologias.unbind');
+
     Route::resource('histopatologia', 'HistopatologiaController');
 
     Route::resource('facturas', 'FacturasController');
