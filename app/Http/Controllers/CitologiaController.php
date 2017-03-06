@@ -30,7 +30,10 @@ CitologiaController extends Controller
     public function index()
     {
         $items = Citologia::orderBy('id', 'DESC')->where('state', 1)->paginate(15);
-        return View('resultados.citologia.index', compact('items'));
+        $serial = CitoSerial::findOrFail(1);
+
+
+        return View('resultados.citologia.index', compact('items', 'serial'));
     }
 
     public function create()
@@ -70,7 +73,7 @@ CitologiaController extends Controller
             'gravidad_id' => $request->input('gravidad_id'),
             'para' => $request->input('para'),
             'abortos' => $request->input('abortos'),
-            'citologia_id' => $request->input('citologia_id'),
+           'icitologia_id' => $request->input('icitologia_id'),
             'firma_id' => $request->input('firma_id'),
             'fecha_informe' => $request->input('fecha_informe'),
             'otros_b' => $request->input('otros_b'),
@@ -91,7 +94,7 @@ CitologiaController extends Controller
     {
         $item = Citologia::findOrFail($id);
         $fact = Factura::where('num_factura', $item->factura_id)->first();
-        $idCIto = Categoria::pluck('name', 'id');
+        $idCIto = Categoria::where('status', 1)->pluck('name', 'id');
         $firmas = Firma::pluck('name', 'id');
         $gravidad = Gravidad::pluck('name', 'id');
         $plan = Plantilla::where('type', 1)
@@ -125,7 +128,7 @@ CitologiaController extends Controller
             'gravidad_id' => $request->input('gravidad_id'),
             'para' => $request->input('para'),
             'abortos' => $request->input('abortos'),
-            'citologia_id' => $request->input('citologia_id'),
+            'icitologia_id' => $request->input('icitologia_id'),
             'firma_id' => $request->input('firma_id'),
             'fecha_informe' => $request->input('fecha_informe'),
             'otros_b' => $request->input('otros_b'),

@@ -52,6 +52,8 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::resource('citologias', 'CitologiaController');
     Route::get('citologias/unbind/{id}', 'CitologiaController@unbind')->name('citologias.unbind');
+    Route::post('citologias/config-serial', 'CitoSerialController@citologiaUpdate')->name('citologias.config');
+
 
     Route::resource('histopatologia', 'HistopatologiaController');
 

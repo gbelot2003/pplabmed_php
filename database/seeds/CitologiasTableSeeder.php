@@ -30,7 +30,7 @@ class CitologiasTableSeeder extends Seeder
                 'gravidad_id' => 6,
                 'para' => 'adsas dasd asd',
                 'abortos' => 2,
-                'citologia_id' => 6,
+                'icitologia_id' => 6,
                 'firma_id' => 11,
                 'fecha_informe' => '2017-02-15',
                 'otros_b' => 'Cualquier cosa',

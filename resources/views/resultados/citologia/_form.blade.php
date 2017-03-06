@@ -108,7 +108,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <label>Id Cito:</label>
-                    {{ Form::select('citologia_id', $idCIto, null, ['class' => 'form-control']) }}
+                    {{ Form::select('icitologia_id', $idCIto, null, ['class' => 'form-control']) }}
 
                 </div>
                 <div class="col-md-3 form-group">
@@ -137,7 +137,7 @@
             <div class="row">
                 <div class="col-md-6 form-group">
                     <label>Firma 2:</label>
-                    {{ Form::select('firma2_id', $firmas, null, ['class' => 'form-control']) }}
+                    {{ Form::select('firma2_id', $firmas, null, ['placeholder' => 'None', 'class' => 'form-control']) }}
                 </div>
 
                 <div class="col-md-6 form-group">

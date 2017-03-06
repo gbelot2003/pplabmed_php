@@ -260,6 +260,15 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => '2017-03-06 02:19:55',
                 'updated_at' => '2017-03-06 02:19:56',
             ),
+            27 => 
+            array (
+                'id' => 29,
+                'name' => 'config-serials',
+                'display_name' => 'Configurar Numeros Seriales',
+                'description' => 'Permisos para configurar numeraciones seriales',
+                'created_at' => '2017-03-06 11:32:19',
+                'updated_at' => '2017-03-06 11:32:19',
+            ),
         ));
         
         

@@ -25,7 +25,7 @@ class CreateCitologiasTable extends Migration
             $table->integer('gravidad_id')->nullable();//not null;
             $table->string('para')->nullable();
             $table->integer('abortos')->nullable();
-            $table->integer('citologia_id')->nullable();//not null;
+            $table->integer('icitologia_id')->nullable();//not null;
             $table->integer('firma_id')->nullable();//not null;
             $table->date('fecha_informe')->nullable();//not null;
             $table->string('otros_b')->nullable();

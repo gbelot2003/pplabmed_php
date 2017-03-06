@@ -6,13 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Citologia extends Model
 {
+
+    protected $dates = ['created_at', 'updated_at'];
+
     /**
      * Mass Assing protection filter
      * @var array
      *
      */
     protected $fillable = ['factura_id', 'deteccion_cancer', 'indice_maduracion', 'otros_a', 'diagnostico_clinico',
-        'fur', 'fup', 'gravidad_id', 'para', 'abortos', 'citologia_id', 'firma_id', 'fecha_informe',
+        'fur', 'fup', 'gravidad_id', 'para', 'abortos', 'icitologia_id', 'firma_id', 'fecha_informe',
         'otros_b', 'firma2_id', 'fecha_muestra', 'mm', 'user_id', 'serial'];
 
 
@@ -23,6 +26,12 @@ class Citologia extends Model
     public function facturas()
     {
         return $this->belongsTo(Factura::class, 'factura_id', 'num_factura');
+    }
+
+
+    public function idcito()
+    {
+        return $this->belongsTo(Categoria::class, 'icitologia_id', 'id');
     }
 
     /**
@@ -47,7 +56,7 @@ class Citologia extends Model
      */
     public function firma2()
     {
-        return $this->belongsTo(Firma::class, 'firmas_id', 'id');
+        return $this->belongsTo(Firma::class, 'firma2_id', 'id');
     }
 
     /**
