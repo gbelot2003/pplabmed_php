@@ -54,6 +54,8 @@ class Kernel extends HttpKernel
         'showCito' => \App\Http\Middleware\ShowCitologiaPermission::class,
         'createCito' => \App\Http\Middleware\CreateCitologiasPermission::class,
         'editCito' => \App\Http\Middleware\EditCitologiaPermission::class,
+        'unbindCito' => \App\Http\Middleware\UnbindCitologia::class,
+
 
         'showHisto' => \App\Http\Middleware\ShowHistoPermission::class,
         'createHito' => \App\Http\Middleware\CreateCitologiasPermission::class,

@@ -182,15 +182,25 @@
 
 
         <div class="row">
-            <div class="col-md-12">
-                <hr class="white-hr">
-                <div class="text-right">
-                    <a class="btn btn-danger" href="{{ action('CitologiaController@index') }}">Cancelar</a>
-                    <!-- TODO: cambiar direccion al cambio de server-->
-                    <button type="submit" class="btn btn-primary">Guardar</button>
-                </div>
-            </div>
-        </div>
-    </fieldset>
+            <hr class="white-hr">
+
+           <div class="col-md-6">
+               @if(Entrust::can('unbind-cito'))
+               <div class="text-left">
+                   <a class="btn btn-danger">Anular</a>
+               </div>
+               @endif
+           </div>
+
+
+           <div class="col-md-6">
+               <div class="text-right">
+                   <a class="btn btn-info" href="{{ action('CitologiaController@index') }}">Cancelar</a>
+                   <button type="submit" class="btn btn-primary">Guardar</button>
+               </div>
+           </div>
+
+       </div>
+   </fieldset>
 </div>
 <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>

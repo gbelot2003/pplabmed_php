@@ -251,6 +251,15 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => '2017-02-07 16:29:04',
                 'updated_at' => '2017-02-07 16:29:05',
             ),
+            26 => 
+            array (
+                'id' => 28,
+                'name' => 'unbind-cito',
+                'display_name' => 'Anular Citología',
+                'description' => 'Permisos para anular Citología',
+                'created_at' => '2017-03-06 02:19:55',
+                'updated_at' => '2017-03-06 02:19:56',
+            ),
         ));
         
         

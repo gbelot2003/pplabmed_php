@@ -183,14 +183,15 @@
             </div>
 
             <div class="row">
-                <div class="col-md-12">
-                    <hr class="white-hr">
+                <hr class="white-hr">
+                <div class="col-md-6"></div>
+                <div class="col-md-6">
                     <div class="text-right">
-                        <a class="btn btn-danger" href="{{ action('CitologiaController@index') }}">Cancelar</a>
-                        <!-- TODO: cambiar direccion al cambio de server-->
+                        <a class="btn btn-info" href="{{ action('CitologiaController@index') }}">Cancelar</a>
                         <button type="submit" class="btn btn-primary">Guardar</button>
                     </div>
                 </div>
+
             </div>
         </fieldset>
 </div>
