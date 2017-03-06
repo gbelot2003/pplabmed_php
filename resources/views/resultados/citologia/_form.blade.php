@@ -2,9 +2,18 @@
 
         <fieldset class="box-style">
             <div class="row">
+                <div class="form-group col-md-10"></div>
+                <div class="form-group col-md-2">
+                    <label>Numero Serial</label>
+                    {{ Form::text('serial1', $serial , ['class' => 'form-control box-style', 'id' => 'serial1', 'disabled'] ) }}
+                    {{ Form::hidden('serial', $serial) }}
+                </div>
+            </div>
+
+            <div class="row">
                 <div class="form-group col-md-2">
                     <label for="factura">No. Factura</label>
-                    {{ Form::text('factura_id', null, ['class' => 'form-control box-style', 'id' => 'factura', 'require'] ) }}
+                    {{ Form::number('factura_id', null, ['class' => 'form-control box-style', 'id' => 'factura', 'require'] ) }}
                 </div>
 
                 <div class="col-md-7 form-group">

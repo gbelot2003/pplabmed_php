@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Categoria;
 use App\Citologia;
+use App\CitoSerial;
+use App\CitoUnbind;
 use App\Factura;
 use App\Firma;
 use App\Gravidad;
@@ -23,6 +25,8 @@ CitologiaController extends Controller
         $this->middleware('editCito', ['only' => ['edit', 'update']]);
     }
 
+    public $flag;
+
     public function index()
     {
         $items = Citologia::orderBy('id', 'DESC')->paginate(15);
@@ -31,13 +35,15 @@ CitologiaController extends Controller
 
     public function create()
     {
+
+        $serial = $this->getSerial();
         $idCIto = Categoria::pluck('name', 'id');
         $firmas = Firma::pluck('name', 'id');
         $gravidad = Gravidad::pluck('name', 'id');
         $plan = Plantilla::where('type', 1)
             ->where('status', 1)->get();
 
-        return View('resultados.citologia.create', compact('idCIto', 'firmas', 'gravidad', 'plan'));
+        return View('resultados.citologia.create', compact('idCIto', 'firmas', 'gravidad', 'plan', 'serial'));
     }
 
     public function store(Request $request)
@@ -53,7 +59,7 @@ CitologiaController extends Controller
             'sexo' => $request->input('sexo'),
         ]);
 
-        $cito = Citologia::create([
+       $cito = Citologia::create([
             'factura_id' => $request->input('factura_id'),
             'deteccion_cancer' => $request->input('deteccion_cancer'),
             'indice_maduracion' => $request->input('indice_maduracion'),
@@ -71,10 +77,11 @@ CitologiaController extends Controller
             'firma2_id' => $request->input('firma2_id'),
             'fecha_muestra' => $request->input('fecha_muestra'),
             'mm' => $request->input('mm'),
+            'serial' => $request->input('serial'),
             'user_id' => Auth::User()->id,
         ]);
 
-
+       $this->setSerial($request->input('serial'));
 
         return redirect()->action('CitologiaController@index');
 
@@ -128,10 +135,67 @@ CitologiaController extends Controller
             'user_id' => Auth::User()->id,
         ]);
 
+
         return redirect()->action('CitologiaController@index');
     }
 
     public function delete($id)
     {
     }
+
+    public function getSerial()
+    {
+        $unbind = CitoUnbind::first();
+        if($unbind){
+            $serial =  $unbind->unbind;
+        } else {
+            $getSerial = CitoSerial::findOrFail(1);
+            $sserial = $getSerial->serial;
+            $serial = ($sserial + 1);
+        }
+
+        return $serial;
+    }
+
+    public function setSerial($req)
+    {
+
+        $preserial = CitoSerial::findOrFail(1);
+        $serial = ($preserial->serial + 1);
+
+        if($serial != $req){
+            $getSerial = CitoUnbind::where('unbind', $req)->first();
+            $getSerial->delete();
+        } else {
+            $getSerial = CitoSerial::findOrFail(1);
+            $getSerial->serial = $req;
+            $getSerial->update();
+        }
+
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -12,8 +12,8 @@ class Citologia extends Model
      *
      */
     protected $fillable = ['factura_id', 'deteccion_cancer', 'indice_maduracion', 'otros_a', 'diagnostico_clinico',
-                            'fur', 'fup', 'gravidad_id', 'para', 'abortos', 'citologia_id', 'firma_id', 'fecha_informe',
-                            'otros_b', 'firma2_id', 'fecha_muestra', 'mm', 'user_id'];
+        'fur', 'fup', 'gravidad_id', 'para', 'abortos', 'citologia_id', 'firma_id', 'fecha_informe',
+        'otros_b', 'firma2_id', 'fecha_muestra', 'mm', 'user_id', 'serial'];
 
 
     /**
@@ -50,7 +50,35 @@ class Citologia extends Model
         return $this->belongsTo(Firma::class, 'firmas_id', 'id');
     }
 
-
-
+    /**
+     * @return mixed
+     */
+    public function getSerial()
+    {
+        $serial = CitoSerial::where('id', 1)->first();
+        return $serial;
+    }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

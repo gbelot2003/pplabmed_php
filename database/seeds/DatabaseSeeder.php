@@ -25,5 +25,6 @@ class DatabaseSeeder extends Seeder
         $this->call(FacturasTableSeeder::class);
         $this->call(CitologiasTableSeeder::class);
         $this->call(PlantillasTableSeeder::class);
+        $this->call(CitoSerialsTableSeeder::class);
     }
 }

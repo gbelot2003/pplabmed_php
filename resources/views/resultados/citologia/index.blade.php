@@ -28,8 +28,9 @@
                                 <tr>
                                     <td>{{ $item->factura_id }}</td>
                                     <td><a href="{{ action('CitologiaController@edit', $item->id) }}">{{ $item->facturas->nombre_completo_cliente }}</a></td>
-                                    <td>{{ $item->fecha_informe }}</td>
-                                    <td>{{ $item->usuario->username }}</td>
+                                    <td></td>
+                                    <td></td>
+                                    {{--TODO: reeditar index despues de creaciòn de metodo serial y XML--}}
                                 </tr>
                             @endforeach
                             </tbody>
