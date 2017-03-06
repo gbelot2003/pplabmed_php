@@ -79,12 +79,6 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-12">
-                <label>Diagnóstico Clinico</label>
-                {{ Form::textarea('diagnostico_clinico', null, ['class' => 'textarea form-control ckeditor', 'id' => 'diagnostico']) }}
-            </div>
-        </div>
 
         <div class="row">
             <div class="col-md-3 form-group">
@@ -113,11 +107,11 @@
             </div>
             <div class="col-md-3 form-group">
                 <label for="para">Para: </label>
-                {{ Form::text('para', null, ['class' => 'form-control', 'id' => 'para']) }}
+                {{ Form::number('para', null, ['class' => 'form-control', 'id' => 'para']) }}
             </div>
             <div class="col-md-3">
                 <label for="abortos">Abortos: </label>
-                {{ Form::text('abortos', null, ['class' => 'form-control', 'id' => 'abortos']) }}
+                {{ Form::number('abortos', null, ['class' => 'form-control', 'id' => 'abortos']) }}
             </div>
         </div>
 
@@ -181,19 +175,17 @@
 
         <div class="row">
             <div class="col-md-12">
-                <hr>
-                <label>Informe</label>
-                {!! Form::textarea('informe', null, ['class' => 'form-control textarea ckeditor']) !!}
+                <label>Diagnóstico Clinico</label>
+                {{ Form::textarea('diagnostico_clinico', null, ['class' => 'textarea form-control ckeditor', 'id' => 'diagnostico']) }}
             </div>
         </div>
 
 
         <div class="row">
             <div class="col-md-12">
-
                 <hr class="white-hr">
                 <div class="text-right">
-                    <a class="btn btn-danger" href="/pplabmed/public/citologias">Cancelar</a>
+                    <a class="btn btn-danger" href="{{ action('CitologiaController@index') }}">Cancelar</a>
                     <!-- TODO: cambiar direccion al cambio de server-->
                     <button type="submit" class="btn btn-primary">Guardar</button>
                 </div>

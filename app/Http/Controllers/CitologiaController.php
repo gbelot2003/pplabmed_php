@@ -71,9 +71,6 @@ CitologiaController extends Controller
             'firma2_id' => $request->input('firma2_id'),
             'fecha_muestra' => $request->input('fecha_muestra'),
             'mm' => $request->input('mm'),
-            'muestra' => $request->input('muestra'),
-            'informe' => $request->input('informe'),
-            'adendum' => $request->input('adendum'),
             'user_id' => Auth::User()->id,
         ]);
 
@@ -128,9 +125,6 @@ CitologiaController extends Controller
             'firma2_id' => $request->input('firma2_id'),
             'fecha_muestra' => $request->input('fecha_muestra'),
             'mm' => $request->input('mm'),
-            'muestra' => $request->input('muestra'),
-            'informe' => $request->input('informe'),
-            'adendum' => $request->input('adendum'),
             'user_id' => Auth::User()->id,
         ]);
 

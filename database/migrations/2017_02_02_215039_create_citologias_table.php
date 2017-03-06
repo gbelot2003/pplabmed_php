@@ -33,8 +33,6 @@ class CreateCitologiasTable extends Migration
             $table->date('fecha_muestra');
             $table->boolean('mm')->nullable();
             $table->boolean('muestra')->nullable();
-            $table->text('informe');
-            $table->text('adendum')->nullable();
             $table->integer('user_id');
             $table->timestamps();
         });
