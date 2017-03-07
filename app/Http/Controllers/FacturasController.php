@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Factura;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Yajra\Datatables\Datatables;
+
 
 class FacturasController extends Controller
 {
@@ -15,8 +17,7 @@ class FacturasController extends Controller
      */
     public function index()
     {
-        $facturas = Factura::all();
-        return View('resultados.facturas.index', compact('facturas'));
+        return View('resultados.facturas.index');
     }
 
     /**
@@ -37,5 +38,20 @@ class FacturasController extends Controller
     {
         $item = Factura::where('num_factura', $id)->first();
         return $item;
+    }
+
+    /**
+     * @param Datatables $datatables
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function listados()
+    {
+        $facturas = Factura::all();
+        return Datatables::of($facturas)
+            ->addColumn('href', function($facturas){
+                return '<a href="facturas/'.$facturas->id.'/edit" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Ver</a>';
+            })
+            ->rawColumns(['href'])
+            ->make(true);
     }
 }

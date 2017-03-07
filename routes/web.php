@@ -58,18 +58,12 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource('histopatologia', 'HistopatologiaController');
 
     Route::resource('facturas', 'FacturasController');
-    Route::resource('facturas/listados', 'FacturasListController');
+    Route::get('factura/listados', 'FacturasController@listados');
+
 
 
     Route::get('reportes/', 'ReportesController@index');
 
     Route::get('read', 'FilesController@readFiles');
 
-});
-
-
-
-
-Route::group(['prefix' => 'api'], function () {
-    Route::get('formcito', 'FormsApiController@citologiaFormData');
 });

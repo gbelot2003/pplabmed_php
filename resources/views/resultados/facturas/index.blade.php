@@ -16,22 +16,13 @@
                             <table class="table table-striped table-bordered dataTable">
                                 <thead>
                                     <th>No. Factura</th>
-                                    <th>Nombre Completo</th>
-                                    <th>E-mail</th>
+                                    <th>Nombre de Cliente</th>
+                                    <th>E-Mail</th>
                                     <th>Medico</th>
                                     <th>Fecha</th>
+                                    <th>Acción</th>
                                 </thead>
-                                <tbody>
-                                @foreach($facturas as $item)
-                                    <tr>
-                                        <td>{{ $item->num_factura }}</td>
-                                        <td><a href="{{ action('FacturasController@edit', $item->id) }}">{{ $item->nombre_completo_cliente }}</a></td>
-                                        <td>{{ $item->correo }}</td>
-                                        <td>{{ $item->medico }}</td>
-                                        <td>{{ $item->created_at }}</td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
+                                <tbody></tbody>
                             </table>
                         </div>
                     </div>
@@ -47,7 +38,34 @@
     <script>
         (function(){
             $(document).ready(function(){
-               $('.dataTable').dataTable();
+               $('.dataTable').dataTable({
+                   processing: true,
+                   serverSide: true,
+                   "order": [[ 0, "desc" ]],
+                   ajax: '{!! URL::to(action('FacturasController@listados')) !!}',
+                   columns:[
+                       {data: 'num_factura', name: 'num_factura'},
+                       {data: 'nombre_completo_cliente', name: 'nombre_completo_cliente'},
+                       {data: 'correo', name: 'correo'},
+                       {data: 'medico', name: 'medico'},
+                       {data: 'created_at', name: 'created_at'},
+                       {data: 'href', name:'href'},
+                   ],
+                   "language": {
+                       "lengthMenu": "Mostrar _MENU_ registros por página",
+                       "zeroRecords": "Registro no encotrado - lo sentimos",
+                       "info": "Mostrando página _PAGE_ de _PAGES_",
+                       "infoEmpty": "No hay registros de esa busqueda",
+                       "infoFiltered": "(filtrado de _MAX_ total Total de regístros)",
+                       "search":  "Busqueda:",
+                       "paginate": {
+                           "first":      "Primero",
+                           "last":       "Ultimo",
+                           "next":       "Siguiente",
+                           "previous":   "Anterior"
+                       }
+                   }
+               });
             });
         })();
     </script>

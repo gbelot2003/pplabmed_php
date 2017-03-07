@@ -14,6 +14,7 @@ class FilesController extends Controller
     public function readFiles()
     {
         $files = Storage::disk('hd')->allFiles();
+
         foreach ($files as $file)
         {
             $xml=simplexml_load_file('C:\\xml\\' . $file);
@@ -29,6 +30,7 @@ class FilesController extends Controller
                 'sexo' => $xml->sexo,
             ]);
         }
+
 
 
     }
