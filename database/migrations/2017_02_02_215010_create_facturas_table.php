@@ -23,15 +23,15 @@ class CreateFacturasTable extends Migration
         Schema::create('facturas', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('num_factura');
-            $table->integer('num_cedula');
+            $table->string('num_cedula')->nullable();
             $table->string('nombre_completo_cliente');
-            $table->date('fecha_nacimiento');
+            $table->date('fecha_nacimiento')->nullable();
             $table->string('edad')->nullable();
-            $table->string('correo');
-            $table->string('direccion_entrega_sede');
-            $table->string('medico');
+            $table->string('correo')->nullable();
+            $table->string('direccion_entrega_sede')->nullable();
+            $table->string('medico')->nullable();
             $table->string('status');
-            $table->string('sexo');
+            $table->string('sexo')->nullable();
             $table->timestamps();
         });
     }

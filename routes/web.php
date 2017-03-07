@@ -63,6 +63,8 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::get('reportes/', 'ReportesController@index');
 
+    Route::get('read', 'FilesController@readFiles');
+
 });
 
 

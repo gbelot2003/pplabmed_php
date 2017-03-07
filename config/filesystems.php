@@ -55,6 +55,11 @@ return [
             'visibility' => 'public',
         ],
 
+        'hd' => [
+            'driver' => 'local',
+            'root' => 'C:\\xml\\'
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_KEY'),
