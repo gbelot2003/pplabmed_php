@@ -17,7 +17,8 @@ class FilesController extends Controller
 
         foreach ($files as $file)
         {
-            $xml=simplexml_load_file('C:\\xml\\' . $file);
+            $xml=simplexml_load_file('/home/vagrant/xml/' . $file);
+
             $factura = Factura::create([
                 'num_factura' => $xml->num_factura,
                 'num_cedula' => $xml->num_cedula,
@@ -31,6 +32,7 @@ class FilesController extends Controller
             ]);
         }
 
+        return redirect()->to(action('FacturasController@index'));
 
 
     }

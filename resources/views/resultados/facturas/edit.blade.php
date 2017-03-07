@@ -4,7 +4,7 @@
 
     <div class="container">
         <div class="col-md-10 col-md-offset-1">
-            <div class="panel panel-warning">
+            <div class="panel panel-default">
                 <div class="panel-heading">
                     Factura No. <span style="color:darkred">{{ $factura->num_factura }}</span>
                 </div>

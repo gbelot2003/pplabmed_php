@@ -57,7 +57,7 @@ return [
 
         'hd' => [
             'driver' => 'local',
-            'root' => 'C:\\xml\\'
+            'root' => '/home/vagrant/xml'
         ],
 
         's3' => [
