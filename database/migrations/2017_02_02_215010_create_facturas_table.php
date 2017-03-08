@@ -22,7 +22,7 @@ class CreateFacturasTable extends Migration
 
         Schema::create('facturas', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('num_factura');
+            $table->integer('num_factura')->unique();
             $table->string('num_cedula')->nullable();
             $table->string('nombre_completo_cliente');
             $table->date('fecha_nacimiento')->nullable();

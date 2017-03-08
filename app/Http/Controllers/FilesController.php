@@ -10,14 +10,15 @@ use League\Flysystem\File;
 class FilesController extends Controller
 {
 
-
     public function readFiles()
     {
         $files = Storage::disk('hd')->allFiles();
         $path = env('XML_PATH');
+        $i = 0;
 
         foreach ($files as $file)
         {
+
             $xml=simplexml_load_file($path . $file);
 
             $factura = Factura::create([
@@ -35,7 +36,9 @@ class FilesController extends Controller
             $new_path = $path . 'backups/' .$file;
             $old_path = $path . $file;
             rename($old_path, $new_path);
+            $i++;
         }
+
 
         return redirect()->to(action('FacturasController@index'));
 

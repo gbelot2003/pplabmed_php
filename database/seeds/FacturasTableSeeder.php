@@ -92,22 +92,8 @@ class FacturasTableSeeder extends Seeder
                 'created_at' => '2017-02-10 00:59:51',
                 'updated_at' => '2017-02-10 00:59:51',
             ),
-            5 => 
-            array (
-                'id' => 6,
-                'num_factura' => 177,
-                'num_cedula' => 994865103,
-                'nombre_completo_cliente' => 'Annalise Mann',
-                'fecha_nacimiento' => '2011-10-30',
-                'correo' => 'monica.corkery@hotmail.com',
-                'direccion_entrega_sede' => 'Illo voluptatibus qui ut a cumque doloremque.',
-                'medico' => 'Emelie Gottlieb',
-                'status' => 'Valida',
-                'sexo' => 'Mrs.',
-                'created_at' => '2017-02-10 00:59:51',
-                'updated_at' => '2017-02-10 00:59:51',
-            ),
-            6 => 
+
+            5 =>
             array (
                 'id' => 7,
                 'num_factura' => 156,
@@ -122,7 +108,7 @@ class FacturasTableSeeder extends Seeder
                 'created_at' => '2017-02-10 00:59:51',
                 'updated_at' => '2017-02-10 00:59:51',
             ),
-            7 => 
+            6 =>
             array (
                 'id' => 8,
                 'num_factura' => 159,
@@ -137,7 +123,7 @@ class FacturasTableSeeder extends Seeder
                 'created_at' => '2017-02-10 00:59:51',
                 'updated_at' => '2017-02-10 00:59:51',
             ),
-            8 => 
+            7 =>
             array (
                 'id' => 9,
                 'num_factura' => 151,
@@ -152,7 +138,7 @@ class FacturasTableSeeder extends Seeder
                 'created_at' => '2017-02-10 00:59:51',
                 'updated_at' => '2017-02-10 00:59:51',
             ),
-            9 => 
+            8 =>
             array (
                 'id' => 10,
                 'num_factura' => 110,
