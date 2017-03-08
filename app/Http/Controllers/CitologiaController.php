@@ -40,9 +40,9 @@ CitologiaController extends Controller
     {
 
         $serial = $this->getSerial();
-        $idCIto = Categoria::pluck('name', 'id');
-        $firmas = Firma::pluck('name', 'id');
-        $gravidad = Gravidad::pluck('name', 'id');
+        $idCIto = Categoria::where('status', 1)->pluck('name', 'id');
+        $firmas = Firma::where('status', 1)->pluck('name', 'id');
+        $gravidad = Gravidad::where('status', 1)->pluck('name', 'id');
         $plan = Plantilla::where('type', 1)
             ->where('status', 1)->get();
 
@@ -85,7 +85,7 @@ CitologiaController extends Controller
         ]);
 
        $this->setSerial($request->input('serial'));
-
+        flash('Reegistro Creado', 'success')->important();
         return redirect()->action('CitologiaController@index');
 
     }
@@ -95,8 +95,8 @@ CitologiaController extends Controller
         $item = Citologia::findOrFail($id);
         $fact = Factura::where('num_factura', $item->factura_id)->first();
         $idCIto = Categoria::where('status', 1)->pluck('name', 'id');
-        $firmas = Firma::pluck('name', 'id');
-        $gravidad = Gravidad::pluck('name', 'id');
+        $firmas = Firma::where('status', 1)->pluck('name', 'id');
+        $gravidad = Gravidad::where('status', 1)->pluck('name', 'id');
         $plan = Plantilla::where('type', 1)
             ->where('status', 1)->get();
         return View('resultados.citologia.edit', compact('item','idCIto', 'firmas', 'gravidad', 'fact', 'plan'));
@@ -138,7 +138,7 @@ CitologiaController extends Controller
             'user_id' => Auth::User()->id,
         ]);
 
-
+        flash('Reegistro Actualizado', 'success')->important();
         return redirect()->action('CitologiaController@index');
     }
 

@@ -34,7 +34,7 @@ class FilesController extends Controller
                     'sexo' => $xml->sexo,
                 ]);
 
-                $new_path = $back . $file;
+                $new_path = $back .'/'.  $file;
                 $old_path = $path . $file;
                 rename($old_path, $new_path);
                 $i++;
