@@ -30,7 +30,7 @@
 
                     @if($factura->citologias->count())
                         <h3>Resultados Citología</h3>
-                        <table class="table table-bordered">
+                        <table class="table table-striped table-bordered">
                             <thead>
                                 <th>No. de Serie</th>
                                 <th>No. Citología</th>
@@ -40,6 +40,7 @@
                                 <th>Firma2</th>
                                 <th>Fecha</th>
                             </thead>
+                            <tbody>
                             @foreach($factura->citologias as $cito)
                                 <tr>
                                     <td><a href="{{ action('CitologiaController@edit', $cito->id) }}">{{ $cito->id }}</a></td>
@@ -55,6 +56,7 @@
                                     <td>{{ $cito->created_at }}</td>
                                 </tr>
                             @endforeach
+                            </tbody>
                         </table>
                     @else
                         <h3>No hay Resultados en Citología</h3>

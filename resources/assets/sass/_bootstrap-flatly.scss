@@ -2307,7 +2307,7 @@ th {
   padding: 5px;
 }
 .table-bordered {
-  border: 1px solid #ecf0f1;
+  border: 1px solid #9996f1;
 }
 .table-bordered > thead > tr > th,
 .table-bordered > tbody > tr > th,
@@ -2315,14 +2315,14 @@ th {
 .table-bordered > thead > tr > td,
 .table-bordered > tbody > tr > td,
 .table-bordered > tfoot > tr > td {
-  border: 1px solid #ecf0f1;
+  border: 1px solid #9996f1;;
 }
 .table-bordered > thead > tr > th,
 .table-bordered > thead > tr > td {
   border-bottom-width: 2px;
 }
 .table-striped > tbody > tr:nth-of-type(odd) {
-  background-color: #f9f9f9;
+  background-color: #c0c0c0;
 }
 .table-hover > tbody > tr:hover {
   background-color: #ecf0f1;
