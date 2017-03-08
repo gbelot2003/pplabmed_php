@@ -14,10 +14,11 @@ class FilesController extends Controller
     public function readFiles()
     {
         $files = Storage::disk('hd')->allFiles();
+        $path = env('XML_PATH');
 
         foreach ($files as $file)
         {
-            $xml=simplexml_load_file('/home/vagrant/xml/' . $file);
+            $xml=simplexml_load_file($path . $file);
 
             $factura = Factura::create([
                 'num_factura' => $xml->num_factura,
@@ -30,6 +31,10 @@ class FilesController extends Controller
                 'status' => $xml->status,
                 'sexo' => $xml->sexo,
             ]);
+
+            $new_path = $path . 'backups/' .$file;
+            $old_path = $path . $file;
+            rename($old_path, $new_path);
         }
 
         return redirect()->to(action('FacturasController@index'));

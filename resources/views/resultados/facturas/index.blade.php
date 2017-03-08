@@ -10,7 +10,6 @@
                             <a href="{{ action('FilesController@readFiles') }}" class="btn btn-info" alt="Facturas"><span class="glyphicon glyphicon-refresh"></span></a>
                         </div>
                         <h4>Registros de Facturas</h4>
-
                     </div>
                     <div class="panel-body">
                         <div class="col-md-12">

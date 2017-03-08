@@ -57,7 +57,7 @@ return [
 
         'hd' => [
             'driver' => 'local',
-            'root' => '/home/vagrant/xml'
+            'root' => env('XML_PATH')
         ],
 
         's3' => [
