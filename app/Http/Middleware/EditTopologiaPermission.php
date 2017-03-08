@@ -16,7 +16,7 @@ class EditTopologiaPermission
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user()->can('edit-topologia') === false)
+        if(Auth::user()->can('edit-topologias') === false)
         {
             return redirect()->back();
         }

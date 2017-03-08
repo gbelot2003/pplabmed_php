@@ -180,6 +180,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Orangehill\Iseed\IseedServiceProvider::class,
         Yajra\Datatables\DatatablesServiceProvider::class,
+        Laracasts\Flash\FlashServiceProvider::class,
 
     ],
 

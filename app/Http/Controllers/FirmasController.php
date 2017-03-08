@@ -52,6 +52,7 @@ class FirmasController extends Controller
         endif;
 
         $firma = Firma::create($request->all());
+        flash('Reegistro Creado', 'success')->important();
         return redirect()->to('/firmas');
     }
 
@@ -85,6 +86,8 @@ class FirmasController extends Controller
         endif;
 
         $item->update($request->all());
+        flash('Reegistro Actualizado', 'success')->important();
+
         return redirect()->to('/firmas');
     }
 

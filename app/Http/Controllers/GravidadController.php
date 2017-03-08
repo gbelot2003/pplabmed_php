@@ -35,6 +35,7 @@ class GravidadController extends Controller
         endif;
 
         $area = Gravidad::create($request->all());
+        flash('Reegistro Creado', 'success')->important();
         return redirect()->to('/gravidad');
     }
 
@@ -57,6 +58,7 @@ class GravidadController extends Controller
         endif;
 
         $item->update($request->all());
+        flash('Reegistro Editado', 'success')->important();
         return redirect()->to('/gravidad');
     }
 

@@ -30,6 +30,7 @@ class PlantillasController extends Controller
         endif;
 
         $items->create($request->all());
+        flash('Reegistro Creado', 'success')->important();
 
         return redirect()->to(action('PlantillasController@index'));
     }
@@ -51,6 +52,8 @@ class PlantillasController extends Controller
         endif;
 
         $item->update($request->all());
+        flash('Reegistro Actualizado', 'success')->important();
+
         return redirect()->to(action('PlantillasController@index'));
     }
 

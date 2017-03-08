@@ -27,10 +27,21 @@
 <body>
     <div id="app">
         @include('layouts.partials.layout._nav')
+        <div class="container">
+            @yield('breadcrumbs')
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    @include('flash::message')
+                </div>
+            </div>
+        </div>
         @yield('content')
     </div>
     <!-- Scripts -->
     <script src="{{ asset('js/app2.js') }}"></script>
+    <script>
+        $('#flash-overlay-modal').modal();
+    </script>
     @yield('jscode')
     <style>
         <!--

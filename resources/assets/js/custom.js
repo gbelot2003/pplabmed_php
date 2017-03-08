@@ -7,8 +7,8 @@
             "ordering": true,
             "fnDrawCallback": function(){
                 $('.toggle .emiter').on('change', function(){
-                    var id = $(this).val();
-                    var ch = $(this).is(':checked');
+                    let id = $(this).val();
+                    let ch = $(this).is(':checked');
                     sendDataToServer(id, ch, url);
                 });
             },

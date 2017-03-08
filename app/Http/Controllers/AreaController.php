@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Area;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Validator;
 
 class AreaController extends Controller
 {
@@ -29,6 +30,19 @@ class AreaController extends Controller
 
     public function store(Request $request)
     {
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string',
+            'status' => 'required|boolean',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+
         if($request['status'] == 'on'):
             $request['status'] = 1;
          else:
@@ -36,11 +50,13 @@ class AreaController extends Controller
          endif;
 
         $area = Area::create($request->all());
+        flash('Reegistro Creado', 'success')->important();
         return redirect()->to('/areas');
     }
 
     public function edit($id)
     {
+
         $item = Area::findOrFail($id);
         return View('parametrizacion.areas.edit', compact('item'));
     }
@@ -48,6 +64,17 @@ class AreaController extends Controller
 
     public function update(Request $request, $id)
     {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string',
+            'status' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
         $item = Area::findOrFail($id);
 
         if($request['status'] == 'on'):
@@ -57,6 +84,7 @@ class AreaController extends Controller
         endif;
 
         $item->update($request->all());
+        flash('Reegistro Actualizado', 'success')->important();
         return redirect()->to('/areas');
     }
 

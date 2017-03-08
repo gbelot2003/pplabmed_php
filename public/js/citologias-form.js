@@ -17,7 +17,7 @@
 
     $(document).ready(function () {
         $("#factura").focusout(function () {
-            let id = $(this).val();
+            var id = $(this).val();
             //alert(id);
             $.get('/facturas/' + id)
                 .done(function (data) {

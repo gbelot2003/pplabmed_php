@@ -51,6 +51,7 @@ class CategoryController extends Controller
         endif;
 
         $area = Categoria::create($request->all());
+        flash('Reegistro Creado', 'success')->important();
         return redirect()->to('/categorias');
     }
 
@@ -84,6 +85,7 @@ class CategoryController extends Controller
         endif;
 
         $item->update($request->all());
+        flash('Reegistro Creado', 'success')->important();
         return redirect()->to('/categorias');
     }
 

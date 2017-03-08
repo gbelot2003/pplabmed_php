@@ -36,6 +36,7 @@ class TopologiaController extends Controller
         endif;
 
         $area = Topologia::create($request->all());
+        flash('Reegistro Creado', 'success')->important();
         return redirect()->to('/topologia');
     }
 
@@ -56,6 +57,7 @@ class TopologiaController extends Controller
         endif;
 
         $item->update($request->all());
+        flash('Reegistro Editado', 'success')->important();
         return redirect()->to('/topologia');
     }
 
