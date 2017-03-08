@@ -50,6 +50,17 @@ class UsersTableSeeder extends Seeder
                 'created_at' => '2017-02-08 15:07:21',
                 'updated_at' => '2017-02-08 15:08:18',
             ),
+            3 => 
+            array (
+                'id' => 4,
+                'username' => 'ealvarez',
+                'email' => 'edithalvarez@laboratoriosmedicos.hn',
+                'password' => '$2y$10$BXnTCamfE8mwbvk/qao/X.lAqV2UdFxdEHKQD/.koMIe.yMg1KkeS',
+                'status' => 1,
+                'remember_token' => NULL,
+                'created_at' => '2017-03-08 15:28:08',
+                'updated_at' => '2017-03-08 15:28:08',
+            ),
         ));
         
         
