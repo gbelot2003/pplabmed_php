@@ -12,7 +12,11 @@
         b.add(months, 'months');
         const days = a.diff(b, 'days');
 
-        return years + ' años ' + months + ' meses ' + days + ' días';
+        if(years > 0){
+            return years + ' A';
+        } else {
+            return months + ' M';
+        }
     }
 
     $(document).ready(function () {
