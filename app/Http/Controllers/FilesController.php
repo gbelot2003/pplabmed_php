@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Factura;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 
 class FilesController extends Controller
@@ -22,11 +23,15 @@ class FilesController extends Controller
             if($xml === false){
 
             } else {
+                $fecha_nac = $this->setFecha($xml->fecha_nacimiento);
+                $edad = $this->setEdad($fecha_nac);
+
                 $factura = Factura::create([
                     'num_factura' => $xml->num_factura,
                     'num_cedula' => $xml->num_cedula,
                     'nombre_completo_cliente' => $xml->nombre_completo_cliente,
-                    'fecha_nacimiento' => date('Y-m-d H:i:s', strtotime($xml->fecha_nacimiento)),
+                    'fecha_nacimiento' => $fecha_nac,
+                    'edad' => $edad,
                     'correo' => $xml->correo,
                     'direccion_entrega_sede' => $xml->direccion_entrega_sede,
                     'medico' => $xml->medico,
@@ -43,6 +48,13 @@ class FilesController extends Controller
         }
 
         return redirect()->to(action('FacturasController@index'));
+    }
 
+    public function setFecha($edad){
+        return date('Y-m-d H:i:s', strtotime($edad));
+    }
+
+    public function setEdad($edad){
+        return intval(date('Y', time() - strtotime($edad))) - 1970;
     }
 }

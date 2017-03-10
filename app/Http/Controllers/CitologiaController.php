@@ -6,10 +6,9 @@ use App\Categoria;
 use App\Citologia;
 use App\CitoSerial;
 use App\CitoUnbind;
-use App\Factura;
 use App\Firma;
 use App\Gravidad;
-use App\Plantilla;
+use App\Http\Requests\CitologiaValidate;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -29,7 +28,7 @@ CitologiaController extends Controller
 
     public function index()
     {
-        $items = Citologia::orderBy('id', 'DESC')->where('state', 1)->paginate(15);
+        $items = Citologia::orderBy('id', 'DESC')->paginate(10);
         $serial = CitoSerial::findOrFail(1);
 
 
@@ -38,125 +37,45 @@ CitologiaController extends Controller
 
     public function create()
     {
-
         $serial = $this->getSerial();
         $idCIto = Categoria::where('status', 1)->pluck('name', 'id');
         $firmas = Firma::where('status', 1)->pluck('name', 'id');
         $gravidad = Gravidad::where('status', 1)->pluck('name', 'id');
-        $plan = Plantilla::where('type', 1)
-            ->where('status', 1)->get();
 
-        return View('resultados.citologia.create', compact('idCIto', 'firmas', 'gravidad', 'plan', 'serial'));
+        return View('resultados.citologia.create', compact('idCIto', 'firmas', 'gravidad', 'serial'));
     }
 
-    public function store(Request $request)
+    public function store(CitologiaValidate $request)
     {
-        //dd($request->all());
-        $facturas = Factura::where('num_factura', $request->input('factura_id'))->first();
+        $cito = Citologia::create($request->all());
+        $cito->facturas->update($request->all());
 
-        $facturas->update([
-            'nombre_completo_cliente' => $request->input('paciente'),
-            'direccion_entrega_sede' => $request->input('direccion'),
-            'edad' => $request->input('edad'),
-            'correo' => $request->input('email'),
-            'sexo' => $request->input('sexo'),
-        ]);
-
-       $cito = Citologia::create([
-            'factura_id' => $request->input('factura_id'),
-            'deteccion_cancer' => $request->input('deteccion_cancer'),
-            'indice_maduracion' => $request->input('indice_maduracion'),
-            'otros_a' => $request->input('otros_a'),
-            'diagnostico_clinico' => $request->input('diagnostico_clinico'),
-            'fur' => $request->input('fur'),
-            'fup' => $request->input('fup'),
-            'gravidad_id' => $request->input('gravidad_id'),
-            'para' => $request->input('para'),
-            'abortos' => $request->input('abortos'),
-           'icitologia_id' => $request->input('icitologia_id'),
-            'firma_id' => $request->input('firma_id'),
-            'fecha_informe' => $request->input('fecha_informe'),
-            'otros_b' => $request->input('otros_b'),
-            'firma2_id' => $request->input('firma2_id'),
-            'fecha_muestra' => $request->input('fecha_muestra'),
-            'mm' => $request->input('mm'),
-            'serial' => $request->input('serial'),
-            'user_id' => Auth::User()->id,
-        ]);
-
-       $this->setSerial($request->input('serial'));
+        $this->setSerial($request->input('serial'));
         flash('Reegistro Creado', 'success')->important();
         return redirect()->action('CitologiaController@index');
-
     }
 
     public function edit($id)
     {
         $item = Citologia::findOrFail($id);
-        $fact = Factura::where('num_factura', $item->factura_id)->first();
         $idCIto = Categoria::where('status', 1)->pluck('name', 'id');
         $firmas = Firma::where('status', 1)->pluck('name', 'id');
         $gravidad = Gravidad::where('status', 1)->pluck('name', 'id');
-        $plan = Plantilla::where('type', 1)
-            ->where('status', 1)->get();
-        return View('resultados.citologia.edit', compact('item','idCIto', 'firmas', 'gravidad', 'fact', 'plan'));
+        return View('resultados.citologia.edit', compact('item','idCIto', 'firmas', 'gravidad'));
     }
 
-    public function update(Request $request, $id)
+    public function update(CitologiaValidate $request, $id)
     {
 
+        //dd($request->all());
         $cito = Citologia::findOrFail($id);
-
-        $facturas = Factura::where('num_factura', $request->input('factura_id'))->first();
-
-        $facturas->update([
-            'nombre_completo_cliente' => $request->input('paciente'),
-            'direccion_entrega_sede' => $request->input('direccion'),
-            'edad' => $request->input('edad'),
-            'correo' => $request->input('email'),
-            'sexo' => $request->input('sexo'),
-        ]);
-
-        $cito->update([
-            'factura_id' => $request->input('factura_id'),
-            'deteccion_cancer' => $request->input('deteccion_cancer'),
-            'indice_maduracion' => $request->input('indice_maduracion'),
-            'otros_a' => $request->input('otros_a'),
-            'diagnostico_clinico' => $request->input('diagnostico_clinico'),
-            'fur' => $request->input('fur'),
-            'fup' => $request->input('fup'),
-            'gravidad_id' => $request->input('gravidad_id'),
-            'para' => $request->input('para'),
-            'abortos' => $request->input('abortos'),
-            'icitologia_id' => $request->input('icitologia_id'),
-            'firma_id' => $request->input('firma_id'),
-            'fecha_informe' => $request->input('fecha_informe'),
-            'otros_b' => $request->input('otros_b'),
-            'firma2_id' => $request->input('firma2_id'),
-            'fecha_muestra' => $request->input('fecha_muestra'),
-            'mm' => $request->input('mm'),
-            'user_id' => Auth::User()->id,
-        ]);
+        $cito->update($request->all());
+        $cito->facturas->update($request->all());
 
         flash('Reegistro Actualizado', 'success')->important();
         return redirect()->action('CitologiaController@index');
     }
 
-    public function unbind($id)
-    {
-        $citologia = Citologia::findOrFail($id);
-
-        CitoUnbind::create([
-            'unbind' => $citologia->serial
-        ]);
-
-        $citologia->state = 2;
-        $citologia->serial = 0;
-        $citologia->update();
-
-        return redirect()->to(action('CitologiaController@index'));
-
-    }
 
     public function getSerial()
     {

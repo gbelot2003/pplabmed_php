@@ -7,8 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Citologia extends Model
 {
 
-    protected $dates = ['created_at', 'updated_at'];
-
     /**
      * Mass Assing protection filter
      * @var array
