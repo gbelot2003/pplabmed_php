@@ -12,6 +12,9 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
+
+$autoIncrement = autoIncrement();
+
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
 
@@ -39,7 +42,7 @@ $factory->define(App\Firma::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\Categoria::class, function (Faker\Generator $faker) {
+$factory->define(App\Categoria::class, function (Faker\Generator $faker) { //IdCito
     return [
         'name' => $faker->word,
         'status' => rand(0, 1)
@@ -81,4 +84,11 @@ $factory->define(App\Factura::class, function (Faker\Generator $faker){
     ];
 });
 
+
+function autoIncrement()
+{
+    for ($i = 0; $i < 1000; $i++) {
+        yield $i;
+    }
+}
 
