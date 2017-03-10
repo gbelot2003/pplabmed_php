@@ -25,8 +25,8 @@ class CreateCitologiasTable extends Migration
             $table->date('fup');//not null;;
             $table->date('fecha_informe');//not null;
             $table->date('fecha_muestra');//not null;
-            $table->string('para')->default(0);
-            $table->integer('abortos')->default(0);
+            $table->integer('para')->nullable();
+            $table->integer('abortos')->nullable();
             $table->integer('icitologia_id');//not null;
             $table->integer('firma_id');//not null;
             $table->integer('firma2_id')->nullable();
