@@ -9,12 +9,15 @@ use App\CitoUnbind;
 use App\Firma;
 use App\Gravidad;
 use App\Http\Requests\CitologiaValidate;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Auth;
 
 class
 CitologiaController extends Controller
 {
+    public $flag;
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -24,8 +27,9 @@ CitologiaController extends Controller
         $this->middleware('editCito', ['only' => ['edit', 'update']]);
     }
 
-    public $flag;
-
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         $items = Citologia::orderBy('id', 'DESC')->paginate(10);
@@ -35,6 +39,9 @@ CitologiaController extends Controller
         return View('resultados.citologia.index', compact('items', 'serial'));
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function create()
     {
         $serial = $this->getSerial();
@@ -45,6 +52,10 @@ CitologiaController extends Controller
         return View('resultados.citologia.create', compact('idCIto', 'firmas', 'gravidad', 'serial'));
     }
 
+    /**
+     * @param CitologiaValidate $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(CitologiaValidate $request)
     {
         $cito = Citologia::create($request->all());
@@ -55,6 +66,10 @@ CitologiaController extends Controller
         return redirect()->action('CitologiaController@index');
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function edit($id)
     {
         $item = Citologia::findOrFail($id);
@@ -64,6 +79,11 @@ CitologiaController extends Controller
         return View('resultados.citologia.edit', compact('item','idCIto', 'firmas', 'gravidad'));
     }
 
+    /**
+     * @param CitologiaValidate $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(CitologiaValidate $request, $id)
     {
 
@@ -76,7 +96,9 @@ CitologiaController extends Controller
         return redirect()->action('CitologiaController@index');
     }
 
-
+    /**
+     * @return mixed
+     */
     public function getSerial()
     {
         $unbind = CitoUnbind::first();
@@ -91,6 +113,9 @@ CitologiaController extends Controller
         return $serial;
     }
 
+    /**
+     * @param $req
+     */
     public function setSerial($req)
     {
 
@@ -105,6 +130,39 @@ CitologiaController extends Controller
             $getSerial->serial = $req;
             $getSerial->update();
         }
+    }
+
+
+    public function processForm(Request $request)
+    {
+        $inicio = $request->input('inicio');
+        $fin = $request->input('fin');
+        $idC = $request->input('icitologia_id');
+
+        return redirect()->to('/citologia/resultados/'.$inicio.'/'.$fin.'/'.$idC.'');
+    }
+
+    /**
+     * @param Request $request
+     */
+    public function search($inicio, $fin, $idc = null)
+    {
+        $idCIto = Categoria::where('status', 1)->pluck('name', 'id');
+        $firmas = Firma::where('status', 1)->pluck('name', 'id');
+        $gravidad = Gravidad::where('status', 1)->pluck('name', 'id');
+
+        $bdate =  Carbon::createFromFormat('Y-m-d', $inicio)->startOfDay();
+        $edate =  Carbon::createFromFormat('Y-m-d', $fin)->endOfDay();
+
+        $query = Citologia::whereBetween('created_at', [$bdate, $edate]);
+
+        if($idc != null){
+            $query->where('icitologia_id', $idc);
+        }
+
+        $items = $query->paginate(1);
+        //return $items;
+        return View('resultados.citologia.search_results', compact('items','idCIto', 'firmas', 'gravidad'));
 
     }
 }
