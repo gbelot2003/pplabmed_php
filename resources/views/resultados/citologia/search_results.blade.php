@@ -9,6 +9,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <div class="text-muted pull-right">
+                            {{ $items->links('vendor.pagination.form_paginator') }}
                             <a class="btn btn-warning" alt="Buscar" ><span class="glyphicon glyphicon-search" data-toggle="modal" data-target="#searchModal"></span></a>
                         </div>
                         <h4>Agregar de Citología</h4>
@@ -21,9 +22,6 @@
                     </div>
                 </div>
                 @endforeach
-            </div>
-            <div class="col-md-10 col-md-offset-1">
-                {{ $items->links() }}
             </div>
         </div>
     </div>
