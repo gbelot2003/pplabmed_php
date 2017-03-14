@@ -109,18 +109,6 @@
                         <li><a href="{{ action('GravidadController@create') }}">Agregar Nueva Gravidad</a></li>
                         @endif
                         <li class="divider"></li>
-                        <li class="dropdown-header">Morfologías</li>
-                        <li><a href="{{ action('MorfologiaController@index') }}">Lista de Morfologías</a></li>
-                        @if(Entrust::can('create-morfologia'))
-                        <li><a href="{{ action('MorfologiaController@create') }}">Agregar Nueva Morfologías</a></li>
-                        @endif
-                        <li class="divider"></li>
-                        <li class="dropdown-header">Topología</li>
-                        <li><a href="{{ action('TopologiaController@index') }}">Lista de Topología</a></li>
-                        @if(Entrust::can('create-topologia'))
-                        <li><a href="{{ action('TopologiaController@create') }}">Agregar Nueva Topología</a></li>
-                        @endif
-                        <li class="divider"></li>
                         <li><a href="{{ action('PlantillasController@index') }}">Formatos y plantillas</a></li>
                     </ul>
                 </li>

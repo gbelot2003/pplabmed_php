@@ -37,13 +37,6 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource('gravidad', 'GravidadController');
     Route::get('gravidad/state/{id}/{state}', 'GravidadController@state');
 
-    Route::resource('morfologia', 'MorfologiaController');
-    Route::get('morfologia/state/{id}/{state}', 'MorfologiaController@state');
-
-    Route::resource('topologia', 'TopologiaController');
-    Route::get('topologia/state/{id}/{state}', 'TopologiaController@state');
-
-
     Route::resource('plantillas', 'PlantillasController');
     Route::get('plantillas/state/{id}/{state}', 'PlantillasController@state');
     Route::get('plantillas/info/{id}', 'PlantillasController@getPlantilla');
