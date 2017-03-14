@@ -26,7 +26,7 @@ class CitologiaValidate extends FormRequest
 
         $postId = $this->route()->parameter('citologia');
 
-        return  $edit =
+        return  $rules =
                 [
                     'serial' => 'numeric|unique:citologias,serial,' .$postId,
                     'factura_id' => 'numeric|required|unique:citologias,factura_id,' .$postId,
@@ -51,7 +51,7 @@ class CitologiaValidate extends FormRequest
                     'firma_id' => 'required|integer',
                     'firma2_id' => 'integer|nullable',
                     'otros_b' => 'string|nullable',
-                    'mm' => 'boolean',
+                    //'mm' => 'boolean',
                     'diagnostico_clinico' => 'string|required'
                 ];
 
