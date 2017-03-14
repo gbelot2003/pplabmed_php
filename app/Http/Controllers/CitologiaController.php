@@ -12,6 +12,7 @@ use App\Http\Requests\CitologiaValidate;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Auth;
+use Yajra\Datatables\Datatables;
 
 class
 CitologiaController extends Controller
@@ -32,11 +33,8 @@ CitologiaController extends Controller
      */
     public function index()
     {
-        $items = Citologia::orderBy('id', 'DESC')->paginate(10);
         $serial = CitoSerial::findOrFail(1);
-
-
-        return View('resultados.citologia.index', compact('items', 'serial'));
+        return View('resultados.citologia.index', compact('serial'));
     }
 
     /**
@@ -163,7 +161,28 @@ CitologiaController extends Controller
         $items = $query->paginate(1);
         //return $items;
         return View('resultados.citologia.search_results', compact('items','idCIto', 'firmas', 'gravidad'));
+    }
 
+    public function listados()
+    {
+        $items = Citologia::select([
+                'citologias.serial',
+                'citologias.factura_id',
+                'facturas.nombre_completo_cliente',
+                'categorias.name as citoId',
+                'firmas.name',
+                'citologias.created_at'
+            ])
+            ->Join('facturas', 'factura_id', '=', 'facturas.num_factura')
+            ->Join('categorias', 'icitologia_id', '=', 'categorias.id')
+            ->Join('firmas', 'firma_id', '=', 'firmas.id');
+
+        return Datatables::of($items)
+            ->addColumn('href', function($items){
+                return '<a href="citologias/'.$items->id.'/edit" class="btn btn-xs btn-primary">Ver Detalle</a>';
+            })
+            ->rawColumns(['href'])
+            ->make(true);
     }
 }
 

@@ -54,7 +54,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('citologias/config-serial', 'CitoSerialController@citologiaUpdate')->name('citologias.config');
     Route::post('citologias/process', 'CitologiaController@processForm');
     Route::get('citologia/resultados/{inicio?}/{fin?}/{idc?}', 'CitologiaController@search');
-
+    Route::get('citologia/listados', 'CitologiaController@listados');
 
     Route::resource('histopatologia', 'HistopatologiaController');
 
