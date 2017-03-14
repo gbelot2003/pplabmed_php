@@ -166,6 +166,7 @@ CitologiaController extends Controller
     public function listados()
     {
         $items = Citologia::select([
+                'citologias.id',
                 'citologias.serial',
                 'citologias.factura_id',
                 'facturas.nombre_completo_cliente',
@@ -179,7 +180,7 @@ CitologiaController extends Controller
 
         return Datatables::of($items)
             ->addColumn('href', function($items){
-                return '<a href="citologias/'.$items->id.'/edit" class="btn btn-xs btn-primary">Ver Detalle</a>';
+                return '<a href="citologias/'. $items->id .'/edit" class="btn btn-xs btn-primary">Ver Detalle</a>';
             })
             ->rawColumns(['href'])
             ->make(true);
