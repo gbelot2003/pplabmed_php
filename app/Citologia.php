@@ -26,7 +26,10 @@ class Citologia extends Model
         return $this->belongsTo(Factura::class, 'factura_id', 'num_factura');
     }
 
-
+    /**
+     * Relacion Con categorias
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function idcito()
     {
         return $this->belongsTo(Categoria::class, 'icitologia_id', 'id');

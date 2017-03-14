@@ -24,5 +24,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CitologiasTableSeeder::class);
         $this->call(PlantillasTableSeeder::class);
         $this->call(CitoSerialsTableSeeder::class);
+        $this->call(HistopatologiasTableSeeder::class);
     }
 }
