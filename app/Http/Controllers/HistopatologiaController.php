@@ -8,6 +8,8 @@ use App\Factura;
 use App\Firma;
 use App\Histopatologia;
 use App\Http\Requests\HistopatiaValidation;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class HistopatologiaController extends Controller
 {
@@ -62,8 +64,34 @@ class HistopatologiaController extends Controller
         return redirect()->action('HistopatologiaController@index');
     }
 
-    public function delete($id)
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function processForm(Request $request)
     {
+        $inicio = $request->input('inicio');
+        $fin = $request->input('fin');
+
+        return redirect()->to('/histopatologia/resultados/'.$inicio.'/'.$fin);
+    }
+
+    /**
+     * @param $inicio
+     * @param $fin
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function search($inicio, $fin)
+    {
+        $firmas = Firma::where('status', 1)->pluck('name', 'id');
+        $bdate =  Carbon::createFromFormat('Y-m-d', $inicio)->startOfDay();
+        $edate =  Carbon::createFromFormat('Y-m-d', $fin)->endOfDay();
+
+        $query = Histopatologia::whereBetween('created_at', [$bdate, $edate]);
+        $items = $query->paginate(1);
+
+        return View('resultados.histopatologia.search_results', compact('items', 'firmas'));
+
     }
 
     /**

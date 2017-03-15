@@ -155,10 +155,6 @@ CitologiaController extends Controller
 
         $query = Citologia::whereBetween('created_at', [$bdate, $edate]);
 
-        if($idc != null){
-            $query->where('icitologia_id', $idc);
-        }
-
         $items = $query->paginate(1);
         //return $items;
         return View('resultados.citologia.search_results', compact('items','idCIto', 'firmas', 'gravidad'));

@@ -50,6 +50,9 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('citologia/listados', 'CitologiaController@listados');
 
     Route::resource('histopatologia', 'HistopatologiaController');
+    Route::post('histopatologia/process', 'HistopatologiaController@processForm');
+    Route::get('histopatologia/resultados/{inicio?}/{fin?}', 'HistopatologiaController@search');
+
 
     Route::resource('facturas', 'FacturasController');
     Route::get('factura/listados', 'FacturasController@listados');

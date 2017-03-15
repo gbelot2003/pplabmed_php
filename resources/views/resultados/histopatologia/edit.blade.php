@@ -9,7 +9,7 @@
                         <div class="text-muted pull-right">
                             <a class="btn btn-warning" alt="Buscar" ><span class="glyphicon glyphicon-search" data-toggle="modal" data-target="#searchModal"></span></a>
                         </div>
-                        <h4>Agregar de Citología</h4>
+                        <h4>Agregar de Histopatología</h4>
                     </div>
                     <div class="panel-body" id="app">
                         {!! Form::model($item, ['action' => ['HistopatologiaController@update', $item->id], 'method' => 'PATCH']) !!}
@@ -25,4 +25,8 @@
 
 @section('jscode')
     <script src="{{ asset('js/histopatologia-form.js') }}"></script>
+@stop
+
+@section('modals')
+    @include('resultados.histopatologia._modal_search')
 @stop
