@@ -94,11 +94,12 @@ class HistopatologiaController extends Controller
         $firmas = Firma::where('status', 1)->pluck('name', 'id');
         $bdate =  Carbon::createFromFormat('Y-m-d', $inicio)->startOfDay();
         $edate =  Carbon::createFromFormat('Y-m-d', $fin)->endOfDay();
+        $plantillas = Plantilla::all();
 
         $query = Histopatologia::whereBetween('created_at', [$bdate, $edate]);
         $items = $query->paginate(1);
 
-        return View('resultados.histopatologia.search_results', compact('items', 'firmas'));
+        return View('resultados.histopatologia.search_results', compact('items', 'firmas', 'plantillas'));
 
     }
 
