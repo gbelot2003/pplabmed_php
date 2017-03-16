@@ -10,6 +10,7 @@ use App\Histopatologia;
 use App\Http\Requests\HistopatiaValidation;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Yajra\Datatables\Datatables;
 
 class HistopatologiaController extends Controller
 {
@@ -24,8 +25,7 @@ class HistopatologiaController extends Controller
 
     public function index()
     {
-        $items = Histopatologia::orderBy('id', 'DESC')->paginate(15);
-        return View('resultados.histopatologia.index', compact('items'));
+        return View('resultados.histopatologia.index');
     }
 
     public function create()
@@ -92,6 +92,27 @@ class HistopatologiaController extends Controller
 
         return View('resultados.histopatologia.search_results', compact('items', 'firmas'));
 
+    }
+
+    public function listados()
+    {
+        $items = Histopatologia::select([
+            'histopatologias.id',
+            'histopatologias.serial',
+            'histopatologias.factura_id',
+            'facturas.nombre_completo_cliente',
+            'firmas.name',
+            'histopatologias.created_at'
+        ])
+            ->Join('facturas', 'factura_id', '=', 'facturas.num_factura')
+            ->Join('firmas', 'firma_id', '=', 'firmas.id');
+
+        return Datatables::of($items)
+            ->addColumn('href', function($items){
+                return '<a href="histopatologia/'. $items->id .'/edit" class="btn btn-xs btn-primary">Ver Detalle</a>';
+            })
+            ->rawColumns(['href'])
+            ->make(true);
     }
 
     /**
