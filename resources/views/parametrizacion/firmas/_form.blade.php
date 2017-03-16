@@ -7,7 +7,7 @@
 
 <div class="row">
     <div class="col-md-10 col-md-push-1 form-group box-style">
-        <label for="code">Código de Busqueda</label>
+        <label for="code">No. de Colegiado</label>
         {!! Form::text('code', null, ['class' => 'form-control']) !!}
     </div>
 </div>

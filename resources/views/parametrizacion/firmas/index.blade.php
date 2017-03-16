@@ -20,7 +20,7 @@
                             <tr>
                                 <th>No.</th>
                                 <th>Nombre</th>
-                                <th>Codigo de Busqueda</th>
+                                <th>No de Colegiado</th>
                                 @if(Entrust::can('edit-firmas'))
                                 <th>Estado</th>
                                 <th>Editar</th>
