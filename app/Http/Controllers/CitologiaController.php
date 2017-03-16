@@ -7,7 +7,6 @@ use App\Citologia;
 use App\CitoSerial;
 use App\CitoUnbind;
 use App\Firma;
-use App\Gravidad;
 use App\Http\Requests\CitologiaValidate;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -45,7 +44,6 @@ CitologiaController extends Controller
         $serial = $this->getSerial();
         $idCIto = Categoria::where('status', 1)->pluck('name', 'id');
         $firmas = Firma::where('status', 1)->pluck('name', 'id');
-        $gravidad = Gravidad::where('status', 1)->pluck('name', 'id');
 
         return View('resultados.citologia.create', compact('idCIto', 'firmas', 'gravidad', 'serial'));
     }
@@ -73,7 +71,6 @@ CitologiaController extends Controller
         $item = Citologia::findOrFail($id);
         $idCIto = Categoria::where('status', 1)->pluck('name', 'id');
         $firmas = Firma::where('status', 1)->pluck('name', 'id');
-        $gravidad = Gravidad::where('status', 1)->pluck('name', 'id');
         return View('resultados.citologia.edit', compact('item','idCIto', 'firmas', 'gravidad'));
     }
 
@@ -148,7 +145,6 @@ CitologiaController extends Controller
     {
         $idCIto = Categoria::where('status', 1)->pluck('name', 'id');
         $firmas = Firma::where('status', 1)->pluck('name', 'id');
-        $gravidad = Gravidad::where('status', 1)->pluck('name', 'id');
 
         $bdate =  Carbon::createFromFormat('Y-m-d', $inicio)->startOfDay();
         $edate =  Carbon::createFromFormat('Y-m-d', $fin)->endOfDay();

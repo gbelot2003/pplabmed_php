@@ -13,8 +13,11 @@ class Citologia extends Model
      *
      */
     protected $fillable = ['factura_id', 'deteccion_cancer', 'indice_maduracion', 'otros_a', 'diagnostico_clinico',
-        'fur', 'fup', 'gravidad_id', 'para', 'abortos', 'icitologia_id', 'firma_id', 'fecha_informe',
+        'fur', 'fup', 'gravidad', 'para', 'abortos', 'icitologia_id', 'firma_id', 'fecha_informe',
         'otros_b', 'firma2_id', 'fecha_muestra', 'mm', 'user_id', 'serial'];
+
+
+    protected $casts = ['mm' => 'boolean', 'deteccion_cancer' => 'boolean', 'indice_maduracion' => 'boolean'];
 
 
     /**

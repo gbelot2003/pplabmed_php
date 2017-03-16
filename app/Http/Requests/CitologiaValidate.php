@@ -33,14 +33,14 @@ class CitologiaValidate extends FormRequest
                     'nombre_completo_cliente' => 'required|string',
                     'edad' => 'required',
                     'sexo' => 'string|max:1',
-                    'correo' => 'email',
+                    'correo' => 'email|nullable',
                     'correo2' => 'string|nullable',
-                    'direccion_entrega_sede' => 'string',
-                    'medico' => 'string',
+                    'direccion_entrega_sede' => 'string|nullable',
+                    'medico' => 'string|nullable',
                     'deteccion_cancer' => 'boolean',
                     'indice_maduracion' => 'boolean',
                     'otros_a' => 'nullable',
-                    'gravidad_id' => 'integer|required',
+                    'gravidad' => 'integer|nullable',
                     'icitologia_id' => 'integer|required',
                     'para' => 'integer|nullable',
                     'abortos' => 'integer|nullable',
@@ -51,7 +51,7 @@ class CitologiaValidate extends FormRequest
                     'firma_id' => 'required|integer',
                     'firma2_id' => 'integer|nullable',
                     'otros_b' => 'string|nullable',
-                    //'mm' => 'boolean',
+                    'mm' => 'boolean|nullable',
                     'diagnostico_clinico' => 'string|required'
                 ];
 

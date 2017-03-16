@@ -23,7 +23,7 @@
 
     {{-- gravidad --}}
     <div class="col-md-3 form-group form-group  {{ $errors->has('gravidad_id') ? ' has-error' : '' }}">
-        {{ Form::select('gravidad_id', $gravidad, null, ['class' => 'form-control','placeholder' => 'Gravidad']) }}
+        {{ Form::number('gravidad', null, ['class' => 'form-control', 'id' => 'gravidad', 'placeholder' => 'Gravidad']) }}
     </div>
 </div>
 
@@ -100,7 +100,6 @@
             <label for="checkbox3">Nota de Citología</label>
         </div>
     </div>
-
 </div>
 
 <div class="row {{ $errors->has('diagnostico_clinico') ? ' has-error' : '' }}">

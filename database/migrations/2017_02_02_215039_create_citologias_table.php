@@ -20,7 +20,7 @@ class CreateCitologiasTable extends Migration
             $table->boolean('deteccion_cancer')->nullable();
             $table->boolean('indice_maduracion')->nullable();
             $table->string('otros_a')->nullable();
-            $table->integer('gravidad_id');//not null;
+            $table->integer('gravidad')->nullable();//not null;
             $table->date('fur');//not null;;
             $table->date('fup');//not null;;
             $table->date('fecha_informe');//not null;
