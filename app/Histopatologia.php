@@ -49,4 +49,9 @@ class Histopatologia extends Model
         return $serial;
     }
 
+
+    public function images()
+    {
+        return $this->hasMany(Image::class, 'link_id', 'link_id');
+    }
 }

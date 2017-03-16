@@ -56,12 +56,7 @@
 </div>
 
 <div class="row">
-    <div class="col-md-12 form-group  {{ $errors->has('fecha_muestra') ? ' has-error' : '' }}"">
-        {{ Form::textarea('informe', null, ['class' => 'textarea form-control ckeditor', 'id' => 'informe']) }}
-    </div>
-</div>
 
-<div class="row">
     <div class="col-md-12">
         <ul class="nav nav-tabs">
             @foreach($plantillas as $plantilla)
@@ -69,6 +64,21 @@
             @endforeach
         </ul>
     </div>
+
+    <div class="col-md-12 form-group  {{ $errors->has('fecha_muestra') ? ' has-error' : '' }}"">
+        {{ Form::textarea('informe', null, ['class' => 'textarea form-control ckeditor', 'id' => 'informe']) }}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <h4>Imagenes</h4>
+    </div>
+    @foreach($item->images as $images)
+        <div class="col-md-3">
+            <img  class="img-responsive" src="/img/histo/{{ $images->image_url }}" alt="{{ $images->image_url }}">
+        </div>
+    @endforeach
 </div>
 
 <div class="col-md-12">
