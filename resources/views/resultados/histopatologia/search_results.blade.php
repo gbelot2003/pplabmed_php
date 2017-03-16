@@ -1,5 +1,11 @@
 @extends('layouts.app-form')
 
+<ol class="breadcrumb">
+    <li><a href="/home">Inicio</a></li>
+    <li><a href="{{ action('HistopatologiaController@index') }}">Listado de Histopatología</a></li>
+    <li class="active">Resultados de Busqueda</li>
+</ol>
+
 @section('content')
 
     <div class="container">

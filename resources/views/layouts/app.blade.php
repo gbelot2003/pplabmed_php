@@ -27,8 +27,8 @@
 <body>
     <div id="app">
         @include('layouts.partials.layout._nav')
-        @yield('breadcrumbs')
         <div class="container">
+            @yield('breadcrumbs')
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
                     @include('flash::message')

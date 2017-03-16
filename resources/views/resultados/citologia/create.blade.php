@@ -1,5 +1,13 @@
 @extends('layouts.app-form')
 
+@section('breadcrumbs')
+    <ol class="breadcrumb">
+        <li><a href="/home">Inicio</a></li>
+        <li><a href="{{ action('CitologiaController@index') }}">Listado de Citologías</a></li>
+        <li class="active">Creación de Citología</li>
+    </ol>
+@stop
+
 @section('content')
     <div class="container">
         <div class="row">

@@ -1,7 +1,15 @@
 @extends('layouts.app')
 
-@section('content')
+@section('breadcrumbs')
+    <ol class="breadcrumb">
+        <li><a href="/home">Inicio</a></li>
+        <li><a href="{{ action('FacturasController@index') }}">Listado de Facturas</a></li>
 
+        <li class="active">Listado de Facturas</li>
+    </ol>
+@stop
+
+@section('content')
     <div class="container">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">

@@ -1,5 +1,12 @@
 @extends('layouts.app')
 
+@section('breadcrumbs')
+    <ol class="breadcrumb">
+        <li><a href="/home">Inicio</a></li>
+        <li class="active">Listado de Facturas</li>
+    </ol>
+@stop
+
 @section('content')
     <div class="container">
         <div class="row">

@@ -1,5 +1,13 @@
 @extends('layouts.app-form')
 
+@section('breadcrumbs')
+    <ol class="breadcrumb">
+        <li><a href="/home">Inicio</a></li>
+        <li><a href="{{ action('HistopatologiaController@index') }}">Listado de Histopatología</a></li>
+        <li class="active">Edicion de histopatología factura #{{ $item->factura_id }}</li>
+    </ol>
+@stop
+
 @section('content')
     <div class="container">
         <div class="row">
