@@ -26,7 +26,8 @@ class HistopatologiaController extends Controller
 
     public function index()
     {
-        return View('resultados.histopatologia.index');
+        $serial = CitoSerial::findOrFail(2);
+        return View('resultados.histopatologia.index', compact('serial'));
     }
 
     public function create()

@@ -20,5 +20,7 @@ class CitoSerialController extends Controller
         $serial = CitoSerial::findOrFail(2);
         $serial->serial = $request->input('serial');
         $serial->update();
+        return redirect()->to(action('HistopatologiaController@index'));
+
     }
 }

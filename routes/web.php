@@ -51,8 +51,9 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::resource('histopatologia', 'HistopatologiaController');
     Route::post('histopatologia/process', 'HistopatologiaController@processForm');
-    Route::get('histopatologia/resultados/{inicio?}/{fin?}', 'HistopatologiaController@search');
     Route::get('histopatologias/listados', 'HistopatologiaController@listados');
+    Route::get('histopatologia/resultados/{inicio?}/{fin?}', 'HistopatologiaController@search');
+    Route::post('histopatologias/config-serial', 'CitoSerialController@histoUpdate')->name('histopatologia.config');
 
 
     Route::resource('facturas', 'FacturasController');
