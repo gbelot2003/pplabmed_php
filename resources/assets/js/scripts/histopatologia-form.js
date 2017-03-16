@@ -54,10 +54,9 @@
         $.get('/plantillas/info/' + id)
             .done(function(data){
                 console.log(data);
-                CKEDITOR.instances['adendum'].insertHtml(data.body);
+                CKEDITOR.instances['informe'].insertHtml(data.body);
             });
 
     });
-
 
 })(jQuery);

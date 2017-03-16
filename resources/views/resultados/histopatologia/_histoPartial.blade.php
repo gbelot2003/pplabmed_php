@@ -57,16 +57,16 @@
 
 <div class="row">
     <div class="col-md-12 form-group  {{ $errors->has('fecha_muestra') ? ' has-error' : '' }}"">
-        {{ Form::textarea('informe', null, ['class' => 'textarea form-control ckeditor', 'id' => 'diagnostico']) }}
+        {{ Form::textarea('informe', null, ['class' => 'textarea form-control ckeditor', 'id' => 'informe']) }}
     </div>
 </div>
 
 <div class="row">
     <div class="col-md-12">
         <ul class="nav nav-tabs">
-            <li role="presentation" class="active"><a href="#">Home</a></li>
-            <li role="presentation"><a href="#">Profile</a></li>
-            <li role="presentation"><a href="#">Messages</a></li>
+            @foreach($plantillas as $plantilla)
+                <li role="presentation"><a class="bt-insert" href="{{ $plantilla->id }}">{{ $plantilla->name }}</a></li>
+            @endforeach
         </ul>
     </div>
 </div>
@@ -74,7 +74,7 @@
 <div class="col-md-12">
     <div class="text-right">
         <br>
-        <a class="btn btn-info" href="{{ action('CitologiaController@index') }}">Cancelar</a>
+        <a class="btn btn-info" href="{{ action('HistopatologiaController@index') }}">Cancelar</a>
         <button type="submit" class="btn btn-primary">Guardar</button>
     </div>
 </div>

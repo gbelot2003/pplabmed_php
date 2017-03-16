@@ -44,16 +44,7 @@
         })
     });
 
-    $('a.bt-insert').click(function(e){
-        e.preventDefault();
-        const id = $(this).attr("href");
-        $.get('/plantillas/info/' + id)
-            .done(function(data){
-                console.log(data);
-                CKEDITOR.instances['adendum'].insertHtml(data.body);
-            });
 
-    });
 
 
 })(jQuery);

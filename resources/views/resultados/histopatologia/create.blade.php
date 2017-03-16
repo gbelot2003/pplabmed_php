@@ -15,6 +15,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <div class="text-muted pull-right">
+                            <a class="btn btn-default">Link Images ID: {{ $link->id }}</a>
                             <a class="btn btn-warning" alt="Buscar" ><span class="glyphicon glyphicon-search" data-toggle="modal" data-target="#searchModal"></span></a>
                         </div>
                         <h4>Agregar de Histopatología</h4>

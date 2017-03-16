@@ -8,9 +8,11 @@ use App\Factura;
 use App\Firma;
 use App\Histopatologia;
 use App\Http\Requests\HistopatiaValidation;
+use App\LinkImage;
 use App\Plantilla;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Yajra\Datatables\Datatables;
 
 class HistopatologiaController extends Controller
@@ -33,9 +35,12 @@ class HistopatologiaController extends Controller
     public function create()
     {
         $serial = $this->getSerial();
+        $link = LinkImage::create([
+            'user_id' => Auth::user()->id
+        ]);
         $firmas = Firma::where('status', 1)->pluck('name', 'id');
         $plantillas = Plantilla::all();
-        return View('resultados.histopatologia.create', compact('serial', 'firmas', 'plantillas'));
+        return View('resultados.histopatologia.create', compact('serial', 'firmas', 'plantillas', 'link'));
     }
 
     public function store(HistopatiaValidation $request)
