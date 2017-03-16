@@ -17,6 +17,7 @@ class CreateHistopatologiasTable extends Migration
             $table->increments('id');
             $table->integer('serial');
             $table->integer('factura_id');
+            $table->integer('link_id')->unique();
             $table->string('topog');
             $table->string('mor1');
             $table->string('mor2')->nullable();
