@@ -72,7 +72,9 @@
 
 <div class="row">
     <div class="col-md-12">
-        <h4>Imagenes</h4>
+        <a class="btn btn-default" alt="Imagenes" data-toggle="modal" data-target="#ImagesModal"><span class="glyphicon glyphicon-plus"></span> Agregar Imagenes</a>
+
+        <hr />
     </div>
     @foreach($item->images as $images)
         <div class="col-md-3">

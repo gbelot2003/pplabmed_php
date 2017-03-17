@@ -59,9 +59,12 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource('facturas', 'FacturasController');
     Route::get('factura/listados', 'FacturasController@listados');
 
+    Route::post('histo/images/', 'ImagesController@uploadForm');
+
 
     Route::get('reportes/', 'ReportesController@index');
 
     Route::get('read', 'FilesController@readFiles');
+
 
 });

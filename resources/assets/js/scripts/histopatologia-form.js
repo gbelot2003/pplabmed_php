@@ -59,4 +59,8 @@
 
     });
 
+    $('#ImagesModal').on('shown.bs.modal', function (e) {
+        // Initialize Dropzone
+    });
+
 })(jQuery);

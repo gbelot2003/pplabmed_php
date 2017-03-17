@@ -34,8 +34,10 @@
 
 @section('jscode')
     <script src="{{ asset('js/histopatologia-form.js') }}"></script>
+
 @stop
 
 @section('modals')
     @include('resultados.histopatologia._modal_search')
+    @include('resultados.histopatologia._modal_images')
 @stop
