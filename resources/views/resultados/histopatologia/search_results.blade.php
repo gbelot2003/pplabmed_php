@@ -41,4 +41,5 @@
 
 @section('modals')
     @include('resultados.histopatologia._modal_search')
+    @include('resultados.histopatologia._modal_images')
 @stop
