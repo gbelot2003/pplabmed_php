@@ -52,7 +52,8 @@ class CitologiaValidate extends FormRequest
                     'firma2_id' => 'integer|nullable',
                     'otros_b' => 'string|nullable',
                     'mm' => 'boolean|nullable',
-                    'diagnostico_clinico' => 'string|required'
+                    'informe' => 'nullable',
+                    'diagnostico' => 'string|required'
                 ];
 
     }

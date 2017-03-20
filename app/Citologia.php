@@ -12,8 +12,8 @@ class Citologia extends Model
      * @var array
      *
      */
-    protected $fillable = ['factura_id', 'deteccion_cancer', 'indice_maduracion', 'otros_a', 'diagnostico_clinico',
-        'fur', 'fup', 'gravidad', 'para', 'abortos', 'icitologia_id', 'firma_id', 'fecha_informe',
+    protected $fillable = ['factura_id', 'deteccion_cancer', 'indice_maduracion', 'otros_a', 'diagnostico',
+        'fur', 'fup', 'gravidad', 'para', 'abortos', 'icitologia_id', 'firma_id', 'fecha_informe', 'informe',
         'otros_b', 'firma2_id', 'fecha_muestra', 'mm', 'user_id', 'serial'];
 
 

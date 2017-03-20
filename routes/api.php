@@ -14,3 +14,4 @@ use Illuminate\Http\Request;
 */
 
 Route::middleware('api')->post('/user', 'HistoApiController@user');
+Route::middleware('api')->post('/uploadimage', 'HistoApiController@uploadImage');

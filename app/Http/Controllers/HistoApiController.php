@@ -23,8 +23,10 @@ class HistoApiController extends Controller
 
     public function uploadImage(Request $request)
     {
+
         $username = $request->get('username');
         $password = $request->get('password');
+
         if (Auth::attempt(['username' => $username, 'password' => $password])) {
 
             if($request->hasFile('images')){

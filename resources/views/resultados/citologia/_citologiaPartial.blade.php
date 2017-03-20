@@ -1,5 +1,12 @@
 <hr/>
 <div class="row">
+    {{--Diagnostico--}}
+    <div class="col-md-12 form-group {{ $errors->has('diagnostico') ? ' has-error' : '' }}">
+        <label for="diagnostico">Diagnostico Clinico</label>
+        {!! Form::text('diagnostico', null, ['id' => 'diagnostico', 'class' => 'form-control']) !!}
+    </div>
+</div>
+<div class="row">
     {{--Deteccion de cancer--}}
     <div class="col-md-3 form-group {{ $errors->has('deteccion_cancer') ? ' has-error' : '' }}">
         <div class="checkbox checkbox-info">
@@ -102,10 +109,10 @@
     </div>
 </div>
 
-<div class="row {{ $errors->has('diagnostico_clinico') ? ' has-error' : '' }}">
+<div class="row {{ $errors->has('informe') ? ' has-error' : '' }}">
     <div class="col-md-12 form-group">
-        <label>Diagnóstico Clinico</label>
-        {{ Form::textarea('diagnostico_clinico', null, ['class' => 'textarea form-control ckeditor', 'id' => 'diagnostico']) }}
+        <label>Informe</label>
+        {{ Form::textarea('informe', null, ['class' => 'textarea form-control ckeditor', 'id' => 'informe']) }}
     </div>
 </div>
 
