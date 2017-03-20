@@ -14,9 +14,9 @@ class CitologiasTableSeeder extends Seeder
     {
         
 
-        \DB::table('citologias')->delete();
+        \DB::table('Citologias')->delete();
         
-        \DB::table('citologias')->insert(array (
+        \DB::table('Citologias')->insert(array (
             0 => 
             array (
                 'id' => 1,
@@ -73,7 +73,7 @@ class CitologiasTableSeeder extends Seeder
                 'serial' => 3,
                 'factura_id' => 110,
                 'deteccion_cancer' => 1,
-                'indice_maduracion' => NULL,
+                'indice_maduracion' => 0,
                 'otros_a' => NULL,
                 'gravidad' => 1,
                 'fur' => '2017-03-10',
@@ -82,7 +82,7 @@ class CitologiasTableSeeder extends Seeder
                 'fecha_muestra' => '2017-03-10',
                 'para' => 0,
                 'abortos' => 0,
-                'icitologia_id' => 9,
+                'icitologia_id' => 4,
                 'firma_id' => 2,
                 'firma2_id' => NULL,
                 'otros_b' => NULL,
@@ -90,7 +90,7 @@ class CitologiasTableSeeder extends Seeder
                 'diagnostico_clinico' => '<p>Casasd asdasdas dasd asd asda s</p>',
                 'user_id' => NULL,
                 'created_at' => '2017-03-09 21:43:53',
-                'updated_at' => '2017-03-10 21:43:53',
+                'updated_at' => '2017-03-20 11:00:16',
             ),
             3 => 
             array (

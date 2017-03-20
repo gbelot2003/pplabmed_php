@@ -14,9 +14,9 @@ class CategoriasTableSeeder extends Seeder
     {
         
 
-        \DB::table('categorias')->delete();
+        \DB::table('Categorias')->delete();
         
-        \DB::table('categorias')->insert(array (
+        \DB::table('Categorias')->insert(array (
             0 => 
             array (
                 'id' => 1,
@@ -56,6 +56,38 @@ class CategoriasTableSeeder extends Seeder
                 'status' => 1,
                 'created_at' => '2017-02-06 06:22:37',
                 'updated_at' => '2017-03-14 15:39:14',
+            ),
+            5 => 
+            array (
+                'id' => 7,
+                'name' => 'Ascus',
+                'status' => 1,
+                'created_at' => '2017-03-20 11:29:55',
+                'updated_at' => '2017-03-20 11:29:55',
+            ),
+            6 => 
+            array (
+                'id' => 8,
+                'name' => 'LCR',
+                'status' => 1,
+                'created_at' => '2017-03-20 11:30:23',
+                'updated_at' => '2017-03-20 11:30:23',
+            ),
+            7 => 
+            array (
+                'id' => 9,
+                'name' => 'Carcioma Invasor',
+                'status' => 1,
+                'created_at' => '2017-03-20 11:30:47',
+                'updated_at' => '2017-03-20 11:30:47',
+            ),
+            8 => 
+            array (
+                'id' => 10,
+                'name' => 'Otros Sitios',
+                'status' => 1,
+                'created_at' => '2017-03-20 11:31:12',
+                'updated_at' => '2017-03-20 11:31:12',
             ),
         ));
         
