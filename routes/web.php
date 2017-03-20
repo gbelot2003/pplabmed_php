@@ -18,7 +18,6 @@ Auth::routes();
 Route::group(['middleware' => 'auth'], function(){
     Route::get('/home', 'HomeController@index');
 
-
     Route::resource('areas', 'AreaController');
     Route::get('areas/state/{id}/{state}', 'AreaController@state');
 
@@ -42,7 +41,6 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('plantillas/info/{id}', 'PlantillasController@getPlantilla');
     Route::get('plantillas/lista/{id}', 'PlantillasController@listado');
 
-
     Route::resource('citologias', 'CitologiaController');
     Route::post('citologias/config-serial', 'CitoSerialController@citologiaUpdate')->name('citologias.config');
     Route::post('citologias/process', 'CitologiaController@processForm');
@@ -55,16 +53,18 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('histopatologia/resultados/{inicio?}/{fin?}', 'HistopatologiaController@search');
     Route::post('histopatologias/config-serial', 'CitoSerialController@histoUpdate')->name('histopatologia.config');
 
-
     Route::resource('facturas', 'FacturasController');
     Route::get('factura/listados', 'FacturasController@listados');
 
     Route::post('histo/images/', 'ImagesController@uploadForm');
 
-
-    Route::get('reportes/', 'ReportesController@index');
-
     Route::get('read', 'FilesController@readFiles');
+
+
+    Route::get('reportes/hoja-de-citologia', 'ReportesController@hojaCitoForm');
+    Route::post('reportes/hoja-de-citologia', 'ReportesController@processHojaTrabajo');
+    Route::get('reportes/hoja-de-citologia-resultados/{inicio}/{final}/{idCito?}/{direccion?}', 'ReportesController@resultHojaCito');
+
 
 
 });

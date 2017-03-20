@@ -53,7 +53,14 @@
                     </ul>
                 </li>
                 @endif
-                <li><a href="{{ action('ReportesController@index') }}">Hojas de Trabajo</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        Reportes<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="{{ action('ReportesController@hojaCitoForm') }}"> Hojas de Citología</a></li>
+                    </ul>
+                </li>
 
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

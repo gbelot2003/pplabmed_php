@@ -11,7 +11,7 @@
                     <div class="col-md-12">
                         <div class="fallback">
                             <input name="images"  type="file" multiple />
-                            {!! Form::hidden('link_id', isset($link->id) ? $link->id : null) !!}
+                            {!! Form::hidden('link_id', isset($link->id) ? $link->id : $item->link_id) !!}
                         </div>
                     </div>
                 </div>

@@ -56,7 +56,6 @@
 </div>
 
 <div class="row">
-
     <div class="col-md-12">
         <ul class="nav nav-tabs">
             @foreach($plantillas as $plantilla)
@@ -71,17 +70,10 @@
 </div>
 
 <div class="row">
-    @if(isset($item->images))
     <div class="col-md-12">
         <a class="btn btn-default" alt="Imagenes" data-toggle="modal" data-target="#ImagesModal"><span class="glyphicon glyphicon-plus"></span> Agregar Imagenes</a>
         <hr />
     </div>
-        @foreach($item->images as $images)
-            <div class="col-md-3">
-                <img  class="img-responsive" src="/img/histo/{{ $images->image_url }}" alt="{{ $images->image_url }}">
-            </div>
-        @endforeach
-    @endif
 </div>
 
 <div class="col-md-12">
