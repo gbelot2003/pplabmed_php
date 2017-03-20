@@ -15,6 +15,8 @@ Route::get('/', 'PagesController@index' );
 
 Auth::routes();
 
+
+
 Route::group(['middleware' => 'auth'], function(){
     Route::get('/home', 'HomeController@index');
 
@@ -64,7 +66,6 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('reportes/hoja-de-citologia', 'ReportesController@hojaCitoForm');
     Route::post('reportes/hoja-de-citologia', 'ReportesController@processHojaTrabajo');
     Route::get('reportes/hoja-de-citologia-resultados/{inicio}/{final}/{idCito?}/{direccion?}', 'ReportesController@resultHojaCito');
-
-
+    Route::get('reportes/result', 'ReportesController@resultPdf');
 
 });

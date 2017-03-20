@@ -1,40 +1,24 @@
 <?php
 
 namespace App\Http\Controllers;
-setlocale(LC_ALL,"es_ES");
 
 use App\Categoria;
 use App\Citologia;
 use App\Factura;
+use Barryvdh\DomPDF\PDF;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class ReportesController extends Controller
 {
-
-    public function __contruct()
-    {
-    }
-
-    public function index()
-    {
-
-    }
 
     public function hojaCitoForm()
     {
 
         $idCito = Categoria::where('status', 1)->pluck('name', 'id');
         $direc = Factura::groupBy('direccion_entrega_sede')->select('direccion_entrega_sede')->pluck('direccion_entrega_sede', 'direccion_entrega_sede');
-        return View('reportes.hojaCitoForm', compact('idCito', 'direc'));
-    }
-
-
-    public function hojasTrabajo()
-    {
-        $items = Citologia::all();
-
-        return View('reportes.index', compact('items'));
+        return View('reportes.citologia.hojaCitoForm', compact('idCito', 'direc'));
     }
 
     public function processHojaTrabajo(Request $request)
@@ -55,6 +39,7 @@ class ReportesController extends Controller
         } else {
             $direccion = $request->input('direccion');
         }
+
 
         return redirect()->to('/reportes/hoja-de-citologia-resultados/'.$inicio.'/'.$fin.'/'.$idCito.'/'.$direccion);
         //return redirect()->to('//reportes/hoja-de-citologia-resultados/'.$inicio.'/'.$fin.'/'.$idC.'');
@@ -80,11 +65,22 @@ class ReportesController extends Controller
             });
         }
 
-        $items = $query->paginate(10);
-
-        return View('reportes.hojaCitoResultados', compact('items', 'bdate', 'edate'));
+        $items = $query->get();
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadView('reportes.citologia.CitoResultPdf', compact('items', 'bdate', 'edate'));
+        return $pdf->stream();
+        //return View('reportes.citologia.hojaCitoResultados', compact('items', 'bdate', 'edate'));
 
     }
+
+    public function resultPdf()
+    {
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadHTML('<h1>Test</h1>');
+        return $pdf->stream('invoice.pdf');
+    }
+
+
 
 
 }

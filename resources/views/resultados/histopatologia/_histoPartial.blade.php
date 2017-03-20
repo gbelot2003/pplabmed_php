@@ -27,10 +27,14 @@
 
 <div class="row">
 
-    <div class="col-md-3 form-group  {{ $errors->has('diagnostico') ? ' has-error' : '' }}">
+    <div class="col-md-12 form-group  {{ $errors->has('diagnostico') ? ' has-error' : '' }}">
         <label for="para">Diagnostico: </label>
-        {{ Form::date('diagnostico', null, ['class' => 'form-control', 'id' => 'diagnostico']) }}
+        {{ Form::text('diagnostico', null, ['class' => 'form-control', 'id' => 'diagnostico']) }}
     </div>
+
+</div>
+
+<div class="row">
 
     <div class="col-md-3 form-group  {{ $errors->has('muestra') ? ' has-error' : '' }}">
         <label for="para">Muestra: </label>
@@ -46,9 +50,7 @@
         <label for="para">Fecha de Biopcia: </label>
         {{ Form::date('fecha_biopcia', null, ['class' => 'form-control', 'id' => 'fecha_biopcia']) }}
     </div>
-</div>
 
-<div class="row">
     <div class="col-md-3 form-group  {{ $errors->has('fecha_muestra') ? ' has-error' : '' }}">
         <label for="para">Fecha de Muestra: </label>
         {{ Form::date('fecha_muestra', null, ['class' => 'form-control', 'id' => 'fecha_muestra']) }}
