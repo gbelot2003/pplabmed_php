@@ -28,7 +28,7 @@ class HistoApiController extends Controller
         $username = $request->get('username');
         $password = $request->get('password');
 
-
+        dd($request->all());
         if (Auth::attempt(['username' => $username, 'password' => $password])) {
 
             if($request->hasFile('images')){
