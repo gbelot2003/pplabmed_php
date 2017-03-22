@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Image;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,6 +27,7 @@ class HistoApiController extends Controller
 
         $username = $request->get('username');
         $password = $request->get('password');
+
 
         if (Auth::attempt(['username' => $username, 'password' => $password])) {
 
