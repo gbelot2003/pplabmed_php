@@ -33,7 +33,23 @@ class Factura extends Model
      */
     public function histopatologias()
     {
-        return $this->hasMany(Histopatologia::class, 'factura_id', 'fac_numero');
+        return $this->hasMany(Histopatologia::class, 'num_factura', 'num_factura');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function examenes()
+    {
+        return $this->hasMany(Examenes::class, 'num_factura', 'num_factura');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function examen()
+    {
+        return $this->hasOne(Examenes::class, 'num_factura', 'num_factura')->latest();
     }
 
 }

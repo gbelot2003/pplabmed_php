@@ -59,6 +59,8 @@
                     </a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="{{ action('ReportesController@hojaCitoForm') }}"> Hojas de Citología</a></li>
+                        <li><a href="{{ action('ReportesController@hojaCitoDeptoForm') }}"> Hojas de Citología por Sedes</a></li>
+                        <li><a href="{{ action('ReportesController@identificadorCito') }}"> Identificadores de Citología</a></li>
                     </ul>
                 </li>
 

@@ -15,8 +15,6 @@ Route::get('/', 'PagesController@index' );
 
 Auth::routes();
 
-
-
 Route::group(['middleware' => 'auth'], function(){
     Route::get('/home', 'HomeController@index');
 
@@ -45,9 +43,11 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::resource('citologias', 'CitologiaController');
     Route::post('citologias/config-serial', 'CitoSerialController@citologiaUpdate')->name('citologias.config');
-    Route::post('citologias/process', 'CitologiaController@processForm');
-    Route::get('citologia/resultados/{inicio?}/{fin?}/{idc?}', 'CitologiaController@search');
     Route::get('citologia/listados', 'CitologiaController@listados');
+    Route::get('citologia/busqueda', 'CitologiaController@searchPage');
+
+    Route::any('citologias/process', 'CitologiaController@processForm');
+    Route::any('citologia/resultados/', 'CitologiaController@search');
 
     Route::resource('histopatologia', 'HistopatologiaController');
     Route::post('histopatologia/process', 'HistopatologiaController@processForm');
@@ -62,10 +62,18 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::get('read', 'FilesController@readFiles');
 
-
     Route::get('reportes/hoja-de-citologia', 'ReportesController@hojaCitoForm');
     Route::post('reportes/hoja-de-citologia', 'ReportesController@processHojaTrabajo');
-    Route::get('reportes/hoja-de-citologia-resultados/{inicio}/{final}/{idCito?}/{direccion?}', 'ReportesController@resultHojaCito');
-    Route::get('reportes/result', 'ReportesController@resultPdf');
+    Route::get('reportes/hoja-de-citologia-resultados/{inicio}/{final}/{idCito?}/{direccion?}/{pdf?}', 'ReportesController@resultHojaCito');
+
+    Route::get('reportes/hoja-de-citologia-agencia', 'ReportesController@hojaCitoDeptoForm');
+    Route::post('reportes/hoja-de-citologia-agencia', 'ReportesController@hojaCitoDeptoProcess');
+    Route::get('reportes/hoja-de-citologia-resultados-agencias/{inicio}/{final}/{direccion?}/{pdf?}', 'ReportesController@hojaCitoDeptoResults');
+
+    Route::get('reportes/identificador-citologia', 'ReportesController@identificadorCito');
+    Route::post('reportes/identificador-citologia', 'ReportesController@identificadorProcess');
+    Route::get('reportes/identificador-citologia-resultados/{inicio?}/{final?}', 'ReportesController@identificadorResults');
+
+
 
 });

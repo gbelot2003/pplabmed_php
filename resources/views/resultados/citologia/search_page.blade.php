@@ -4,7 +4,7 @@
     <ol class="breadcrumb">
         <li><a href="/home">Inicio</a></li>
         <li><a href="{{ action('CitologiaController@index') }}">Listado de Citologías</a></li>
-        <li class="active">Edicion de Citología factura #{{ $item->factura_id }}</li>
+        <li class="active">Busqueda</li>
     </ol>
 @stop
 
@@ -15,22 +15,17 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <div class="text-muted pull-right">
-                                <a href="{{ action('CitologiaController@searchPage') }}" class="btn btn-warning" alt="Buscar" ><span class="glyphicon glyphicon-search"></span></a>
+
                         </div>
-                        <h4>Agregar de Citología</h4>
+                        <h4>Busqueda de Citología</h4>
                     </div>
                     <div class="panel-body" id="app">
-                        {!! Form::model($item, ['action' => ['CitologiaController@update', $item->id], 'method' => 'PATCH']) !!}
-                            @include('resultados.citologia._faturasPartial')
-                            @include('resultados.citologia._citologiaPartial')
+                        {!! Form::open(['action' => ['CitologiaController@search'], 'method' => 'GET']) !!}
+                            @include('resultados.citologia._search_form')
                         {!!  Form::close() !!}
                     </div>
                 </div>
             </div>
         </div>
     </div>
-@stop
-
-@section('jscode')
-    <script src="{{ asset('js/citologias-form.js') }}"></script>
 @stop

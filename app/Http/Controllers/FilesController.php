@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Examenes;
 use App\Factura;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
@@ -38,6 +39,13 @@ class FilesController extends Controller
                     'status' => $xml->status,
                     'sexo' => $xml->sexo,
                 ]);
+
+                foreach($xml->examenes as $exa){
+                    Examenes::create([
+                        'num_factura' => $xml->num_factura,
+                        'nombre_examen' => $exa->nombre_examen,
+                    ]);
+                }
 
                 $new_path = $back .'/'.  $file;
                 $old_path = $path . $file;

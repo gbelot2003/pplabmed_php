@@ -128,14 +128,105 @@ CitologiaController extends Controller
         }
     }
 
-
-    public function processForm(Request $request)
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function processForm($string)
     {
-        $inicio = $request->input('inicio');
-        $fin = $request->input('fin');
-        $idC = $request->input('icitologia_id');
+        $yourvar = $string;
+        dd($yourvar);
 
-        return redirect()->to('/citologia/resultados/'.$inicio.'/'.$fin.'/'.$idC.'');
+/*        $idCIto = Categoria::where('status', 1)->pluck('name', 'id');
+        $firmas = Firma::where('status', 1)->pluck('name', 'id');
+
+        $query = Citologia::with('facturas');
+
+        if($request->get('serial')){
+            $field = $request->get('serial');
+            $query->where('serial', $field);
+        }
+        $request->get('serial') ? $serial = $request->get('serial'): $serial = 'null';
+
+        if($request->get('factura_id')){
+            $field = $request->get('factura_id');
+            $query->where('factura_id', $field);
+        }
+        $request->get('serial') ? $serial = $request->get('serial'): $serial = 'null';
+
+
+        if($request->get('nombre_completo_cliente') != 'null'){
+            $field = $request->get('nombre_completo_cliente');
+            $query->whereHas('facturas', function($q) use ($field){
+                $q->Where('nombre_completo_cliente', 'like', '%' . $field . '%');
+            });
+        }
+        $request->get('serial') ? $serial = $request->get('serial'): $serial = 'null';
+
+
+        if($request->get('edad') != 'null'){
+            $field = $request->get('edad');
+            $query->whereHas('facturas', function($q) use ($field){
+                $q->orWhere('edad', 'like', '%' . $field . '%');
+            });
+        }
+        $request->get('serial') ? $serial = $request->get('serial'): $serial = 'null';
+
+
+        if($request->get('sexo') != 'null'){
+            $field = $request->get('sexo');
+            $query->whereHas('facturas', function($q) use ($field){
+                $q->orWhere('sexo', $field);
+            });
+        }
+        $request->get('serial') ? $serial = $request->get('serial'): $serial = 'null';
+
+
+        if($request->get('correo') != 'null'){
+            $field = $request->get('correo');
+            $query->whereHas('facturas', function($q) use ($field){
+                $q->orWhere('correo', 'like', '%' . $field . '%');
+            });
+        }
+        $request->get('serial') ? $serial = $request->get('serial'): $serial = 'null';
+
+
+        if($request->get('correo2') != 'null'){
+            $field = $request->get('correo2');
+            $query->whereHas('facturas', function($q) use ($field){
+                $q->orWhere('correo2', 'like', '%' . $field . '%');
+            });
+        }
+        $request->get('serial') ? $serial = $request->get('serial'): $serial = 'null';
+
+
+        if($request->get('direccion_entrega_sede') != 'null'){
+            $field = $request->get('direccion_entrega_sede');
+            $query->whereHas('facturas', function($q) use ($field){
+                $q->orWhere('direccion_entrega_sede', 'like', '%' . $field . '%');
+            });
+        }
+        $request->get('serial') ? $serial = $request->get('serial'): $serial = 'null';
+
+
+        if($request->get('medico') != 'null'){
+            $field = $request->get('medico');
+            $query->whereHas('facturas', function($q) use ($field){
+                $q->orWhere('medico', 'like', '%' . $field . '%');
+            });
+        }
+        $request->get('serial') ? $serial = $request->get('serial'): $serial = 'null';
+
+
+        $items = $query->paginate(1);
+        return View('resultados.citologia.search_results', compact('items','idCIto', 'firmas'));*/
+    }
+
+    public function searchPage()
+    {
+        $idCito = Categoria::where('status', 1)->pluck('name', 'id');
+        $firmas = Firma::where('status', 1)->pluck('name', 'id');
+        return View('resultados.citologia.search_page', compact('idCito', 'firmas'));
     }
 
     /**

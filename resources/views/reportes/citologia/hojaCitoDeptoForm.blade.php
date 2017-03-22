@@ -19,7 +19,7 @@
                             {{--<a href="{{ action('CitologiaController@create') }}" class="btn btn-info" alt="Crear Citologia"><span class="glyphicon glyphicon-plus"></span></a>
                             <a class="btn btn-default" alt="Conig Seriales"><span class="glyphicon glyphicon-cog" data-toggle="modal" data-target="#myModal"></span></a>--}}
                         </div>
-                        <h4>Hoja de Citologia</h4>
+                        <h4>Hoja de Citologia por Sedes</h4>
                     </div>
                     <div class="panel-body">
                         <div class="row">
@@ -35,20 +35,14 @@
                             </div>
 
                             {{-- id Cito --}}
-                            <div class="col-md-4 form-group  {{ $errors->has('icitologia_id') ? ' has-error' : '' }}">
-                                <label>Id Cito:</label>
-                                {{ Form::select('icitologia_id', $idCito, null, ['class' => 'form-control', 'placeholder' => 'Ninguno']) }}
+                            <div class="col-md-5 form-group  {{ $errors->has('final') ? ' has-error' : '' }}">
+                                <label for="inicio">Dirección Sede</label>
+                                {{ Form::select('direccion', $direc, null, ['class' => 'form-control', 'placeholder' => 'Ninguno']) }}
                             </div>
 
                         </div>
 
                         <div class="row">
-
-                            <div class="col-md-4 form-group  {{ $errors->has('final') ? ' has-error' : '' }}">
-                                <label for="inicio">Dirección Sede</label>
-                                {{ Form::select('direccion', $direc, null, ['class' => 'form-control', 'placeholder' => 'Ninguno']) }}
-                            </div>
-
                             <div class="col-md-3 form-group {{ $errors->has('deteccion_cancer') ? ' has-error' : '' }}">
                                 <div class="checkbox checkbox-info">
                                     {!! Form::checkbox('pdf', 1, null, ['id' => 'checkbox1']) !!}

@@ -36,6 +36,18 @@
                         </div>
                     </div>
 
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3>Examenes</h3>
+                            <ul class="list-group">
+                                @foreach($factura->examenes as $examenes)
+                                    <li class="list-group-item">{{ $examenes->nombre_examen }}</li>
+                                @endforeach
+                            </ul>
+
+                        </div>
+                    </div>
+
                     @if($factura->citologias->count())
                         <h3>Resultados Citología</h3>
                         <table class="table table-striped table-bordered">
