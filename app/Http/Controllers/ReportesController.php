@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Categoria;
 use App\Citologia;
 use App\Factura;
+use App\Histopatologia;
 use Barryvdh\DomPDF\PDF;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -143,5 +144,39 @@ class ReportesController extends Controller
         return View('reportes.citologia.identificadorResults', compact('items', 'total', 'bdate', 'edate'));
     }
 
+    public function biopciaForm()
+    {
+        return View('reportes.histo.biopciaForm');
+    }
+
+    public function biopciaProcess(Request $request)
+    {
+        $inicio = $request->input('inicio');
+        $fin = $request->input('final');
+        $pdf = $request->input('pdf') ? $request->input('pdf') : "null";
+
+        return redirect()->to('/reportes/reporte-biopcia/resultado/' . $inicio . '/' . $fin . '/' .$pdf);
+    }
+
+    public function biociaResult($inicio, $final, $pdf)
+    {
+        $bdate = Carbon::createFromFormat('Y-m-d', $inicio)->startOfDay();
+        $edate = Carbon::createFromFormat('Y-m-d', $final)->endOfDay();
+
+        $query = Histopatologia::with('facturas')->whereBetween('fecha_informe', [$bdate, $edate]);
+
+        $items = $query->get();
+
+        if ($pdf == 'null') {
+            return View('reportes.histo.biopciaResults', compact('items', 'bdate', 'edate'));
+        } else {
+            $pdf = App::make('dompdf.wrapper');
+            $pdf->loadView('reportes.histo.biopciaResultsPdf', compact('items', 'bdate', 'edate'));
+            return $pdf->stream();
+        }
+
+
+
+    }
 
 }

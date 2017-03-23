@@ -74,6 +74,10 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('reportes/identificador-citologia', 'ReportesController@identificadorProcess');
     Route::get('reportes/identificador-citologia-resultados/{inicio?}/{final?}', 'ReportesController@identificadorResults');
 
+    Route::get('reportes/reporte-biopcia', 'ReportesController@biopciaForm');
+    Route::post('reportes/reporte-biopcia', 'ReportesController@biopciaProcess');
+    Route::get('reportes/reporte-biopcia/resultado/{inicio?}/{final?}/{pdf?}', 'ReportesController@biociaResult');
+
 
 
 });

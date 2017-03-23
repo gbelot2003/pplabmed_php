@@ -60,7 +60,7 @@
                     <ul class="dropdown-menu" role="menu">
                         <li class="dropdown-header">Hojas de Trabajo</li>
                         <li><a href="{{ action('ReportesController@hojaCitoForm') }}"> Informe de Citología</a></li>
-                        <li><a href=""> Informe de Biopcias</a></li>
+                        <li><a href="{{ action('ReportesController@biopciaForm') }}"> Informe de Biopcias</a></li>
                         <li><a href="{{ action('ReportesController@hojaCitoDeptoForm') }}"> Informe por sedes de emtrega</a></li>
                         <li class="divider"></li>
                         <li class="dropdown-header">Estadisticas</li>
@@ -89,7 +89,6 @@
                         <li class="divider"></li>
                         <li class="dropdown-header">Bitacora</li>
                         <li><a href="{{ action('CitologiaController@index') }}">Reporte de Actividades</a></li>
-
                     </ul>
                 </li>
 

@@ -9,6 +9,13 @@ use Illuminate\Support\Facades\Auth;
 
 class HistoApiController extends Controller
 {
+
+    public function test()
+    {
+        return 'ok';
+    }
+
+
     public function user(Request $request)
     {
         $username = $request->get('username');
@@ -25,10 +32,11 @@ class HistoApiController extends Controller
     public function uploadImage(Request $request)
     {
 
+
+       /// dd($request->all());
         $username = $request->get('username');
         $password = $request->get('password');
 
-        dd($request->all());
         if (Auth::attempt(['username' => $username, 'password' => $password])) {
 
             if($request->hasFile('images')){
