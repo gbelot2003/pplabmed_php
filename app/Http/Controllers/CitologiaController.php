@@ -52,7 +52,7 @@ CitologiaController extends Controller
      * @param CitologiaValidate $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(CitologiaValidate $request)
+    public function store(Request $request)
     {
         $cito = Citologia::create($request->all());
         $cito->facturas->update($request->all());
@@ -129,122 +129,174 @@ CitologiaController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function processForm($string)
-    {
-        $yourvar = $string;
-        dd($yourvar);
-
-/*        $idCIto = Categoria::where('status', 1)->pluck('name', 'id');
-        $firmas = Firma::where('status', 1)->pluck('name', 'id');
-
-        $query = Citologia::with('facturas');
-
-        if($request->get('serial')){
-            $field = $request->get('serial');
-            $query->where('serial', $field);
-        }
-        $request->get('serial') ? $serial = $request->get('serial'): $serial = 'null';
-
-        if($request->get('factura_id')){
-            $field = $request->get('factura_id');
-            $query->where('factura_id', $field);
-        }
-        $request->get('serial') ? $serial = $request->get('serial'): $serial = 'null';
-
-
-        if($request->get('nombre_completo_cliente') != 'null'){
-            $field = $request->get('nombre_completo_cliente');
-            $query->whereHas('facturas', function($q) use ($field){
-                $q->Where('nombre_completo_cliente', 'like', '%' . $field . '%');
-            });
-        }
-        $request->get('serial') ? $serial = $request->get('serial'): $serial = 'null';
-
-
-        if($request->get('edad') != 'null'){
-            $field = $request->get('edad');
-            $query->whereHas('facturas', function($q) use ($field){
-                $q->orWhere('edad', 'like', '%' . $field . '%');
-            });
-        }
-        $request->get('serial') ? $serial = $request->get('serial'): $serial = 'null';
-
-
-        if($request->get('sexo') != 'null'){
-            $field = $request->get('sexo');
-            $query->whereHas('facturas', function($q) use ($field){
-                $q->orWhere('sexo', $field);
-            });
-        }
-        $request->get('serial') ? $serial = $request->get('serial'): $serial = 'null';
-
-
-        if($request->get('correo') != 'null'){
-            $field = $request->get('correo');
-            $query->whereHas('facturas', function($q) use ($field){
-                $q->orWhere('correo', 'like', '%' . $field . '%');
-            });
-        }
-        $request->get('serial') ? $serial = $request->get('serial'): $serial = 'null';
-
-
-        if($request->get('correo2') != 'null'){
-            $field = $request->get('correo2');
-            $query->whereHas('facturas', function($q) use ($field){
-                $q->orWhere('correo2', 'like', '%' . $field . '%');
-            });
-        }
-        $request->get('serial') ? $serial = $request->get('serial'): $serial = 'null';
-
-
-        if($request->get('direccion_entrega_sede') != 'null'){
-            $field = $request->get('direccion_entrega_sede');
-            $query->whereHas('facturas', function($q) use ($field){
-                $q->orWhere('direccion_entrega_sede', 'like', '%' . $field . '%');
-            });
-        }
-        $request->get('serial') ? $serial = $request->get('serial'): $serial = 'null';
-
-
-        if($request->get('medico') != 'null'){
-            $field = $request->get('medico');
-            $query->whereHas('facturas', function($q) use ($field){
-                $q->orWhere('medico', 'like', '%' . $field . '%');
-            });
-        }
-        $request->get('serial') ? $serial = $request->get('serial'): $serial = 'null';
-
-
-        $items = $query->paginate(1);
-        return View('resultados.citologia.search_results', compact('items','idCIto', 'firmas'));*/
-    }
-
     public function searchPage()
     {
-        $idCito = Categoria::where('status', 1)->pluck('name', 'id');
+        $idCIto = Categoria::where('status', 1)->pluck('name', 'id');
         $firmas = Firma::where('status', 1)->pluck('name', 'id');
-        return View('resultados.citologia.search_page', compact('idCito', 'firmas'));
+        return View('resultados.citologia.search_page', compact('idCIto', 'firmas'));
     }
 
     /**
      * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function search($inicio, $fin, $idc = null)
+    public function processForm(Request $request)
     {
+        $request->get('serial') ? $serial = $request->get('serial'): $serial = 'null';
+        $request->get('factura_id') ? $factura_id = $request->get('factura_id'): $factura_id = 'null';
+        $request->get('nombre_completo_cliente') ? $nombre = $request->get('nombre_completo_cliente'): $nombre = 'null';
+        $request->get('edad') ? $edad = $request->get('edad'): $edad = 'null';
+        $request->get('sexo') ? $sexo = $request->get('sexo'): $sexo = 'null';
+        $request->get('correo') ? $correo = $request->get('correo'): $correo = 'null';
+        $request->get('correo2') ? $correo2 = $request->get('correo2'): $correo2 = 'null';
+        $request->get('direccion_entrega_sede') ? $direccion = $request->get('direccion_entrega_sede'): $direccion = 'null';
+        $request->get('medico') ? $medico = $request->get('medico'): $medico = 'null';
+
+        $request->get('otros_a') ? $otros = $request->get('otros_a'): $otros = 'null';
+        $request->get('gravidad') ? $gravidad = $request->get('gravidad'): $gravidad = 'null';
+        $request->get('icitologia_id') ? $icito = $request->get('icitologia_id'): $icito = 'null';
+        $request->get('para') ? $para = $request->get('para'): $para = 'null';
+        $request->get('abortos') ? $abortos = $request->get('abortos'): $abortos = 'null';
+        $request->get('fur') ? $fur = $request->get('fur'): $fur = 'null';
+        $request->get('fup') ? $fup = $request->get('fup'): $fup = 'null';
+        $request->get('fecha_informe') ? $finfo = $request->get('fecha_informe'): $finfo = 'null';
+        $request->get('fecha_muestra') ? $fmues = $request->get('fecha_muestra'): $fmues = 'null';
+        $request->get('firma_id') ? $firma1 = $request->get('firma_id'): $firma1 = 'null';
+        $request->get('firma2_id') ? $firma2 = $request->get('firma2_id'): $firma2 = 'null';
+        $request->get('otros_b') ? $otrosb = $request->get('otros_b'): $otrosb = 'null';
+        $request->get('informe') ? $informe = $request->get('informe'): $informe = 'null';
+        $request->get('diagnostico') ? $diagnostico = $request->get('diagnostico'): $diagnostico = 'null';
+
+
+        $url = 'citologia/resultados/'.$serial.'/'.$factura_id.'/'.$nombre.'/'.$edad.'/'.$sexo.'/'.$correo.'/'.$correo2.'/'.$direccion.'/'.$medico.'/'.$otros.'/'.$gravidad.'/'.$icito.'/'.$para.'/'.$abortos.'/'.$fur.'/'.$fup.'/'.$finfo.'/'.$fmues.'/'.$firma1.'/'.$firma2.'/'.$otrosb.'/'.$informe.'/'.$diagnostico;
+        return redirect()->to($url);
+    }
+
+
+
+    /**
+     * @param Request $request
+     */
+    public function search($serial, $factura_id, $nombre, $edad, $sexo, $correo, $correo2, $direccion, $medico, $otros, $gravidad, $icito, $para, $abortos, $fur, $fup, $finfo, $fmues, $firma1, $firma2, $otrosb, $informe, $diagnostico)
+    {
+
         $idCIto = Categoria::where('status', 1)->pluck('name', 'id');
         $firmas = Firma::where('status', 1)->pluck('name', 'id');
 
-        $bdate =  Carbon::createFromFormat('Y-m-d', $inicio)->startOfDay();
-        $edate =  Carbon::createFromFormat('Y-m-d', $fin)->endOfDay();
+        $query = Citologia::with('facturas');
 
-        $query = Citologia::whereBetween('created_at', [$bdate, $edate]);
+        if($serial != 'null'){
+            $query->where('serial', $serial);
+        }
+
+        if($factura_id != 'null'){
+            $query->where('factura_id', $factura_id);
+        }
+
+        if($nombre != 'null'){
+            $query->whereHas('facturas', function($q) use ($nombre){
+                $q->Where('nombre_completo_cliente', 'like', '%' . $nombre . '%');
+            });
+        }
+
+        if($edad != 'null'){
+            $query->whereHas('facturas', function($q) use ($edad){
+                $q->where('edad', $edad);
+            });
+        }
+
+        if($sexo != 'null'){
+            $query->whereHas('facturas', function($q) use ($sexo){
+                $q->where('sexo', $sexo);
+            });
+        }
+
+        if($correo != 'null'){
+            $query->whereHas('facturas', function($q) use ($correo){
+                $q->where('correo', 'like', '%' . $correo . '%');
+            });
+        }
+
+        if($correo2 != 'null'){
+            $query->whereHas('facturas', function($q) use ($correo2){
+                $q->where('correo2', 'like', '%' . $correo2 . '%');
+            });
+        }
+
+        if($direccion != 'null'){
+            $query->whereHas('facturas', function($q) use ($direccion){
+                $q->where('direccion_entrega_sede', 'like', '%' . $direccion . '%');
+            });
+        }
+
+
+        if($medico != 'null'){
+            $query->whereHas('facturas', function($q) use ($medico){
+                $q->where('medico', 'like', '%' . $medico . '%');
+            });
+        }
+
+        if($otros != 'null'){
+            $query->where('otros_a', 'like', '%' . $otros . '%');
+        }
+
+        if($icito != 'null'){
+            $query->where('icitologia_id', $icito);
+        }
+
+        if($gravidad != 'null'){
+            $query->where('gravidad', 'like', '%' . $gravidad . '%');
+        }
+
+        if($para != 'null'){
+            $query->where('gravidad', $para);
+        }
+
+        if($abortos != 'null'){
+            $query->where('abortos', $abortos);
+        }
+
+        if($fur != 'null'){
+            $query->where('fur', $fur);
+        }
+
+        if($fup != 'null'){
+            $query->where('fup', $fup);
+        }
+
+        if($finfo != 'null'){
+            $query->where('fecha_informe', $finfo);
+        }
+
+        if($fmues != 'null'){
+            $query->where('fecha_muestra', $fmues);
+        }
+
+        if($firma1 != 'null'){
+            $query->where('firma_id', $firma1);
+        }
+
+        if($firma2 != 'null'){
+            $query->where('firma_id', $firma2);
+        }
+
+        if($otrosb != 'null'){
+            $query->where('otros_b', 'like', '%' . $otrosb . '%');
+        }
+
+        if($informe != 'null'){
+            $query->where('informe', 'like', '%' . $informe . '%');
+        }
+
+        if($diagnostico != 'null'){
+            $query->where('diagnostico', 'like', '%' . $diagnostico . '%');
+        }
+
 
         $items = $query->paginate(1);
-        //return $items;
-        return View('resultados.citologia.search_results', compact('items','idCIto', 'firmas', 'gravidad'));
+        return View('resultados.citologia.search_results', compact('items','idCIto', 'firmas'));
     }
 
     public function listados()

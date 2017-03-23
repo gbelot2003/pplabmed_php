@@ -20,7 +20,7 @@
                         <h4>Busqueda de Citología</h4>
                     </div>
                     <div class="panel-body" id="app">
-                        {!! Form::open(['action' => ['CitologiaController@search'], 'method' => 'GET']) !!}
+                        {!! Form::open(['action' => ['CitologiaController@processForm'], 'method' => 'POST']) !!}
                             @include('resultados.citologia._search_form')
                         {!!  Form::close() !!}
                     </div>

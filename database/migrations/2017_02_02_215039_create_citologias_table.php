@@ -21,19 +21,19 @@ class CreateCitologiasTable extends Migration
             $table->boolean('indice_maduracion')->nullable();
             $table->string('otros_a')->nullable();
             $table->integer('gravidad')->nullable();//not null;
-            $table->date('fur');//not null;;
-            $table->date('fup');//not null;;
-            $table->date('fecha_informe');//not null;
-            $table->date('fecha_muestra');//not null;
+            $table->date('fur')->nullable();;//not null;;
+            $table->date('fup')->nullable();;//not null;;
+            $table->date('fecha_informe')->nullable();//not null;
+            $table->date('fecha_muestra')->nullable();;//not null;
             $table->integer('para')->nullable();
             $table->integer('abortos')->nullable();
             $table->integer('icitologia_id');//not null;
             $table->integer('firma_id');//not null;
             $table->integer('firma2_id')->nullable();
             $table->string('otros_b')->nullable();
-            $table->boolean('mm')->nullable();
-            $table->text('diagnostico');//not null
-            $table->string('informe');//not null
+            $table->boolean('mm')->nullable();;
+            $table->text('diagnostico')->nullable();;//not null
+            $table->text('informe')->nullable();;//not null
             $table->integer('user_id')->nullable();//not null;
             $table->timestamps();
         });

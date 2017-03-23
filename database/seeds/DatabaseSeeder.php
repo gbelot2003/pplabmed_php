@@ -25,5 +25,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CitoSerialsTableSeeder::class);
         $this->call(HistopatologiasTableSeeder::class);
         $this->call(LinkImagesTableSeeder::class);
+        $this->call(ExamenesTableSeeder::class);
     }
 }

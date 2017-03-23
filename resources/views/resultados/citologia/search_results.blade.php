@@ -16,7 +16,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <div class="text-muted pull-right">
-                            {{ $items->links('vendor.pagination.form_paginator') }}
+                            {{ $items->appends(\Request::all())->links('vendor.pagination.form_paginator') }}
                             <a href="{{ action('CitologiaController@searchPage') }}" class="btn btn-warning" alt="Buscar" ><span class="glyphicon glyphicon-search"></span></a>
                         </div>
                         <h4>Agregar de Citología</h4>
@@ -36,7 +36,4 @@
 
 @section('jscode')
     <script src="{{ asset('js/citologias-form.js') }}"></script>
-@stop
-@section('modals')
-    @include('resultados.citologia._modal_search')
 @stop
