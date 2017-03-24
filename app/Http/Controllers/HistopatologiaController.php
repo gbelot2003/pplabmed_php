@@ -32,6 +32,7 @@ class HistopatologiaController extends Controller
         return View('resultados.histopatologia.index', compact('serial'));
     }
 
+
     public function create()
     {
         $serial = $this->getSerial();
@@ -73,15 +74,45 @@ class HistopatologiaController extends Controller
     }
 
     /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function searchPage()
+    {
+        $firmas = Firma::where('status', 1)->pluck('name', 'id');
+        return View('resultados.histopatologia.search_page', compact('firmas'));
+    }
+
+    /**
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function processForm(Request $request)
     {
-        $inicio = $request->input('inicio');
-        $fin = $request->input('fin');
+        $request->get('serial') ? $serial = $request->get('serial'): $serial = 'null';
+        $request->get('factura_id') ? $factura_id = $request->get('factura_id'): $factura_id = 'null';
+        $request->get('nombre_completo_cliente') ? $nombre = $request->get('nombre_completo_cliente'): $nombre = 'null';
+        $request->get('edad') ? $edad = $request->get('edad'): $edad = 'null';
+        $request->get('sexo') ? $sexo = $request->get('sexo'): $sexo = 'null';
+        $request->get('correo') ? $correo = $request->get('correo'): $correo = 'null';
+        $request->get('correo2') ? $correo2 = $request->get('correo2'): $correo2 = 'null';
+        $request->get('direccion_entrega_sede') ? $direccion = $request->get('direccion_entrega_sede'): $direccion = 'null';
+        $request->get('medico') ? $medico = $request->get('medico'): $medico = 'null';
 
-        return redirect()->to('/histopatologia/resultados/'.$inicio.'/'.$fin);
+        $request->get('topog') ? $topo = $request->get('topog'): $topo = 'null';
+        $request->get('mor1') ? $mor1 = $request->get('mor1'): $mor1 = 'null';
+        $request->get('mor2') ? $mor2 = $request->get('mor2'): $mor2 = 'null';
+        $request->get('firma_id') ? $firma = $request->get('firma_id'): $firma = 'null';
+        $request->get('firma2_id') ? $firma2 = $request->get('firma2_id'): $firma2 = 'null';
+        $request->get('diagnostico') ? $diag = $request->get('diagnostico'): $diag = 'null';
+        $request->get('muestra') ? $muestra = $request->get('muestra'): $muestra = 'null';
+        $request->get('fecha_informe') ? $finfo = $request->get('fecha_informe'): $finfo = 'null';
+        $request->get('fecha_biopcia') ? $fbiop = $request->get('fecha_biopcia'): $fbiop = 'null';
+        $request->get('fecha_muestra') ? $fmuest = $request->get('fecha_muestra'): $fmuest = 'null';
+        $request->get('informe') ? $informe = $request->get('informe'): $informe = 'null';
+
+        $url = 'histopatologias/resultados/'.$serial.'/'.$factura_id.'/'.$nombre.'/'.$edad.'/'.$sexo.'/'.$correo.'/'.$correo2.'/'.$direccion.'/'.$medico;
+        $url .= '/'.$topo.'/'.$mor1.'/'.$mor2.'/'.$firma.'/'.$firma2.'/'.$diag.'/'.$muestra.'/'.$finfo.'/'.$fbiop.'/'.$fmuest.'/'.$informe;
+        return redirect()->to($url);
     }
 
     /**
@@ -89,14 +120,65 @@ class HistopatologiaController extends Controller
      * @param $fin
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function search($inicio, $fin)
+    public function search($serial, $factura_id, $nombre, $edad, $sexo, $correo, $correo2, $direccion, $medico)
     {
         $firmas = Firma::where('status', 1)->pluck('name', 'id');
-        $bdate =  Carbon::createFromFormat('Y-m-d', $inicio)->startOfDay();
-        $edate =  Carbon::createFromFormat('Y-m-d', $fin)->endOfDay();
         $plantillas = Plantilla::all();
 
-        $query = Histopatologia::whereBetween('created_at', [$bdate, $edate]);
+
+        $query = Histopatologia::with('facturas');
+
+        if($serial != 'null'){
+            $query->where('serial', $serial);
+        }
+
+        if($factura_id != 'null'){
+            $query->where('factura_id', $factura_id);
+        }
+
+        if($nombre != 'null'){
+            $query->whereHas('facturas', function($q) use ($nombre){
+                $q->Where('nombre_completo_cliente', 'like', '%' . $nombre . '%');
+            });
+        }
+
+        if($edad != 'null'){
+            $query->whereHas('facturas', function($q) use ($edad){
+                $q->where('edad', $edad);
+            });
+        }
+
+        if($sexo != 'null'){
+            $query->whereHas('facturas', function($q) use ($sexo){
+                $q->where('sexo', $sexo);
+            });
+        }
+
+        if($correo != 'null'){
+            $query->whereHas('facturas', function($q) use ($correo){
+                $q->where('correo', 'like', '%' . $correo . '%');
+            });
+        }
+
+        if($correo2 != 'null'){
+            $query->whereHas('facturas', function($q) use ($correo2){
+                $q->where('correo2', 'like', '%' . $correo2 . '%');
+            });
+        }
+
+        if($direccion != 'null'){
+            $query->whereHas('facturas', function($q) use ($direccion){
+                $q->where('direccion_entrega_sede', 'like', '%' . $direccion . '%');
+            });
+        }
+
+
+        if($medico != 'null'){
+            $query->whereHas('facturas', function($q) use ($medico){
+                $q->where('medico', 'like', '%' . $medico . '%');
+            });
+        }
+
         $items = $query->paginate(1);
 
         return View('resultados.histopatologia.search_results', compact('items', 'firmas', 'plantillas'));

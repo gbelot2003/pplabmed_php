@@ -16,7 +16,7 @@
                     <div class="panel-heading">
                         <div class="text-muted pull-right">
                             <a class="btn btn-default">Link Images ID: {{ $item->link_id }}</a>
-                            <a class="btn btn-warning" alt="Buscar" ><span class="glyphicon glyphicon-search" data-toggle="modal" data-target="#searchModal"></span></a>
+                            <a href="{{ action('HistopatologiaController@searchPage') }}" class="btn btn-warning" alt="Buscar" ><span class="glyphicon glyphicon-search"></span></a>
                         </div>
                         <h4>Agregar de Histopatología</h4>
                     </div>

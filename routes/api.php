@@ -16,3 +16,5 @@ use Illuminate\Http\Request;
 Route::middleware('api')->post('/user', 'HistoApiController@user');
 Route::middleware('api')->post('/uploadimage', 'HistoApiController@uploadImage');
 Route::middleware('api')->get('/test', 'HistoApiController@test');
+
+Route::middleware('api')->resource('/facturas', 'FactutasApiController');
