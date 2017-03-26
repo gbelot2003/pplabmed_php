@@ -88,6 +88,7 @@ class HistopatologiaController extends Controller
      */
     public function processForm(Request $request)
     {
+        //dd($request->all());
         $request->get('serial') ? $serial = $request->get('serial'): $serial = 'null';
         $request->get('factura_id') ? $factura_id = $request->get('factura_id'): $factura_id = 'null';
         $request->get('nombre_completo_cliente') ? $nombre = $request->get('nombre_completo_cliente'): $nombre = 'null';
@@ -120,7 +121,7 @@ class HistopatologiaController extends Controller
      * @param $fin
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function search($serial, $factura_id, $nombre, $edad, $sexo, $correo, $correo2, $direccion, $medico)
+    public function search($serial, $factura_id, $nombre, $edad, $sexo, $correo, $correo2, $direccion, $medico, $topo, $mor1, $mor2, $firma, $firma2, $diag, $muestra, $finfo, $fbiop, $fmuest, $informe)
     {
         $firmas = Firma::where('status', 1)->pluck('name', 'id');
         $plantillas = Plantilla::all();
@@ -176,6 +177,72 @@ class HistopatologiaController extends Controller
         if($medico != 'null'){
             $query->whereHas('facturas', function($q) use ($medico){
                 $q->where('medico', 'like', '%' . $medico . '%');
+            });
+        }
+
+        if($topo != 'null'){
+            $query->whereHas('facturas', function($q) use ($topo){
+                $q->where('topog', $topo);
+            });
+        }
+
+        if($mor1 != 'null'){
+            $query->whereHas('facturas', function($q) use ($mor1){
+                $q->where('mor1', $mor1);
+            });
+        }
+
+        if($mor2 != 'null'){
+            $query->whereHas('facturas', function($q) use ($mor2){
+                $q->where('mor2', $mor2);
+            });
+        }
+
+        if($firma != 'null'){
+            $query->whereHas('facturas', function($q) use ($firma){
+                $q->where('firma_id', $firma);
+            });
+        }
+        if($firma2 != 'null'){
+            $query->whereHas('facturas', function($q) use ($firma2){
+                $q->where('firma2_id', $firma2);
+            });
+        }
+
+        if($diag != 'null'){
+            $query->whereHas('facturas', function($q) use ($diag){
+                $q->where('diagnostico', 'like', '%' . $diag . '%');
+            });
+        }
+
+
+        if($muestra != 'null'){
+            $query->whereHas('facturas', function($q) use ($muestra){
+                $q->where('muestra', $muestra);
+            });
+        }
+
+        if($finfo != 'null'){
+            $query->whereHas('facturas', function($q) use ($finfo){
+                $q->where('fecha_informe', $finfo);
+            });
+        }
+
+        if($fbiop != 'null'){
+            $query->whereHas('facturas', function($q) use ($fbiop){
+                $q->where('fecha_biopcia', $fbiop);
+            });
+        }
+
+        if($fmuest != 'null'){
+            $query->whereHas('facturas', function($q) use ($fmuest){
+                $q->where('fecha_muestra', $fmuest);
+            });
+        }
+
+        if($informe != 'null'){
+            $query->whereHas('facturas', function($q) use ($informe){
+                $q->where('informe', 'like', '%' . $informe . '%');
             });
         }
 

@@ -32,7 +32,7 @@ class CreateFacturasTable extends Migration
             $table->string('correo2')->nullable();
             $table->string('direccion_entrega_sede')->nullable();
             $table->string('medico')->nullable();
-            $table->string('status');
+            $table->string('status')->nullable();
             $table->string('sexo')->nullable();
             $table->timestamps();
         });
