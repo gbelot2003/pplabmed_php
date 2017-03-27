@@ -36,16 +36,18 @@ class FactutasApiController extends Controller
      */
     public function store(Request $request)
     {
-        $request['fecha_nacimiento'] = $this->setFecha($request->get('fecha_nacimiento'));
+
+        /*$request['fecha_nacimiento'] = $this->setFecha($request->get('fecha_nacimiento'));
         $request['edad'] = $this->setEdad($request->get('edad'));
         $factura = Factura::create($request->all());
-        $examenes = $facturas->examenes;
+        $examenes = $factura->examenes;
         foreach ($examenes as $examen){
             $factura->examenes->create($request->all());
         }
 
-        $result = '200';
-        return $result;
+        $result = '200';*/
+        dd($request->all());
+        return $request->all();
     }
 
     /**

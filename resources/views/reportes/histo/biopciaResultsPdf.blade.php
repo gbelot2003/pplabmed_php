@@ -47,6 +47,10 @@
                         <td style="border-bottom:1px solid black;">{{ $item->serial }} - {{ $item->created_at->formatLocalized('%Y') }} </td>
                     </tr>
                 @endforeach
+                <tr>
+                    <td>Recuento:</td>
+                    <td colspan="6" class="text-left"><string>{{ $items->count() }}</string></td>
+                </tr>
             </table>
         </div>
     </div>

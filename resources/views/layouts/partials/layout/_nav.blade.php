@@ -66,7 +66,7 @@
                         <li class="dropdown-header">Estadisticas</li>
                         <li><a href="{{ action('ReportesController@identificadorCito') }}"> Identificadores de Citologías</a></li>
                         <li><a href=""> Citologías Anormales</a></li>
-                        <li><a href=""> Reporte de Morfologías</a></li>
+                        <li><a href="{{ action('ReportesController@morfologiaForm') }}"> Estadisticas de Morfologías</a></li>
                     </ul>
                 </li>
 

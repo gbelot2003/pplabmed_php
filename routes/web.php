@@ -55,10 +55,10 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('histopatologia/process', 'HistopatologiaController@processForm');
     Route::get('histopatologias/resultados/{serial}/{factura_id}/{nombre}/{edad}/{sexo}/{corrreo}/{correo2}/{direccion}/{medico}/{topo}/{mor1}/{mor2}/{firma}/{firma2}/{diag}/{muestra}/{finfo}/{fbiop}/{fmuest}/{informe}', 'HistopatologiaController@search');
 
+    Route::post('histo/images/', 'ImagesController@uploadForm');
+
     Route::resource('facturas', 'FacturasController');
     Route::get('factura/listados', 'FacturasController@listados');
-
-    Route::post('histo/images/', 'ImagesController@uploadForm');
 
     Route::get('read', 'FilesController@readFiles');
 
@@ -77,6 +77,10 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('reportes/reporte-biopcia', 'ReportesController@biopciaForm');
     Route::post('reportes/reporte-biopcia', 'ReportesController@biopciaProcess');
     Route::get('reportes/reporte-biopcia/resultado/{inicio?}/{final?}/{pdf?}', 'ReportesController@biociaResult');
+
+    Route::get('reportes/reporte-morfologia', 'ReportesController@morfologiaForm');
+    Route::post('reportes/reporte-morfologia', 'ReportesController@morfologiaProcess');
+    Route::get('reportes/reporte-morfologia/resultado/{inicio}/{final}/{mor1}/{mor2}/{topo}/{pdf}', 'ReportesController@morfologiaResult');
 
 
 
