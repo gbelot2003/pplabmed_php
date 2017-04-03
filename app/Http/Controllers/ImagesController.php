@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ImagesValidator;
 use App\Image;
 use Illuminate\Http\File;
 use Illuminate\Http\Request;
@@ -10,7 +11,7 @@ use Illuminate\Support\Facades\Storage;
 class ImagesController extends Controller
 {
 
-    public function uploadForm(Request $request)
+    public function uploadForm(ImagesValidator $request)
     {
 
        if($request->hasFile('images')){
