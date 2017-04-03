@@ -14,9 +14,9 @@ class CitologiasTableSeeder extends Seeder
     {
         
 
-        \DB::table('Citologias')->delete();
+        \DB::table('citologias')->delete();
         
-        \DB::table('Citologias')->insert(array (
+        \DB::table('citologias')->insert(array (
             0 => 
             array (
                 'id' => 1,

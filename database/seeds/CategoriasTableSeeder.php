@@ -14,9 +14,9 @@ class CategoriasTableSeeder extends Seeder
     {
         
 
-        \DB::table('Categorias')->delete();
+        \DB::table('categorias')->delete();
         
-        \DB::table('Categorias')->insert(array (
+        \DB::table('categorias')->insert(array (
             0 => 
             array (
                 'id' => 1,
