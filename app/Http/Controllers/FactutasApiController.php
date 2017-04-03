@@ -34,7 +34,7 @@ class FactutasApiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return string
      */
-    public function store(Request $request)
+    public function store(FacturasValidate $request)
     {
 
         /*$request['fecha_nacimiento'] = $this->setFecha($request->get('fecha_nacimiento'));

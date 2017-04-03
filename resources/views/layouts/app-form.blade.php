@@ -39,6 +39,7 @@
         @yield('modals')
     </div>
     <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/camanjs/4.1.2/caman.full.min.js"></script>
     <script src="{{ asset('js/app2.js') }}"></script>
     <script>
         $('#flash-overlay-modal').modal();

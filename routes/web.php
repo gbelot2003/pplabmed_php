@@ -56,6 +56,8 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('histopatologias/resultados/{serial}/{factura_id}/{nombre}/{edad}/{sexo}/{corrreo}/{correo2}/{direccion}/{medico}/{topo}/{mor1}/{mor2}/{firma}/{firma2}/{diag}/{muestra}/{finfo}/{fbiop}/{fmuest}/{informe}', 'HistopatologiaController@search');
 
     Route::post('histo/images/', 'ImagesController@uploadForm');
+    Route::put('histo/images/update/{id}', 'ImagesController@update');
+    Route::get('histo/images/delete/{id}', 'ImagesController@delete');
 
     Route::resource('facturas', 'FacturasController');
     Route::get('factura/listados', 'FacturasController@listados');

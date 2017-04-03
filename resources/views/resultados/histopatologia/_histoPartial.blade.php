@@ -72,10 +72,7 @@
 </div>
 
 <div class="row">
-    <div class="col-md-12">
-        <a class="btn btn-default" alt="Imagenes" data-toggle="modal" data-target="#ImagesModal"><span class="glyphicon glyphicon-plus"></span> Agregar Imagenes</a>
-        <hr />
-    </div>
+    @include('resultados.histopatologia.image._images')
 </div>
 
 <div class="col-md-12">

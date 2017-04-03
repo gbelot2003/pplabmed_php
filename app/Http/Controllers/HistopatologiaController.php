@@ -60,7 +60,8 @@ class HistopatologiaController extends Controller
         $item = Histopatologia::findOrFail($id);
         $firmas = Firma::where('status', 1)->pluck('name', 'id');
         $plantillas = Plantilla::all();
-        return View('resultados.histopatologia.edit', compact('item', 'plantillas', 'firmas', 'postId'));
+        $i = 0;
+        return View('resultados.histopatologia.edit', compact('item', 'plantillas', 'firmas', 'postId', 'i'));
     }
 
     public function update(HistopatiaValidation $request, $id)

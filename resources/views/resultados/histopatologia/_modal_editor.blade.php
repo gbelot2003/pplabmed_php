@@ -1,21 +1,15 @@
-<div class="modal fade" id="ImagesModal" tabindex="-2" role="dialog" aria-labelledby="ImagesModal">
+<div class="modal fade" id="ModalEditor" tabindex="-2" role="dialog" aria-labelledby="ModalEditor">
     <div class="modal-dialog" role="document">
         {!! Form::open(['action' => 'ImagesController@uploadForm', 'method' => 'POST', 'files' => true]) !!}
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Interface de Imagenes</h4>
+                <h4 class="modal-title" id="myModalLabel">Editor de Imagenes</h4>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="fallback">
-                            <input name="images"  type="file" multiple />
-                            {!! Form::hidden('link_id', isset($link->id) ? $link->id : $item->link_id) !!}
-                            @if(isset($item->id))
-                            {!! Form::hidden('id', $item->id) !!}
-                            @endif
-                        </div>
+                        <h3></h3>
                     </div>
                 </div>
             </div>
