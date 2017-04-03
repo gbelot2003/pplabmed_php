@@ -1861,7 +1861,7 @@
 
         $(btnPlus).click(function (e) {
             e.preventDefault();
-
+            btnSave.show();
             y = (x + 5);
 
             Caman(className, function () {
@@ -1872,7 +1872,7 @@
 
         $(btnLess).click(function (e) {
             e.preventDefault();
-
+            btnSave.show();
             y = (x - 5);
 
             Caman(className, function () {
@@ -1896,6 +1896,7 @@
                     'name': name
                 }
             }).done(function(response) {
+                btnSave.hide();
                 console.log(response);
             });
         });

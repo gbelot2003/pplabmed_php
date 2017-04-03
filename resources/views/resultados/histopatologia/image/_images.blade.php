@@ -7,14 +7,14 @@
 <div class="row">
         @foreach($item->images as $image)
         <div class="col-md-4 text-center imageCanvas">
-            <a href="#" style="display: block" class="delete text-right"><i class="glyphicon glyphicon-remove"></i></a>
+            <a href="#" style="display: block" class="delete text-right"><i class="text-danger glyphicon glyphicon-remove"></i></a>
             <a href="/img/histo/{{ $image->image_url }}" class="colorbox">
                 <img id="{{ $image->id }}" class="img-responsive img-thumbnail image img-{{ $i ++ }}" src="/img/histo/{{ $image->image_url }}" alt="{{ $image->image_url }}" />
             </a>
-            <a id="changePlus" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i></a>
-            <a id="changeLess" class="btn btn-primary"><i class="glyphicon glyphicon-minus"></i></a>
-            |
-            <a id="changeSave" class="btn btn-primary"><i class="glyphicon glyphicon-cloud-upload"></i></a>
+            <a id="changePlus" class="btn btn-info"><i class="glyphicon glyphicon-plus"></i></a>
+            <a id="changeLess" class="btn btn-info"><i class="glyphicon glyphicon-minus"></i></a>
+
+            <a id="changeSave" class="btn btn-primary" style="display: none"><i class="glyphicon glyphicon-cloud-upload"></i></a>
         </div>
         @endforeach
 </div>
