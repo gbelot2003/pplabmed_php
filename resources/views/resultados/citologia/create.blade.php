@@ -36,7 +36,3 @@
 @section('jscode')
     <script src="{{ asset('js/citologias-form.js') }}"></script>
 @stop
-
-@section('modals')
-    @include('resultados.citologia._modal_search')
-@stop
