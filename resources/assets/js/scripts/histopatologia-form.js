@@ -114,7 +114,7 @@
         });
 
         $(btnSave).click(function(){
-            let canvas = $(className)
+            let canvas = $(className);
             let dataUrl = canvas.get(0).toDataURL();
             let linkId = $('input[name="link_id"]').val();
 
