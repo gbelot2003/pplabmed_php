@@ -4,13 +4,11 @@ namespace App\Http\Controllers;
 
 use App\CitoSerial;
 use App\CitoUnbind;
-use App\Factura;
 use App\Firma;
 use App\Histopatologia;
 use App\Http\Requests\HistopatiaValidation;
 use App\LinkImage;
 use App\Plantilla;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Yajra\Datatables\Datatables;
@@ -52,7 +50,7 @@ class HistopatologiaController extends Controller
         $this->setSerial($request->input('serial'));
 
         flash('Reegistro Creado', 'success')->important();
-        return redirect()->action('HistopatologiaController@index');
+        return redirect()->action('HistopatologiaController@create');
     }
 
     public function edit($id)

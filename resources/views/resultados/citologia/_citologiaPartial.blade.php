@@ -3,7 +3,7 @@
     {{--Diagnostico--}}
     <div class="col-md-12 form-group {{ $errors->has('diagnostico') ? ' has-error' : '' }}">
         <label for="diagnostico">Diagnostico Clinico</label>
-        {!! Form::text('diagnostico', null, ['id' => 'diagnostico', 'class' => 'form-control']) !!}
+        {!! Form::textarea('diagnostico', null, ['id' => 'diagnostico', 'class' => 'form-control textarea', 'rows' => 3]) !!}
     </div>
 </div>
 <div class="row">
@@ -119,7 +119,7 @@
 <div class="col-md-12">
     <div class="text-right">
         <br>
-        <a class="btn btn-info" href="{{ action('CitologiaController@index') }}">Cancelar</a>
+        <a class="btn btn-info" href="{{ action('CitologiaController@index') }}">Cancelar/Listado</a>
         <button type="submit" class="btn btn-primary">Guardar</button>
     </div>
 </div>

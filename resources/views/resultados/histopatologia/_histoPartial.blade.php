@@ -29,7 +29,7 @@
 
     <div class="col-md-12 form-group  {{ $errors->has('diagnostico') ? ' has-error' : '' }}">
         <label for="para">Diagnostico: </label>
-        {{ Form::text('diagnostico', null, ['class' => 'form-control', 'id' => 'diagnostico']) }}
+        {{ Form::textarea('diagnostico', null, ['class' => 'form-control textarea', 'id' => 'diagnostico', 'rows' => 3]) }}
     </div>
 
 </div>
