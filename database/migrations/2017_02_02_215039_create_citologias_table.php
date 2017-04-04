@@ -30,7 +30,7 @@ class CreateCitologiasTable extends Migration
             $table->integer('icitologia_id');//not null;
             $table->integer('firma_id');//not null;
             $table->integer('firma2_id')->nullable();
-            $table->string('otros_b')->nullable();
+            $table->text('otros_b')->nullable();
             $table->boolean('mm')->nullable();;
             $table->text('diagnostico')->nullable();;//not null
             $table->text('informe')->nullable();;//not null

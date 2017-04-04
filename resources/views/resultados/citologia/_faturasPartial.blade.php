@@ -1,6 +1,6 @@
 <div class="row">
     <div class="form-group col-md-2">
-        <label>Numero Serial</label>
+        <label>Numero Citología</label>
             @if(isset($item->serial))
             <span class="text-center form-control">
                 {{ $item->serial }}

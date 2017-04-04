@@ -24,14 +24,10 @@
     </div>
 
     {{-- Otros 1 --}}
-    <div class="col-md-3 form-group  {{ $errors->has('otros_a') ? ' has-error' : '' }}">
+    <div class="col-md-6 form-group  {{ $errors->has('otros_a') ? ' has-error' : '' }}">
         {{ Form::text('otros_a', null, ['class' => 'form-control', 'id' => 'otros_a', 'placeholder' => 'Otros']) }}
     </div>
 
-    {{-- gravidad --}}
-    <div class="col-md-3 form-group form-group  {{ $errors->has('gravidad_id') ? ' has-error' : '' }}">
-        {{ Form::number('gravidad', null, ['class' => 'form-control', 'id' => 'gravidad', 'placeholder' => 'Gravidad']) }}
-    </div>
 </div>
 
 <div class="row">
@@ -41,17 +37,18 @@
         {{ Form::select('icitologia_id', $idCIto, null, ['class' => 'form-control']) }}
     </div>
 
-    {{-- Para (Embarazos) --}}
-    <div class="col-md-3 form-group  {{ $errors->has('para') ? ' has-error' : '' }}">
-        <label for="para">Para: </label>
-        {{ Form::number('para', null, ['class' => 'form-control', 'id' => 'para']) }}
+    {{-- Fécha de Informe --}}
+    <div class="col-md-3 form-group  {{ $errors->has('fecha_informe') ? ' has-error' : '' }}">
+        <label>Fecha de Informe</label>
+        {{ Form::date('fecha_informe', null, ['class' => 'form-control', 'id' => 'fechainforme']) }}
     </div>
 
-    {{-- Abortos --}}
-    <div class="col-md-3 form-group  {{ $errors->has('abortos') ? ' has-error' : '' }}">
-        <label for="abortos">Abortos: </label>
-        {{ Form::number('abortos', null, ['class' => 'form-control', 'id' => 'abortos']) }}
+    {{-- Fécha de Muestra --}}
+    <div class="col-md-3 form-group  {{ $errors->has('fecha_muestra') ? ' has-error' : '' }}">
+        <label>Fecha de Muestra</label>
+        {{ Form::date('fecha_muestra', null, ['class' => 'form-control', 'id' => 'fechamuestra']) }}
     </div>
+
 </div>
 
 <div class="row">
@@ -67,17 +64,24 @@
         {{ Form::date('fup', null, ['class' => 'form-control', 'id' => 'fup']) }}
     </div>
 
-    {{-- Fécha de Informe --}}
-    <div class="col-md-3 form-group  {{ $errors->has('fecha_informe') ? ' has-error' : '' }}">
-        <label>Fecha de Informe</label>
-        {{ Form::date('fecha_informe', null, ['class' => 'form-control', 'id' => 'fechainforme']) }}
+    {{-- gravidad --}}
+    <div class="col-md-2 form-group form-group  {{ $errors->has('gravidad_id') ? ' has-error' : '' }}">
+        <label>Gravidad</label>
+        {{ Form::number('gravidad', null, ['class' => 'form-control', 'id' => 'gravidad', 'placeholder' => 'Gravidad']) }}
     </div>
 
-    {{-- Fécha de Muestra --}}
-    <div class="col-md-3 form-group  {{ $errors->has('fecha_muestra') ? ' has-error' : '' }}">
-        <label>Fecha de Muestra</label>
-        {{ Form::date('fecha_muestra', null, ['class' => 'form-control', 'id' => 'fechamuestra']) }}
+    {{-- Para (Embarazos) --}}
+    <div class="col-md-2 form-group  {{ $errors->has('para') ? ' has-error' : '' }}">
+        <label for="para">Para: </label>
+        {{ Form::number('para', null, ['class' => 'form-control', 'id' => 'para']) }}
     </div>
+
+    {{-- Abortos --}}
+    <div class="col-md-2 form-group  {{ $errors->has('abortos') ? ' has-error' : '' }}">
+        <label for="abortos">Abortos: </label>
+        {{ Form::number('abortos', null, ['class' => 'form-control', 'id' => 'abortos']) }}
+    </div>
+
 </div>
 
 <div class="row">
@@ -93,12 +97,6 @@
         {{ Form::select('firma2_id', $firmas, null, ['placeholder' => 'None', 'class' => 'form-control']) }}
     </div>
 
-    {{-- Otros --}}
-    <div class="col-md-4 form-group  {{ $errors->has('otros_b') ? ' has-error' : '' }}">
-        <label for="otros2">Otros:</label>
-        {{ Form::text('otros_b', null, ['class' => 'form-control', 'id' => 'otros_b']) }}
-    </div>
-
     {{-- Nota MM --}}
     <div class="col-md-2 form-group  {{ $errors->has('mm') ? ' has-error' : '' }}">
         <br>
@@ -110,6 +108,11 @@
 </div>
 
 <div class="row {{ $errors->has('informe') ? ' has-error' : '' }}">
+    {{-- Otros --}}
+    <div class="col-md-12 form-group  {{ $errors->has('otros_b') ? ' has-error' : '' }}">
+        <label for="otros2">Otros:</label>
+        {{ Form::text('otros_b', null, ['class' => 'form-control', 'id' => 'otros_b']) }}
+    </div>
     <div class="col-md-12 form-group">
         <label>Informe</label>
         {{ Form::textarea('informe', null, ['class' => 'textarea form-control ckeditor', 'id' => 'informe']) }}
