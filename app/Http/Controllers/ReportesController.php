@@ -105,7 +105,7 @@ class ReportesController extends Controller
             return View('reportes.citologia.hojaCitoResultadosSede', compact('items', 'bdate', 'edate'));
         } else {
             $pdf = App::make('dompdf.wrapper');
-            $pdf->loadView('reportes.citologia.CitoResultPdf', compact('items', 'bdate', 'edate'));
+            $pdf->loadView('reportes.citologia.CitoResultCedePdf', compact('items', 'bdate', 'edate'));
             return $pdf->stream();
         }
     }

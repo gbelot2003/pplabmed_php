@@ -13,9 +13,6 @@
         width:600px;
         margin: 0 auto;
     }
-
-
-
 </style>
 <div class="container">
         <div class="row">

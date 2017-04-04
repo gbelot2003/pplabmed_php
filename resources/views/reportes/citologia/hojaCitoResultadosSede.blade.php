@@ -26,7 +26,7 @@
                 <table class="table table-bordered table-striped dataTable">
                     <thead>
                     <th>No. Factura</th>
-                    <th>Agencia</th>
+                    <th>Sede</th>
                     <th>Paciente</th>
                     <th>Edad</th>
                     <th>Sexo</th>
