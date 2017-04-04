@@ -33,6 +33,11 @@
                                 <label for="inicio">Fecha de Final</label>
                                 {{ Form::date('final', Carbon\Carbon::today()->toDateString(), ['class' => 'form-control', 'id' => 'final', 'required']) }}
                             </div>
+
+                            <div class="col-md-4 form-group  {{ $errors->has('final') ? ' has-error' : '' }}">
+                                <label for="inicio">Dirección Sede</label>
+                                {{ Form::select('direccion', $direc, null, ['class' => 'form-control', 'placeholder' => 'Ninguno']) }}
+                            </div>
                         </div>
 
                         <div class="row">

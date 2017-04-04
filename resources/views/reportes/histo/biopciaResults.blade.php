@@ -49,7 +49,7 @@
                     <tfooter>
                         <tr>
                             <td>Recuento:</td>
-                            <td colspan="5" class="text-left"><string>{{ $items->count() }}</string></td>
+                            <td colspan="6" class="text-left"><string>{{ $items->count() }}</string></td>
                         </tr>
                     </tfooter>
                 </table>

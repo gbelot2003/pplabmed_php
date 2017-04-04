@@ -146,24 +146,33 @@ class ReportesController extends Controller
 
     public function biopciaForm()
     {
-        return View('reportes.histo.biopciaForm');
+        $direc = Factura::groupBy('direccion_entrega_sede')->select('direccion_entrega_sede')->pluck('direccion_entrega_sede', 'direccion_entrega_sede');
+        return View('reportes.histo.biopciaForm', compact('direc'));
     }
 
     public function biopciaProcess(Request $request)
     {
         $inicio = $request->input('inicio');
         $fin = $request->input('final');
+        $request->get('direccion') ? $dir = $request->get('direccion'): $dir = 'null';
+
         $pdf = $request->input('pdf') ? $request->input('pdf') : "null";
 
-        return redirect()->to('/reportes/reporte-biopcia/resultado/' . $inicio . '/' . $fin . '/' .$pdf);
+        return redirect()->to('/reportes/reporte-biopcia/resultado/' . $inicio . '/' . $fin . '/' . $dir .'/'. $pdf);
     }
 
-    public function biociaResult($inicio, $final, $pdf)
+    public function biociaResult($inicio, $final, $dir,  $pdf)
     {
         $bdate = Carbon::createFromFormat('Y-m-d', $inicio)->startOfDay();
         $edate = Carbon::createFromFormat('Y-m-d', $final)->endOfDay();
 
         $query = Histopatologia::with('facturas')->whereBetween('fecha_informe', [$bdate, $edate]);
+
+        if ($dir != 'null') {
+            $query->whereHas('facturas', function ($q) use ($dir) {
+                $q->where('direccion_entrega_sede', 'like', '%' . $dir . '%');
+            });
+        }
 
         $items = $query->get();
 
