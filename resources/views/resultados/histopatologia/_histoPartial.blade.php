@@ -32,14 +32,15 @@
         {{ Form::textarea('diagnostico', null, ['class' => 'form-control textarea', 'id' => 'diagnostico', 'rows' => 3]) }}
     </div>
 
+    <div class="col-md-12 form-group  {{ $errors->has('muestra') ? ' has-error' : '' }}">
+        <label for="para">Muestra: </label>
+        {{ Form::textarea('muestra', null, ['class' => 'form-control', 'id' => 'muestra', 'rows' => 3]) }}
+    </div>
 </div>
 
 <div class="row">
 
-    <div class="col-md-3 form-group  {{ $errors->has('muestra') ? ' has-error' : '' }}">
-        <label for="para">Muestra: </label>
-        {{ Form::date('muestra', null, ['class' => 'form-control', 'id' => 'muestra']) }}
-    </div>
+
 
     <div class="col-md-3 form-group  {{ $errors->has('fecha_informe') ? ' has-error' : '' }}">
         <label for="para">Fecha de Informe: </label>
@@ -47,7 +48,7 @@
     </div>
 
     <div class="col-md-3 form-group  {{ $errors->has('fecha_biopcia') ? ' has-error' : '' }}">
-        <label for="para">Fecha de Biopcia: </label>
+        <label for="para">Fecha de Biopsia: </label>
         {{ Form::date('fecha_biopcia', null, ['class' => 'form-control', 'id' => 'fecha_biopcia']) }}
     </div>
 

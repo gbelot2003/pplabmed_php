@@ -24,7 +24,7 @@ class CreateHistopatologiasTable extends Migration
             $table->integer('firma_id');
             $table->integer('firma2_id')->nullable();
             $table->text('diagnostico');
-            $table->date('muestra');
+            $table->text('muestra');
             $table->date('fecha_informe');
             $table->date('fecha_biopcia');
             $table->date('fecha_muestra');
