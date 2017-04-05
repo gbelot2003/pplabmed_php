@@ -10,7 +10,7 @@ class Examenes extends Model
     /**
      * @var array
      */
-    protected $fillable = ['num_factura', 'nombre_examen'];
+    protected $fillable = ['num_factura', 'nombre_examen', 'item'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

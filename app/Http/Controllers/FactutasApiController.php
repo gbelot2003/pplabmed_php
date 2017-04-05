@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Examenes;
 use App\Factura;
 use App\Http\Requests\FacturasValidate;
 use Illuminate\Http\Request;
@@ -29,9 +30,7 @@ class FactutasApiController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
+     * @param FacturasValidate $request
      * @return string
      */
     public function store(FacturasValidate $request)
@@ -39,11 +38,17 @@ class FactutasApiController extends Controller
 
         $request['fecha_nacimiento'] = $this->setFecha($request->get('fecha_nacimiento'));
         $request['edad'] = $this->setEdad($request->get('edad'));
-        $factura = Factura::create($request->all());
-        $examenes = $factura->examenes;
-        foreach ($examenes as $examen){
-            $factura->examenes->create($request->all());
+        //$factura = Factura::create($request->all());
+        $examenes = $request->get('examenes');
+        foreach ($examenes['examen'] as $examen){
+            if(is_array($examen))
+            {
+                dd("es array");
+            } else {
+                dd("no es array");
+            }
         }
+
 
         $result = '200';
         return $result;

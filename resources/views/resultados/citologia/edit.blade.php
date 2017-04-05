@@ -15,7 +15,9 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <div class="text-muted pull-right">
-                                <a href="{{ action('CitologiaController@searchPage') }}" class="btn btn-warning" alt="Buscar" ><span class="glyphicon glyphicon-search"></span></a>
+                            <a href="{{ action('CitologiaController@searchPage') }}" class="btn btn-info" alt="Buscar" ><span class="glyphicon glyphicon-envelope"></span></a>
+                            <a href="{{ action('CitologiaController@searchPage') }}" class="btn btn-info" alt="Buscar" ><span class="glyphicon glyphicon-print"></span></a>
+                            <a href="{{ action('CitologiaController@searchPage') }}" class="btn btn-warning" alt="Buscar" ><span class="glyphicon glyphicon-search"></span></a>
                         </div>
                         <h4>Agregar de Citología</h4>
                     </div>

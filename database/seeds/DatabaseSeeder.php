@@ -19,12 +19,12 @@ class DatabaseSeeder extends Seeder
         $this->call(PermissionsTableSeeder::class);
         $this->call(RoleUserTableSeeder::class);
         $this->call(PermissionRoleTableSeeder::class);
-        $this->call(FacturasTableSeeder::class);
-        $this->call(CitologiasTableSeeder::class);
+        //$this->call(FacturasTableSeeder::class);
+        //$this->call(CitologiasTableSeeder::class);
         $this->call(PlantillasTableSeeder::class);
-        $this->call(CitoSerialsTableSeeder::class);
-        $this->call(HistopatologiasTableSeeder::class);
+        //$this->call(CitoSerialsTableSeeder::class);
+        //$this->call(HistopatologiasTableSeeder::class);
         $this->call(LinkImagesTableSeeder::class);
-        $this->call(ExamenesTableSeeder::class);
+        //$this->call(ExamenesTableSeeder::class);
     }
 }
