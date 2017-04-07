@@ -4,8 +4,8 @@
 
     <ol class="breadcrumb hidden-print">
         <li><a href="/home">Inicio</a></li>
-        <li><a href="{{ action('ReportesController@hojaCitoDeptoForm') }}">Hoja de Citología</a></li>
-        <li class="active">Hoja de Citología Resultados </li>
+        <li><a href="{{ action('ReportesController@hojaCitoDeptoForm') }}">Hoja de Reportes por Sedes</a></li>
+        <li class="active">Hoja de Reportes por Sedes Resultados </li>
     </ol>
 @stop
 
@@ -15,7 +15,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="text-center">
-                    <h3>Hoja de Citologías</h3>
+                    <h3>Hoja de Reportes por Sedes</h3>
                     <input type="button" class="btn btn-info btn-xs hidden-print" name="imprimir" value="Imprimir" onclick="window.print();"> <span class="hidden-print"> | </span>
                     <small>Desde:{{ $bdate->formatLocalized('%d %B %Y') }} Hasta: {{ $edate->formatLocalized('%d %B %Y') }}</small>
                 </div>
@@ -34,22 +34,22 @@
                     <th>Informe</th>
                     </thead>
                     <tbody>
-                    @foreach($items as $item)
-                        <tr>
-                            <td>{{ $item->factura_id }}</td>
-                            <td>{{ $item->facturas->direccion_entrega_sede }}</td>
-                            <td>{{ $item->facturas->nombre_completo_cliente }}</td>
-                            <td>{{ $item->facturas->edad }}</td>
-                            <td>{{ $item->facturas->sexo }}</td>
-                            <td>{{ $item->facturas->examen['nombre_examen'] }}</td>
-                            <td>{{ $item->serial }}</td>
-                        </tr>
-                    @endforeach
+                        @foreach($items as $items)
+                            <tr>
+                                <td>{{ $items['num_factura'] }}</td>
+                                <td>{{ $items['direccion_entrega_sede'] }}</td>
+                                <td>{{ $items['nombre_completo_cliente'] }}</td>
+                                <td>{{ $items['edad'] }}</td>
+                                <td>{{ $items['sexo'] }}</td>
+                                <td>{{ $items['nombre_examen'] }}</td>
+                                <td>{{ $items['serial'] }}</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                     <tfooter>
                         <tr>
                             <td>Recuento:</td>
-                            <td colspan="6" class="text-left"><string>{{ $items->count() }}</string></td>
+                            <td colspan="6" class="text-left"><string>{{ $total }}</string></td>
                         </tr>
                     </tfooter>
                 </table>

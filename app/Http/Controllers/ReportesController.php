@@ -93,17 +93,46 @@ class ReportesController extends Controller
         $edate = Carbon::createFromFormat('Y-m-d', $final)->endOfDay();
         $direc = $direccion;
 
-        $query = Citologia::with('facturas')->whereBetween('fecha_informe', [$bdate, $edate]);
-
-        if ($direc != 'null') {
-            $query->whereHas('facturas', function ($q) use ($direc) {
-                $q->where('direccion_entrega_sede', 'like', '%' . $direc . '%');
-            });
+        $PDO = DB::connection('mysql')->getPdo();
+        if($direccion != 'null'){
+            $query = $PDO->prepare("
+                SELECT f.num_factura, f.nombre_completo_cliente, f.edad,  f.sexo, x.nombre_examen, f.direccion_entrega_sede, c.serial
+                from citologias as c
+                JOIN facturas as f on f.num_factura = c.factura_id
+                JOIN examenes as x on x.num_factura = f.num_factura
+                where c.fecha_informe BETWEEN '". $bdate . "' AND '". $edate."'
+                AND f.direccion_entrega_sede = '" . $direc . "'
+                UNION
+                SELECT f.num_factura, f.nombre_completo_cliente, f.edad, f.sexo, x.nombre_examen, f.direccion_entrega_sede, h.serial
+                FROM histopatologias as h
+                JOIN facturas as f on f.num_factura = h.factura_id
+                JOIN examenes as x on x.num_factura = f.num_factura
+                where h.fecha_informe BETWEEN '". $bdate . "' AND '". $edate."'
+                AND f.direccion_entrega_sede = '" . $direc . "'
+              ");
+        } else {
+            $query = $PDO->prepare("
+                SELECT f.num_factura, f.nombre_completo_cliente, f.edad, f.sexo, x.nombre_examen, f.direccion_entrega_sede, c.serial
+                from citologias as c
+                JOIN facturas as f on f.num_factura = c.factura_id
+                JOIN examenes as x on x.num_factura = f.num_factura
+                where c.fecha_informe BETWEEN '". $bdate . "' AND '". $edate."'
+                UNION
+                SELECT f.num_factura, f.nombre_completo_cliente, f.edad, f.sexo, x.nombre_examen, f.direccion_entrega_sede, h.serial
+                FROM histopatologias as h
+                JOIN facturas as f on f.num_factura = h.factura_id
+                JOIN examenes as x on x.num_factura = f.num_factura
+                where h.fecha_informe BETWEEN '". $bdate . "' AND '". $edate."'
+              ");
         }
 
-        $items = $query->get();
+        $query->execute();
+        $total = $query->rowCount();
+
+        $items = $query->fetchAll((\PDO::FETCH_ASSOC));
+        //return $items;
         if ($pdf == 'null') {
-            return View('reportes.citologia.hojaCitoResultadosSede', compact('items', 'bdate', 'edate'));
+            return View('reportes.citologia.hojaCitoResultadosSede', compact('items', 'total', 'bdate', 'edate'));
         } else {
             $pdf = App::make('dompdf.wrapper');
             $pdf->loadView('reportes.citologia.CitoResultCedePdf', compact('items', 'bdate', 'edate'));
