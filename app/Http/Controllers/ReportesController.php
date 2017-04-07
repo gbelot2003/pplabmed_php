@@ -8,6 +8,7 @@ use App\Factura;
 use App\Histopatologia;
 use Barryvdh\DomPDF\PDF;
 use Carbon\Carbon;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
@@ -237,6 +238,214 @@ class ReportesController extends Controller
             $pdf->loadView('reportes.histo.morfologiaResultPdf', compact('items', 'bdate', 'edate'));
             return $pdf->stream();
         }
+    }
+
+    public function citoAnormalesForm()
+    {
+        return View('reportes.citologia.citoAnormalesForm');
+    }
+
+    public function citoAnormalesProcess(Request $request)
+    {
+        $inicio = $request->input('inicio');
+        $fin = $request->input('final');
+        return redirect()->to('reportes/reporte-citologias-anormales/resultado/' . $inicio . '/' . $fin );
+    }
+
+    public function citoAnormalesResult($inicio, $final)
+    {
+        $bdate = Carbon::createFromFormat('Y-m-d', $inicio)->startOfDay();
+        $edate = Carbon::createFromFormat('Y-m-d', $final)->endOfDay();
+
+        $a = Factura::join('citologias as c', 'c.factura_id', '=', 'facturas.num_factura')
+            ->join('examenes as x', 'x.num_factura', '=', 'facturas.num_factura')
+            ->selectRaw("SUM(IF(c.icitologia_id = 1, 1, 0)) as ID1,
+                SUM(IF(c.icitologia_id = 2, 1, 0)) as ID2,
+                SUM(IF(c.icitologia_id = 3, 1, 0)) as ID3,
+                SUM(IF(c.icitologia_id = 4, 1, 0)) as ID4,
+                SUM(IF(c.icitologia_id = 6, 1, 0)) as ID6,
+                SUM(IF(c.icitologia_id = 7, 1, 0)) as ID7,
+                SUM(IF(c.icitologia_id = 8, 1, 0)) as ID8,
+                SUM(IF(c.icitologia_id = 9, 1, 0)) as ID9,
+                SUM(IF(c.icitologia_id = 10, 1, 0)) as ID10,
+                SUM(IF(x.item=55 OR x.item=60, 1, 0)) as bs,
+                COUNT(facturas.id) as total")
+            ->whereBetween('c.fecha_informe', [$bdate, $edate])
+            ->whereRaw("date_format(FROM_DAYS(DATEDIFF(now(), facturas.fecha_nacimiento)), '%Y')+0 BETWEEN 0 AND 14")
+            ->get();
+
+        $b = Factura::join('citologias as c', 'c.factura_id', '=', 'facturas.num_factura')
+            ->join('examenes as x', 'x.num_factura', '=', 'facturas.num_factura')
+            ->selectRaw("SUM(IF(c.icitologia_id = 1, 1, 0)) as ID1,
+                SUM(IF(c.icitologia_id = 2, 1, 0)) as ID2,
+                SUM(IF(c.icitologia_id = 3, 1, 0)) as ID3,
+                SUM(IF(c.icitologia_id = 4, 1, 0)) as ID4,
+                SUM(IF(c.icitologia_id = 6, 1, 0)) as ID6,
+                SUM(IF(c.icitologia_id = 7, 1, 0)) as ID7,
+                SUM(IF(c.icitologia_id = 8, 1, 0)) as ID8,
+                SUM(IF(c.icitologia_id = 9, 1, 0)) as ID9,
+                SUM(IF(c.icitologia_id = 10, 1, 0)) as ID10,
+                SUM(IF(x.item=55 OR x.item=60, 1, 0)) as bs,
+                COUNT(facturas.id) as total")
+            ->whereBetween('c.fecha_informe', [$bdate, $edate])
+            ->whereRaw("date_format(FROM_DAYS(DATEDIFF(now(), facturas.fecha_nacimiento)), '%Y')+0 BETWEEN 15 AND 19")
+            ->get();
+
+        $c = Factura::join('citologias as c', 'c.factura_id', '=', 'facturas.num_factura')
+            ->join('examenes as x', 'x.num_factura', '=', 'facturas.num_factura')
+            ->selectRaw("SUM(IF(c.icitologia_id = 1, 1, 0)) as ID1,
+                SUM(IF(c.icitologia_id = 2, 1, 0)) as ID2,
+                SUM(IF(c.icitologia_id = 3, 1, 0)) as ID3,
+                SUM(IF(c.icitologia_id = 4, 1, 0)) as ID4,
+                SUM(IF(c.icitologia_id = 6, 1, 0)) as ID6,
+                SUM(IF(c.icitologia_id = 7, 1, 0)) as ID7,
+                SUM(IF(c.icitologia_id = 8, 1, 0)) as ID8,
+                SUM(IF(c.icitologia_id = 9, 1, 0)) as ID9,
+                SUM(IF(c.icitologia_id = 10, 1, 0)) as ID10,
+                SUM(IF(x.item=55 OR x.item=60, 1, 0)) as bs,
+                COUNT(facturas.id) as total")
+            ->whereBetween('c.fecha_informe', [$bdate, $edate])
+            ->whereRaw("date_format(FROM_DAYS(DATEDIFF(now(), facturas.fecha_nacimiento)), '%Y')+0 BETWEEN 20 AND 24")
+            ->get();
+
+        $d = Factura::join('citologias as c', 'c.factura_id', '=', 'facturas.num_factura')
+            ->join('examenes as x', 'x.num_factura', '=', 'facturas.num_factura')
+            ->selectRaw("SUM(IF(c.icitologia_id = 1, 1, 0)) as ID1,
+                SUM(IF(c.icitologia_id = 2, 1, 0)) as ID2,
+                SUM(IF(c.icitologia_id = 3, 1, 0)) as ID3,
+                SUM(IF(c.icitologia_id = 4, 1, 0)) as ID4,
+                SUM(IF(c.icitologia_id = 6, 1, 0)) as ID6,
+                SUM(IF(c.icitologia_id = 7, 1, 0)) as ID7,
+                SUM(IF(c.icitologia_id = 8, 1, 0)) as ID8,
+                SUM(IF(c.icitologia_id = 9, 1, 0)) as ID9,
+                SUM(IF(c.icitologia_id = 10, 1, 0)) as ID10,
+                SUM(IF(x.item=55 OR x.item=60, 1, 0)) as bs,
+                COUNT(facturas.id) as total")
+            ->whereBetween('c.fecha_informe', [$bdate, $edate])
+            ->whereRaw("date_format(FROM_DAYS(DATEDIFF(now(), facturas.fecha_nacimiento)), '%Y')+0 BETWEEN 25 AND 29")
+            ->get();
+
+        $e = Factura::join('citologias as c', 'c.factura_id', '=', 'facturas.num_factura')
+            ->join('examenes as x', 'x.num_factura', '=', 'facturas.num_factura')
+            ->selectRaw("SUM(IF(c.icitologia_id = 1, 1, 0)) as ID1,
+                SUM(IF(c.icitologia_id = 2, 1, 0)) as ID2,
+                SUM(IF(c.icitologia_id = 3, 1, 0)) as ID3,
+                SUM(IF(c.icitologia_id = 4, 1, 0)) as ID4,
+                SUM(IF(c.icitologia_id = 6, 1, 0)) as ID6,
+                SUM(IF(c.icitologia_id = 7, 1, 0)) as ID7,
+                SUM(IF(c.icitologia_id = 8, 1, 0)) as ID8,
+                SUM(IF(c.icitologia_id = 9, 1, 0)) as ID9,
+                SUM(IF(c.icitologia_id = 10, 1, 0)) as ID10,
+                SUM(IF(x.item=55 OR x.item=60, 1, 0)) as bs,
+                COUNT(facturas.id) as total")
+            ->whereBetween('c.fecha_informe', [$bdate, $edate])
+            ->whereRaw("date_format(FROM_DAYS(DATEDIFF(now(), facturas.fecha_nacimiento)), '%Y')+0 BETWEEN 30 AND 35")
+            ->get();
+
+        $f = Factura::join('citologias as c', 'c.factura_id', '=', 'facturas.num_factura')
+            ->join('examenes as x', 'x.num_factura', '=', 'facturas.num_factura')
+            ->selectRaw("SUM(IF(c.icitologia_id = 1, 1, 0)) as ID1,
+                SUM(IF(c.icitologia_id = 2, 1, 0)) as ID2,
+                SUM(IF(c.icitologia_id = 3, 1, 0)) as ID3,
+                SUM(IF(c.icitologia_id = 4, 1, 0)) as ID4,
+                SUM(IF(c.icitologia_id = 6, 1, 0)) as ID6,
+                SUM(IF(c.icitologia_id = 7, 1, 0)) as ID7,
+                SUM(IF(c.icitologia_id = 8, 1, 0)) as ID8,
+                SUM(IF(c.icitologia_id = 9, 1, 0)) as ID9,
+                SUM(IF(c.icitologia_id = 10, 1, 0)) as ID10,
+                SUM(IF(x.item=55 OR x.item=60, 1, 0)) as bs,
+                COUNT(facturas.id) as total")
+            ->whereBetween('c.fecha_informe', [$bdate, $edate])
+            ->whereRaw("date_format(FROM_DAYS(DATEDIFF(now(), facturas.fecha_nacimiento)), '%Y')+0 BETWEEN 36 AND 39")
+            ->get();
+
+        $g = Factura::join('citologias as c', 'c.factura_id', '=', 'facturas.num_factura')
+            ->join('examenes as x', 'x.num_factura', '=', 'facturas.num_factura')
+            ->selectRaw("SUM(IF(c.icitologia_id = 1, 1, 0)) as ID1,
+                SUM(IF(c.icitologia_id = 2, 1, 0)) as ID2,
+                SUM(IF(c.icitologia_id = 3, 1, 0)) as ID3,
+                SUM(IF(c.icitologia_id = 4, 1, 0)) as ID4,
+                SUM(IF(c.icitologia_id = 6, 1, 0)) as ID6,
+                SUM(IF(c.icitologia_id = 7, 1, 0)) as ID7,
+                SUM(IF(c.icitologia_id = 8, 1, 0)) as ID8,
+                SUM(IF(c.icitologia_id = 9, 1, 0)) as ID9,
+                SUM(IF(c.icitologia_id = 10, 1, 0)) as ID10,
+                SUM(IF(x.item=55 OR x.item=60, 1, 0)) as bs,
+                COUNT(facturas.id) as total")
+            ->whereBetween('c.fecha_informe', [$bdate, $edate])
+            ->whereRaw("date_format(FROM_DAYS(DATEDIFF(now(), facturas.fecha_nacimiento)), '%Y')+0 BETWEEN 40 AND 44")
+            ->get();
+
+        $h = Factura::join('citologias as c', 'c.factura_id', '=', 'facturas.num_factura')
+            ->join('examenes as x', 'x.num_factura', '=', 'facturas.num_factura')
+            ->selectRaw("SUM(IF(c.icitologia_id = 1, 1, 0)) as ID1,
+                SUM(IF(c.icitologia_id = 2, 1, 0)) as ID2,
+                SUM(IF(c.icitologia_id = 3, 1, 0)) as ID3,
+                SUM(IF(c.icitologia_id = 4, 1, 0)) as ID4,
+                SUM(IF(c.icitologia_id = 6, 1, 0)) as ID6,
+                SUM(IF(c.icitologia_id = 7, 1, 0)) as ID7,
+                SUM(IF(c.icitologia_id = 8, 1, 0)) as ID8,
+                SUM(IF(c.icitologia_id = 9, 1, 0)) as ID9,
+                SUM(IF(c.icitologia_id = 10, 1, 0)) as ID10,
+                SUM(IF(x.item=55 OR x.item=60, 1, 0)) as bs,
+                COUNT(facturas.id) as total")
+            ->whereBetween('c.fecha_informe', [$bdate, $edate])
+            ->whereRaw("date_format(FROM_DAYS(DATEDIFF(now(), facturas.fecha_nacimiento)), '%Y')+0 BETWEEN 45 AND 49")
+            ->get();
+
+        $i = Factura::join('citologias as c', 'c.factura_id', '=', 'facturas.num_factura')
+            ->join('examenes as x', 'x.num_factura', '=', 'facturas.num_factura')
+            ->selectRaw("SUM(IF(c.icitologia_id = 1, 1, 0)) as ID1,
+                SUM(IF(c.icitologia_id = 2, 1, 0)) as ID2,
+                SUM(IF(c.icitologia_id = 3, 1, 0)) as ID3,
+                SUM(IF(c.icitologia_id = 4, 1, 0)) as ID4,
+                SUM(IF(c.icitologia_id = 6, 1, 0)) as ID6,
+                SUM(IF(c.icitologia_id = 7, 1, 0)) as ID7,
+                SUM(IF(c.icitologia_id = 8, 1, 0)) as ID8,
+                SUM(IF(c.icitologia_id = 9, 1, 0)) as ID9,
+                SUM(IF(c.icitologia_id = 10, 1, 0)) as ID10,
+                SUM(IF(x.item=55 OR x.item=60, 1, 0)) as bs,
+                COUNT(facturas.id) as total")
+            ->whereBetween('c.fecha_informe', [$bdate, $edate])
+            ->whereRaw("date_format(FROM_DAYS(DATEDIFF(now(), facturas.fecha_nacimiento)), '%Y')+0 BETWEEN 50 AND 54")
+            ->get();
+
+        $j = Factura::join('citologias as c', 'c.factura_id', '=', 'facturas.num_factura')
+            ->join('examenes as x', 'x.num_factura', '=', 'facturas.num_factura')
+            ->selectRaw("SUM(IF(c.icitologia_id = 1, 1, 0)) as ID1,
+                SUM(IF(c.icitologia_id = 2, 1, 0)) as ID2,
+                SUM(IF(c.icitologia_id = 3, 1, 0)) as ID3,
+                SUM(IF(c.icitologia_id = 4, 1, 0)) as ID4,
+                SUM(IF(c.icitologia_id = 6, 1, 0)) as ID6,
+                SUM(IF(c.icitologia_id = 7, 1, 0)) as ID7,
+                SUM(IF(c.icitologia_id = 8, 1, 0)) as ID8,
+                SUM(IF(c.icitologia_id = 9, 1, 0)) as ID9,
+                SUM(IF(c.icitologia_id = 10, 1, 0)) as ID10,
+                SUM(IF(x.item=55 OR x.item=60, 1, 0)) as bs,
+                COUNT(facturas.id) as total")
+            ->whereBetween('c.fecha_informe', [$bdate, $edate])
+            ->whereRaw("date_format(FROM_DAYS(DATEDIFF(now(), facturas.fecha_nacimiento)), '%Y')+0 BETWEEN 55 AND 60")
+            ->get();
+
+        $k = Factura::join('citologias as c', 'c.factura_id', '=', 'facturas.num_factura')
+            ->join('examenes as x', 'x.num_factura', '=', 'facturas.num_factura')
+            ->selectRaw("SUM(IF(c.icitologia_id = 1, 1, 0)) as ID1,
+                SUM(IF(c.icitologia_id = 2, 1, 0)) as ID2,
+                SUM(IF(c.icitologia_id = 3, 1, 0)) as ID3,
+                SUM(IF(c.icitologia_id = 4, 1, 0)) as ID4,
+                SUM(IF(c.icitologia_id = 6, 1, 0)) as ID6,
+                SUM(IF(c.icitologia_id = 7, 1, 0)) as ID7,
+                SUM(IF(c.icitologia_id = 8, 1, 0)) as ID8,
+                SUM(IF(c.icitologia_id = 9, 1, 0)) as ID9,
+                SUM(IF(c.icitologia_id = 10, 1, 0)) as ID10,
+                SUM(IF(x.item=55 OR x.item=60, 1, 0)) as bs,
+                COUNT(facturas.id) as total")
+            ->whereBetween('c.fecha_informe', [$bdate, $edate])
+            ->whereRaw("date_format(FROM_DAYS(DATEDIFF(now(), facturas.fecha_nacimiento)), '%Y')+0 BETWEEN 60 AND 135")
+            ->get();
+
+        return View('reportes.citologia.citoAnormalesResult', compact('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'bdate', 'edate'));
+        //return compact('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k');
 
     }
 }

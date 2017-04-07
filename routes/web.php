@@ -84,6 +84,9 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('reportes/reporte-morfologia', 'ReportesController@morfologiaProcess');
     Route::get('reportes/reporte-morfologia/resultado/{inicio}/{final}/{mor1}/{mor2}/{topo}/{pdf}', 'ReportesController@morfologiaResult');
 
-
+//
+    Route::get('reportes/reporte-citologias-anormales', 'ReportesController@citoAnormalesForm');
+    Route::post('reportes/reporte-citologias-anormales', 'ReportesController@citoAnormalesProcess');
+    Route::get('reportes/reporte-citologias-anormales/resultado/{inicio}/{final}', 'ReportesController@citoAnormalesResult');
 
 });
