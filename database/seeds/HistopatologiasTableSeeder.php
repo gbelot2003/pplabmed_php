@@ -14,12 +14,12 @@ class HistopatologiasTableSeeder extends Seeder
     {
         
 
-        \DB::table('histopatologias')->delete();
+        \DB::table('Histopatologias')->delete();
         
-        \DB::table('histopatologias')->insert(array (
+        \DB::table('Histopatologias')->insert(array (
             0 => 
             array (
-                'id' => 2,
+                'id' => 1,
                 'serial' => 1,
                 'factura_id' => 113,
                 'link_id' => 1,
@@ -41,7 +41,7 @@ class HistopatologiasTableSeeder extends Seeder
             ),
             1 => 
             array (
-                'id' => 3,
+                'id' => 2,
                 'serial' => 2,
                 'factura_id' => 132,
                 'link_id' => 2,
