@@ -97,7 +97,7 @@ class CitologiasTableSeeder extends Seeder
             ),
             3 => 
             array (
-                'id' => 5,
+                'id' => 4,
                 'serial' => 5,
                 'factura_id' => 151,
                 'deteccion_cancer' => NULL,
@@ -123,7 +123,7 @@ class CitologiasTableSeeder extends Seeder
             ),
             4 => 
             array (
-                'id' => 6,
+                'id' => 5,
                 'serial' => 6,
                 'factura_id' => 156,
                 'deteccion_cancer' => NULL,
@@ -149,7 +149,7 @@ class CitologiasTableSeeder extends Seeder
             ),
             5 => 
             array (
-                'id' => 7,
+                'id' => 6,
                 'serial' => 7,
                 'factura_id' => 159,
                 'deteccion_cancer' => 1,
@@ -175,7 +175,7 @@ class CitologiasTableSeeder extends Seeder
             ),
             6 => 
             array (
-                'id' => 8,
+                'id' => 7,
                 'serial' => 8,
                 'factura_id' => 196,
                 'deteccion_cancer' => 0,

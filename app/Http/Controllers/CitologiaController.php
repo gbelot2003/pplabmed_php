@@ -71,7 +71,11 @@ CitologiaController extends Controller
         $item = Citologia::findOrFail($id);
         $idCIto = Categoria::where('status', 1)->pluck('name', 'id');
         $firmas = Firma::where('status', 1)->pluck('name', 'id');
-        return View('resultados.citologia.edit', compact('item','idCIto', 'firmas', 'gravidad'));
+        $previous = Citologia::where('id', '<', $item->id)->max('id');
+        $next = Citologia::where('id', '>', $item->id)->min('id');
+        $total = Citologia::all()->count();
+
+        return View('resultados.citologia.edit', compact('item','idCIto', 'firmas', 'gravidad', 'previous', 'next', 'total'));
     }
 
     /**
