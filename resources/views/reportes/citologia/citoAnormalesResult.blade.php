@@ -3,8 +3,8 @@
 @section('breadcrumbs')
     <ol class="breadcrumb hidden-print">
         <li><a href="/home">Inicio</a></li>
-        <li><a href="{{ action('ReportesController@hojaCitoForm') }}">Citologias Anormales</a></li>
-        <li class="active">Citologias Anormales </li>
+        <li><a href="{{ action('ReportesController@citoAnormalesForm') }}">Reporte de Citologías Anormales</a></li>
+        <li class="active">Citologias Anormales Resultados</li>
     </ol>
 @stop
 
@@ -21,7 +21,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12">
+
                 <table class="table table-bordered table-striped dataTable">
                     <thead>
                     <th>EDAD</th>
@@ -271,8 +271,30 @@
                             @endforeach
                         </tr>
                     </tbody>
+                    <tfoot>
+                    <tr>
+                        <th>Totales</th>
+                        @foreach($totales as $uno)
+                            <th>{{ isset($uno->ID1) ? $uno->ID1 : 0 }}</th>
+                            <th>{{ isset($uno->ID2) ? $uno->ID2 : 0 }}</th>
+                            <th>{{ isset($uno->ID3) ? $uno->ID3 : 0 }}</th>
+                            <th>{{ isset($uno->ID4) ? $uno->ID4 : 0 }}</th>
+                            <th>{{ isset($uno->ID6) ? $uno->ID6 : 0 }}</th>
+                            <th>{{ isset($uno->ID7) ? $uno->ID7 : 0 }}</th>
+                            <th>{{ isset($uno->ID8) ? $uno->ID8 : 0 }}</th>
+                            <th>{{ isset($uno->ID9) ? $uno->ID9 : 0 }}</th>
+                            <th>{{ isset($uno->ID10) ? $uno->ID10 : 0 }}</th>
+                            <th>{{ isset($uno->total) ? $uno->total : 0 }}</th>
+                            <th>
+                                {{
+                                $uno->total - $uno->bs
+                                }}
+                            </th>
+                            <th>{{ isset($uno->bs) ? $uno->bs : 0 }}</th>
+                        @endforeach
+                    </tr>
+                    </tfoot>
                 </table>
             </div>
-        </div>
     </div>
 @stop

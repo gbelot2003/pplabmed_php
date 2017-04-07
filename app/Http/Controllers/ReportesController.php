@@ -444,7 +444,23 @@ class ReportesController extends Controller
             ->whereRaw("date_format(FROM_DAYS(DATEDIFF(now(), facturas.fecha_nacimiento)), '%Y')+0 BETWEEN 60 AND 135")
             ->get();
 
-        return View('reportes.citologia.citoAnormalesResult', compact('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'bdate', 'edate'));
+        $totales = Factura::join('citologias as c', 'c.factura_id', '=', 'facturas.num_factura')
+            ->join('examenes as x', 'x.num_factura', '=', 'facturas.num_factura')
+            ->selectRaw("SUM(IF(c.icitologia_id = 1, 1, 0)) as ID1,
+                SUM(IF(c.icitologia_id = 2, 1, 0)) as ID2,
+                SUM(IF(c.icitologia_id = 3, 1, 0)) as ID3,
+                SUM(IF(c.icitologia_id = 4, 1, 0)) as ID4,
+                SUM(IF(c.icitologia_id = 6, 1, 0)) as ID6,
+                SUM(IF(c.icitologia_id = 7, 1, 0)) as ID7,
+                SUM(IF(c.icitologia_id = 8, 1, 0)) as ID8,
+                SUM(IF(c.icitologia_id = 9, 1, 0)) as ID9,
+                SUM(IF(c.icitologia_id = 10, 1, 0)) as ID10,
+                SUM(IF(x.item=10327  OR x.item=10328, 1, 0)) as bs,
+                COUNT(facturas.id) as total")
+            ->whereBetween('c.fecha_informe', [$bdate, $edate])
+            ->get();
 
+
+        return View('reportes.citologia.citoAnormalesResult', compact('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'totales', 'bdate', 'edate'));
     }
 }
