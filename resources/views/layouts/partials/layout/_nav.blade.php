@@ -86,9 +86,9 @@
                         <li class="dropdown-header">Usuarios</li>
                         <li><a href="{{ action('UserController@index') }}">Listado de Usuarios</a></li>
                         <li><a href="{{ action('UserController@create') }}">Creación de Usuarios</a></li>
-                        <li class="divider"></li>
+    {{--                    <li class="divider"></li>
                         <li class="dropdown-header">Bitacora</li>
-                        <li><a href="{{ action('CitologiaController@index') }}">Reporte de Actividades</a></li>
+                        <li><a href="{{ action('CitologiaController@index') }}">Reporte de Actividades</a></li>--}}
                     </ul>
                 </li>
 
