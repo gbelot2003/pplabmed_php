@@ -31,7 +31,6 @@
     <div class="row">
 
         <div class="col-md-12">
-            @foreach (array_chunk($items->all(), 9) as $eItems)
             <table class="table table-bordered table-striped dataTable">
                 <tr>
                     <th>No. Factura</th>
@@ -42,19 +41,22 @@
                     <th>Examen</th>
                     <th>Informe</th>
                 </tr>
-                @foreach($eItems as $item)
+                @foreach($items as $item)
                     <tr>
-                        <td>{{ $item->factura_id }}</td>
-                        <td>{{ $item->facturas->direccion_entrega_sede }}</td>
-                        <td>{{ $item->facturas->nombre_completo_cliente }}</td>
-                        <td>{{ $item->facturas->edad }}</td>
-                        <td>{{ $item->facturas->sexo }}</td>
-                        <td>{{ $item->facturas->examen['nombre_examen'] }}</td>
-                        <td>{{ $item->serial }}</td>
+                        <td>{{ $item['num_factura'] }}</td>
+                        <td>{{ $item['direccion_entrega_sede'] }}</td>
+                        <td>{{ $item['nombre_completo_cliente'] }}</td>
+                        <td>{{ $item['edad'] }}</td>
+                        <td>{{ $item['sexo'] }}</td>
+                        <td>{{ $item['nombre_examen'] }}</td>
+                        <td>{{ $item['serial'] }}</td>
                     </tr>
                 @endforeach
+                <tr>
+                    <td>Recuento:</td>
+                    <td colspan="6" class="text-left"><string>{{ $total }}</string></td>
+                </tr>
             </table>
-            @endforeach
         </div>
 
     </div>
