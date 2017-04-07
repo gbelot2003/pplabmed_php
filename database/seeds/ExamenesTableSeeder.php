@@ -21,7 +21,7 @@ class ExamenesTableSeeder extends Seeder
             array (
                 'id' => 1,
                 'num_factura' => 113,
-                'item' => 55,
+                'item' => 54,
                 'nombre_examen' => 'Aspiracion  Hasta 4 Laminas Despues De 5.P.M. Base Liquida',
                 'created_at' => '2017-03-22 05:23:38',
                 'updated_at' => '2017-03-22 05:23:38',
@@ -30,7 +30,7 @@ class ExamenesTableSeeder extends Seeder
             array (
                 'id' => 2,
                 'num_factura' => 177,
-                'item' => 60,
+                'item' => 65,
                 'nombre_examen' => 'Cit. Aspiracion  Hasta 4 Laminas Despues De 5.P.M. Por Revision De Frotis Adec.',
                 'created_at' => '2017-03-22 05:23:38',
                 'updated_at' => '2017-03-22 05:23:38',
@@ -68,8 +68,8 @@ class ExamenesTableSeeder extends Seeder
                 'num_factura' => 156,
                 'item' => 60,
                 'nombre_examen' => 'Cit. Aspiracion  Hasta 4 Laminas Despues De 5.P.M. Por Revision De Frotis Adec.',
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'created_at' => '2017-04-06 10:01:14',
+                'updated_at' => '2017-04-06 10:01:22',
             ),
             6 => 
             array (
@@ -77,8 +77,8 @@ class ExamenesTableSeeder extends Seeder
                 'num_factura' => 159,
                 'item' => 55,
                 'nombre_examen' => 'Aspiracion  Hasta 4 Laminas Despues De 5.P.M. Base Liquida',
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'created_at' => '2017-04-06 10:01:16',
+                'updated_at' => '2017-04-06 10:01:22',
             ),
             7 => 
             array (
@@ -86,8 +86,8 @@ class ExamenesTableSeeder extends Seeder
                 'num_factura' => 196,
                 'item' => 60,
                 'nombre_examen' => 'Cit. Aspiracion  Hasta 4 Laminas Despues De 5.P.M. Por Revision De Frotis Adec.',
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'created_at' => '2017-04-06 10:01:17',
+                'updated_at' => '2017-04-06 10:01:23',
             ),
             8 => 
             array (
@@ -95,8 +95,8 @@ class ExamenesTableSeeder extends Seeder
                 'num_factura' => 199,
                 'item' => 55,
                 'nombre_examen' => 'Aspiracion  Hasta 4 Laminas Despues De 5.P.M. Base Liquida',
-                'created_at' => NULL,
-                'updated_at' => NULL,
+                'created_at' => '2017-04-06 10:01:17',
+                'updated_at' => '2017-04-06 10:01:20',
             ),
         ));
         

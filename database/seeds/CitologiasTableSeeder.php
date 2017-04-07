@@ -97,32 +97,6 @@ class CitologiasTableSeeder extends Seeder
             ),
             3 => 
             array (
-                'id' => 4,
-                'serial' => 4,
-                'factura_id' => 132,
-                'deteccion_cancer' => 1,
-                'indice_maduracion' => NULL,
-                'otros_a' => NULL,
-                'gravidad' => 3,
-                'fur' => '2017-03-10',
-                'fup' => '2017-03-10',
-                'fecha_informe' => '2017-03-10',
-                'fecha_muestra' => '2017-03-10',
-                'para' => NULL,
-                'abortos' => NULL,
-                'icitologia_id' => 3,
-                'firma_id' => 4,
-                'firma2_id' => 1,
-                'otros_b' => NULL,
-                'mm' => 1,
-                'diagnostico' => '<p>Cas asd asd as das das da sda sd asd asd asd as dasdasda sdasdasdasda&nbsp;</p>',
-                'informe' => '<p>Cas asd asd as das das da sda sd asd asd asd as dasdasda sdasdasdasda&nbsp;</p>',
-                'user_id' => NULL,
-                'created_at' => '2017-03-10 21:44:56',
-                'updated_at' => '2017-03-14 16:33:30',
-            ),
-            4 => 
-            array (
                 'id' => 5,
                 'serial' => 5,
                 'factura_id' => 151,
@@ -147,7 +121,7 @@ class CitologiasTableSeeder extends Seeder
                 'created_at' => '2017-03-10 21:45:46',
                 'updated_at' => '2017-03-14 16:33:21',
             ),
-            5 => 
+            4 => 
             array (
                 'id' => 6,
                 'serial' => 6,
@@ -173,7 +147,7 @@ class CitologiasTableSeeder extends Seeder
                 'created_at' => '2017-03-10 21:46:47',
                 'updated_at' => '2017-03-14 16:33:11',
             ),
-            6 => 
+            5 => 
             array (
                 'id' => 7,
                 'serial' => 7,
@@ -199,7 +173,7 @@ class CitologiasTableSeeder extends Seeder
                 'created_at' => '2017-03-10 21:47:49',
                 'updated_at' => '2017-03-16 16:29:55',
             ),
-            7 => 
+            6 => 
             array (
                 'id' => 8,
                 'serial' => 8,
