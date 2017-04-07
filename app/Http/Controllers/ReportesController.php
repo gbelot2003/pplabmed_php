@@ -16,6 +16,15 @@ use Illuminate\Support\Facades\DB;
 class ReportesController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('checkActive');
+        /*$this->middleware('showCito', ['only' => ['index']]);
+        $this->middleware('createCito', ['only' => ['create', 'store']]);
+        $this->middleware('editCito', ['only' => ['edit', 'update']]);*/
+    }
+
     public function hojaCitoForm()
     {
 

@@ -47,6 +47,8 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('citologia/busqueda', 'CitologiaController@searchPage');
     Route::post('citologias/busqueda', 'CitologiaController@processForm');
     Route::any('citologia/resultados/{serial}/{factura_id}/{nombre}/{edad}/{sexo}/{corrreo}/{correo2}/{direccion}/{medico}/{otros}/{gravidad}/{icito}/{para}/{abortos}/{fur}/{fup}/{finfo}/{fmues}/{firma1}/{firma2}/{otrosb}/{informe}/{diagnostico}', 'CitologiaController@search');
+    /***/Route::get('citologia/sobres/{id}', 'PrintController@sobresCitologia');
+    /***/Route::get('citologia/formulario/{id}', 'PrintController@formatoCitologia');
 
     Route::resource('histopatologia', 'HistopatologiaController');
     Route::get('histopatologias/listados', 'HistopatologiaController@listados');
@@ -54,6 +56,8 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('histopatologias/busqueda', 'HistopatologiaController@searchPage');
     Route::post('histopatologia/process', 'HistopatologiaController@processForm');
     Route::get('histopatologias/resultados/{serial}/{factura_id}/{nombre}/{edad}/{sexo}/{corrreo}/{correo2}/{direccion}/{medico}/{topo}/{mor1}/{mor2}/{firma}/{firma2}/{diag}/{muestra}/{finfo}/{fbiop}/{fmuest}/{informe}', 'HistopatologiaController@search');
+    /***/Route::get('histopatologias/sobres/{id}', 'PrintController@sobreHistopatologia');
+    /***/Route::get('histopatologias/formulario/{id}', 'PrintController@formatoHistopatologia');
 
     Route::post('histo/images/', 'ImagesController@uploadForm');
     Route::put('histo/images/update/{id}', 'ImagesController@update');
