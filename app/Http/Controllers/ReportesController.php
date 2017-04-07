@@ -268,7 +268,7 @@ class ReportesController extends Controller
                 SUM(IF(c.icitologia_id = 8, 1, 0)) as ID8,
                 SUM(IF(c.icitologia_id = 9, 1, 0)) as ID9,
                 SUM(IF(c.icitologia_id = 10, 1, 0)) as ID10,
-                SUM(IF(x.item=55 OR x.item=60, 1, 0)) as bs,
+                SUM(IF(x.item=10327  OR x.item=10328, 1, 0)) as bs,
                 COUNT(facturas.id) as total")
             ->whereBetween('c.fecha_informe', [$bdate, $edate])
             ->whereRaw("date_format(FROM_DAYS(DATEDIFF(now(), facturas.fecha_nacimiento)), '%Y')+0 BETWEEN 0 AND 14")
@@ -285,7 +285,7 @@ class ReportesController extends Controller
                 SUM(IF(c.icitologia_id = 8, 1, 0)) as ID8,
                 SUM(IF(c.icitologia_id = 9, 1, 0)) as ID9,
                 SUM(IF(c.icitologia_id = 10, 1, 0)) as ID10,
-                SUM(IF(x.item=55 OR x.item=60, 1, 0)) as bs,
+                SUM(IF(x.item=10327  OR x.item=10328, 1, 0)) as bs,
                 COUNT(facturas.id) as total")
             ->whereBetween('c.fecha_informe', [$bdate, $edate])
             ->whereRaw("date_format(FROM_DAYS(DATEDIFF(now(), facturas.fecha_nacimiento)), '%Y')+0 BETWEEN 15 AND 19")
@@ -302,7 +302,7 @@ class ReportesController extends Controller
                 SUM(IF(c.icitologia_id = 8, 1, 0)) as ID8,
                 SUM(IF(c.icitologia_id = 9, 1, 0)) as ID9,
                 SUM(IF(c.icitologia_id = 10, 1, 0)) as ID10,
-                SUM(IF(x.item=55 OR x.item=60, 1, 0)) as bs,
+                SUM(IF(x.item=10327  OR x.item=10328, 1, 0)) as bs,
                 COUNT(facturas.id) as total")
             ->whereBetween('c.fecha_informe', [$bdate, $edate])
             ->whereRaw("date_format(FROM_DAYS(DATEDIFF(now(), facturas.fecha_nacimiento)), '%Y')+0 BETWEEN 20 AND 24")
@@ -319,7 +319,7 @@ class ReportesController extends Controller
                 SUM(IF(c.icitologia_id = 8, 1, 0)) as ID8,
                 SUM(IF(c.icitologia_id = 9, 1, 0)) as ID9,
                 SUM(IF(c.icitologia_id = 10, 1, 0)) as ID10,
-                SUM(IF(x.item=55 OR x.item=60, 1, 0)) as bs,
+                SUM(IF(x.item=10327  OR x.item=10328, 1, 0)) as bs,
                 COUNT(facturas.id) as total")
             ->whereBetween('c.fecha_informe', [$bdate, $edate])
             ->whereRaw("date_format(FROM_DAYS(DATEDIFF(now(), facturas.fecha_nacimiento)), '%Y')+0 BETWEEN 25 AND 29")
@@ -336,7 +336,7 @@ class ReportesController extends Controller
                 SUM(IF(c.icitologia_id = 8, 1, 0)) as ID8,
                 SUM(IF(c.icitologia_id = 9, 1, 0)) as ID9,
                 SUM(IF(c.icitologia_id = 10, 1, 0)) as ID10,
-                SUM(IF(x.item=55 OR x.item=60, 1, 0)) as bs,
+                SUM(IF(x.item=10327  OR x.item=10328, 1, 0)) as bs,
                 COUNT(facturas.id) as total")
             ->whereBetween('c.fecha_informe', [$bdate, $edate])
             ->whereRaw("date_format(FROM_DAYS(DATEDIFF(now(), facturas.fecha_nacimiento)), '%Y')+0 BETWEEN 30 AND 35")
@@ -353,7 +353,7 @@ class ReportesController extends Controller
                 SUM(IF(c.icitologia_id = 8, 1, 0)) as ID8,
                 SUM(IF(c.icitologia_id = 9, 1, 0)) as ID9,
                 SUM(IF(c.icitologia_id = 10, 1, 0)) as ID10,
-                SUM(IF(x.item=55 OR x.item=60, 1, 0)) as bs,
+                SUM(IF(x.item=10327  OR x.item=10328, 1, 0)) as bs,
                 COUNT(facturas.id) as total")
             ->whereBetween('c.fecha_informe', [$bdate, $edate])
             ->whereRaw("date_format(FROM_DAYS(DATEDIFF(now(), facturas.fecha_nacimiento)), '%Y')+0 BETWEEN 36 AND 39")
@@ -370,7 +370,7 @@ class ReportesController extends Controller
                 SUM(IF(c.icitologia_id = 8, 1, 0)) as ID8,
                 SUM(IF(c.icitologia_id = 9, 1, 0)) as ID9,
                 SUM(IF(c.icitologia_id = 10, 1, 0)) as ID10,
-                SUM(IF(x.item=55 OR x.item=60, 1, 0)) as bs,
+                SUM(IF(x.item=10327  OR x.item=10328, 1, 0)) as bs,
                 COUNT(facturas.id) as total")
             ->whereBetween('c.fecha_informe', [$bdate, $edate])
             ->whereRaw("date_format(FROM_DAYS(DATEDIFF(now(), facturas.fecha_nacimiento)), '%Y')+0 BETWEEN 40 AND 44")
@@ -387,7 +387,7 @@ class ReportesController extends Controller
                 SUM(IF(c.icitologia_id = 8, 1, 0)) as ID8,
                 SUM(IF(c.icitologia_id = 9, 1, 0)) as ID9,
                 SUM(IF(c.icitologia_id = 10, 1, 0)) as ID10,
-                SUM(IF(x.item=55 OR x.item=60, 1, 0)) as bs,
+                SUM(IF(x.item=10327  OR x.item=10328, 1, 0)) as bs,
                 COUNT(facturas.id) as total")
             ->whereBetween('c.fecha_informe', [$bdate, $edate])
             ->whereRaw("date_format(FROM_DAYS(DATEDIFF(now(), facturas.fecha_nacimiento)), '%Y')+0 BETWEEN 45 AND 49")
@@ -404,7 +404,7 @@ class ReportesController extends Controller
                 SUM(IF(c.icitologia_id = 8, 1, 0)) as ID8,
                 SUM(IF(c.icitologia_id = 9, 1, 0)) as ID9,
                 SUM(IF(c.icitologia_id = 10, 1, 0)) as ID10,
-                SUM(IF(x.item=55 OR x.item=60, 1, 0)) as bs,
+                SUM(IF(x.item=10327  OR x.item=10328, 1, 0)) as bs,
                 COUNT(facturas.id) as total")
             ->whereBetween('c.fecha_informe', [$bdate, $edate])
             ->whereRaw("date_format(FROM_DAYS(DATEDIFF(now(), facturas.fecha_nacimiento)), '%Y')+0 BETWEEN 50 AND 54")
@@ -421,7 +421,7 @@ class ReportesController extends Controller
                 SUM(IF(c.icitologia_id = 8, 1, 0)) as ID8,
                 SUM(IF(c.icitologia_id = 9, 1, 0)) as ID9,
                 SUM(IF(c.icitologia_id = 10, 1, 0)) as ID10,
-                SUM(IF(x.item=55 OR x.item=60, 1, 0)) as bs,
+                SUM(IF(x.item=10327  OR x.item=10328, 1, 0)) as bs,
                 COUNT(facturas.id) as total")
             ->whereBetween('c.fecha_informe', [$bdate, $edate])
             ->whereRaw("date_format(FROM_DAYS(DATEDIFF(now(), facturas.fecha_nacimiento)), '%Y')+0 BETWEEN 55 AND 60")
@@ -438,14 +438,13 @@ class ReportesController extends Controller
                 SUM(IF(c.icitologia_id = 8, 1, 0)) as ID8,
                 SUM(IF(c.icitologia_id = 9, 1, 0)) as ID9,
                 SUM(IF(c.icitologia_id = 10, 1, 0)) as ID10,
-                SUM(IF(x.item=55 OR x.item=60, 1, 0)) as bs,
+                SUM(IF(x.item=10327  OR x.item=10328, 1, 0)) as bs,
                 COUNT(facturas.id) as total")
             ->whereBetween('c.fecha_informe', [$bdate, $edate])
             ->whereRaw("date_format(FROM_DAYS(DATEDIFF(now(), facturas.fecha_nacimiento)), '%Y')+0 BETWEEN 60 AND 135")
             ->get();
 
         return View('reportes.citologia.citoAnormalesResult', compact('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'bdate', 'edate'));
-        //return compact('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k');
 
     }
 }
