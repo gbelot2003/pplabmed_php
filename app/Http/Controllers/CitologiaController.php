@@ -41,7 +41,7 @@ CitologiaController extends Controller
      */
     public function create()
     {
-        $serial = $this->getSerial();
+        $serial = 'N/A';
         $idCIto = Categoria::where('status', 1)->pluck('name', 'id');
         $firmas = Firma::where('status', 1)->pluck('name', 'id');
 
@@ -54,12 +54,14 @@ CitologiaController extends Controller
      */
     public function store(Request $request)
     {
+        $request['serial'] = $this->getSerial();
         $cito = Citologia::create($request->all());
+
         $cito->facturas->update($request->all());
 
         $this->setSerial($request->input('serial'));
         flash('Reegistro Creado', 'success')->important();
-        return redirect()->action('CitologiaController@index');
+        return redirect()->action('CitologiaController@create');
     }
 
     /**
@@ -93,7 +95,7 @@ CitologiaController extends Controller
         $cito->facturas->update($request->all());
 
         flash('Reegistro Actualizado', 'success')->important();
-        return redirect()->action('CitologiaController@index');
+        return redirect()->back();
     }
 
     /**

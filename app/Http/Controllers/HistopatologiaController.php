@@ -33,7 +33,7 @@ class HistopatologiaController extends Controller
 
     public function create()
     {
-        $serial = $this->getSerial();
+        $serial = 'N/A';
         $link = LinkImage::create([
             'user_id' => Auth::user()->id
         ]);
@@ -44,7 +44,7 @@ class HistopatologiaController extends Controller
 
     public function store(HistopatiaValidation $request)
     {
-        //dd($request->all());
+        $request['serial'] = $this->getSerial();
         $histo = Histopatologia::create($request->all());
         $histo->facturas->update($request->all());
         $this->setSerial($request->input('serial'));
@@ -72,7 +72,7 @@ class HistopatologiaController extends Controller
         $item->facturas->update($request->all());
 
         flash('Reegistro Actualizado', 'success')->important();
-        return redirect()->action('HistopatologiaController@index');
+        return redirect()->back();
     }
 
     /**
