@@ -9,7 +9,7 @@ class Image extends Model
     /**
      * @var array
      */
-    protected $fillable = ['link_id', 'image_url'];
+    protected $fillable = ['link_id', 'image_url', 'encode'];
 
 
 }

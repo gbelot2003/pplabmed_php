@@ -10,9 +10,39 @@ use Illuminate\Support\Facades\Auth;
 class HistoApiController extends Controller
 {
 
-    public function movilImages(Request $request)
+    public function mobilImages(Request $request)
     {
-        return $request->all();
+
+        $username = $request->get('username');
+        $password = $request->get('password');
+        // $fname = $request->get('name');
+
+        $images = Image::create([
+            'link_id' => 2,
+            'image_url' => 'test3.png',
+            'encode' => $request->get('images')
+        ]);
+
+        return 'ok';
+
+/*        if (Auth::attempt(['username' => $username, 'password' => $password])) {
+            // return $fname;
+            if($request->hasFile('images')){
+                $name = str_replace('.jpg', '.png', $fname);
+                $img = $request->get('images');
+                $img = str_replace('data:image/png;base64,', '', $img);
+                $img = str_replace(' ', '+', $img);
+                $img = base64_decode($img);
+                file_put_contents('img/histo/'.$name, $img);
+
+                $images = Image::create([
+                    'image_url' => $name,
+                    'link_id' => $request->get('link_id')
+                ]);
+
+                return $images->link_id;
+            }
+        }*/
     }
 
 
@@ -31,9 +61,6 @@ class HistoApiController extends Controller
 
     public function uploadImage(Request $request)
     {
-
-
-       /// dd($request->all());
         $username = $request->get('username');
         $password = $request->get('password');
 
