@@ -52,7 +52,7 @@ CitologiaController extends Controller
      * @param CitologiaValidate $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(CitologiaValidate $request)
     {
         $request['serial'] = $this->getSerial();
         $cito = Citologia::create($request->all());

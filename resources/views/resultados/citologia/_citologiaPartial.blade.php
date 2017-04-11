@@ -36,13 +36,13 @@
     {{-- F.U.R --}}
     <div class="col-md-3 form-group  {{ $errors->has('fur') ? ' has-error' : '' }}">
         <label for="fur">F.U.R</label>
-        {{ Form::date('fur', null, ['class' => 'form-control', 'id' => 'fur']) }}
+        {{ Form::date('fur', isset($item->fur) ? $item->fur : date("Y-m-d"), ['class' => 'form-control', 'id' => 'fur']) }}
     </div>
 
     {{-- F.U.P --}}
     <div class="col-md-3 form-group  {{ $errors->has('fup') ? ' has-error' : '' }}">
         <label for="fup">F.U.P</label>
-        {{ Form::date('fup', null, ['class' => 'form-control', 'id' => 'fup']) }}
+        {{ Form::date('fup', isset($item->fup) ? $item->fup : date("Y-m-d"), ['class' => 'form-control', 'id' => 'fup']) }}
     </div>
 
     {{-- gravidad --}}
@@ -82,7 +82,7 @@
     {{-- Fécha de Muestra --}}
     <div class="col-md-3 form-group  {{ $errors->has('fecha_muestra') ? ' has-error' : '' }}">
         <label>Fecha de Muestra</label>
-        {{ Form::date('fecha_muestra', null, ['class' => 'form-control', 'id' => 'fechamuestra']) }}
+        {{ Form::date('fecha_muestra', isset($item->fecha_muestra) ? $item->fecha_muestra : date("Y-m-d"), ['class' => 'form-control', 'id' => 'fechamuestra']) }}
     </div>
 
 </div>
@@ -94,7 +94,7 @@
         <br>
         <div class="checkbox checkbox-info">
             {!! Form::checkbox('mm', 1, null, ['id' => 'checkbox3']) !!}
-            <label for="checkbox3">Nota de Citología</label>
+            <label for="checkbox3">Sin Nota de Citología</label>
         </div>
     </div>
 
@@ -108,7 +108,7 @@
     {{-- Fécha de Informe --}}
     <div class="col-md-3 form-group  {{ $errors->has('fecha_informe') ? ' has-error' : '' }}">
         <label>Fecha de Informe</label>
-        {{ Form::date('fecha_informe', null, ['class' => 'form-control', 'id' => 'fechainforme']) }}
+        {{ Form::date('fecha_informe',  isset($item->fecha_informe) ? $item->fecha_informe : date("Y-m-d"), ['class' => 'form-control', 'id' => 'fechainforme']) }}
     </div>
 
 </div>

@@ -148,14 +148,6 @@
         {{ Form::text('otros_b', null, ['class' => 'form-control', 'id' => 'otros_b']) }}
     </div>
 
-    {{-- Nota MM --}}
-    <div class="col-md-2 form-group  {{ $errors->has('mm') ? ' has-error' : '' }}">
-        <br>
-        <div class="checkbox checkbox-info">
-            {!! Form::checkbox('mm', 1, null, ['id' => 'checkbox3']) !!}
-            <label for="checkbox3">Nota de Citología</label>
-        </div>
-    </div>
 </div>
 
 <div class="row {{ $errors->has('informe') ? ' has-error' : '' }}">

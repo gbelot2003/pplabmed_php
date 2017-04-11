@@ -38,7 +38,7 @@
 
     <div class="col-md-3 form-group  {{ $errors->has('fecha_informe') ? ' has-error' : '' }}">
         <label for="para">Fecha de Informe: </label>
-        {{ Form::date('fecha_informe', null, ['class' => 'form-control', 'id' => 'fecha_informe']) }}
+        {{ Form::date('fecha_informe',  isset($item->fecha_informe) ? $item->fecha_informe : date("Y-m-d"), ['class' => 'form-control', 'id' => 'fecha_informe']) }}
     </div>
 
 
@@ -60,7 +60,7 @@
 
     <div class="col-md-3 form-group  {{ $errors->has('fecha_biopcia') ? ' has-error' : '' }}">
         <label for="para">Fecha de Biopsia: </label>
-        {{ Form::date('fecha_biopcia', null, ['class' => 'form-control', 'id' => 'fecha_biopcia']) }}
+        {{ Form::date('fecha_biopcia',  isset($item->fecha_biopcia) ? $item->fecha_biopcia : date("Y-m-d"), ['class' => 'form-control', 'id' => 'fecha_biopcia']) }}
     </div>
 
     <div class="col-md-6 form-group {{ $errors->has('firma2_id') ? ' has-error' : '' }}">
@@ -70,7 +70,7 @@
 
     <div class="col-md-3 form-group  {{ $errors->has('fecha_muestra') ? ' has-error' : '' }}">
         <label for="para">Fecha de Muestra: </label>
-        {{ Form::date('fecha_muestra', null, ['class' => 'form-control', 'id' => 'fecha_muestra']) }}
+        {{ Form::date('fecha_muestra', isset($item->fecha_muestra) ? $item->fecha_muestra : date("Y-m-d"), ['class' => 'form-control', 'id' => 'fecha_muestra']) }}
     </div>
 </div>
 
