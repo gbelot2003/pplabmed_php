@@ -8,3 +8,4 @@ Homestead.yaml
 .env
 /public/img/histo
 /storage/fonts/
+/logs

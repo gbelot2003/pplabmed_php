@@ -14,9 +14,9 @@ class HistopatologiasTableSeeder extends Seeder
     {
         
 
-        \DB::table('Histopatologias')->delete();
+        \DB::table('histopatologias')->delete();
         
-        \DB::table('Histopatologias')->insert(array (
+        \DB::table('histopatologias')->insert(array (
             0 => 
             array (
                 'id' => 1,
