@@ -15,19 +15,10 @@ class HistoApiController extends Controller
 
         $username = $request->get('username');
         $password = $request->get('password');
-        // $fname = $request->get('name');
+        $fname = $request->get('name');
 
-        $images = Image::create([
-            'link_id' => 2,
-            'image_url' => 'test3.png',
-            'encode' => $request->get('images')
-        ]);
-
-        return 'ok';
-
-/*        if (Auth::attempt(['username' => $username, 'password' => $password])) {
-            // return $fname;
-            if($request->hasFile('images')){
+        if (Auth::attempt(['username' => $username, 'password' => $password])) {
+            if($request->has('images')){
                 $name = str_replace('.jpg', '.png', $fname);
                 $img = $request->get('images');
                 $img = str_replace('data:image/png;base64,', '', $img);
@@ -40,9 +31,9 @@ class HistoApiController extends Controller
                     'link_id' => $request->get('link_id')
                 ]);
 
-                return $images->link_id;
+                return $images->image_url;
             }
-        }*/
+        }
     }
 
 
