@@ -10,9 +10,9 @@ use Illuminate\Support\Facades\Auth;
 class HistoApiController extends Controller
 {
 
-    public function test()
+    public function movilImages(Request $request)
     {
-        return 'ok';
+        return $request->all();
     }
 
 
