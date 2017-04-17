@@ -16,7 +16,8 @@ class CreateFirmasTable extends Migration
         Schema::create('firmas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('code');
+            $table->string('collegiate');
+            $table->boolean('specialist')->nullable();
             $table->boolean('status');
             $table->timestamps();
         });

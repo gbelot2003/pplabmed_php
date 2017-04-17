@@ -43,7 +43,7 @@ class FacturasTableSeeder extends Seeder
                 'fecha_nacimiento' => '1976-01-23 00:00:00',
                 'edad' => '41 A',
                 'correo' => 'maddison79@gmail.com',
-                'correo2' => NULL,
+                'correo2' => '203092',
                 'direccion_entrega_sede' => 'Recusandae sunt eos similique numquam soluta.',
                 'medico' => 'Lucy Reinger',
                 'status' => 'Valida',

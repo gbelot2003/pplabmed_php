@@ -21,7 +21,7 @@ class FirmasTableSeeder extends Seeder
             array (
                 'id' => 1,
                 'name' => 'DRA. JUANA A. ALVARADO',
-                'code' => 'Colegiado No. 4905',
+                'collegiate' => 'Colegiado No. 4905',
                 'status' => 1,
                 'created_at' => '2017-02-06 05:15:12',
                 'updated_at' => '2017-02-06 05:45:12',
@@ -31,8 +31,7 @@ class FirmasTableSeeder extends Seeder
                 'id' => 2,
                 'name' => 'DR DANILO ALVARADO
 ',
-                'code' => 'Colegiado No. 601
-',
+                'collegiate' => 'Colegiado No. 601',
                 'status' => 1,
                 'created_at' => '2017-02-06 05:15:12',
                 'updated_at' => '2017-02-06 05:45:11',
@@ -40,10 +39,8 @@ class FirmasTableSeeder extends Seeder
             2 => 
             array (
                 'id' => 3,
-                'name' => 'DRA. REINA I. RIVERA
-',
-                'code' => 'Colegiado NO.6667
-',
+                'name' => 'DRA. REINA I. RIVERA',
+                'collegiate' => 'Colegiado NO.6667',
                 'status' => 1,
                 'created_at' => '2017-02-06 05:15:12',
                 'updated_at' => '2017-02-06 05:15:12',
@@ -51,10 +48,8 @@ class FirmasTableSeeder extends Seeder
             3 => 
             array (
                 'id' => 4,
-                'name' => 'DRA. DAYSI CASTRO
-',
-                'code' => 'Colegiado No.5453
-',
+                'name' => 'DRA. DAYSI CASTRO',
+                'collegiate' => 'Colegiado No.5453',
                 'status' => 1,
                 'created_at' => '2017-02-06 05:15:12',
                 'updated_at' => '2017-02-06 05:15:12',
@@ -62,9 +57,8 @@ class FirmasTableSeeder extends Seeder
             4 => 
             array (
                 'id' => 5,
-                'name' => 'DRA. XIOMARA TEJADA
-',
-                'code' => 'Colegiado NO.6832',
+                'name' => 'DRA. XIOMARA TEJADA',
+                'collegiate' => 'Colegiado NO.6832',
                 'status' => 1,
                 'created_at' => '2017-02-06 05:15:13',
                 'updated_at' => '2017-02-06 05:15:13',
