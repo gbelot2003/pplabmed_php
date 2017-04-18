@@ -10,6 +10,11 @@
         <label for="code">No. de Colegiado</label>
         {!! Form::text('collegiate', null, ['class' => 'form-control']) !!}
     </div>
+
+    <div class="col-md-10 col-md-push-1 form-group box-style">
+        <label for="code">Especielidad</label>
+        {!! Form::text('extra', null, ['class' => 'form-control']) !!}
+    </div>
 </div>
 
 

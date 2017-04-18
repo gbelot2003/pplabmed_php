@@ -40,8 +40,6 @@
 
             <span class="fecha-informe-etiqueta parte">Fecha del Informe <br>{{ $items->fecha_informe }}</span>
             <span class="firma-1 parte">{{ $items->firma->name }}</span>
-
-
         </div>
     </div>
 @stop
