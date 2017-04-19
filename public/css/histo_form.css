@@ -1,5 +1,18 @@
+body{
+    margin-top:1.5cm;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 12px
+}
+
+@page {
+    size: auto; margin: 0;}
+    @media print{.no-print, .no-print * { display: none !important;} }
+
 
 .uppercase{
     text-transform: uppercase;
 }
 
+.strong{
+    font-weight: bolder;
+}
