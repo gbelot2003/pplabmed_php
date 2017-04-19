@@ -29,15 +29,22 @@
                     </tr>
                     <tr>
                         <td colspan="3">
-                            <div class="body-content parte">
+                            <div class="body-content">
                                 {!! $items->informe !!}
                             </div>
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td colspan="3">
+                            @foreach($items->images as $image)
+                                <img style="width: 7cm; height:5cm;" id="{{ $image->id }}" class="img-responsive img-thumbnail image" src="/img/histo/{{ $image->image_url }}" alt="{{ $image->image_url }}" />
+                            @endforeach
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
                             <div id="footer">
-                                <div class="firma-1 parte">
+                                <div class="firma-1">
                                     <div>{{ $items->firma->name }}</div>
                                     @if(isset($items->firma->extra))
                                         <div>{{ $items->firma->extra }}</div>
@@ -46,7 +53,7 @@
                                 </div>
 
                                 @if(isset($items->firma2_id))
-                                    <div class="firma-2 parte">
+                                    <div class="firma-2">
                                         <div>{{ $items->firma2->name }}</div>
                                         @if(isset($items->firma2->extra))
                                             <div>{{ $items->firma2->extra }}</div>
@@ -54,6 +61,7 @@
                                         <div>{{ $items->firma2->collegiate }}</div>
                                     </div>
                                 @endif
+
                             </div>
                         </td>
                     </tr>

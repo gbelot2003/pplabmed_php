@@ -1,13 +1,14 @@
 body{
-    margin-top:1.5cm;
+    margin-top:4.5cm;
     font-family: Helvetica, Arial, sans-serif;
-    font-size: 12px
+    font-size: 15px
 }
 
 @page {
     size: auto; margin: 0;}
     @media print{.no-print, .no-print * { display: none !important;} }
 
+.body-content{text-align: justify}
 
 .uppercase{
     text-transform: uppercase;
@@ -15,4 +16,20 @@ body{
 
 .strong{
     font-weight: bolder;
+}
+
+#footer{
+    padding-top: 4cm;
+}
+
+.firma-1{
+    width: 50%;
+    float: left;
+    text-align: center;
+}
+
+firma-2{
+    width: 50%;
+    float: right;
+    text-align: center;
 }
