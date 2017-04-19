@@ -17,7 +17,7 @@ class CreateFirmasTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('collegiate');
-            $table->boolean('specialist')->nullable();
+            $table->string('extra')->nullable();
             $table->boolean('status');
             $table->timestamps();
         });

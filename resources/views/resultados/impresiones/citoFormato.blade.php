@@ -15,8 +15,8 @@
             <span class="indice-maduracion-etiqueta parte">INDICE DE MADURACIÓN</span>
             <span class="otros-etiqueta parte">OTROS:</span>
 
-            <span class="diagnostico-clinico-etiqueta parte">DIAGNOSTICO CLINICO:</span>
-
+            <span class="diagnostico-clinico-etiqueta parte"><strong>DIAGNOSTICO CLINICO:</strong> {{ $items->diagnostico }}</span>
+$
             <span class="fur-etiqueta parte">F.U.R.: <strong>{{ $items->fur }}</strong></span>
             <span class="fup-etiqueta parte">F.U.P.: <strong>{{ $items->fup }}</strong></span>
             <span class="gravidad-etiqueta parte">GRAVIDAD: <strong>{{ $items->gravidad }}</strong></span>
@@ -34,14 +34,31 @@
 
             <span class="informe-etiqueta parte">{!! $items->informe !!}</span>
 
+            @if($items->mm != 1)
             <span class="mm menor">/MM <br>La citología vaginal es un método de ayuda para seleccionar y detectar pacientes con lesiones premalignas y malignas del área genital.
             No debe ser usada como único método para diagnostico de cáncer genital. Resultados falso positivo y falso negativo pueden ocurrir.
             Si usted tiene alguna duda sobre su examen, se sugiere consultar con su médico.</span>
+            @endif
 
             <span class="fecha-informe-etiqueta parte">Fecha del Informe <br>{{ $items->fecha_informe }}</span>
-            <span class="firma-1 parte">{{ $items->firma->name }}</span>
 
+            <div class="firma-1 parte">
+                <div>{{ $items->firma->name }}</div>
+                @if(isset($items->firma->extra))
+                <div>{{ $items->firma->extra }}</div>
+                @endif
+                <div>{{ $items->firma->collegiate }}</div>
+            </div>
 
+            @if(isset($items->firma2_id))
+            <div class="firma-2 parte">
+                <div>{{ $items->firma2->name }}</div>
+                @if(isset($items->firma2->extra))
+                    <div>{{ $items->firma2->extra }}</div>
+                @endif
+                <div>{{ $items->firma2->collegiate }}</div>
+            </div>
+            @endif
         </div>
     </div>
 @stop
