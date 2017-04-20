@@ -1,12 +1,13 @@
 body{
     margin-top:4.5cm;
     font-family: Helvetica, Arial, sans-serif;
-    font-size: 15px
+    font-size: 14px
 }
 
-@page {
-    size: auto; margin: 0;}
-    @media print{.no-print, .no-print * { display: none !important;} }
+@page {size: auto; margin: 0;}
+@media print{.no-print, .no-print * { display: none !important;}}
+
+.imprimir{display: inline-block; margin-bottom: 5px; color: white; padding: 4px;background: darkslategray; border-radius: 3px;}
 
 .body-content{text-align: justify}
 
@@ -28,7 +29,7 @@ body{
     text-align: center;
 }
 
-firma-2{
+.firma-2{
     width: 50%;
     float: right;
     text-align: center;

@@ -2,8 +2,9 @@
 @section('content')
     <link rel="stylesheet" href="/css/cito_form.css">
     <div id="formulario">
+        <span class="no-print"><a class="imprimir" onclick="window.print();" href="#">Imprimir</a></span>
         <div id="cabezera">
-            <span class="paciente-etiqueta parte">PACIENTE: <strong>{{ $items->facturas->nombre_completo_cliente }}</strong></span>
+            <span class="paciente-etiqueta parte no-print">PACIENTE: <strong>{{ $items->facturas->nombre_completo_cliente }}</strong></span>
             <span class="edad-etiqueta parte">EDAD: <strong>{{ $items->facturas->edad }}</strong></span>
             <span class="sexo-etiqueta parte">SEXO: <strong>{{ $items->facturas->sexo }}</strong></span>
             <span class="direccion-etiqueta parte">DIRECCIÓN:</span>
@@ -16,16 +17,16 @@
             <span class="otros-etiqueta parte">OTROS:</span>
 
             <span class="diagnostico-clinico-etiqueta parte"><strong>DIAGNOSTICO CLINICO:</strong> {{ $items->diagnostico }}</span>
-$
-            <span class="fur-etiqueta parte">F.U.R.: <strong>{{ $items->fur }}</strong></span>
-            <span class="fup-etiqueta parte">F.U.P.: <strong>{{ $items->fup }}</strong></span>
+
+            <span class="fur-etiqueta parte">F.U.R.: <strong>{{ isset($items->fur) ? $items->fur->formatLocalized('%d/%m/%Y') : "" }}</strong></span>
+            <span class="fup-etiqueta parte">F.U.P.: <strong>{{ isset($items->fup) ?  $items->fup->formatLocalized('%d/%m/%Y') : ""}}</strong></span>
             <span class="gravidad-etiqueta parte">GRAVIDAD: <strong>{{ $items->gravidad }}</strong></span>
             <span class="para-etiqueta parte">PARA: <strong>{{ $items->para }}</strong></span>
             <span class="aborto-etiqueta parte">ABORTO: <strong>{{ $items->abortos }}</strong></span>
 
             <span class="material-enviado-etiqueta parte">MATERIAL ENVIADO: <strong>ROSTIS CERVICAL</strong></span>
 
-            <span class="fecha-muestra-etiqueta parte">FECHA DE TOMA DE MUESTRA: <strong>{{ $items->fecha_muestra }}</strong></span>
+            <span class="fecha-muestra-etiqueta parte">FECHA DE TOMA DE MUESTRA: <strong>{{ isset($items->fecha_muestra) ? $items->fecha_muestra->formatLocalized('%d/%m/%Y') : "" }}</strong></span>
             <span class="medico-etiqueta parte">MEDICO REMITENTE:  <strong>{{ $items->facturas->medico }}</strong></span>
             <hr class="parte linea">
             <span class="factura-etiqueta parte">No.: <strong>{{ $items->factura_id }}</strong></span>
@@ -40,7 +41,7 @@ $
             Si usted tiene alguna duda sobre su examen, se sugiere consultar con su médico.</span>
             @endif
 
-            <span class="fecha-informe-etiqueta parte">Fecha del Informe <br>{{ $items->fecha_informe }}</span>
+            <span class="fecha-informe-etiqueta parte">Fecha del Informe <br>{{ isset($items->fecha_informe) ? $items->fecha_informe->formatLocalized('%d/%m/%Y') : "" }}</span>
 
             <div class="firma-1 parte">
                 <div>{{ $items->firma->name }}</div>

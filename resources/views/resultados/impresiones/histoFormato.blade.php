@@ -8,6 +8,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
+                <span class="no-print"><a class="imprimir" onclick="window.print();" href="#">Imprimir</a></span>
                 <table class="table">
                     <tr>
                         <td><span class="uppercase">Paciente:</span> <span class="strong uppercase">{{ $items->facturas->nombre_completo_cliente }}</span></td>
@@ -61,7 +62,6 @@
                                         <div>{{ $items->firma2->collegiate }}</div>
                                     </div>
                                 @endif
-
                             </div>
                         </td>
                     </tr>
