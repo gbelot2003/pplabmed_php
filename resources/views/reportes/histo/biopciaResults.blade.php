@@ -44,7 +44,12 @@
                     @foreach($items as $item)
                         <tr>
                             <td>{{ $item->factura_id }}</td>
-                            <td>{{ $item->facturas->nombre_completo_cliente }}</td>
+                            <td>
+                                <div style="border-bottom: 1px solid dimgray">
+                                    {{ $item->facturas->nombre_completo_cliente }}
+                                </div>
+                                {{ $item->facturas->direccion_entrega_sede }}
+                            </td>
                             <td>{{ $item->facturas->edad }}</td>
                             <td>{{ $item->facturas->sexo }}</td>
                             <td>{{ $item->facturas->medico }}</td>
