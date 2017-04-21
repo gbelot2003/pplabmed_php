@@ -6,7 +6,7 @@
         margin:0; padding:0;
     }
     body{
-        font:11px Georgia, serif;
+        font:10px Helvetica, san-serif;
     }
 
     #page-wrap{
@@ -45,7 +45,7 @@
                     <th>Edad</th>
                     <th>Sexo</th>
                     <th>Examen</th>
-                    <th>Informe</th>
+                    <th>Firma</th>
                 </tr>
                 @foreach($items as $item)
                     <tr>
@@ -55,7 +55,7 @@
                         <td>{{ $item['edad'] }}</td>
                         <td>{{ $item['sexo'] }}</td>
                         <td>{{ $item['nombre_examen'] }}</td>
-                        <td>{{ $item['serial'] }}</td>
+                        <td  style="min-width: 10em"></td>
                     </tr>
                 @endforeach
                 <tr>

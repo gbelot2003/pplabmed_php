@@ -38,7 +38,7 @@
                     <th>Edad</th>
                     <th>Sexo</th>
                     <th>Examen</th>
-                    <th>Informe</th>
+                    <th>Firma</th>
                     </thead>
                     <tbody>
                         @foreach($items as $items)
@@ -49,7 +49,7 @@
                                 <td>{{ $items['edad'] }}</td>
                                 <td>{{ $items['sexo'] }}</td>
                                 <td>{{ $items['nombre_examen'] }}</td>
-                                <td>{{ $items['serial'] }}</td>
+                                <td style="min-width: 12em"></td>
                             </tr>
                         @endforeach
                     </tbody>
