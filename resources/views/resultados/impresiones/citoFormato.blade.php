@@ -36,7 +36,7 @@
             <span class="informe-etiqueta parte">{!! $items->informe !!}</span>
 
             @if($items->mm != 1)
-            <span class="mm menor">/MM <br>La citología vaginal es un método de ayuda para seleccionar y detectar pacientes con lesiones premalignas y malignas del área genital.
+            <span class="mm menor">La citología vaginal es un método de ayuda para seleccionar y detectar pacientes con lesiones premalignas y malignas del área genital.
             No debe ser usada como único método para diagnostico de cáncer genital. Resultados falso positivo y falso negativo pueden ocurrir.
             Si usted tiene alguna duda sobre su examen, se sugiere consultar con su médico.</span>
             @endif

@@ -44,18 +44,18 @@ class CategoriasTableSeeder extends Seeder
             3 => 
             array (
                 'id' => 4,
-                'name' => 'CA "IN SITO" NIC III',
+                'name' => '"CA IN SITO" NIC III',
                 'status' => 1,
                 'created_at' => '2017-02-06 06:22:37',
-                'updated_at' => '2017-03-14 15:38:09',
+                'updated_at' => '2017-04-21 07:48:29',
             ),
             4 => 
             array (
                 'id' => 6,
-                'name' => 'A TIPIADA DE SIGNIFICADO NO DETERMINADO',
+                'name' => 'ATIPIA DE SIGNIFICADO NO DETERMINADO',
                 'status' => 1,
                 'created_at' => '2017-02-06 06:22:37',
-                'updated_at' => '2017-03-14 15:39:14',
+                'updated_at' => '2017-04-21 07:48:58',
             ),
             5 => 
             array (
