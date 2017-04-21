@@ -12,9 +12,18 @@
             <span class="telefono-etiqueta parte">TELEFONO: <strong>{{ $items->facturas->telefono }}</strong></span>
             <span CLASS="solicitud-etiqueta parte"><strong>SOLICITUD PARA ESTUDIO CITOLOGICO</strong></span>
 
-            <span class="deteccion-etiqueta parte">DETECCIÓN DE CANCER</span>
-            <span class="indice-maduracion-etiqueta parte">INDICE DE MADURACIÓN</span>
-            <span class="otros-etiqueta parte">OTROS:</span>
+            <span class="deteccion-etiqueta parte">DETECCIÓN DE CANCER:
+                @if($items->deteccion_cancer == true)
+                    <strong>X</strong>
+                @endif
+            </span>
+
+            <span class="indice-maduracion-etiqueta parte">INDICE DE MADURACIÓN:
+                @if($items->indice_maduracion == true)
+                    <strong>X</strong>
+                @endif
+            </span>
+            <span class="otros-etiqueta parte">OTROS: <strong>{{ $items->otros_a }}</strong></span>
 
             <span class="diagnostico-clinico-etiqueta parte"><strong>DIAGNOSTICO CLINICO:</strong> {{ $items->diagnostico }}</span>
 

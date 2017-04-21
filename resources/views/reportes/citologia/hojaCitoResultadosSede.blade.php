@@ -15,7 +15,14 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="text-center">
-                    <h3>Hoja de Reportes por Sedes</h3>
+                    <div class="text-center">
+                        <h3>
+                            @if($direccion != 'null')
+                                {{ $direccion }}
+                            @else
+                                Hoja de Reportes por Sedes
+                            @endif
+                        </h3>
                     <input type="button" class="btn btn-info btn-xs hidden-print" name="imprimir" value="Imprimir" onclick="window.print();"> <span class="hidden-print"> | </span>
                     <small>Desde:{{ $bdate->formatLocalized('%d %B %Y') }} Hasta: {{ $edate->formatLocalized('%d %B %Y') }}</small>
                 </div>

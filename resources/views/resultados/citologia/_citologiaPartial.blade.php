@@ -36,13 +36,13 @@
     {{-- F.U.R --}}
     <div class="col-md-3 form-group  {{ $errors->has('fur') ? ' has-error' : '' }}">
         <label for="fur">F.U.R</label>
-        {{ Form::date('fur', null, ['class' => 'form-control', 'id' => 'fur']) }}
+        {{ Form::date('fur', isset($item->fecha_informe) ? $item->fecha_informe : null, ['class' => 'form-control', 'id' => 'fur']) }}
     </div>
 
     {{-- F.U.P --}}
     <div class="col-md-3 form-group  {{ $errors->has('fup') ? ' has-error' : '' }}">
         <label for="fup">F.U.P</label>
-        {{ Form::date('fup', null, ['class' => 'form-control', 'id' => 'fup']) }}
+        {{ Form::date('fup', isset($item->fecha_informe) ? $item->fecha_informe : null, ['class' => 'form-control', 'id' => 'fup']) }}
     </div>
 
     {{-- gravidad --}}
@@ -82,7 +82,7 @@
     {{-- Fécha de Muestra --}}
     <div class="col-md-3 form-group  {{ $errors->has('fecha_muestra') ? ' has-error' : '' }}">
         <label>Fecha de Muestra</label>
-        {{ Form::date('fecha_muestra', null, ['class' => 'form-control', 'id' => 'fechamuestra']) }}
+        {{ Form::date('fecha_muestra', isset($item->fecha_informe) ? $item->fecha_informe : null, ['class' => 'form-control', 'id' => 'fechamuestra']) }}
     </div>
 
 </div>

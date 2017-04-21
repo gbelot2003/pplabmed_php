@@ -23,7 +23,13 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="text-center">
-                <h3>Hoja de Citologías</h3>
+                <h3>
+                    @if($direccion != 'null')
+                        {{ $direccion }}
+                    @else
+                        Hoja de Reportes por Sedes
+                    @endif
+                </h3>
                 <small>Desde:{{ $bdate->formatLocalized('%d %B %Y') }} Hasta: {{ $edate->formatLocalized('%d %B %Y') }}</small>
             </div>
         </div>

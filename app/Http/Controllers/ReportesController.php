@@ -145,10 +145,10 @@ class ReportesController extends Controller
         $items = $query->fetchAll((\PDO::FETCH_ASSOC));
         //return $items;
         if ($pdf == 'null') {
-            return View('reportes.citologia.hojaCitoResultadosSede', compact('items', 'total', 'bdate', 'edate'));
+            return View('reportes.citologia.hojaCitoResultadosSede', compact('items', 'total', 'bdate', 'edate', 'direccion'));
         } else {
             $pdf = App::make('dompdf.wrapper');
-            $pdf->loadView('reportes.citologia.CitoResultCedePdf', compact('items', 'total', 'bdate', 'edate'));
+            $pdf->loadView('reportes.citologia.CitoResultCedePdf', compact('items', 'total', 'bdate', 'edate', 'direccion'));
             return $pdf->stream();
         }
     }
