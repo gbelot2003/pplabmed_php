@@ -4,7 +4,7 @@
     <div id="formulario">
         <span class="no-print"><a class="imprimir" onclick="window.print();" href="#">Imprimir</a></span>
         <div id="cabezera">
-            <span class="paciente-etiqueta parte no-print">PACIENTE: <strong>{{ $items->facturas->nombre_completo_cliente }}</strong></span>
+            <span class="paciente-etiqueta parte">PACIENTE: <strong>{{ $items->facturas->nombre_completo_cliente }}</strong></span>
             <span class="edad-etiqueta parte">EDAD: <strong>{{ $items->facturas->edad }}</strong></span>
             <span class="sexo-etiqueta parte">SEXO: <strong>{{ $items->facturas->sexo }}</strong></span>
             <span class="direccion-etiqueta parte">DIRECCIÓN:</span>

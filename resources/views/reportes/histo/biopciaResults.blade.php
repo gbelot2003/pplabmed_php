@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('breadcrumbs')
-
     <ol class="breadcrumb hidden-print">
         <li><a href="/home">Inicio</a></li>
         <li><a href="{{ action('ReportesController@hojaCitoForm') }}">Hoja de Biopsias</a></li>
