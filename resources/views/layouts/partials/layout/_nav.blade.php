@@ -20,39 +20,35 @@
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav navbar-left">
-                @if(Entrust::can('show-cito') || Entrust::can('show-histo'))
+                @if(Entrust::can('manage-cito') || Entrust::can('manage-histo') || Entrust::can('show-fact'))
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                         Resultados<span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" role="menu">
-                        @if(Entrust::can('show-cito'))
+                        @if(Entrust::can('manage-cito'))
                         <li class="dropdown-header">Citología</li>
                         <li><a href="{{ action('CitologiaController@index') }}">Listado de Citología</a></li>
-                        @endif
-
-                        @if(Entrust::can('create-cito'))
                         <li><a href="{{ action('CitologiaController@create') }}">Nueva Citología</a></li>
                         <li class="divider"></li>
                         @endif
 
-                        @if(Entrust::can('show-histo'))
+                        @if(Entrust::can('manage-histo'))
                         <li class="dropdown-header">Histotología</li>
                         <li><a href="{{ action('HistopatologiaController@index') }}">Listado de Histopatología</a></li>
-                        @endif
-                        @if(Entrust::can('create-histo'))
                         <li><a href="{{ action('HistopatologiaController@create') }}">Nueva Histopatología</a></li>
                         @endif
 
-                        {{-- Permisos para ver facturas --}}
+                        @if(Entrust::can('show-fact'))
                         <li class="divider"></li>
                         <li class="dropdown-header">Facturas</li>
-
                         <li><a href="{{ action('FacturasController@index') }}">Listado de Facturas</a></li>
-
+                        @endif
                     </ul>
                 </li>
                 @endif
+
+                @if(Entrust::can('generate-reportes'))
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                         Reportes<span class="caret"></span>
@@ -69,48 +65,58 @@
                         <li><a href="{{ action('ReportesController@morfologiaForm') }}"> Estadisticas de Morfologías</a></li>
                     </ul>
                 </li>
+                @endif
 
+                @if(Entrust::can('manage-users') || Entrust::can('manage-rols'))
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                         Seguridad<span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" role="menu">
-                        @if(Entrust::can('show-perms'))
+                        @if(Entrust::can('manage-rols'))
                         <li class="dropdown-header">Permisos</li>
                         <li><a href="{{ action('PermissionController@index') }}">Permisos</a></li>
-                        @endif
-                        @if(Entrust::can('edit-roles', 'creat-roles'))
                         <li><a href="{{ action('RolesController@index') }}">Roles</a></li>
                         @endif
+
+                        @if(Entrust::can('manage-users'))
                         <li class="divider"></li>
                         <li class="dropdown-header">Usuarios</li>
                         <li><a href="{{ action('UserController@index') }}">Listado de Usuarios</a></li>
                         <li><a href="{{ action('UserController@create') }}">Creación de Usuarios</a></li>
+                        @endif
                     </ul>
                 </li>
-                 @if(Entrust::can('show-cito') || Entrust::can('show-histo'))
+                @endif
+
+                @if(Entrust::can('manage-firmas') || Entrust::can('manage-ids'))
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                         Parametrización<span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" role="menu">
+
+                        @if(Entrust::can('manage-firmas'))
                         <li class="dropdown-header">Firmas</li>
                         <li><a href="{{ action('FirmasController@index') }}">Lista de Firmas</a></li>
-                        @if(Entrust::can('create-firmas'))
                         <li><a href="{{ action('FirmasController@create') }}">Agregar Nueva Firma</a></li>
                         @endif
+
+                        @if(Entrust::can('manage-ids'))
                         <li class="divider"></li>
                         <li class="dropdown-header">Id. Citologías</li>
                         <li><a href="{{ action('CategoryController@index') }}">Lista de Id. Citologías</a></li>
-                        @if(Entrust::can('create-cito'))
                         <li><a href="{{ action('CategoryController@create') }}">Agregar Nueva Id. Citologías</a></li>
                         @endif
+
+                        @if(Entrust::can('manage-templates'))
                         <li class="divider"></li>
                         <li><a href="{{ action('PlantillasController@index') }}">Formatos y plantillas</a></li>
+                        @endif
                     </ul>
                 </li>
+                @endif
             </ul>
-            @endif
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
