@@ -91,15 +91,6 @@ class PermissionsTableSeeder extends Seeder
             ),
             8 => 
             array (
-                'id' => 9,
-                'name' => 'create-usuarios',
-                'display_name' => 'Crear Usuarios',
-                'description' => 'Permiso para crear usuarios',
-                'created_at' => '2017-02-06 02:05:48',
-                'updated_at' => '2017-02-06 02:05:51',
-            ),
-            9 => 
-            array (
                 'id' => 10,
                 'name' => 'show-fact',
                 'display_name' => 'Ver Facturas',
