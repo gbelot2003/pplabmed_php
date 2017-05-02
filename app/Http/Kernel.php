@@ -21,7 +21,15 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'checkActive' =>  \App\Http\Middleware\StatusCheck::class,
-
+        'ManageFirmas' =>  \App\Http\Middleware\FirmasPerm::class,
+        'ManageIds' =>  \App\Http\Middleware\IdsPerm::class,
+        'ManageCito' =>  \App\Http\Middleware\CitoPerm::class,
+        'ManageHisto' =>  \App\Http\Middleware\HistoPerm::class,
+        'ShowFact' =>  \App\Http\Middleware\FactPerm::class,
+        'ShowReports' =>  \App\Http\Middleware\ReportsPerm::class,
+        'ManageUsers' =>  \App\Http\Middleware\UsersPerm::class,
+        'ManageRols' =>  \App\Http\Middleware\RolsPerm::class,
+        'ManageTemplates' =>  \App\Http\Middleware\TemplatesPerm::class,
 
     ];
 
