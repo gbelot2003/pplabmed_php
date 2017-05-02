@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class CrearRolesPermission
+class RolsPerm
 {
     /**
      * Handle an incoming request.
@@ -16,12 +16,11 @@ class CrearRolesPermission
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user()->can('create-roles') === false)
+        if(Auth::user()->can('manage-rols') === false)
         {
-            return redirect()->back();
+            flash('No tienes permisos suficientes para ingresar a esa URL!!!', 'warning')->important();
+            return redirect()->to('/home');
         }
-
         return $next($request);
     }
 }
-

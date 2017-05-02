@@ -21,45 +21,15 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'checkActive' =>  \App\Http\Middleware\StatusCheck::class,
-
-        'createArea' => \App\Http\Middleware\CreateArreaPermission::class,
-        'editArea' => \App\Http\Middleware\EditAreaPermission::class,
-
-        'createFirma' => \App\Http\Middleware\CrearFirmasPermission::class,
-        'editarFirma' => \App\Http\Middleware\EditarFirmasPermission::class,
-
-        'createIdCito' => \App\Http\Middleware\CrearIdCitologiaPermission::class, //TODO: replegar permisos en plantillas de IdCitologia
-        'editIdCito' => \App\Http\Middleware\EditIdCitologiaPermission::class, //
-
-        'createGravidad' => \App\Http\Middleware\CreateGravidadPermission::class, //TODO: replegar permisos en plantillas de Gravidades
-        'editGravidad'  => \App\Http\Middleware\EditGravidadPermission::class, //
-
-        'createMorfo' => \App\Http\Middleware\CreateMorfologiaPermission::class, //TODO: replegar permisos en plantillas de Morfologias
-        'editMorfo' => \App\Http\Middleware\EditMorfologiaPermission::class, //
-
-        'createTopo' => \App\Http\Middleware\CreateTopologiaPermission::class, //TODO: replegar permisos en plantillas de Topologias
-        'editTopo' => \App\Http\Middleware\EditTopologiaPermission::class,
-
-        'showPerm' => \App\Http\Middleware\ShowPermsPermission::class, //TODO: replegar permisos en plantillas y menu
-
-        'createRoles' => \App\Http\Middleware\CrearRolesPermission::class, //TODO: replegar permisos en plantillas de Roles
-        'editRoles' => \App\Http\Middleware\EditRolesPermission::class,
-
-        'showUser' => \App\Http\Middleware\ShowUsersPermission::class, //TODO: replegar permisos en plantillas de Usuarios
-        'createUser' => \App\Http\Middleware\CrearUsuariosPermission::class,
-        'editUser' => \App\Http\Middleware\EditUsuariosPermission::class,
-
-        'showBita' => \App\Http\Middleware\ShowBitacoraPermission::class,
-
-        'showCito' => \App\Http\Middleware\ShowCitologiaPermission::class,
-        'createCito' => \App\Http\Middleware\CreateCitologiasPermission::class,
-        'editCito' => \App\Http\Middleware\EditCitologiaPermission::class,
-        'unbindCito' => \App\Http\Middleware\UnbindCitologia::class,
-
-
-        'showHisto' => \App\Http\Middleware\ShowHistoPermission::class,
-        'createHito' => \App\Http\Middleware\CreateCitologiasPermission::class,
-        'editHisto' => \App\Http\Middleware\EditHistoPermission::class,
+        'ManageFirmas' =>  \App\Http\Middleware\FirmasPerm::class,
+        'ManageIds' =>  \App\Http\Middleware\IdsPerm::class,
+        'ManageCito' =>  \App\Http\Middleware\CitoPerm::class,
+        'ManageHisto' =>  \App\Http\Middleware\HistoPerm::class,
+        'ShowFact' =>  \App\Http\Middleware\FactPerm::class,
+        'ShowReports' =>  \App\Http\Middleware\ReportsPerm::class,
+        'ManageUsers' =>  \App\Http\Middleware\UsersPerm::class,
+        'ManageRols' =>  \App\Http\Middleware\RolsPerm::class,
+        'ManageTemplates' =>  \App\Http\Middleware\TemplatesPerm::class,
 
     ];
 

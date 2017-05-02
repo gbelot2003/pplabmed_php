@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class ShowPermsPermission
+class IdsPerm
 {
     /**
      * Handle an incoming request.
@@ -16,11 +16,11 @@ class ShowPermsPermission
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user()->can('show-perms') === false)
+        if(Auth::user()->can('manage-ids') === false)
         {
-            return redirect()->back();
+            flash('No tienes permisos suficientes para ingresar a esa URL!!!', 'warning')->important();
+            return redirect()->to('/home');
         }
-
         return $next($request);
     }
 }

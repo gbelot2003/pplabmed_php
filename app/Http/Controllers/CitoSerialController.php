@@ -7,6 +7,15 @@ use Illuminate\Http\Request;
 
 class CitoSerialController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('checkActive');
+        $this->middleware('ManageCito', ['only' => 'citologiaUpdate']);
+        $this->middleware('ManageHisto', ['only' => 'histoUpdate']);
+    }
+
     public function citologiaUpdate(Request $request)
     {
         $serial = CitoSerial::findOrFail(1);

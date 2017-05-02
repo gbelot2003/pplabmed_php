@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class CreateTopologiaPermission
+class UsersPerm
 {
     /**
      * Handle an incoming request.
@@ -16,11 +16,11 @@ class CreateTopologiaPermission
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user()->can('create-topologia') === false)
+        if(Auth::user()->can('manage-users') === false)
         {
-            return redirect()->back();
+            flash('No tienes permisos suficientes para ingresar a esa URL!!!', 'warning')->important();
+            return redirect()->to('/home');
         }
-
         return $next($request);
     }
 }

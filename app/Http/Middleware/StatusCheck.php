@@ -18,7 +18,8 @@ class StatusCheck
     {
 
         if(Auth::user()->status === 0){
-            return redirect()->to('home');
+            flash('Esta cuenta se encuentra suspendida!!!', 'danger')->important();
+            return redirect()->to('/home');
         }
 
         return $next($request);

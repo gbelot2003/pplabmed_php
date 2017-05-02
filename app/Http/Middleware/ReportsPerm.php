@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class EditTopologiaPermission
+class ReportsPerm
 {
     /**
      * Handle an incoming request.
@@ -16,11 +16,11 @@ class EditTopologiaPermission
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user()->can('edit-topologias') === false)
+        if(Auth::user()->can('show-fact') === false)
         {
-            return redirect()->back();
+            flash('No tienes permisos suficientes para ingresar a esa URL!!!', 'warning')->important();
+            return redirect()->to('/home');
         }
-
         return $next($request);
     }
 }

@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class CrearIdCitologiaPermission
+class FirmasPerm
 {
     /**
      * Handle an incoming request.
@@ -16,11 +16,11 @@ class CrearIdCitologiaPermission
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user()->can('create-categorias') === false)
+        if(Auth::user()->can('manage-firmas') === false)
         {
-            return redirect()->back();
+            flash('No tienes permisos suficientes para ingresar a esa URL!!!', 'warning')->important();
+            return redirect()->to('/home');
         }
-
         return $next($request);
     }
 }

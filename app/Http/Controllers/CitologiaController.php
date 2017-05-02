@@ -22,9 +22,7 @@ CitologiaController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('checkActive');
-        $this->middleware('showCito', ['only' => ['index']]);
-        $this->middleware('createCito', ['only' => ['create', 'store']]);
-        $this->middleware('editCito', ['only' => ['edit', 'update']]);
+        $this->middleware('ManageCito');
     }
 
     /**
