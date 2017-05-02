@@ -13,9 +13,6 @@ class UserController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('checkActive');
-        $this->middleware('showUser', ['only' => ['index']]);
-        $this->middleware('createUser', ['only' => ['create', 'store']]);
-        $this->middleware('editUser', ['only' => ['edit', 'update', 'state']]);
     }
 
     public function index()

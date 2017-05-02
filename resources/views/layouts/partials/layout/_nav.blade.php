@@ -86,23 +86,14 @@
                         <li class="dropdown-header">Usuarios</li>
                         <li><a href="{{ action('UserController@index') }}">Listado de Usuarios</a></li>
                         <li><a href="{{ action('UserController@create') }}">Creación de Usuarios</a></li>
-    {{--                    <li class="divider"></li>
-                        <li class="dropdown-header">Bitacora</li>
-                        <li><a href="{{ action('CitologiaController@index') }}">Reporte de Actividades</a></li>--}}
                     </ul>
                 </li>
-
-
+                 @if(Entrust::can('show-cito') || Entrust::can('show-histo'))
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                         Parametrización<span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" role="menu">
-                        {{--<li><a href="{{ action('AreaController@index') }}">Lista de Áreas</a></li>
-                        @if(Entrust::can('create-area'))
-                        <li><a href="{{ action('AreaController@create') }}">Agregar Nueva Área</a></li>
-                        @endif
-                        <li class="divider"></li>--}}
                         <li class="dropdown-header">Firmas</li>
                         <li><a href="{{ action('FirmasController@index') }}">Lista de Firmas</a></li>
                         @if(Entrust::can('create-firmas'))
@@ -119,7 +110,7 @@
                     </ul>
                 </li>
             </ul>
-
+            @endif
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->

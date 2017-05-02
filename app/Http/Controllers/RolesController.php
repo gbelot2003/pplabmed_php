@@ -13,8 +13,6 @@ class RolesController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('checkActive');
-        $this->middleware('createRoles', ['only' => ['create', 'store']]);
-        $this->middleware('editRoles', ['only' => ['edit', 'update', 'state']]);
     }
 
     /**

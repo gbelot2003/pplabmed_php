@@ -13,8 +13,6 @@ class AreaController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('checkActive');
-        $this->middleware('createArea', ['only' => ['create', 'store']]);
-        $this->middleware('editarFirma', ['only' => ['edit', 'update', 'state']]);
     }
 
     public function index()

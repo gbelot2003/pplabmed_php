@@ -11,7 +11,6 @@ class PermissionController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('checkActive');
-        $this->middleware('showPerm');
 
     }
 
