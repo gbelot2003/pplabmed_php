@@ -32,8 +32,8 @@
                                 <tr>
                                     <td class="id">{{ $item->id }}</td>
                                     <td>{{ $item->name }}</td>
-                                    <td>{{ $item->collegiate }}</td>
-                                    @if(Entrust::can('edit-firmas'))
+                                    <td>{{ $item->code }}</td>
+
                                     <td class="checkcol">
                                         <label>
                                             {!! Form::checkbox('status', $item->id , $item->status,
@@ -47,7 +47,7 @@
                                         </label>
                                     </td>
                                     <td><a href="{{ action('FirmasController@edit', $item->id) }}">Editar</a></td>
-                                    @endif
+
                                 </tr>
                             @endforeach
                             </tbody>
