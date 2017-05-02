@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Auth;
 
 class UsersPerm
 {
@@ -17,7 +18,8 @@ class UsersPerm
     {
         if(Auth::user()->can('manage-users') === false)
         {
-            return redirect()->back();
+            flash('No tienes permisos suficientes para ingresar a esa URL!!!', 'warning')->important();
+            return redirect()->to('/home');
         }
         return $next($request);
     }

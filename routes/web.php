@@ -18,9 +18,6 @@ Auth::routes();
 Route::group(['middleware' => 'auth'], function(){
     Route::get('/home', 'HomeController@index');
 
-    Route::resource('areas', 'AreaController');
-    Route::get('areas/state/{id}/{state}', 'AreaController@state');
-
     Route::resource('firmas', 'FirmasController');
     Route::get('firmas/state/{id}/{state}', 'FirmasController@state');
 
@@ -33,8 +30,6 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource('usuarios', 'UserController');
     Route::get('usuarios/state/{id}/{state}', 'UserController@state');
 
-    Route::resource('gravidad', 'GravidadController');
-    Route::get('gravidad/state/{id}/{state}', 'GravidadController@state');
 
     Route::resource('plantillas', 'PlantillasController');
     Route::get('plantillas/state/{id}/{state}', 'PlantillasController@state');
@@ -65,8 +60,6 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::resource('facturas', 'FacturasController');
     Route::get('factura/listados', 'FacturasController@listados');
-
-    Route::get('read', 'FilesController@readFiles');
 
     Route::get('reportes/hoja-de-citologia', 'ReportesController@hojaCitoForm');
     Route::post('reportes/hoja-de-citologia', 'ReportesController@processHojaTrabajo');

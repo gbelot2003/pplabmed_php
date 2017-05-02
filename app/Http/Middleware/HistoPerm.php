@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Auth;
 
 class HistoPerm
 {
@@ -17,7 +18,8 @@ class HistoPerm
     {
         if(Auth::user()->can('manage-histo') === false)
         {
-            return redirect()->back();
+            flash('No tienes permisos suficientes para ingresar a esa URL!!!', 'warning')->important();
+            return redirect()->to('/home');
         }
         return $next($request);
     }
