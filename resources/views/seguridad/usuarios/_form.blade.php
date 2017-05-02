@@ -43,8 +43,10 @@
     </div>
 
     <div class="col-md-7 col-md-push-1 box-style">
+        @if(Entrust::can('manage-rols'))
         <label for="roles">Rol</label>
         {!! Form::select('roles_lists[]', $roles, null, ['class' => 'form-control select2multiple '. 'multiple']) !!}
+        @endif
     </div>
 </div>
 
