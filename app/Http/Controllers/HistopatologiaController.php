@@ -247,8 +247,8 @@ class HistopatologiaController extends Controller
         }
 
         $items = $query->paginate(1);
-
-        return View('resultados.histopatologia.search_results', compact('items', 'firmas', 'plantillas'));
+        $i = 0;
+        return View('resultados.histopatologia.search_results', compact('items', 'firmas', 'plantillas', 'i'));
 
     }
 

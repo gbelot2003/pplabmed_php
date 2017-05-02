@@ -17,8 +17,17 @@ class Citologia extends Model
         'otros_b', 'firma2_id', 'fecha_muestra', 'mm', 'user_id', 'serial'];
 
 
+    /**
+     * Protected $cast, Casting to boolean response the chechboxes
+     * @var array
+     */
     protected $casts = ['mm' => 'boolean', 'deteccion_cancer' => 'boolean', 'indice_maduracion' => 'boolean'];
 
+    /**
+     * Protected dates format to Carbon
+     * @var array
+     */
+    protected $dates = ['fecha_muestra', 'fecha_informe', 'fur', 'fup'];
 
     /**
      * Relacion Facturas Citología

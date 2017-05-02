@@ -6,7 +6,7 @@
         margin:0; padding:0;
     }
     body{
-        font:11px Georgia, serif;
+        font:10px Helvetica, san-serif;
     }
 
     #page-wrap{
@@ -23,7 +23,13 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="text-center">
-                <h3>Hoja de Citologías</h3>
+                <h3>
+                    @if($direccion != 'null')
+                        {{ $direccion }}
+                    @else
+                        Hoja de Reportes por Sedes
+                    @endif
+                </h3>
                 <small>Desde:{{ $bdate->formatLocalized('%d %B %Y') }} Hasta: {{ $edate->formatLocalized('%d %B %Y') }}</small>
             </div>
         </div>
@@ -39,7 +45,7 @@
                     <th>Edad</th>
                     <th>Sexo</th>
                     <th>Examen</th>
-                    <th>Informe</th>
+                    <th>Firma</th>
                 </tr>
                 @foreach($items as $item)
                     <tr>
@@ -49,7 +55,7 @@
                         <td>{{ $item['edad'] }}</td>
                         <td>{{ $item['sexo'] }}</td>
                         <td>{{ $item['nombre_examen'] }}</td>
-                        <td>{{ $item['serial'] }}</td>
+                        <td  style="min-width: 10em"></td>
                     </tr>
                 @endforeach
                 <tr>

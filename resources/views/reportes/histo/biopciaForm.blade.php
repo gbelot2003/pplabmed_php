@@ -4,7 +4,7 @@
 @section('breadcrumbs')
     <ol class="breadcrumb">
         <li><a href="/home">Inicio</a></li>
-        <li class="active">Informe de Biopcias</li>
+        <li class="active">Informe de Biopsias</li>
     </ol>
 @stop
 
@@ -19,7 +19,7 @@
                             {{--<a href="{{ action('CitologiaController@create') }}" class="btn btn-info" alt="Crear Citologia"><span class="glyphicon glyphicon-plus"></span></a>
                             <a class="btn btn-default" alt="Conig Seriales"><span class="glyphicon glyphicon-cog" data-toggle="modal" data-target="#myModal"></span></a>--}}
                         </div>
-                        <h4>Informe de Biopcia</h4>
+                        <h4>Informe de Biopsia</h4>
                     </div>
                     <div class="panel-body">
                         <div class="row">

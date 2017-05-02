@@ -1,11 +1,10 @@
 @extends('layouts.app')
 
 @section('breadcrumbs')
-
     <ol class="breadcrumb hidden-print">
         <li><a href="/home">Inicio</a></li>
-        <li><a href="{{ action('ReportesController@hojaCitoForm') }}">Hoja de Citología</a></li>
-        <li class="active">Hoja de Citología Resultados </li>
+        <li><a href="{{ action('ReportesController@hojaCitoForm') }}">Hoja de Biopsias</a></li>
+        <li class="active">Hoja de Biopsias Resultados </li>
     </ol>
 @stop
 
@@ -15,7 +14,14 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="text-center">
-                    <h3>Hoja de Biopcias</h3>
+                    <h3>Hoja de Biopsias</h3>
+                    <script type="text/php">
+                        if ( isset($pdf) ) {
+                            $font = $fontMetrics->getFont("helvetica", "bold");
+                            $pdf->page_text(72, 18, "Header: {PAGE_NUM} of {PAGE_COUNT}", $font, 6, array(0,0,0));
+                        }
+                    </script>
+
                     <input type="button" class="btn btn-info btn-xs hidden-print" name="imprimir" value="Imprimir" onclick="window.print();"> <span class="hidden-print"> | </span>
                     <small>Desde:{{ $bdate->formatLocalized('%d %B %Y') }} Hasta: {{ $edate->formatLocalized('%d %B %Y') }}</small>
                 </div>
@@ -37,7 +43,12 @@
                     @foreach($items as $item)
                         <tr>
                             <td>{{ $item->factura_id }}</td>
-                            <td>{{ $item->facturas->nombre_completo_cliente }}</td>
+                            <td>
+                                <div style="border-bottom: 1px solid dimgray">
+                                    {{ $item->facturas->nombre_completo_cliente }}
+                                </div>
+                                {{ $item->facturas->direccion_entrega_sede }}
+                            </td>
                             <td>{{ $item->facturas->edad }}</td>
                             <td>{{ $item->facturas->sexo }}</td>
                             <td>{{ $item->facturas->medico }}</td>

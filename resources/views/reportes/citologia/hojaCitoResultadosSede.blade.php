@@ -15,7 +15,14 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="text-center">
-                    <h3>Hoja de Reportes por Sedes</h3>
+                    <div class="text-center">
+                        <h3>
+                            @if($direccion != 'null')
+                                {{ $direccion }}
+                            @else
+                                Hoja de Reportes por Sedes
+                            @endif
+                        </h3>
                     <input type="button" class="btn btn-info btn-xs hidden-print" name="imprimir" value="Imprimir" onclick="window.print();"> <span class="hidden-print"> | </span>
                     <small>Desde:{{ $bdate->formatLocalized('%d %B %Y') }} Hasta: {{ $edate->formatLocalized('%d %B %Y') }}</small>
                 </div>
@@ -31,7 +38,7 @@
                     <th>Edad</th>
                     <th>Sexo</th>
                     <th>Examen</th>
-                    <th>Informe</th>
+                    <th>Firma</th>
                     </thead>
                     <tbody>
                         @foreach($items as $items)
@@ -42,7 +49,7 @@
                                 <td>{{ $items['edad'] }}</td>
                                 <td>{{ $items['sexo'] }}</td>
                                 <td>{{ $items['nombre_examen'] }}</td>
-                                <td>{{ $items['serial'] }}</td>
+                                <td style="min-width: 12em"></td>
                             </tr>
                         @endforeach
                     </tbody>
