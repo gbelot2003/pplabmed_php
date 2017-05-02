@@ -13,6 +13,8 @@ class PrintController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('checkActive');
+        $this->middleware('ManageCito', ['only' => ['sobresCitologia', 'formatoCitologia']]);
+        $this->middleware('ManageHisto', ['only' => ['sobreHistopatologia', 'formatoHistopatologia']]);
     }
 
     public function sobresCitologia($id)

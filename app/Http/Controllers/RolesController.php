@@ -13,6 +13,7 @@ class RolesController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('checkActive');
+        $this->middleware('ManageRols');
     }
 
     /**

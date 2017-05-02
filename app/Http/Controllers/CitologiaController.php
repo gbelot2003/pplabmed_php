@@ -22,6 +22,7 @@ CitologiaController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('checkActive');
+        $this->middleware('ManageCito');
     }
 
     /**

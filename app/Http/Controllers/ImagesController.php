@@ -11,6 +11,13 @@ use Illuminate\Support\Facades\Storage;
 class ImagesController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('checkActive');
+        $this->middleware('ManageHisto');
+    }
+
     public function uploadForm(ImagesValidator $request)
     {
 

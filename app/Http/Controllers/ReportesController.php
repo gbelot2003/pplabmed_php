@@ -20,6 +20,7 @@ class ReportesController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('checkActive');
+        $this->middleware('ShowReports');
     }
 
     public function hojaCitoForm()

@@ -19,9 +19,7 @@ class HistopatologiaController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('checkActive');
-        $this->middleware('showHisto', ['only' => ['index']]);
-        $this->middleware('createHito', ['only' => ['create', 'store']]);
-        $this->middleware('editarFirma', ['only' => ['edit', 'update']]);
+        $this->middleware('ManageHisto');
     }
 
     public function index()

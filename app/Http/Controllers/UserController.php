@@ -13,6 +13,7 @@ class UserController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('checkActive');
+        $this->middleware('ManageUsers');
     }
 
     public function index()

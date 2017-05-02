@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class PlantillasController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('checkActive');
+        $this->middleware('ManageTemplates');
+    }
 
     public function index()
     {
