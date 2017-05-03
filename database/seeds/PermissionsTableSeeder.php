@@ -74,9 +74,9 @@ class PermissionsTableSeeder extends Seeder
             6 => 
             array (
                 'id' => 7,
-                'name' => 'create-roles',
-                'display_name' => 'Crear Roles',
-                'description' => 'Permiso para crear roles',
+                'name' => 'manage-firmas',
+                'display_name' => 'Gestionar firmas',
+                'description' => 'Permiso para gestionar firmas',
                 'created_at' => '2017-02-06 02:03:37',
                 'updated_at' => '2017-02-06 02:03:38',
             ),
