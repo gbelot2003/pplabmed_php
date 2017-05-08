@@ -2,6 +2,8 @@
 namespace Acme\Helpers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\File;
+use Illuminate\Support\Facades\Storage;
 
 Class Miselanius {
 
@@ -35,4 +37,18 @@ Class Miselanius {
         file_put_contents('img/histo/' . $name, $img);
         return $name;
     }
+
+    /**
+     * @param ImagesValidator $request
+     */
+    public function getImagesForUpload(ImagesValidator $request)
+    {
+        $name = $request->images->getClientOriginalName();
+        $path = $request->file('images')->move(public_path('img/histo'), $name);
+        $images = Image::create([
+            'image_url' => $name,
+            'link_id' => $request->get('link_id')
+        ]);
+    }
+
 }
