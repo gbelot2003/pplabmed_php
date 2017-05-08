@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Acme\Helpers\Miselanius;
 use App\Firma;
 use Illuminate\Http\Request;
 
@@ -44,12 +45,8 @@ class FirmasController extends Controller
      */
     public function store(Request $request)
     {
-        if($request['status'] == 'on'):
-            $request['status'] = 1;
-        else:
-            $request['status'] = 0;
-        endif;
-
+        $check = new Miselanius();
+        $request['status'] = $check->checkRequestStatus($request);
         $firma = Firma::create($request->all());
         flash('Reegistro Creado', 'success')->important();
         return redirect()->to('/firmas');
@@ -77,28 +74,11 @@ class FirmasController extends Controller
     public function update(Request $request, $id)
     {
         $item = Firma::findOrFail($id);
-
-        if($request['status'] == 'on'):
-            $request['status'] = 1;
-        else:
-            $request['status'] = 0;
-        endif;
-
+        $check = new Miselanius();
+        $request['status'] = $check->checkRequestStatus($request);
         $item->update($request->all());
         flash('Reegistro Actualizado', 'success')->important();
-
         return redirect()->to('/firmas');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 
     /**

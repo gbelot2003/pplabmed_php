@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Acme\Helpers\Miselanius;
 use App\Categoria;
 use Illuminate\Http\Request;
 
@@ -44,13 +45,9 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        if($request['status'] == 'on'):
-            $request['status'] = 1;
-        else:
-            $request['status'] = 0;
-        endif;
-
-        $area = Categoria::create($request->all());
+        $check = new Miselanius();
+        $request['status'] = $check->checkRequestStatus($request);
+        Categoria::create($request->all());
         flash('Reegistro Creado', 'success')->important();
         return redirect()->to('/categorias');
     }
@@ -76,29 +73,14 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $check = new Miselanius();
         $item = Categoria::findOrFail($id);
-
-        if($request['status'] == 'on'):
-            $request['status'] = 1;
-        else:
-            $request['status'] = 0;
-        endif;
-
+        $request['status'] = $check->checkRequestStatus($request);
         $item->update($request->all());
         flash('Reegistro Creado', 'success')->important();
         return redirect()->to('/categorias');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 
     /**
      * @param $id
