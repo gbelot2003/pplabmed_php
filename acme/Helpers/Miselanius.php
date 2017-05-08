@@ -18,4 +18,21 @@ Class Miselanius {
         endif;
         return $status;
     }
+
+    /**
+     * @param Request $request
+     * @return mixed
+     */
+    public function setImges(Request $request)
+    {
+        $fname = $request->get('name');
+        $name = str_replace('.jpg', '.png', $fname);
+        $img = $request->get('images');
+        $img = str_replace('data:image/png;base64,', '', $img);
+        $img = str_replace(' ', '+', $img);
+        $img = base64_decode($img);
+
+        file_put_contents('img/histo/' . $name, $img);
+        return $name;
+    }
 }

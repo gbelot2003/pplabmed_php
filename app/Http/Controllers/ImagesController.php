@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Acme\Helpers\Miselanius;
 use App\Http\Requests\ImagesValidator;
 use App\Image;
 use Illuminate\Http\File;
@@ -22,7 +23,7 @@ class ImagesController extends Controller
     {
 
        if($request->hasFile('images')){
-           $name = $request->images->getClientOriginalName();
+          $name = $request->images->getClientOriginalName();
           $path = $request->file('images')->move(public_path('img/histo'), $name);
           $images = Image::create([
               'image_url' => $name,
@@ -37,20 +38,10 @@ class ImagesController extends Controller
     public function update(Request $request, $id)
     {
 
+        $helpers = new Miselanius();
         $images = Image::findOrfail($id);
-
-        $fname = $request->get('name');
-        $name = str_replace('.jpg', '.png', $fname);
-        $img = $request->get('images');
-        $img = str_replace('data:image/png;base64,', '', $img);
-        $img = str_replace(' ', '+', $img);
-        $img = base64_decode($img);
-
-        file_put_contents('img/histo/'.$name, $img);
-
-        $images->update([
-            'image_url' => $name,
-        ]);
+        $name = $helpers->setImges($request);
+        $images->update(['image_url' => $name]);
     }
 
     public function delete($id)
@@ -59,5 +50,6 @@ class ImagesController extends Controller
         $images->delete();
         return $id;
     }
+
 
 }
