@@ -33,30 +33,26 @@ class FactutasApiController extends Controller
      * @param FacturasValidate $request
      * @return string
      */
-    public function store(FacturasValidate $request)
+    public function store(Request $request)
     {
-        $request['fecha_nacimiento'] = $this->setFecha($request->get('fecha_nacimiento'));
-        $request['edad'] = $this->setEdad($request->get('edad'));
-        $factura = Factura::create($request->all());
+       $request['fecha_nacimiento'] = $this->setFecha($request->get('fecha_nacimiento'));
+
+       $request['edad'] = $this->setEdad($request->get('edad'));
+       $factura = Factura::create($request->all());
         $examenes = $request->get('examenes');
-        if(array_key_exists('item', $examenes['examen'])){
-            $examen = Examenes::create([
-                'item' => $examenes['examen']['item'],
+
+        $examen = $this->safeArrayCombine($examenes["codigo_examen"], $examenes["nombre_examen"]);
+
+        foreach($examen as $exam){
+            $var = Examenes::create([
                 'num_factura' => $request->get('num_factura'),
-                'nombre_examen' => $examenes['examen']['nombre_examen']
+                'item' => $exam['codigo_examen'],
+                'nombre_examen' => $exam['nombre_examen']
             ]);
-        } else {
-           foreach ($examenes['examen'] as $ind => $val){
-                $examen = Examenes::create([
-                    'item' => $val['item'],
-                    'num_factura' => $request->get('num_factura'),
-                    'nombre_examen' => $val['nombre_examen']
-                ]);
-           }
         }
 
-        $result = '200';
-        return $result;
+        return "200";
+
     }
 
     /**
@@ -76,8 +72,7 @@ class FactutasApiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id)    {
         dd($id);
     }
 
@@ -111,4 +106,17 @@ class FactutasApiController extends Controller
     public function setEdad($edad){
         return intval(date('Y', time() - strtotime($edad))) - 1970;
     }
+
+    /**
+    *
+    **/
+    public function safeArrayCombine($keys, $values) { 
+    $combinedArray = array(); 
+        
+    for ($i=0, $keyCount = count($keys); $i < $keyCount; $i++) { 
+         $combinedArray[$keys[$i]] = $values[$i]; 
+    } 
+        
+    return $combinedArray; 
+} 
 }
