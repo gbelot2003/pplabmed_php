@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4469c1a5641e78d2f9224e3829dadf6c",
+    "hash": "361d9feb69493e23ddd0615f1ec39b94",
     "content-hash": "17617ff219f7642cbf366e1d762fa599",
     "packages": [
         {
@@ -61,12 +61,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ddctd143/google-translate.git",
-                "reference": "323f7f036fd99c3b8a601837ab41ea1e095f6990"
+                "reference": "b2a584e251976bdd62239ac14a00489963000b0f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ddctd143/google-translate/zipball/323f7f036fd99c3b8a601837ab41ea1e095f6990",
-                "reference": "323f7f036fd99c3b8a601837ab41ea1e095f6990",
+                "url": "https://api.github.com/repos/ddctd143/google-translate/zipball/b2a584e251976bdd62239ac14a00489963000b0f",
+                "reference": "b2a584e251976bdd62239ac14a00489963000b0f",
                 "shasum": ""
             },
             "require": {
@@ -100,7 +100,7 @@
                 "php",
                 "translate"
             ],
-            "time": "2016-03-05 21:37:04"
+            "time": "2017-05-01 23:22:22"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1386,16 +1386,16 @@
         },
         {
             "name": "phpseclib/phpseclib",
-            "version": "2.0.4",
+            "version": "2.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "ab8028c93c03cc8d9c824efa75dc94f1db2369bf"
+                "reference": "f8dd0e18d2328c447dd4190fecd11ef52680d968"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/ab8028c93c03cc8d9c824efa75dc94f1db2369bf",
-                "reference": "ab8028c93c03cc8d9c824efa75dc94f1db2369bf",
+                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/f8dd0e18d2328c447dd4190fecd11ef52680d968",
+                "reference": "f8dd0e18d2328c447dd4190fecd11ef52680d968",
                 "shasum": ""
             },
             "require": {
@@ -1474,7 +1474,7 @@
                 "x.509",
                 "x509"
             ],
-            "time": "2016-10-04 00:57:04"
+            "time": "2017-05-08 05:58:35"
         },
         {
             "name": "psr/http-message",

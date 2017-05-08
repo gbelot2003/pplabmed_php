@@ -117,9 +117,29 @@ class HistopatologiaController extends Controller
     }
 
     /**
-     * @param $inicio
-     * @param $fin
+     * @param $serial
+     * @param $factura_id
+     * @param $nombre
+     * @param $edad
+     * @param $sexo
+     * @param $correo
+     * @param $correo2
+     * @param $direccion
+     * @param $medico
+     * @param $topo
+     * @param $mor1
+     * @param $mor2
+     * @param $firma
+     * @param $firma2
+     * @param $diag
+     * @param $muestra
+     * @param $finfo
+     * @param $fbiop
+     * @param $fmuest
+     * @param $informe
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @internal param $inicio
+     * @internal param $fin
      */
     public function search($serial, $factura_id, $nombre, $edad, $sexo, $correo, $correo2, $direccion, $medico, $topo, $mor1, $mor2, $firma, $firma2, $diag, $muestra, $finfo, $fbiop, $fmuest, $informe)
     {
@@ -252,6 +272,9 @@ class HistopatologiaController extends Controller
 
     }
 
+    /**
+     * @return mixed
+     */
     public function listados()
     {
         $items = Histopatologia::select([
@@ -291,6 +314,7 @@ class HistopatologiaController extends Controller
             $getSerial->update();
         }
     }
+
     /**
      * @return mixed
      */
