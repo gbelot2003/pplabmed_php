@@ -42,7 +42,6 @@ class PlantillasController extends Controller
 
         $helper = new Miselanius();
         $request['status'] = $helper->checkRequestStatus($request);
-
         $items->create($request->all());
         flash('Reegistro Creado', 'success')->important();
 
@@ -71,7 +70,6 @@ class PlantillasController extends Controller
 
         $helper = new Miselanius();
         $request['status'] = $helper->checkRequestStatus($request);
-
         $item->update($request->all());
         flash('Reegistro Actualizado', 'success')->important();
 

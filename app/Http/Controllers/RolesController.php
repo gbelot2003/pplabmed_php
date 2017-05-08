@@ -80,15 +80,4 @@ class RolesController extends Controller
         $role->perms()->sync($request->input('perms_lists'));
         return redirect()->to('/roles');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

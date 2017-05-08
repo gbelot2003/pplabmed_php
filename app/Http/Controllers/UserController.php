@@ -18,18 +18,28 @@ class UserController extends Controller
         $this->middleware('ManageUsers');
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         $items = User::all();
         return View('seguridad.usuarios.index', compact('items'));
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function create()
     {
         $roles = Role::pluck('display_name', 'id');
         return View('seguridad.usuarios.create', compact('roles'));
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(Request $request)
     {
         $helper = new Miselanius();
@@ -52,7 +62,11 @@ class UserController extends Controller
         return View('seguridad.usuarios.edit', compact('item', 'roles'));
     }
 
-
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
