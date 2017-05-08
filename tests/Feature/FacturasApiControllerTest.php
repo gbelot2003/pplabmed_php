@@ -23,7 +23,6 @@ class FacturasApiControllerTest extends TestCase
     {
         $data = [
             'id' => 55,
-            'name' => 'Whatever',
             'examenes' => array(
                 'codigo_examen' => array(
                     55, 56
