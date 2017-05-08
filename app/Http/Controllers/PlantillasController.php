@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Acme\Helpers\Miselanius;
 use App\Plantilla;
 use Illuminate\Http\Request;
 
@@ -29,11 +30,8 @@ class PlantillasController extends Controller
     {
         $items = new Plantilla();
 
-        if($request['status'] == 'on'):
-            $request['status'] = 1;
-        else:
-            $request['status'] = 0;
-        endif;
+        $helper = new Miselanius();
+        $request['status'] = $helper->checkRequestStatus($request);
 
         $items->create($request->all());
         flash('Reegistro Creado', 'success')->important();
@@ -51,11 +49,8 @@ class PlantillasController extends Controller
     {
         $item = Plantilla::findOrFail($id);
 
-        if($request['status'] == 'on'):
-            $request['status'] = 1;
-        else:
-            $request['status'] = 0;
-        endif;
+        $helper = new Miselanius();
+        $request['status'] = $helper->checkRequestStatus($request);
 
         $item->update($request->all());
         flash('Reegistro Actualizado', 'success')->important();
