@@ -51,4 +51,19 @@ Class Miselanius {
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @return Request
+     */
+    private function checkPassworldStatus(Request $request)
+    {
+        if ($request->input('password')):
+            $request['password'] = bcrypt($request->input('password'));
+            unset($request['password_confirmation']);
+        else:
+            unset($request['password']);
+            unset($request['password_confirmation']);
+        endif;
+        return $request;
+    }
 }

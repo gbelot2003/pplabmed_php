@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Acme\Helpers\Miselanius;
+use Acme\Helpers\UsersControllerHelper;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
@@ -30,27 +32,12 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        if($request->input('password')):
-            $request['password'] = bcrypt($request->input('password'));
-            unset($request['password_confirmation']);
-        else:
-            unset($request['password']);
-            unset($request['password_confirmation']);
-        endif;
+        $helper = new Miselanius();
+        $userHelper = new UsersControllerHelper();
 
-        if($request['status'] == 'on'):
-            $request['status'] = 1;
-        else:
-            $request['status'] = 0;
-        endif;
-
-        $item = User::create($request->all());
-        if($request->input('roles_lists')){
-            if(!is_array($request->input('roles_lists'))){
-            }else {
-                $item->roles()->sync($request->input('roles_lists'));
-            }
-        }
+        $request = $this->checkPassworldStatus($request);
+        $request['status'] = $helper->checkRequestStatus($request);
+        $userHelper->storeAndSync($request);
         return redirect()->to('/usuarios');
     }
 
@@ -69,27 +56,13 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
-        if($request->input('password')):
-            $request['password'] = bcrypt($request->input('password'));
-            unset($request['password_confirmation']);
-        else:
-            unset($request['password']);
-            unset($request['password_confirmation']);
-        endif;
+        $helper = new Miselanius();
+        $userHelper = new UsersControllerHelper();
 
-        if($request['status'] == 'on'):
-            $request['status'] = 1;
-        else:
-            $request['status'] = 0;
-        endif;
+        $request = $this->checkPassworldStatus($request);
+        $request['status'] = $helper->checkRequestStatus($request);
 
-        $user->update($request->all());
-        if($request->input('roles_lists')){
-            if(!is_array($request->input('roles_lists'))){
-            }else {
-                $user->roles()->sync($request->input('roles_lists'));
-            }
-        }
+        $userHelper->UpdateAndSync($request, $user);
         return redirect()->to('/usuarios');
     }
 
@@ -104,4 +77,5 @@ class UserController extends Controller
         $item->update();
         return $item->name;
     }
+
 }
