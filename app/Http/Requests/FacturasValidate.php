@@ -29,7 +29,7 @@ class FacturasValidate extends FormRequest
             'num_factura' => 'numeric|required|unique:facturas,num_factura,' .$request->get('num_factura'),
             'num_cedula' => 'string|nullable',
             'nombre_completo_cliente' => 'required|string',
-            'fecha_nacimiento' => 'date|nullable',
+            'fecha_nacimiento' => 'nullable',
             'correo' => 'email|nullable',
             'correo2' => 'string|nullable',
             'direccion_entrega_sede' => 'string|nullable',
