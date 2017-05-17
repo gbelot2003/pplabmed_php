@@ -9,3 +9,5 @@ Homestead.yaml
 /public/img/histo
 /storage/fonts/
 /logs
+/config/database.php
+/storage/database.sqlite

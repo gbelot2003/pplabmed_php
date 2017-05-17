@@ -40,9 +40,10 @@ CitologiaController extends Controller
      */
     public function create()
     {
-        $serial = 'N/A';
+        $serial = $this->getSerial();
         $idCIto = Categoria::where('status', 1)->pluck('name', 'id');
         $firmas = Firma::where('status', 1)->pluck('name', 'id');
+
         return View('resultados.citologia.create', compact('idCIto', 'firmas', 'gravidad', 'serial'));
     }
 
