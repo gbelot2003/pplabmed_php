@@ -20,10 +20,11 @@ class FactutasApiController extends Controller
         $request['fecha_nacimiento'] = $factHelp->setFecha($request->get('fecha_nacimiento'));
         $request['edad'] = $factHelp->setEdad($request->get('edad'));
 
-        Factura::create($request->all());
-
-        $examenes = $request->get('examenes');
-        $factHelp->saveExamenes($request, $examenes);
+        $factura = Factura::create($request->all());
+        $examenes = $factura->examenes;
+        foreach ($examenes as $examen){
+            $factura->examenes->create($request->all());
+        }
 
         return '200';
     }
