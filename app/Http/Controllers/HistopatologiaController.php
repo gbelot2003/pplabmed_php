@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Acme\Helpers\SerialHelper;
 use App\CitoSerial;
 use App\CitoUnbind;
 use App\Firma;
@@ -31,10 +32,12 @@ class HistopatologiaController extends Controller
 
     public function create()
     {
-        $serial = 'N/A';
+        $serialHelper = new SerialHelper();
+        $serial = $serialHelper->getSerial(2);
         $link = LinkImage::create([
             'user_id' => Auth::user()->id
         ]);
+
         $firmas = Firma::where('status', 1)->pluck('name', 'id');
         $plantillas = Plantilla::all();
         return View('resultados.histopatologia.create', compact('serial', 'firmas', 'plantillas', 'link'));
@@ -42,10 +45,11 @@ class HistopatologiaController extends Controller
 
     public function store(HistopatiaValidation $request)
     {
-        $request['serial'] = $this->getSerial();
+        $serialHelper = new SerialHelper();
+        $request['serial'] = $serialHelper->getSerial(2);
         $histo = Histopatologia::create($request->all());
         $histo->facturas->update($request->all());
-        $this->setSerial($request->input('serial'));
+        $serialHelper->setSerial($request->input('serial'), 2);
 
         flash('Reegistro Creado', 'success')->important();
         return redirect()->action('HistopatologiaController@create');
@@ -294,35 +298,5 @@ class HistopatologiaController extends Controller
             })
             ->rawColumns(['href'])
             ->make(true);
-    }
-
-    /**
-     * @param $req
-     */
-    public function setSerial($req)
-    {
-
-        $preserial = CitoSerial::findOrFail(2);
-        $serial = ($preserial->serial + 1);
-
-        if($serial != $req){
-            $getSerial = CitoUnbind::where('unbind', $req)->first();
-            $getSerial->delete();
-        } else {
-            $getSerial = CitoSerial::findOrFail(2);
-            $getSerial->serial = $req;
-            $getSerial->update();
-        }
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSerial()
-    {
-        $getSerial = CitoSerial::findOrFail(2);
-        $sserial = $getSerial->serial;
-        $serial = ($sserial + 1);
-        return $serial;
     }
 }

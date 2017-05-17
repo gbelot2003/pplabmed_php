@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Acme\Controller\CitologiaControllerHelper;
+use Acme\Helpers\SerialHelper;
 use App\Categoria;
 use App\Citologia;
 use App\CitoSerial;
@@ -40,7 +41,8 @@ CitologiaController extends Controller
      */
     public function create()
     {
-        $serial = $this->getSerial();
+        $serialHelper = new SerialHelper();
+        $serial = $serialHelper->getSerial(1);
         $idCIto = Categoria::where('status', 1)->pluck('name', 'id');
         $firmas = Firma::where('status', 1)->pluck('name', 'id');
 
@@ -53,10 +55,11 @@ CitologiaController extends Controller
      */
     public function store(CitologiaValidate $request)
     {
-        $request['serial'] = $this->getSerial();
+        $serialHelper = new SerialHelper();
+        $request['serial'] = $serialHelper->getSerial(1);
         $cito = Citologia::create($request->all());
         $cito->facturas->update($request->all());
-        $this->setSerial($request->input('serial'));
+        $serialHelper->setSerial($request->input('serial'), 1);
         flash('Reegistro Creado', 'success')->important();
 
         return redirect()->action('CitologiaController@create');
@@ -94,42 +97,6 @@ CitologiaController extends Controller
 
         flash('Reegistro Actualizado', 'success')->important();
         return redirect()->back();
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSerial()
-    {
-        $unbind = CitoUnbind::first();
-        if($unbind){
-            $serial =  $unbind->unbind;
-        } else {
-            $getSerial = CitoSerial::findOrFail(1);
-            $sserial = $getSerial->serial;
-            $serial = ($sserial + 1);
-        }
-
-        return $serial;
-    }
-
-    /**
-     * @param $req
-     */
-    public function setSerial($req)
-    {
-
-        $preserial = CitoSerial::findOrFail(1);
-        $serial = ($preserial->serial + 1);
-
-        if($serial != $req){
-            $getSerial = CitoUnbind::where('unbind', $req)->first();
-            $getSerial->delete();
-        } else {
-            $getSerial = CitoSerial::findOrFail(1);
-            $getSerial->serial = $req;
-            $getSerial->update();
-        }
     }
 
     /**

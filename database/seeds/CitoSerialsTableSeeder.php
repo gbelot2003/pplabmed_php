@@ -20,14 +20,14 @@ class CitoSerialsTableSeeder extends Seeder
             0 => 
             array (
                 'id' => 1,
-                'serial' => 8,
+                'serial' => 0,
                 'created_at' => '2017-03-06 00:09:36',
                 'updated_at' => '2017-03-10 21:48:30',
             ),
             1 => 
             array (
                 'id' => 2,
-                'serial' => 2,
+                'serial' => 0,
                 'created_at' => '2017-03-06 00:09:47',
                 'updated_at' => '2017-03-06 00:09:47',
             ),
