@@ -8,7 +8,7 @@
     <div class="col-md-4">
         <div class="row">
             <div class="col-md-12 form-group {{ $errors->has('mor1') ? ' has-error' : '' }}">
-                <label for="mor1">Mofología</label>
+                <label for="mor1">Morfología</label>
                 {!!  Form::text('mor1', null, ['class' => 'form-control', 'id' => 'mor1'])  !!}
             </div>
 
@@ -24,12 +24,11 @@
         <div class="row">
 
             <div class="col-md-12 form-group {{ $errors->has('mor2') ? ' has-error' : '' }}">
-                <label for="mor2">Mofología 2</label>
+                <label for="mor2">Morfología 2</label>
                 {!!  Form::text('mor2', null, ['class' => 'form-control', 'id' => 'mor2'])  !!}
             </div>
         </div>
     </div>
-
 
 
 </div>
@@ -53,7 +52,6 @@
     </div>
 
 </div>
-
 
 
 <div class="row">
@@ -83,9 +81,10 @@
         </ul>
     </div>
 
-    <div class="col-md-12 form-group  {{ $errors->has('fecha_muestra') ? ' has-error' : '' }}"">
-        {{ Form::textarea('informe', null, ['class' => 'textarea form-control ckeditor', 'id' => 'informe']) }}
-    </div>
+    <div class="col-md-12 form-group  {{ $errors->has('fecha_muestra') ? ' has-error' : '' }}"
+    ">
+    {{ Form::textarea('informe', null, ['class' => 'textarea form-control ckeditor', 'id' => 'informe']) }}
+</div>
 </div>
 
 <div class="row">

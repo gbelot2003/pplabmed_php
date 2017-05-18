@@ -27,7 +27,7 @@ class ImagesController extends Controller
         return redirect()->to(action('HistopatologiaController@edit', $request->get('id')));
     }
 
-    public function update(Request $request, $id)
+    public function update(ImagesValidator $request, $id)
     {
         $helpers = new Miselanius();
         $images = Image::findOrfail($id);
