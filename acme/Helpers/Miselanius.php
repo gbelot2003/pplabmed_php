@@ -1,6 +1,8 @@
 <?php
 namespace Acme\Helpers;
 
+use App\Http\Requests\ImagesValidator;
+use App\Image;
 use Illuminate\Http\Request;
 use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
