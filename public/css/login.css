@@ -70,7 +70,6 @@ body, html {
 }
 
 #login-box button.btn-custom:hover {
-  -webkit-transition: all 500ms ease;
   transition: all 500ms ease;
   background: #302e2d;
   border-color: #5DFDF2;

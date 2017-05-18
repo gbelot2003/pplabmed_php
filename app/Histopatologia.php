@@ -12,7 +12,7 @@ class Histopatologia extends Model
      */
     protected $fillable = [
         'serial', 'factura_id', 'link_id', 'topog', 'mor1', 'mor2', 'firma_id', 'firma2_id',
-        'muestra', 'diagnostico', 'fecha_informe', 'fecha_biopcia', 'fecha_biopcia', 'informe'
+        'muestra', 'diagnostico', 'fecha_informe', 'fecha_biopcia', 'fecha_muestra', 'informe'
     ];
 
     /**
