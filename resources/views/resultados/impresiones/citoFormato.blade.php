@@ -9,7 +9,7 @@
             <span class="sexo-etiqueta parte">SEXO: <strong>{{ $items->facturas->sexo }}</strong></span>
             <span class="direccion-etiqueta parte">DIRECCIÓN:</span>
             <span class="direccion parte"><strong>{{ $items->facturas->direccion_entrega_sede }}</strong></span>
-            <span class="telefono-etiqueta parte">TELEFONO: <strong>{{ $items->facturas->telefono }}</strong></span>
+            <span class="telefono-etiqueta parte">DOCTOR: <strong>{{ $items->facturas->medico }}</strong></span>
             <span CLASS="solicitud-etiqueta parte"><strong>SOLICITUD PARA ESTUDIO CITOLOGICO</strong></span>
 
             <span class="deteccion-etiqueta parte">DETECCIÓN DE CANCER:
