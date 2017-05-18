@@ -20,12 +20,6 @@
                                 <span class="uppercase">Medico:</span><span
                                         class="strong uppercase">{{ $items->facturas->medico }}</span>
                             </div>
-                            <div>
-                                <span class="uppercase">Diagnostico: </span><span
-                                        class="strong uppercase">{{  $items->diagnostico }}</span>
-                            </div>
-
-
                         </td>
                         <td><span class="uppercase">Edad:</span><span
                                     class="strong uppercase">{{ $items->facturas->edad }}</span></td>
@@ -33,7 +27,15 @@
                                     class="strong uppercase">{{ $items->facturas->sexo }}</span></td>
                     </tr>
                     <tr>
-                        <td colspan="">
+                      <td colspan="3">
+                        <div>
+                            <span class="uppercase">Diagnostico Clinico: </span><span
+                                    class="strong uppercase">{{  $items->diagnostico }}</span>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
                             <div>
                                 <span class="uppercase">Material Estudiado: </span><span
                                         class="strong uppercase">{{  $items->muestra }}</span>
@@ -60,22 +62,28 @@
                             </div>
                         </td>
 
-                        <td colspan="2">
+                        <td>
+                          <div>
                             <span class="uppercase">Muestra Recibida: </span><span class="strong">
                                 @if($items->fecha_muestra)
                                     {{ $items->fecha_muestra->formatLocalized('%d/%m/%Y') }}
                                 @endif
                             </span>
+                          </div>
+                            <div>
+                              <span class="uppercase">No. de Biopsia: </span><span
+                                          class="strong"> {{ $items->serial }}</span>
+                            </div>
+                        </td>
+                        <td>
+                          <span class="uppercase">No, de Factura: </span><span
+                                      class="strong"> {{ $items->facturas->num_factura }}</span>
                         </td>
                     </tr>
-
                     <tr>
-                        <td>
+                        <td colspan="3">
+                          <h5 style="text-align:center">INFORME</h5>
                         </td>
-                        <td><span class="uppercase">No. de Biopsia: </span><span
-                                    class="strong"> {{ $items->serial }}</span></td>
-                        <td><span class="uppercase">No, de Factura: </span><span
-                                    class="strong"> {{ $items->facturas->num_factura }}</span></td>
                     </tr>
                     <tr>
                         <td colspan="3">
