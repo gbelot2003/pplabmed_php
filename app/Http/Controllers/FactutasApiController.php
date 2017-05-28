@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Acme\Helpers\DateHelper;
 use App\Factura;
 use App\Http\Requests\FacturasValidate;
 use Acme\Controller\FacturasApiHeper;
@@ -15,15 +16,15 @@ class FactutasApiController extends Controller
      * @param FacturasValidate|Request $request
      * @return string
      */
-    public function store(FacturasValidate $request)
+    public function store(Request $request)
     {
         $factHelp = new FacturasApiHeper();
-        $request['fecha_nacimiento'] = $factHelp->setFecha( $request->get( 'fecha_nacimiento' ) );
-        $request['edad'] = $factHelp->setEdad( $request->get( 'edad' ) );
+        $fecha_nac = new DateHelper($request->get('fecha_nacimiento'));
+        $request['fecha_nacimiento'] = $fecha_nac->getDate();
 
         $factura = Factura::create($request->all());
 
-        $factHelp->saveExamenes( $request->get('examen'), $factura->num_factura);
+        $factHelp->saveExamenes($request->get('examen'), $factura->num_factura);
 
         return '200';
     }

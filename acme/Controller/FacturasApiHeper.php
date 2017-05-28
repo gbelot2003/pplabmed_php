@@ -7,22 +7,6 @@ use App\Http\Requests\FacturasValidate;
 Class FacturasApiHeper {
 
     /**
-     * @param $edad
-     * @return false|string
-     */
-    public function setFecha($edad){
-        return date('Y-m-d H:i:s', strtotime($edad));
-    }
-
-    /**
-     * @param $edad
-     * @return int
-     */
-    public function setEdad($edad){
-        return intval(date('Y', time() - strtotime($edad))) - 1970;
-    }
-
-    /**
      * @param $examenes
      * @param $num_factura
      */
