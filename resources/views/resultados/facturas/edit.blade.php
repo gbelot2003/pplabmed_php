@@ -41,7 +41,7 @@
                             <h3>Examenes</h3>
                             <ul class="list-group">
                                 @foreach($factura->examenes as $examenes)
-                                    <li class="list-group-item">{{ $examenes->nombre_examen }}</li>
+                                    <li class="list-group-item">{{ $examenes->item }} | {{ $examenes->nombre_examen }}</li>
                                 @endforeach
                             </ul>
 
