@@ -15,6 +15,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <div class="text-muted pull-right">
+                            <a href="#" class="btn btn-default">Registros: {{ $today }}</a>
                             <a class="btn btn-default">Link Images ID: {{ $item->link_id }}</a>
                             @include('resultados.histopatologia.paginador')
                             <a onclick="window.open('{{ action('PrintController@sobreHistopatologia', $item->id) }}', '_blank', 'location=no,height=570,width=520,menubar=no,status=no,location=no,toolbar=no,scrollbars=yes,directories=no');" class="btn btn-info" alt="Buscar" ><span class="glyphicon glyphicon-envelope"></span></a>

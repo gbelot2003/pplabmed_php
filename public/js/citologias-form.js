@@ -59,6 +59,14 @@
 
     });
 
+    document.addEventListener("keydown", function(event) {
+        if(event.which === 107){
+            console.log(event.which);
+            $( "#myForm" ).submit();
+        }
+    });
+
+
 
 })(jQuery);
 //# sourceMappingURL=citologias-form.js.map

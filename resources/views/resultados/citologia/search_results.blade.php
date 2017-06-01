@@ -38,4 +38,11 @@
 
 @section('jscode')
     <script src="{{ asset('js/citologias-form.js') }}"></script>
+    <script>
+        document.addEventListener("keydown", function(event) {
+            if(event.which === 107){
+                window.location.href = '/citologias/create';
+            }
+        });
+    </script>
 @stop

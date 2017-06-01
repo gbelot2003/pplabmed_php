@@ -10,6 +10,7 @@ use App\Histopatologia;
 use App\Http\Requests\HistopatiaValidation;
 use App\LinkImage;
 use App\Plantilla;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Yajra\Datatables\Datatables;
@@ -38,6 +39,8 @@ class HistopatologiaController extends Controller
             'user_id' => Auth::user()->id
         ]);
 
+
+
         $firmas = Firma::where('status', 1)->pluck('name', 'id');
         $plantillas = Plantilla::all();
         return View('resultados.histopatologia.create', compact('serial', 'firmas', 'plantillas', 'link'));
@@ -52,7 +55,7 @@ class HistopatologiaController extends Controller
         $serialHelper->setSerial($request->input('serial'), 2);
 
         flash('Reegistro Creado', 'success')->important();
-        return redirect()->action('HistopatologiaController@create');
+        return redirect()->to(action('HistopatologiaController@edit', $histo->id));
     }
 
     public function edit($id)
@@ -64,7 +67,14 @@ class HistopatologiaController extends Controller
         $previous = Histopatologia::where('id', '<', $item->id)->max('id');
         $next = Histopatologia::where('id', '>', $item->id)->min('id');
         $total = Histopatologia::all()->count();
-        return View('resultados.histopatologia.edit', compact('item', 'plantillas', 'firmas', 'postId', 'i', 'previous', 'next', 'total'));
+
+        $now = date("Y-m-d");
+        $bdate = Carbon::createFromFormat('Y-m-d', $now)->startOfDay();
+        $edate = Carbon::createFromFormat('Y-m-d', $now)->endOfDay();
+
+        $today = Histopatologia::whereBetween('created_at', [$bdate, $edate])->count();
+
+        return View('resultados.histopatologia.edit', compact('item', 'plantillas', 'firmas', 'postId', 'i', 'previous', 'next', 'total', 'today'));
     }
 
     public function update(HistopatiaValidation $request, $id)

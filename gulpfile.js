@@ -18,6 +18,7 @@ elixir((mix) => {
         .sass('login.scss')
         .webpack('app.js')
         .webpack('custom.js')
+        .scripts(['scripts/citologias-form.js'], 'public/js/citologias-form.js')
         .scripts([
             'assets/dropzone.js',
             'scripts/histopatologia-form.js'
