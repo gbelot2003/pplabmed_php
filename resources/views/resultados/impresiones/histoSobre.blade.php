@@ -2,6 +2,7 @@
 @section('content')
     <link rel="stylesheet" href="/css/print_cito_sobre.css">
     <div id="sobre">
+        <span class="no-print"><a class="imprimir" onclick="window.print();" href="#">Imprimir</a></span>
         <span class="medico parte">{{ $items->facturas->medico }}</span>
         <span class="serial parte">{{ $items->serial }}</span>
         <span class="direccion_entrega_sede parte strong">{{ $items->facturas->direccion_entrega_sede }}</span>
