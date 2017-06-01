@@ -17,7 +17,7 @@
     <div class="form-group col-md-2 {{ $errors->has('factura_id') ? ' has-error' : '' }}">
         <label for="factura">No. Factura</label>
         {{ Form::number('factura_id', isset($item->facturas->name) ? $item->facturas->name : null,
-            ['class' => 'form-control box-style yellow', 'id' => 'factura', 'require'] ) }}
+            ['class' => 'form-control box-style yellow', 'id' => 'factura', 'tabindex' => 1,'require'] ) }}
         @if ($errors->has('email'))
             <span class="help-block">
                 <strong>{{ $errors->first('factura_id') }}</strong>
