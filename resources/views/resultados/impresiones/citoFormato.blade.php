@@ -38,9 +38,9 @@
             <span class="fecha-muestra-etiqueta parte">FECHA DE TOMA DE MUESTRA: <strong>{{ isset($items->fecha_muestra) ? $items->fecha_muestra->formatLocalized('%d/%m/%Y') : "" }}</strong></span>
             <span class="medico-etiqueta parte">MEDICO REMITENTE:  <strong>{{ $items->facturas->medico }}</strong></span>
             <hr class="parte linea">
-            <span class="factura-etiqueta parte">No.: <strong>{{ $items->factura_id }}</strong></span>
+            <span class="factura-etiqueta parte">{{ $items->serial }}</span>
             <span class="informe-sistema-etiqueta parte">INFORME SISTEMA BETHESDA</span>
-            <span class="serial-etiqueta parte">{{ $items->serial }}</span>
+            <span class="serial-etiqueta parte">No.: <strong>{{ $items->factura_id }}</strong></span>
 
             <span class="informe-etiqueta parte">{!! $items->informe !!}</span>
 
