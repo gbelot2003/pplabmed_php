@@ -27,12 +27,17 @@
                                     class="strong uppercase">{{ $items->facturas->sexo }}</span></td>
                     </tr>
                     <tr>
-                      <td colspan="3">
-                        <div>
-                            <span class="uppercase">Diagnostico Clinico: </span><span
-                                    class="strong uppercase">{{  $items->diagnostico }}</span>
-                        </div>
-                      </td>
+                        <td colspan="3">
+                            <div>
+                                <span class="uppercase">Dirección</span><span class="strong uppercase">
+                                    {{ $items->facturas->direccion_entrega_sede }}
+                                </span>
+                            </div>
+                            <div>
+                                <span class="uppercase">Diagnostico Clinico: </span><span
+                                        class="strong uppercase">{{  $items->diagnostico }}</span>
+                            </div>
+                        </td>
                     </tr>
                     <tr>
                         <td colspan="3">
@@ -63,26 +68,29 @@
                         </td>
 
                         <td>
-                          <div>
-                            <span class="uppercase">Muestra Recibida: </span><span class="strong">
-                                @if($items->fecha_muestra)
-                                    {{ $items->fecha_muestra->formatLocalized('%d/%m/%Y') }}
-                                @endif
-                            </span>
-                          </div>
                             <div>
-                              <span class="uppercase">No. de Biopsia: </span><span
-                                          class="strong"> {{ $items->serial }}</span>
+                                <span class="uppercase">Muestra Recibida: </span><span class="strong">
+                                @if($items->fecha_muestra)
+                                        {{ $items->fecha_muestra->formatLocalized('%d/%m/%Y') }}
+                                    @endif
+                            </span>
+                            </div>
+                            <div>
+
                             </div>
                         </td>
                         <td>
-                          <span class="uppercase">No, de Factura: </span><span
-                                      class="strong"> {{ $items->facturas->num_factura }}</span>
+                            <div>
+                                <span class="uppercase">No. de Biopsia: </span><span
+                                        class="strong">{{ $items->created_at->format('Y') }}- {{ $items->serial }}</span>
+                            </div>
+                            <span class="uppercase">No. de Factura: </span><span
+                                    class="strong"> {{ $items->facturas->num_factura }}</span>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="3">
-                          <h5 style="text-align:center">INFORME</h5>
+                            <h5 style="text-align:center">INFORME</h5>
                         </td>
                     </tr>
                     <tr>
