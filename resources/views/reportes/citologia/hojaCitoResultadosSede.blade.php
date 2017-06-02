@@ -38,6 +38,7 @@
                     <th>Edad</th>
                     <th>Sexo</th>
                     <th>Examen</th>
+                    <th>No. informe</th>
                     <th>Firma</th>
                     </thead>
                     <tbody>
@@ -49,6 +50,7 @@
                                 <td>{{ $items['edad'] }}</td>
                                 <td>{{ $items['sexo'] }}</td>
                                 <td>{{ $items['nombre_examen'] }}</td>
+                                <td>{{ $items['serial'] }}</td>
                                 <td style="min-width: 12em"></td>
                             </tr>
                         @endforeach

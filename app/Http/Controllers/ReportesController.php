@@ -104,44 +104,12 @@ class ReportesController extends Controller
         $edate = Carbon::createFromFormat('Y-m-d', $final)->endOfDay();
         $direc = $direccion;
 
-        $PDO = DB::connection('mysql')->getPdo();
-        if($direccion != 'null'){
-            $query = $PDO->prepare("
-                SELECT f.num_factura, f.nombre_completo_cliente, f.edad,  f.sexo, x.nombre_examen, f.direccion_entrega_sede, c.serial
-                from citologias as c
-                JOIN facturas as f on f.num_factura = c.factura_id
-                JOIN examenes as x on x.num_factura = f.num_factura
-                where c.fecha_informe BETWEEN '". $bdate . "' AND '". $edate."'
-                AND f.direccion_entrega_sede = '" . $direc . "'
-                UNION
-                SELECT f.num_factura, f.nombre_completo_cliente, f.edad, f.sexo, x.nombre_examen, f.direccion_entrega_sede, h.serial
-                FROM histopatologias as h
-                JOIN facturas as f on f.num_factura = h.factura_id
-                JOIN examenes as x on x.num_factura = f.num_factura
-                where h.fecha_informe BETWEEN '". $bdate . "' AND '". $edate."'
-                AND f.direccion_entrega_sede = '" . $direc . "'
-              ");
-        } else {
-            $query = $PDO->prepare("
-                SELECT f.num_factura, f.nombre_completo_cliente, f.edad, f.sexo, x.nombre_examen, f.direccion_entrega_sede, c.serial
-                from citologias as c
-                JOIN facturas as f on f.num_factura = c.factura_id
-                JOIN examenes as x on x.num_factura = f.num_factura
-                where c.fecha_informe BETWEEN '". $bdate . "' AND '". $edate."'
-                UNION
-                SELECT f.num_factura, f.nombre_completo_cliente, f.edad, f.sexo, x.nombre_examen, f.direccion_entrega_sede, h.serial
-                FROM histopatologias as h
-                JOIN facturas as f on f.num_factura = h.factura_id
-                JOIN examenes as x on x.num_factura = f.num_factura
-                where h.fecha_informe BETWEEN '". $bdate . "' AND '". $edate."'
-              ");
-        }
+        $query = $this->hojaCitoMethod($bdate, $edate, $direc);
 
         $query->execute();
         $total = $query->rowCount();
-
         $items = $query->fetchAll((\PDO::FETCH_ASSOC));
-        //return $items;
+
         if ($pdf == 'null') {
             return View('reportes.citologia.hojaCitoResultadosSede', compact('items', 'total', 'bdate', 'edate', 'direccion'));
         } else {
@@ -161,7 +129,7 @@ class ReportesController extends Controller
         $inicio = $request->input('inicio');
         $fin = $request->input('final');
 
-        return redirect()->to('/reportes/identificador-citologia-resultados/' . $inicio . '/' . $fin );
+        return redirect()->to('/reportes/identificador-citologia-resultados/' . $inicio . '/' . $fin);
     }
 
     public function identificadorResults($inicio, $final)
@@ -195,14 +163,14 @@ class ReportesController extends Controller
     {
         $inicio = $request->input('inicio');
         $fin = $request->input('final');
-        $request->get('direccion') ? $dir = $request->get('direccion'): $dir = 'null';
+        $request->get('direccion') ? $dir = $request->get('direccion') : $dir = 'null';
 
         $pdf = $request->input('pdf') ? $request->input('pdf') : "null";
 
-        return redirect()->to('/reportes/reporte-biopcia/resultado/' . $inicio . '/' . $fin . '/' . $dir .'/'. $pdf);
+        return redirect()->to('/reportes/reporte-biopcia/resultado/' . $inicio . '/' . $fin . '/' . $dir . '/' . $pdf);
     }
 
-    public function biociaResult($inicio, $final, $dir,  $pdf)
+    public function biociaResult($inicio, $final, $dir, $pdf)
     {
         $bdate = Carbon::createFromFormat('Y-m-d', $inicio)->startOfDay();
         $edate = Carbon::createFromFormat('Y-m-d', $final)->endOfDay();
@@ -242,12 +210,12 @@ class ReportesController extends Controller
     {
         $inicio = $request->input('inicio');
         $fin = $request->input('final');
-        $request->get('mor1') ? $mor1 = $request->get('mor1'): $mor1 = 'null';
-        $request->get('mor2') ? $mor2 = $request->get('topog'): $mor2 = 'null';
-        $request->get('topog') ? $topo = $request->get('topog'): $topo = 'null';
-        $request->get('pdf') ? $pdf = $request->get('pdf'): $pdf = 'null';
+        $request->get('mor1') ? $mor1 = $request->get('mor1') : $mor1 = 'null';
+        $request->get('mor2') ? $mor2 = $request->get('topog') : $mor2 = 'null';
+        $request->get('topog') ? $topo = $request->get('topog') : $topo = 'null';
+        $request->get('pdf') ? $pdf = $request->get('pdf') : $pdf = 'null';
 
-        return redirect()->to('reportes/reporte-morfologia/resultado/' . $inicio . '/' . $fin . '/' . $mor1 .'/'. $mor2 .'/'. $topo .'/'. $pdf);
+        return redirect()->to('reportes/reporte-morfologia/resultado/' . $inicio . '/' . $fin . '/' . $mor1 . '/' . $mor2 . '/' . $topo . '/' . $pdf);
     }
 
     public function morfologiaResult($inicio, $final, $mor1, $mor2, $topo, $pdf)
@@ -257,15 +225,15 @@ class ReportesController extends Controller
 
         $query = Histopatologia::with('facturas')->whereBetween('fecha_informe', [$bdate, $edate]);
 
-        if($mor1 != 'null'){
+        if ($mor1 != 'null') {
             $query->where('mor1', $mor1);
         }
 
-        if($mor2 != 'null'){
+        if ($mor2 != 'null') {
             $query->where('mor2', $mor2);
         }
 
-        if($topo != 'null'){
+        if ($topo != 'null') {
             $query->where('topog', $topo);
         }
 
@@ -289,7 +257,7 @@ class ReportesController extends Controller
     {
         $inicio = $request->input('inicio');
         $fin = $request->input('final');
-        return redirect()->to('reportes/reporte-citologias-anormales/resultado/' . $inicio . '/' . $fin );
+        return redirect()->to('reportes/reporte-citologias-anormales/resultado/' . $inicio . '/' . $fin);
     }
 
     public function citoAnormalesResult($inicio, $final)
@@ -297,6 +265,34 @@ class ReportesController extends Controller
         $bdate = Carbon::createFromFormat('Y-m-d', $inicio)->startOfDay();
         $edate = Carbon::createFromFormat('Y-m-d', $final)->endOfDay();
 
+        list($a, $b, $c, $d, $e, $f, $g, $h, $i, $j, $k, $totales) = $this->busquedaDeResultados($bdate, $edate);
+
+
+        return View('reportes.citologia.citoAnormalesResult', compact('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'totales', 'bdate', 'edate'));
+    }
+
+    public function entregaMuestrasForm()
+    {
+        return View('reportes.histo.biopsiaMuestraForm');
+    }
+
+    public function entregaMuestrasReport(Request $request)
+    {
+        $bdate = Carbon::createFromFormat('Y-m-d', $request->get('inicio'))->startOfDay();
+        $edate = Carbon::createFromFormat('Y-m-d', $request->get('final'))->endOfDay();
+
+        $items = Histopatologia::whereBetween('fecha_informe', [$bdate, $edate])->get();
+
+        return View('reportes.histo.biopsiaMuestraResult', compact('items', 'bdate', 'edate'));
+    }
+
+    /**
+     * @param $bdate
+     * @param $edate
+     * @return array
+     */
+    protected function busquedaDeResultados($bdate, $edate)
+    {
         $a = Factura::join('citologias as c', 'c.factura_id', '=', 'facturas.num_factura')
             ->join('examenes as x', 'x.num_factura', '=', 'facturas.num_factura')
             ->selectRaw("SUM(IF(c.icitologia_id = 2, 1, 0)) as ID2,
@@ -511,24 +507,47 @@ class ReportesController extends Controller
             ->where('c.icitologia_id', '!=', 10)
             ->whereBetween('c.fecha_informe', [$bdate, $edate])
             ->get();
-
-
-        return View('reportes.citologia.citoAnormalesResult', compact('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'totales', 'bdate', 'edate'));
+        return array($a, $b, $c, $d, $e, $f, $g, $h, $i, $j, $k, $totales);
     }
 
-    public function entregaMuestrasForm()
+    /**
+     * @param $direccion
+     * @param $bdate
+     * @param $edate
+     * @param $direc
+     * @return mixed
+     */
+    protected function hojaCitoMethod( $bdate, $edate, $direc)
     {
-        return View('reportes.histo.biopsiaMuestraForm');
-    }
-
-    public function entregaMuestrasReport(Request $request)
-    {
-        $bdate = Carbon::createFromFormat('Y-m-d', $request->get('inicio'))->startOfDay();
-        $edate = Carbon::createFromFormat('Y-m-d', $request->get('final'))->endOfDay();
-
-        $items = Histopatologia::whereBetween('fecha_informe', [$bdate, $edate])->get();
-
-        return View('reportes.histo.biopsiaMuestraResult', compact('items', 'bdate', 'edate'));
+        $PDO = DB::connection('mysql')->getPdo();
+        if ($direc != 'null') {
+            $query = $PDO->prepare("
+                select f.num_factura, f.nombre_completo_cliente, f.edad, f.sexo, x.nombre_examen, f.direccion_entrega_sede c.serial from facturas as f
+                RIGHT JOIN examenes as x on f.num_factura = x.num_factura
+                left JOIN citologias as c on f.num_factura = c.factura_id 
+                where f.created_at BETWEEN '" . $bdate . "' AND '" . $edate . "'
+                AND f.direccion_entrega_sede = '" . $direc . "'
+                UNION
+                select f.num_factura, f.nombre_completo_cliente, f.edad, f.sexo, x.nombre_examen, f.direccion_entrega_sede, h.serial from facturas as f
+                left JOIN histopatologias as h on f.num_factura = h.factura_id
+                RIGHT JOIN examenes as x on f.num_factura = x.num_factura
+                where f.created_at BETWEEN '" . $bdate . "' AND '" . $edate . "'
+                AND f.direccion_entrega_sede = '" . $direc . "'
+              ");
+        } else {
+            $query = $PDO->prepare("
+                select f.num_factura, f.nombre_completo_cliente, f.edad, f.sexo, x.nombre_examen, f.direccion_entrega_sede, c.serial from facturas as f
+                RIGHT JOIN examenes as x on f.num_factura = x.num_factura
+                left JOIN citologias as c on f.num_factura = c.factura_id 
+                where f.created_at BETWEEN '" . $bdate . "' AND '" . $edate . "'
+                UNION
+                select f.num_factura, f.nombre_completo_cliente, f.edad, f.sexo, x.nombre_examen, f.direccion_entrega_sede, h.serial from facturas as f
+                RIGHT JOIN examenes as x on f.num_factura = x.num_factura
+                left JOIN histopatologias as h on f.num_factura = h.factura_id
+                where f.created_at BETWEEN '" . $bdate . "' AND '" . $edate . "'
+              ");
+        }
+        return $query;
     }
 
 }
