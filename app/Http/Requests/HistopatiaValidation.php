@@ -31,7 +31,7 @@ class HistopatiaValidation extends FormRequest
             'nombre_completo_cliente' => 'string',
             'edad' => 'nullable',
             'sexo' => 'string|max:1',
-            'correo' => 'email|nullable',
+            'correo' => 'string|nullable',
             'correo2' => 'string|nullable',
             'direccion_entrega_sede' => 'string|nullable',
             'medico' => 'string|nullable',

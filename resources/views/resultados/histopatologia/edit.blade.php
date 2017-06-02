@@ -40,6 +40,8 @@
 @section('jscode')
     <script src="/js/caman.full.min.js"></script>
     <script src="{{ asset('js/histopatologia-form.js') }}"></script>
+
+
 @stop
 
 @section('modals')
