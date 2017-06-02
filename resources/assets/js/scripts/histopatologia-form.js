@@ -147,6 +147,7 @@
 
     });
 
+    $('#topog').inputmask("#.9999");
 
     document.addEventListener("keydown", function(event) {
         if(event.which === 107){

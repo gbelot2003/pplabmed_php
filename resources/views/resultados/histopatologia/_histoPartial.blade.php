@@ -48,7 +48,7 @@
 
     <div class="col-md-3 form-group {{ $errors->has('topog') ? ' has-error' : '' }}">
         <label for="topog">Topología</label>
-        {!!  Form::text('topog', null, ['tabindex' => 7, 'class' => 'form-control', 'id' => 'topog'])  !!}
+        {!!  Form::text('topog', null, ['tabindex' => 7, 'id' => 'topog', 'class' => 'form-control', 'id' => 'topog'])  !!}
     </div>
 
 </div>

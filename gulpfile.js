@@ -20,7 +20,6 @@ elixir((mix) => {
         .webpack('custom.js')
         .scripts(['scripts/citologias-form.js'], 'public/js/citologias-form.js')
         .scripts([
-            'assets/dropzone.js',
             'scripts/histopatologia-form.js'
             ], 'public/js/histopatologia-form.js')
         .scripts([
@@ -31,7 +30,8 @@ elixir((mix) => {
             'assets/toastr.min.js',
             'assets/moment.js',
             'assets/select2.full.min.js',
-            'assets/jquery.colorbox.js'
+            'assets/jquery.colorbox.js',
+            'assets/jquery.inputmask.bundle.js',
         ], 'public/js/app2.js');
 
     mix.less('login2.less');
