@@ -32,7 +32,7 @@
                         <h4>Agregar de Histopatología</h4>
                     </div>
                     <div class="panel-body" id="app">
-                        {!! Form::open(['action' => 'HistopatologiaController@store']) !!}
+                        {!! Form::open(['action' => 'HistopatologiaController@store', 'id' => 'myForm']) !!}
                         <div class="panel-body">
                             @include('resultados.histopatologia._faturasPartial')
                             @include('resultados.histopatologia._histoPartial')

@@ -24,7 +24,7 @@
                         <h4>Agregar de Citología</h4>
                     </div>
                     <div class="panel-body" id="app">
-                        {!! Form::model($item, ['action' => ['CitologiaController@update', $item->id], 'method' => 'PATCH']) !!}
+                        {!! Form::model($item, ['action' => ['CitologiaController@update', $item->id], 'id' => 'myForm', 'method' => 'PATCH']) !!}
                         @include('resultados.citologia._faturasPartial')
                         @include('resultados.citologia._citologiaPartial')
                         {!!  Form::close() !!}
@@ -38,11 +38,4 @@
 
 @section('jscode')
     <script src="{{ asset('js/citologias-form.js') }}"></script>
-    <script>
-        document.addEventListener("keydown", function(event) {
-            if(event.which === 107){
-                window.location.href = '/citologias/create';
-            }
-        });
-    </script>
 @stop

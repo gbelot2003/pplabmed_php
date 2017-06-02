@@ -26,7 +26,7 @@
                             <h4>Agregar de Histopatología</h4>
                         </div>
                         <div class="panel-body" id="app">
-                            {!! Form::model($item, ['action' => ['HistopatologiaController@update', $item->id], 'name' => 'theForm' ,'method' => 'PATCH']) !!}
+                            {!! Form::model($item, ['action' => ['HistopatologiaController@update', $item->id], 'id' => 'myForm' ,'method' => 'PATCH']) !!}
                             @include('resultados.histopatologia._faturasPartial')
                             @include('resultados.histopatologia._histoPartial')
                             {!!  Form::close() !!}
@@ -40,17 +40,4 @@
 
 @section('jscode')
     <script src="{{ asset('js/histopatologia-form.js') }}"></script>
-    <script>
-        document.addEventListener("keydown", function(event) {
-            if(event.which === 107){
-                document.getElementById('theForm').submit();
-                window.location.href = '/histopatologia/create';
-            }
-        });
-    </script>
 @stop
-
-{{--
-@section('modals')
-    @include('resultados.histopatologia._modal_images')
-@stop--}}

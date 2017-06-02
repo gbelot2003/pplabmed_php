@@ -61,7 +61,13 @@
 
     document.addEventListener("keydown", function(event) {
         if(event.which === 107){
-            console.log(event.which);
+            if (confirm('¿Seguro que desea salir?, se perdera toda la Información no salvada!!')) {
+                window.location.href = '/citologias/create';
+            }
+        }
+
+        if(event.ctrlKey === true && event.which == 13)
+        {
             $( "#myForm" ).submit();
         }
     });

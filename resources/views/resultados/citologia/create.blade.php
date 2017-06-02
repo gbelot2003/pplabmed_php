@@ -31,7 +31,7 @@
                         <h4>Agregar de Citología</h4>
                     </div>
                     <div class="panel-body" id="app">
-                        {!! Form::open(['action' => 'CitologiaController@store']) !!}
+                        {!! Form::open(['action' => 'CitologiaController@store', 'id' => 'myForm']) !!}
                         <div class="panel-body">
                             @include('resultados.citologia._faturasPartial')
                             @include('resultados.citologia._citologiaPartial')
