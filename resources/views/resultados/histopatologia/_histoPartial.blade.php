@@ -41,7 +41,7 @@
     </div>
 
 
-    <div class="col-md-6 form-group {{ $errors->has('firma_id') ? ' has-error' : '' }}">
+    <div class="col-md-4 form-group {{ $errors->has('firma_id') ? ' has-error' : '' }}">
         <label for="firma_id">Firma</label>
         {{ Form::select('firma_id', $firmas, null, ['class' => 'form-control', 'id' => 'firma_id']) }}
     </div>
@@ -61,7 +61,7 @@
         {{ Form::date('fecha_biopcia',  isset($item->fecha_biopcia) ? $item->fecha_biopcia : date("Y-m-d"), ['tabindex' => 5, 'class' => 'form-control', 'id' => 'fecha_biopcia']) }}
     </div>
 
-    <div class="col-md-6 form-group {{ $errors->has('firma2_id') ? ' has-error' : '' }}">
+    <div class="col-md-4 form-group {{ $errors->has('firma2_id') ? ' has-error' : '' }}">
         <label for="firma2_id">Firma 2</label>
         {{ Form::select('firma2_id', $firmas, null, ['placeholder' => 'None', 'class' => 'form-control', 'id' => 'firma2_id']) }}
     </div>
@@ -70,6 +70,15 @@
         <label for="para">Fecha de Muestra: </label>
         {{ Form::date('fecha_muestra', isset($item->fecha_muestra) ? $item->fecha_muestra : date("Y-m-d"), ['tabindex' => 6, 'class' => 'form-control', 'id' => 'fecha_muestra']) }}
     </div>
+
+    <div class="col-md-2 form-group">
+        <div class="checkbox checkbox-info">
+            <br>
+            {!! Form::checkbox('muestra_entrega', 1, null, ['id' => 'checkbox1', 'tabindex' => 8]) !!}
+            <label for="checkbox1">Se entrego muestra?</label>
+        </div>
+    </div>
+
 </div>
 
 <div class="row">

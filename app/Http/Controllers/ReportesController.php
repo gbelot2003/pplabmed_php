@@ -515,4 +515,20 @@ class ReportesController extends Controller
 
         return View('reportes.citologia.citoAnormalesResult', compact('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'totales', 'bdate', 'edate'));
     }
+
+    public function entregaMuestrasForm()
+    {
+        return View('reportes.histo.biopsiaMuestraForm');
+    }
+
+    public function entregaMuestrasReport(Request $request)
+    {
+        $bdate = Carbon::createFromFormat('Y-m-d', $request->get('inicio'))->startOfDay();
+        $edate = Carbon::createFromFormat('Y-m-d', $request->get('final'))->endOfDay();
+
+        $items = Histopatologia::whereBetween('fecha_informe', [$bdate, $edate])->get();
+
+        return View('reportes.histo.biopsiaMuestraResult', compact('items', 'bdate', 'edate'));
+    }
+
 }

@@ -46,6 +46,7 @@ class HistopatiaValidation extends FormRequest
             'fecha_informe' => 'date|nullable',
             'fecha_muestra' => 'date|nullable',
             'informe' => 'string|nullable',
+            'muestra_entrega' => 'boolean',
         ];
     }
 }

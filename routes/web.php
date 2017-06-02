@@ -86,4 +86,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('reportes/reporte-citologias-anormales', 'ReportesController@citoAnormalesProcess');
     Route::get('reportes/reporte-citologias-anormales/resultado/{inicio}/{final}', 'ReportesController@citoAnormalesResult');
 
+    Route::get('reportes/reporte-entrega-muestras', 'ReportesController@entregaMuestrasForm');
+    Route::post('reportes/reporte-entrega-muestras', 'ReportesController@entregaMuestrasReport');
+
 });

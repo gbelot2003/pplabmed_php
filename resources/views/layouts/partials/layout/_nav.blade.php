@@ -58,6 +58,7 @@
                         <li><a href="{{ action('ReportesController@hojaCitoForm') }}"> Informe de Citología</a></li>
                         <li><a href="{{ action('ReportesController@biopciaForm') }}"> Informe de Biopsias</a></li>
                         <li><a href="{{ action('ReportesController@hojaCitoDeptoForm') }}"> Informe por sedes de entrega</a></li>
+                        <li><a href="{{ action('ReportesController@entregaMuestrasForm') }}"> Reporte de entrega de muestrass</a></li>
                         <li class="divider"></li>
                         <li class="dropdown-header">Estadisticas</li>
                         <li><a href="{{ action('ReportesController@identificadorCito') }}"> Identificadores de Citologías</a></li>
