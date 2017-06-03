@@ -33,7 +33,7 @@
             <span class="para-etiqueta parte">PARA: <strong>{{ $items->para }}</strong></span>
             <span class="aborto-etiqueta parte">ABORTO: <strong>{{ $items->abortos }}</strong></span>
 
-            <span class="material-enviado-etiqueta parte">MATERIAL ENVIADO: <strong>ROSTIS CERVICAL</strong></span>
+            <span class="material-enviado-etiqueta parte">MATERIAL ENVIADO: <strong>{{ $items->otros_b }}</strong></span>
 
             <span class="fecha-muestra-etiqueta parte">FECHA DE TOMA DE MUESTRA: <strong>{{ isset($items->fecha_muestra) ? $items->fecha_muestra->formatLocalized('%d/%m/%Y') : "" }}</strong></span>
             <span class="medico-etiqueta parte">MEDICO REMITENTE:  <strong>{{ $items->facturas->medico }}</strong></span>
