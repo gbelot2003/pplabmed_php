@@ -110,7 +110,12 @@
         <label>Fecha de Informe</label>
         {{ Form::date('fecha_informe',  isset($item->fecha_informe) ? $item->fecha_informe : date("Y-m-d"), ['class' => 'form-control', 'id' => 'fechainforme']) }}
     </div>
-
+    
+    {{-- Otros --}}
+    <div class="col-md-12 form-group  {{ $errors->has('otros_b') ? ' has-error' : '' }}">
+        <label for="otros2">Otros:</label>
+        {{ Form::text('otros_b', null, ['class' => 'form-control', 'id' => 'otros_b']) }}
+    </div>
 </div>
 
 <div class="row {{ $errors->has('informe') ? ' has-error' : '' }}">
@@ -120,11 +125,6 @@
         {{ Form::textarea('informe', null, ['class' => 'textarea form-control ckeditor', 'id' => 'informe', 'tabindex' => 12]) }}
     </div>
 
-    {{-- Otros --}}
-    <div class="col-md-12 form-group  {{ $errors->has('otros_b') ? ' has-error' : '' }}">
-        <label for="otros2">Otros:</label>
-        {{ Form::text('otros_b', null, ['class' => 'form-control', 'id' => 'otros_b']) }}
-    </div>
 </div>
 
 <div class="col-md-12">
