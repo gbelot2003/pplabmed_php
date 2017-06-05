@@ -55,7 +55,7 @@
                     </a>
                     <ul class="dropdown-menu" role="menu">
                         <li class="dropdown-header">Hojas de Trabajo</li>
-                        <li><a href="{{ action('ReportesController@hojaCitoForm') }}"> Informe de Citología</a></li>
+                        <li><a href="{{ route('reporte.cito.index') }}"> Informe de Citología</a></li>
                         <li><a href="{{ action('ReportesController@biopciaForm') }}"> Informe de Biopsias</a></li>
                         <li><a href="{{ action('ReportesController@hojaCitoDeptoForm') }}"> Informe por sedes de entrega</a></li>
                         <li><a href="{{ action('ReportesController@entregaMuestrasForm') }}"> Reporte de entrega de muestrass</a></li>
