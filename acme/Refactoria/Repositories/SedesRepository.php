@@ -13,6 +13,10 @@ class SedesRepository implements QueryModelsInterfaces
 
     protected $request;
 
+    /**
+     * SedesRepository constructor.
+     * @param Request $request
+     */
     public function __construct(Request $request)
     {
         $this->request = $request;

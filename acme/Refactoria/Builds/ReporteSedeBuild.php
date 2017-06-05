@@ -2,7 +2,7 @@
 
 namespace Acme\Refactoria\Builds;
 
-use Acme\Refactoria\Implement\QueryBuilderForms;
+use Acme\Refactoria\Implement\QueryBuilderSpetialOutput;
 use Acme\Refactoria\Interfaces\QueryConcreatInterface;
 use Acme\Refactoria\Repositories\SedesRepository;
 use App\Factura;
@@ -33,7 +33,7 @@ class ReporteSedeBuild implements QueryConcreatInterface
     public function builCallController(Request $request)
     {
         $repo = new SedesRepository($request);
-        $query = new QueryBuilderForms($request, $repo);
+        $query = new QueryBuilderSpetialOutput($request, $repo);
         list($bdate, $edate, $pdf, $items) = $query->buildSpetialQuerys();
 
         $total = $query->buildTotalQuery();

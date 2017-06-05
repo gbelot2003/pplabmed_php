@@ -5,11 +5,10 @@ namespace Acme\Refactoria\Interfaces;
 
 use Illuminate\Http\Request;
 
-interface QueryBuilderInterface
+interface QueryBuilderSpetialInterface
 {
-
     /**
-     * QueryBuilderInterface constructor.
+     * QueryBuilderSpetialInterface constructor.
      * @param Request $request
      * @param QueryModelsInterfaces $repo
      */
@@ -18,5 +17,6 @@ interface QueryBuilderInterface
     /**
      * @return mixed
      */
-    public function buidQuery();
+    public function buildSpetialQuerys();
+
 }
