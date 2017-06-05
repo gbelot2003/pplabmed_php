@@ -3,6 +3,7 @@
 namespace Acme\Refactoria\Builds;
 
 use Acme\Refactoria\Implement\QueryBuilderForms;
+use Acme\Refactoria\Implement\QueryRequireConcreatInterface;
 use Acme\Refactoria\Interfaces\QueryConcreatInterface;
 use Acme\Refactoria\Repositories\CitologiasRepository;
 use App\Categoria;
@@ -10,7 +11,7 @@ use App\Factura;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 
-class CitologiaBuild implements QueryConcreatInterface
+class CitologiaBuild implements QueryConcreatInterface, QueryRequireConcreatInterface
 {
 
     public function __construct()

@@ -3,13 +3,14 @@
 namespace Acme\Refactoria\Builds;
 
 use Acme\Refactoria\Implement\QueryBuilderForms;
+use Acme\Refactoria\Implement\QueryRequireConcreatInterface;
 use Acme\Refactoria\Interfaces\QueryConcreatInterface;
 use Acme\Refactoria\Repositories\HistoRepository;
 use App\Factura;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 
-class HistoBuild implements QueryConcreatInterface
+class HistoBuild implements QueryConcreatInterface, QueryRequireConcreatInterface
 {
 
     public function __construct()

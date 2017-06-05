@@ -3,6 +3,7 @@
 namespace Acme\Refactoria\Builds;
 
 use Acme\Refactoria\Implement\QueryBuilderSpetialOutput;
+use Acme\Refactoria\Implement\QueryRequireConcreatInterface;
 use Acme\Refactoria\Interfaces\QueryConcreatInterface;
 use Acme\Refactoria\Repositories\SedesRepository;
 use App\Factura;
@@ -10,7 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 
 
-class ReporteSedeBuild implements QueryConcreatInterface
+class ReporteSedeBuild implements QueryConcreatInterface, QueryRequireConcreatInterface
 {
 
     public function __construct()
