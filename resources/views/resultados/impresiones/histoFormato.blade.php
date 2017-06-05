@@ -82,7 +82,7 @@
                         <td>
                             <div>
                                 <span class="uppercase">No. de Biopsia: </span><span
-                                        class="strong">{{ $items->created_at->format('Y') }}- {{ $items->serial }}</span>
+                                        class="strong">{{ $items->serial }} - {{ $items->created_at->format('Y') }}</span>
                             </div>
                             <span class="uppercase">No. de Factura: </span><span
                                     class="strong"> {{ $items->facturas->num_factura }}</span>
