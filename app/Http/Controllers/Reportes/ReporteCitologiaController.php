@@ -15,7 +15,7 @@ class ReporteCitologiaController extends Controller
         $this->middleware('auth');
         $this->middleware('checkActive');
         $this->middleware('ShowReports');
-        $this->buid = new CitologiaBuild();
+        $this->build = new CitologiaBuild();
     }
 
     /**
@@ -23,7 +23,7 @@ class ReporteCitologiaController extends Controller
      */
     public function index()
     {
-        list($idCito, $direc) = $this->buid->builRequiresController();
+        list($idCito, $direc) = $this->build->builRequiresController();
         return View('reportes.citologia.hojaTrabajo.index', compact('idCito', 'direc'));
     }
 
@@ -33,7 +33,7 @@ class ReporteCitologiaController extends Controller
      */
     public function results(Request $request)
     {
-        return $this->buid->builCallController($request);
+        return $this->build->builCallController($request);
     }
 }
 

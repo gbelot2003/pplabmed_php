@@ -3,7 +3,7 @@
 @section('breadcrumbs')
     <ol class="breadcrumb hidden-print">
         <li><a href="/home">Inicio</a></li>
-        <li><a href="{{ action('ReportesController@hojaCitoForm') }}">Hoja de Biopsias</a></li>
+        <li><a href="{{ route('reporte.histo.results') }}">Hoja de Biopsias</a></li>
         <li class="active">Hoja de Biopsias Resultados </li>
     </ol>
 @stop

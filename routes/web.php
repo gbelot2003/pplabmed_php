@@ -64,7 +64,6 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('reportes/hoja-de-citologia', 'Reportes\ReporteCitologiaController@index')->name('reporte.cito.index');
     Route::post('reportes/hoja-de-citologia', 'Reportes\ReporteCitologiaController@results')->name('reporte.cito.results');
 
-    /*Route::get('reportes/hoja-de-citologia-resultados/{inicio}/{final}/{idCito?}/{direccion?}/{pdf?}', 'ReportesController@resultHojaCito');*/
 
     Route::get('reportes/hoja-de-citologia-agencia', 'ReportesController@hojaCitoDeptoForm');
     Route::post('reportes/hoja-de-citologia-agencia', 'ReportesController@hojaCitoDeptoProcess');
@@ -74,9 +73,8 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('reportes/identificador-citologia', 'ReportesController@identificadorProcess');
     Route::get('reportes/identificador-citologia-resultados/{inicio?}/{final?}', 'ReportesController@identificadorResults');
 
-    Route::get('reportes/reporte-biopcia', 'ReportesController@biopciaForm');
-    Route::post('reportes/reporte-biopcia', 'ReportesController@biopciaProcess');
-    Route::get('reportes/reporte-biopcia/resultado/{inicio?}/{final?}/{dir?}/{pdf?}', 'ReportesController@biociaResult');
+    Route::get('reportes/reporte-biopcia', 'Reportes\ReporteBiopciaController@index')->name('reporte.histo.index');
+    Route::post('reportes/reporte-biopcia', 'Reportes\ReporteBiopciaController@results')->name('reporte.histo.results');
 
     Route::get('reportes/reporte-morfologia', 'ReportesController@morfologiaForm');
     Route::post('reportes/reporte-morfologia', 'ReportesController@morfologiaProcess');
