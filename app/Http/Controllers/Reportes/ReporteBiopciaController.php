@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Reportes;
 
 use Acme\Refactoria\Builds\HistoBuild;
-use App\Factura;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
