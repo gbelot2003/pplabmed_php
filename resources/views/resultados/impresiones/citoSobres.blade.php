@@ -4,7 +4,7 @@
     <div id="sobre">
         <span class="no-print"><a class="imprimir" onclick="window.print();" href="#">Imprimir</a></span>
         <span class="medico parte">{{ $items->facturas->medico }}</span>
-        <span class="serial parte">{{ $items->facturas->num_factura }}</span>
+        <span class="serial parte">No. {{ $items->facturas->num_factura }}</span>
         <span class="direccion_entrega_sede parte strong">{{ $items->facturas->direccion_entrega_sede }}</span>
         <span class="etiqueta parte">Informe de los Examenes de:</span>
         <span class="nombre_completo_cliente parte">{{ $items->facturas->nombre_completo_cliente }}</span>

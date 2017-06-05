@@ -522,7 +522,7 @@ class ReportesController extends Controller
         $PDO = DB::connection('mysql')->getPdo();
         if ($direc != 'null') {
             $query = $PDO->prepare("
-                select f.num_factura, f.nombre_completo_cliente, f.edad, f.sexo, x.nombre_examen, f.direccion_entrega_sede c.serial from facturas as f
+                select f.num_factura, f.nombre_completo_cliente, f.edad, f.sexo, x.nombre_examen, f.direccion_entrega_sede, c.serial from facturas as f
                 RIGHT JOIN examenes as x on f.num_factura = x.num_factura
                 left JOIN citologias as c on f.num_factura = c.factura_id 
                 where f.created_at BETWEEN '" . $bdate . "' AND '" . $edate . "'
