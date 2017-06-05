@@ -18,7 +18,7 @@ class ReportePorSedeController extends Controller
 
     public function index()
     {
-        return View('reportes.reporteDeparamentos.index', ['direct' => $this->build->builRequiresController()]);
+        return View('reportes.reporteDeparamentos.index', ['direc' => $this->build->builRequiresController()]);
     }
 
     public function results(Request $request)

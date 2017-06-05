@@ -58,7 +58,7 @@
                         <tfooter>
                             <tr>
                                 <td>Recuento:</td>
-                                <td colspan="6" class="text-left"><string>{{ $total }}</string></td>
+                                <td colspan="7" class="text-left"><string>{{ $total }}</string></td>
                             </tr>
                         </tfooter>
                     </table>
