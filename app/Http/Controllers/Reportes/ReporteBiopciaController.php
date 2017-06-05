@@ -18,8 +18,7 @@ class ReporteBiopciaController extends Controller
 
     public function index()
     {
-        $direc = $this->build->builRequiresController();
-        return View('reportes.histo.hojaTrabajo.index', compact('direc'));
+        return View('reportes.histo.hojaTrabajo.index', ['direc' => $this->build->builRequiresController()]);
     }
 
     public function results(Request $request)
