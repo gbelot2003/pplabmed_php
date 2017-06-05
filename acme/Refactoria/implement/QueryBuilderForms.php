@@ -27,7 +27,24 @@ class QueryBuilderForms implements QueryBuilderInterface{
         list($bdate, $edate, $pdf, $query) = $this->repo->instancesRequires();
         $items = $query->get();
         return array($bdate, $edate, $pdf, $items);
+    }
 
+    public function buildSpetialQuerys()
+    {
+        list($bdate, $edate, $pdf, $query) = $this->repo->instancesRequires();
+        $query->execute();
+        $items = $query->fetchAll((\PDO::FETCH_ASSOC));
+        return array($bdate, $edate, $pdf, $items);
+    }
 
+    /**
+     * @return int
+     */
+    public function buildTotalQuery()
+    {
+        list($bdate, $edate, $pdf, $query) = $this->repo->instancesRequires();
+        $query->execute();
+        return $query->rowCount();
     }
 }
+

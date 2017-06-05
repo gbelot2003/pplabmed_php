@@ -57,7 +57,7 @@
                         <li class="dropdown-header">Hojas de Trabajo</li>
                         <li><a href="{{ route('reporte.cito.index') }}"> Informe de Citología</a></li>
                         <li><a href="{{ route('reporte.histo.index') }}"> Informe de Biopsias</a></li>
-                        <li><a href="{{ action('ReportesController@hojaCitoDeptoForm') }}"> Informe por sedes de entrega</a></li>
+                        <li><a href="{{ route('reporte.sedes.index') }}"> Informe por sedes de entrega</a></li>
                         <li><a href="{{ action('ReportesController@entregaMuestrasForm') }}"> Reporte de entrega de muestrass</a></li>
                         <li class="divider"></li>
                         <li class="dropdown-header">Estadisticas</li>

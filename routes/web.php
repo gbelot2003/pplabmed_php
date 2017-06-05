@@ -64,10 +64,8 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('reportes/hoja-de-citologia', 'Reportes\ReporteCitologiaController@index')->name('reporte.cito.index');
     Route::post('reportes/hoja-de-citologia', 'Reportes\ReporteCitologiaController@results')->name('reporte.cito.results');
 
-
-    Route::get('reportes/hoja-de-citologia-agencia', 'ReportesController@hojaCitoDeptoForm');
-    Route::post('reportes/hoja-de-citologia-agencia', 'ReportesController@hojaCitoDeptoProcess');
-    Route::get('reportes/hoja-de-citologia-resultados-agencias/{inicio}/{final}/{direccion?}/{pdf?}', 'ReportesController@hojaCitoDeptoResults');
+    Route::get('reportes/hoja-de-citologia-agencia', 'Reportes\ReportePorSedeController@index')->name('reporte.sedes.index');
+    Route::post('reportes/hoja-de-citologia-agencia', 'Reportes\ReportePorSedeController@results')->name('reporte.sedes.result');
 
     Route::get('reportes/identificador-citologia', 'ReportesController@identificadorCito');
     Route::post('reportes/identificador-citologia', 'ReportesController@identificadorProcess');

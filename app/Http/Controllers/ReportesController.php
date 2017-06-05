@@ -23,45 +23,6 @@ class ReportesController extends Controller
         $this->middleware('ShowReports');
     }
 
-
-    public function hojaCitoDeptoForm()
-    {
-        $direc = Factura::groupBy('direccion_entrega_sede')->select('direccion_entrega_sede')->pluck('direccion_entrega_sede', 'direccion_entrega_sede');
-        return View('reportes.citologia.hojaCitoDeptoForm', compact('idCito', 'direc'));
-    }
-
-
-    public function hojaCitoDeptoProcess(Request $request)
-    {
-        $inicio = $request->input('inicio');
-        $fin = $request->input('final');
-        $direccion = $request->get('direccion') ? $request->get('direccion') : 'null';
-        $pdf = $request->get('pdf') ? $request->get('pdf') : 'null';
-
-        return redirect()->to('/reportes/hoja-de-citologia-resultados-agencias/' . $inicio . '/' . $fin . '/' . $direccion . '/' . $pdf);
-    }
-
-    public function hojaCitoDeptoResults($inicio, $final, $direccion, $pdf)
-    {
-        $bdate = Carbon::createFromFormat('Y-m-d', $inicio)->startOfDay();
-        $edate = Carbon::createFromFormat('Y-m-d', $final)->endOfDay();
-        $direc = $direccion;
-
-        $query = $this->hojaCitoMethod($bdate, $edate, $direc);
-
-        $query->execute();
-        $total = $query->rowCount();
-        $items = $query->fetchAll((\PDO::FETCH_ASSOC));
-
-        if ($pdf == 'null') {
-            return View('reportes.citologia.hojaCitoResultadosSede', compact('items', 'total', 'bdate', 'edate', 'direccion'));
-        } else {
-            $pdf = App::make('dompdf.wrapper');
-            $pdf->loadView('reportes.citologia.CitoResultCedePdf', compact('items', 'total', 'bdate', 'edate', 'direccion'));
-            return $pdf->stream();
-        }
-    }
-
     public function identificadorCito()
     {
         return View('reportes.citologia.identificadorForm', compact('idCito', 'direc'));
@@ -94,47 +55,6 @@ class ReportesController extends Controller
         $total = Citologia::whereBetween('fecha_informe', [$bdate, $edate])->count();
 
         return View('reportes.citologia.identificadorResults', compact('items', 'total', 'bdate', 'edate'));
-    }
-
-    public function biopciaForm()
-    {
-        $direc = Factura::groupBy('direccion_entrega_sede')->select('direccion_entrega_sede')->pluck('direccion_entrega_sede', 'direccion_entrega_sede');
-        return View('reportes.histo.biopciaForm', compact('direc'));
-    }
-
-    public function biopciaProcess(Request $request)
-    {
-        $inicio = $request->input('inicio');
-        $fin = $request->input('final');
-        $request->get('direccion') ? $dir = $request->get('direccion') : $dir = 'null';
-
-        $pdf = $request->input('pdf') ? $request->input('pdf') : "null";
-
-        return redirect()->to('/reportes/reporte-biopcia/resultado/' . $inicio . '/' . $fin . '/' . $dir . '/' . $pdf);
-    }
-
-    public function biociaResult($inicio, $final, $dir, $pdf)
-    {
-        $bdate = Carbon::createFromFormat('Y-m-d', $inicio)->startOfDay();
-        $edate = Carbon::createFromFormat('Y-m-d', $final)->endOfDay();
-
-        $query = Histopatologia::with('facturas')->whereBetween('fecha_informe', [$bdate, $edate]);
-
-        if ($dir != 'null') {
-            $query->whereHas('facturas', function ($q) use ($dir) {
-                $q->where('direccion_entrega_sede', 'like', '%' . $dir . '%');
-            });
-        }
-
-        $items = $query->get();
-
-        if ($pdf == 'null') {
-            return View('reportes.histo.biopciaResults', compact('items', 'bdate', 'edate'));
-        } else {
-            $pdf = App::make('dompdf.wrapper');
-            $pdf->loadView('reportes.histo.biopciaResultsPdf', compact('items', 'bdate', 'edate'));
-            return $pdf->stream();
-        }
     }
 
     /**
