@@ -67,12 +67,15 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('reportes/hoja-de-citologia-agencia', 'Reportes\ReportePorSedeController@index')->name('reporte.sedes.index');
     Route::post('reportes/hoja-de-citologia-agencia', 'Reportes\ReportePorSedeController@results')->name('reporte.sedes.result');
 
+    Route::get('reportes/reporte-biopcia', 'Reportes\ReporteBiopciaController@index')->name('reporte.histo.index');
+    Route::post('reportes/reporte-biopcia', 'Reportes\ReporteBiopciaController@results')->name('reporte.histo.results');
+
+    Route::get('reportes/reporte-entrega-muestras', 'Reportes\ReporteMuestrasController@index')->name('reporte.muestras.index');
+    Route::post('reportes/reporte-entrega-muestras', 'Reportes\ReporteMuestrasController@results')->name('reporte.muestras.results');
+
     Route::get('reportes/identificador-citologia', 'ReportesController@identificadorCito');
     Route::post('reportes/identificador-citologia', 'ReportesController@identificadorProcess');
     Route::get('reportes/identificador-citologia-resultados/{inicio?}/{final?}', 'ReportesController@identificadorResults');
-
-    Route::get('reportes/reporte-biopcia', 'Reportes\ReporteBiopciaController@index')->name('reporte.histo.index');
-    Route::post('reportes/reporte-biopcia', 'Reportes\ReporteBiopciaController@results')->name('reporte.histo.results');
 
     Route::get('reportes/reporte-morfologia', 'ReportesController@morfologiaForm');
     Route::post('reportes/reporte-morfologia', 'ReportesController@morfologiaProcess');
@@ -82,8 +85,5 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('reportes/reporte-citologias-anormales', 'ReportesController@citoAnormalesForm');
     Route::post('reportes/reporte-citologias-anormales', 'ReportesController@citoAnormalesProcess');
     Route::get('reportes/reporte-citologias-anormales/resultado/{inicio}/{final}', 'ReportesController@citoAnormalesResult');
-
-    Route::get('reportes/reporte-entrega-muestras', 'ReportesController@entregaMuestrasForm');
-    Route::post('reportes/reporte-entrega-muestras', 'ReportesController@entregaMuestrasReport');
 
 });
