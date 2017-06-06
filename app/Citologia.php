@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Citologia extends Model
@@ -28,6 +29,62 @@ class Citologia extends Model
      * @var array
      */
     protected $dates = ['fecha_muestra', 'fecha_informe', 'fur', 'fup'];
+
+    /**
+     * @param $date
+     * @return string
+     */
+    public function setFechaMuestraAttribute($date)
+    {
+        $decompose = explode('/', $date);
+        $d = $decompose[0];
+        $m = $decompose[1];
+        $y = $decompose[2];
+        $newDate = $y.'-'.$m.'-'.$d;
+        return Carbon::createFromFormat('Y-m-d', $newDate)->format('Y-m-d H:i:s');
+    }
+
+    /**
+     * @param $date
+     * @return string
+     */
+    public function setFechaInformeAttribute($date)
+    {
+        $decompose = explode('/', $date);
+        $d = $decompose[0];
+        $m = $decompose[1];
+        $y = $decompose[2];
+        $newDate = $y.'-'.$m.'-'.$d;
+        return Carbon::createFromFormat('Y-m-d', $newDate)->format('Y-m-d H:i:s');
+    }
+
+    /**
+     * @param $date
+     * @return string
+     */
+    public function setFupAttribute($date)
+    {
+        $decompose = explode('/', $date);
+        $d = $decompose[0];
+        $m = $decompose[1];
+        $y = $decompose[2];
+        $newDate = $y.'-'.$m.'-'.$d;
+        return Carbon::createFromFormat('Y-m-d', $newDate)->format('Y-m-d H:i:s');
+    }
+
+    /**
+     * @param $date
+     * @return string
+     */
+    public function setFurAttribute($date)
+    {
+        $decompose = explode('/', $date);
+        $d = $decompose[0];
+        $m = $decompose[1];
+        $y = $decompose[2];
+        $newDate = $y.'-'.$m.'-'.$d;
+        return Carbon::createFromFormat('Y-m-d', $newDate)->format('Y-m-d H:i:s');
+    }
 
     /**
      * Relacion Facturas Citología
