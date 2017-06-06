@@ -1,10 +1,9 @@
 @extends('layouts.app')
 
 @section('breadcrumbs')
-
     <ol class="breadcrumb hidden-print">
         <li><a href="/home">Inicio</a></li>
-        <li><a href="{{ action('ReportesController@identificadorCito') }}">Formulario de reporte de identificador</a></li>
+        <li><a href="{{ route('reporte.muestras.index') }}">Formulario de reporte de identificador</a></li>
         <li class="active">Reporte de Identificador para Citología</li>
     </ol>
 @stop
@@ -22,7 +21,7 @@
         </div>
         <div class="row">
             <div class="col-md-4">
-               <strong>Fecha de Informe:  {{  \Carbon\Carbon::now()->formatLocalized('%d %B %Y  %H:%m') }}</strong>
+                <strong>Fecha de Informe:  {{  \Carbon\Carbon::now()->formatLocalized('%d %B %Y  %H:%m') }}</strong>
             </div>
         </div>
         <div class="row">

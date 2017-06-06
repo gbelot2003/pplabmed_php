@@ -73,9 +73,8 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('reportes/reporte-entrega-muestras', 'Reportes\ReporteMuestrasController@index')->name('reporte.muestras.index');
     Route::post('reportes/reporte-entrega-muestras', 'Reportes\ReporteMuestrasController@results')->name('reporte.muestras.results');
 
-    Route::get('reportes/identificador-citologia', 'ReportesController@identificadorCito');
-    Route::post('reportes/identificador-citologia', 'ReportesController@identificadorProcess');
-    Route::get('reportes/identificador-citologia-resultados/{inicio?}/{final?}', 'ReportesController@identificadorResults');
+    Route::get('reportes/identificador-citologia', 'Reportes\ReporteIdentificadorCitologiaController@index')->name('reporte.identificador.index');
+    Route::post('reportes/identificador-citologia', 'Reportes\ReporteIdentificadorCitologiaController@results')->name('reporte.identificador.result');
 
     Route::get('reportes/reporte-morfologia', 'ReportesController@morfologiaForm');
     Route::post('reportes/reporte-morfologia', 'ReportesController@morfologiaProcess');
