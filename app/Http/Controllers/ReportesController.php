@@ -25,7 +25,7 @@ class ReportesController extends Controller
 
     public function identificadorCito()
     {
-        return View('reportes.citologia.identificadorForm', compact('idCito', 'direc'));
+        return View('reportes.citologia.IdentificadorCitologias.index', compact('idCito', 'direc'));
     }
 
     public function identificadorProcess(Request $request)
@@ -52,9 +52,10 @@ class ReportesController extends Controller
         $query->orderby('categorias.id', 'ASC');
 
         $items = $query->get();
+
         $total = Citologia::whereBetween('fecha_informe', [$bdate, $edate])->count();
 
-        return View('reportes.citologia.identificadorResults', compact('items', 'total', 'bdate', 'edate'));
+        return View('reportes.citologia.IdentificadorCitologias.results', compact('items', 'total', 'bdate', 'edate'));
     }
 
     /**
