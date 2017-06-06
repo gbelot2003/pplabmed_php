@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Histopatologia extends Model
@@ -26,6 +27,49 @@ class Histopatologia extends Model
      * @var array
      */
     protected $casts = ['muestra_entrega' => 'boolean'];
+
+
+    /**
+     * @param $date
+     * @return string
+     */
+    public function setFechaMuestraAttribute($date)
+    {
+        $decompose = explode('/', $date);
+        $d = $decompose[0];
+        $m = $decompose[1];
+        $y = $decompose[2];
+        $newDate = $y.'-'.$m.'-'.$d;
+        return Carbon::createFromFormat('Y-m-d', $newDate)->format('Y-m-d H:i:s');
+    }
+
+    /**
+     * @param $date
+     * @return string
+     */
+    public function setFechaInformeAttribute($date)
+    {
+        $decompose = explode('/', $date);
+        $d = $decompose[0];
+        $m = $decompose[1];
+        $y = $decompose[2];
+        $newDate = $y.'-'.$m.'-'.$d;
+        return Carbon::createFromFormat('Y-m-d', $newDate)->format('Y-m-d H:i:s');
+    }
+
+    /**
+     * @param $date
+     * @return string
+     */
+    public function setFechaBiopciaAttribute($date)
+    {
+        $decompose = explode('/', $date);
+        $d = $decompose[0];
+        $m = $decompose[1];
+        $y = $decompose[2];
+        $newDate = $y.'-'.$m.'-'.$d;
+        return Carbon::createFromFormat('Y-m-d', $newDate)->format('Y-m-d H:i:s');
+    }
 
     /**
      * Relacion Facturas Citología
