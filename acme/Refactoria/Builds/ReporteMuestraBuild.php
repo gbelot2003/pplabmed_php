@@ -14,7 +14,8 @@ class ReporteMuestraBuild implements QueryConcreatInterface
     {
         $repo = new MuestrasRepository($request);
         $query = new QueryBuilderForms($request, $repo);
-        list($bdate, $edate, $pdf, $items) = $query->buildSpetialQuerys();
+        list($bdate, $edate, $pdf, $items) = $query->buidQuery();
+        return $this->resultsReturn($bdate, $edate, $pdf, $items);
     }
 
     /**
@@ -24,13 +25,13 @@ class ReporteMuestraBuild implements QueryConcreatInterface
      * @param $items
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    protected function resultsReturn($bdate, $edate, $pdf, $items, $total, $direccion)
+    protected function resultsReturn($bdate, $edate, $pdf, $items)
     {
         if (!isset($pdf)) {
-            return View('reportes.reporteDeparamentos.results', compact('items', 'total', 'bdate', 'edate', 'direccion'));
+            return View('reportes.histo.reporteMuestra.results', compact('items','bdate', 'edate'));
         } else {
             $pdf = App::make('dompdf.wrapper');
-            $pdf->loadView('reportes.reporteDepartamentos.results-pdf', compact('items', 'total', 'bdate', 'edate', 'direccion'));
+            $pdf->loadView('reportes.histo.reporteMuestra.results-pdf', compact('items', 'bdate', 'edate'));
             return $pdf->stream();
         }
     }
