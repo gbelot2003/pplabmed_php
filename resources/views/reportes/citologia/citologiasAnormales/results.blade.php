@@ -3,7 +3,7 @@
 @section('breadcrumbs')
     <ol class="breadcrumb hidden-print">
         <li><a href="/home">Inicio</a></li>
-        <li><a href="{{ action('ReportesController@citoAnormalesForm') }}">Reporte de Citologías Anormales</a></li>
+        <li><a href="{{ route('reporte.anormales.index') }}">Reporte de Citologías Anormales</a></li>
         <li class="active">Citologias Anormales Resultados</li>
     </ol>
 @stop

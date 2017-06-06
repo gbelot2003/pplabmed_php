@@ -61,8 +61,8 @@
                         <li><a href="{{ route('reporte.muestras.index') }}"> Reporte de entrega de muestrass</a></li>
                         <li class="divider"></li>
                         <li class="dropdown-header">Estadisticas</li>
-                        <li><a href="{{ route('reporte.muestras.index') }}"> Identificadores de Citologías</a></li>
-                        <li><a href="{{ action('ReportesController@citoAnormalesForm') }}"> Citologías Anormales</a></li>
+                        <li><a href=""> Identificadores de Citologías</a></li>
+                        <li><a href="{{ route('reporte.anormales.index') }}"> Citologías Anormales</a></li>
                         <li><a href="{{ action('ReportesController@morfologiaForm') }}"> Estadisticas de Morfologías</a></li>
                     </ul>
                 </li>
