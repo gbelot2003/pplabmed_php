@@ -34,7 +34,7 @@
                         @endif
 
                         @if(Entrust::can('manage-histo'))
-                        <li class="dropdown-header">Histotología</li>
+                        <li class="dropdown-header">Histopatología</li>
                         <li><a href="{{ action('HistopatologiaController@index') }}">Listado de Histopatología</a></li>
                         <li><a href="{{ action('HistopatologiaController@create') }}">Nueva Histopatología</a></li>
                         @endif
