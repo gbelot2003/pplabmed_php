@@ -22,7 +22,7 @@ class ReporteCitologiasAnormalesController extends Controller
      */
     public function index()
     {
-        return View('reportes.citologia.IdentificadorCitologias.index');
+        return View('reportes.citologia.citologiasAnormales.index');
     }
 
     /**
