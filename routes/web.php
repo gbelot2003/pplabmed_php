@@ -79,8 +79,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('reportes/reporte-citologias-anormales', 'Reportes\ReporteCitologiasAnormalesController@index')->name('reporte.anormales.index');
     Route::post('reportes/reporte-citologias-anormales', 'Reportes\ReporteCitologiasAnormalesController@results')->name('reporte.anormales.result');
 
-    Route::get('reportes/reporte-morfologia', 'ReportesController@morfologiaForm');
-    Route::post('reportes/reporte-morfologia', 'ReportesController@morfologiaProcess');
-    Route::get('reportes/reporte-morfologia/resultado/{inicio}/{final}/{mor1}/{mor2}/{topo}/{pdf}', 'ReportesController@morfologiaResult');
+    Route::get('reportes/reporte-morfologia', 'Reportes\ReporteMorfologicoController@index')->name('reporte.morfo.index');
+    Route::post('reportes/reporte-morfologia', 'Reportes\ReporteMorfologicoController@results')->name('reporte.morfo.results');
 
 });

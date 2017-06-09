@@ -3,7 +3,7 @@
 @section('breadcrumbs')
     <ol class="breadcrumb hidden-print">
         <li><a href="/home">Inicio</a></li>
-        <li><a href="{{ route('reporte.muestras.index') }}">Formulario de entrega de muestras</a></li>
+        <li><a href="{{ route('reporte.morfo.index') }}">Formulario de entrega de muestras</a></li>
         <li class="active">Reporte de entrega de muestras</li>
     </ol>
 @stop
