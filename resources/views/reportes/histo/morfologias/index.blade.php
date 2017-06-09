@@ -11,7 +11,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-10 col-md-offset-1">
+            <div class="col-md-12">
                 {!! Form::open() !!}
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -30,25 +30,25 @@
                                 <label for="inicio">Fecha de Final</label>
                                 {{ Form::date('final', Carbon\Carbon::today()->toDateString(), ['class' => 'form-control', 'id' => 'final', 'required']) }}
                             </div>
-                            <div class="col-md-3 form-group  {{ $errors->has('final') ? ' has-error' : '' }}">
+                            <div class="col-md-2 form-group  {{ $errors->has('final') ? ' has-error' : '' }}">
                                 <label for="inicio">Morfología I</label>
                                 {!!  Form::text('mor1', null, ['class' => 'form-control', 'id' => 'mor1'])  !!}
 
                             </div>
 
-                            <div class="col-md-3 form-group  {{ $errors->has('final') ? ' has-error' : '' }}">
+                            <div class="col-md-2 form-group  {{ $errors->has('final') ? ' has-error' : '' }}">
                                 <label for="inicio">Morfología II</label>
                                 {!!  Form::text('mor2', null, ['class' => 'form-control', 'id' => 'mor2'])  !!}
+                            </div>
+
+                            <div class="col-md-2 form-group  {{ $errors->has('final') ? ' has-error' : '' }}">
+                                <label for="inicio">Topografía</label>
+                                {!!  Form::text('topog', null, ['class' => 'form-control', 'id' => 'topog'])  !!}
                             </div>
 
                         </div>
 
                         <div class="row">
-
-                            <div class="col-md-3 form-group  {{ $errors->has('final') ? ' has-error' : '' }}">
-                                <label for="inicio">Topografía</label>
-                                {!!  Form::text('topog', null, ['class' => 'form-control', 'id' => 'topog'])  !!}
-                            </div>
 
                             <div class="col-md-3 form-group {{ $errors->has('deteccion_cancer') ? ' has-error' : '' }}">
                                 <div class="checkbox checkbox-info">
