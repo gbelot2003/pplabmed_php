@@ -73,15 +73,14 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('reportes/reporte-entrega-muestras', 'Reportes\ReporteMuestrasController@index')->name('reporte.muestras.index');
     Route::post('reportes/reporte-entrega-muestras', 'Reportes\ReporteMuestrasController@results')->name('reporte.muestras.results');
 
-    Route::get('reportes/identificador-citologia', 'ReportesController@identificadorCito')->name('reporte.identificador.index');
-    Route::post('reportes/identificador-citologia', 'ReportesController@identificadorProcess');
-    Route::get('reportes/identificador-citologia-resultados/{inicio?}/{final?}', 'ReportesController@identificadorResults');
+    Route::get('reportes/identificador-citologia', 'Reportes\ReportesIdentificadorCitologiaController@index')->name('reporte.identificador.index');
+    Route::post('reportes/identificador-citologia', 'Reportes\ReportesIdentificadorCitologiaController@results')->name('reporte.identificador.results');
+
+    Route::get('reportes/reporte-citologias-anormales', 'Reportes\ReporteCitologiasAnormalesController@index')->name('reporte.anormales.index');
+    Route::post('reportes/reporte-citologias-anormales', 'Reportes\ReporteCitologiasAnormalesController@results')->name('reporte.anormales.result');
 
     Route::get('reportes/reporte-morfologia', 'ReportesController@morfologiaForm');
     Route::post('reportes/reporte-morfologia', 'ReportesController@morfologiaProcess');
     Route::get('reportes/reporte-morfologia/resultado/{inicio}/{final}/{mor1}/{mor2}/{topo}/{pdf}', 'ReportesController@morfologiaResult');
-
-    Route::get('reportes/reporte-citologias-anormales', 'Reportes\ReporteCitologiasAnormalesController@index')->name('reporte.anormales.index');
-    Route::post('reportes/reporte-citologias-anormales', 'Reportes\ReporteCitologiasAnormalesController@results')->name('reporte.anormales.result');
 
 });

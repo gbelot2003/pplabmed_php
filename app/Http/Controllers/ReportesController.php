@@ -2,16 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Categoria;
-use App\Citologia;
-use App\Factura;
 use App\Histopatologia;
-use Barryvdh\DomPDF\PDF;
 use Carbon\Carbon;
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\DB;
 
 class ReportesController extends Controller
 {
@@ -21,41 +15,6 @@ class ReportesController extends Controller
         $this->middleware('auth');
         $this->middleware('checkActive');
         $this->middleware('ShowReports');
-    }
-
-    public function identificadorCito()
-    {
-        return View('reportes.citologia.IdentificadorCitologias.index', compact('idCito', 'direc'));
-    }
-
-    public function identificadorProcess(Request $request)
-    {
-        $inicio = $request->input('inicio');
-        $fin = $request->input('final');
-
-        return redirect()->to('/reportes/identificador-citologia-resultados/' . $inicio . '/' . $fin);
-    }
-
-    public function identificadorResults($inicio, $final)
-    {
-        $bdate = Carbon::createFromFormat('Y-m-d', $inicio)->startOfDay();
-        $edate = Carbon::createFromFormat('Y-m-d', $final)->endOfDay();
-
-        $query = Citologia::whereBetween('fecha_informe', [$bdate, $edate]);
-
-        $query->select(DB::raw('COUNT(icitologia_id) as counter, categorias.name, categorias.id as catId'));
-
-        $query->join('categorias', 'icitologia_id', '=', 'categorias.id');
-
-        $query->groupBy('icitologia_id');
-
-        $query->orderby('categorias.id', 'ASC');
-
-        $items = $query->get();
-
-        $total = Citologia::whereBetween('fecha_informe', [$bdate, $edate])->count();
-
-        return View('reportes.citologia.IdentificadorCitologias.results', compact('items', 'total', 'bdate', 'edate'));
     }
 
     /**

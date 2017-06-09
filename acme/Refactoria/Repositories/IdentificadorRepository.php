@@ -2,8 +2,11 @@
 
 namespace Acme\Refactoria\Repositories;
 
+use Acme\Refactoria\Implement\FormatSimpleDates;
 use Acme\Refactoria\Interfaces\QueryModelsInterfaces;
+use App\Citologia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class IdentificadorRepository implements QueryModelsInterfaces
 {

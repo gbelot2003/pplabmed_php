@@ -4,7 +4,7 @@
 
     <ol class="breadcrumb hidden-print">
         <li><a href="/home">Inicio</a></li>
-        <li><a href="{{ action('ReportesController@identificadorCito') }}">Formulario de reporte de identificador</a></li>
+        <li><a href="{{ route('reporte.identificador.index') }}">Formulario de reporte de identificador</a></li>
         <li class="active">Reporte de Identificador para Citología</li>
     </ol>
 @stop
