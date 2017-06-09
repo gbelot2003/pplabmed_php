@@ -24,7 +24,7 @@ class ImagesValidator extends FormRequest
     public function rules()
     {
         return [
-            'images' => "required|image"
+            'images' => "required"
         ];
     }
 }

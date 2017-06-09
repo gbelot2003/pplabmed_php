@@ -11,5 +11,13 @@ class Image extends Model
      */
     protected $fillable = ['link_id', 'image_url', 'encode'];
 
+    /**
+     * Relación Histopatología
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function histo()
+    {
+        return $this->belongsTo(Histopatologia::class, 'link_id', 'link_id');
+    }
 
 }

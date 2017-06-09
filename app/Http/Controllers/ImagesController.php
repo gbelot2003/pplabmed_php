@@ -17,6 +17,7 @@ class ImagesController extends Controller
         $this->middleware('ManageHisto');
     }
 
+
     public function uploadForm(ImagesValidator $request)
     {
         $helpers = new Miselanius();
@@ -26,6 +27,17 @@ class ImagesController extends Controller
 
         return redirect()->to(action('HistopatologiaController@edit', $request->get('id')));
     }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function edit($id)
+    {
+        $item = Image::findOrFail($id);
+        return View('resultados.histopatologia.image.edit', compact('item'));
+    }
+
 
     public function update(ImagesValidator $request, $id)
     {

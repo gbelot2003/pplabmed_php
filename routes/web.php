@@ -54,6 +54,8 @@ Route::group(['middleware' => 'auth'], function(){
     /***/Route::get('histopatologias/sobres/{id}', 'PrintController@sobreHistopatologia');
     /***/Route::get('histopatologias/formulario/{id}', 'PrintController@formatoHistopatologia');
 
+    Route::get('histo/images/edit/{id}', 'ImagesController@edit')->name('images.edit');
+
     Route::post('histo/images/', 'ImagesController@uploadForm');
     Route::put('histo/images/update/{id}', 'ImagesController@update');
     Route::get('histo/images/delete/{id}', 'ImagesController@delete');
