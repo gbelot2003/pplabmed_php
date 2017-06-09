@@ -38,7 +38,7 @@
                class="form-control"
                tabindex="4"
                onfocus="(this.type='date')" onblur="(this.type='text')"
-               value="{{ isset($item->fecha_informe) ? $item->fecha_informe->format('d/m/Y') : null }}"
+               value="{{ isset($item->fecha_informe) ? $item->fecha_informe->format('Y-m-d') : null }}"
                id="fecha_informe">
     </div>
 
@@ -61,7 +61,7 @@
                class="form-control"
                tabindex="5"
                onfocus="(this.type='date')" onblur="(this.type='text')"
-               value="{{ isset($item->fecha_biopcia) ? $item->fecha_biopcia->format('d/m/Y') : null }}"
+               value="{{ isset($item->fecha_biopcia) ? $item->fecha_biopcia->format('Y-m-d') : null }}"
                id="fecha_biopcia">
     </div>
 
@@ -74,8 +74,8 @@
         <input name="fecha_muestra" placeholder="Fecha de Muestra" type="text"
                class="form-control"
                tabindex="6"
-               onfocus="(this.type='date')" onblur="(this.type='text')"
-               value="{{ isset($item->fecha_muestra) ? $item->fecha_muestra->format('d/m/Y') : null }}"
+               onfocus="(this.type='date')" onblur="(this.type='date')"
+               value="{{ isset($item->fecha_muestra) ? $item->fecha_muestra->format('Y-m-d') : null }}"
                id="fur">
     </div>
 

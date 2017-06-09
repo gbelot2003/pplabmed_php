@@ -37,7 +37,7 @@
                class="form-control"
                tabindex="6"
                onfocus="(this.type='date')" onblur="(this.type='text')"
-               value="{{ isset($item->fur) ? $item->fur->format('d/m/Y') : null }}"
+               value="{{ isset($item->fur) ? $item->fur->format('Y-m-d') : null }}"
                id="fur">
     </div>
 
@@ -47,7 +47,7 @@
                class="form-control"
                tabindex="6"
                onfocus="(this.type='date')" onblur="(this.type='text')"
-               value="{{ isset($item->fup) ? $item->fup->format('d/m/Y') : null }}"
+               value="{{ isset($item->fup) ? $item->fup->format('Y-m-d') : null }}"
                id="fup">
     </div>
 
@@ -86,7 +86,7 @@
                class="form-control"
                tabindex="11"
                onfocus="(this.type='date')" onblur="(this.type='text')"
-               value="{{ isset($item->fecha_muestra) ? $item->fecha_muestra->format('d/m/Y') : null }}"
+               value="{{ isset($item->fecha_muestra) ? $item->fecha_muestra->format('Y-m-d') : null }}"
                id="fechamuestra">
     </div>
 
@@ -117,7 +117,7 @@
                class="form-control"
                tabindex="11"
                onfocus="(this.type='date')" onblur="(this.type='text')"
-               value="{{ isset($item->fecha_informe) ? $item->fecha_informe->format('d/m/Y') : null }}"
+               value="{{ isset($item->fecha_informe) ? $item->fecha_informe->format('Y-m-d') : null }}"
                id="fechainforme">
     </div>
     

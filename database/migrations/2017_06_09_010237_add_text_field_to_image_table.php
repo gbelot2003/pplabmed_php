@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class HistopatologiaAddMuestraEntregaField extends Migration
+class AddTextFieldToImageTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class HistopatologiaAddMuestraEntregaField extends Migration
      */
     public function up()
     {
-        Schema::table('histopatologias', function (Blueprint $table) {
-            $table->text('muestra_entrega')->nullable();
+        Schema::table('images', function (Blueprint $table) {
+            $table->text('descripcion')->nullable();
         });
     }
 }

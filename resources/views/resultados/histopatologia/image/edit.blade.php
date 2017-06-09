@@ -22,9 +22,13 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-3"></div>
-                            <div class="col-md-9">
-                                <div class="image">
+                            <div class="col-md-9" style="background: grey; padding: 5px">
+                                <div class="image text-center">
                                     <img src="/img/histo/{{ $item->image_url }}" alt="{{ $item->image_url }}">
+                                </div>
+                                <div class="form-group">
+                                    <br>
+                                    <textarea name="descricion" class="form-control textarea" rows="2"></textarea>
                                 </div>
                             </div>
                         </div>
