@@ -4,7 +4,8 @@
     <ol class="breadcrumb">
         <li><a href="/home">Inicio</a></li>
         <li><a href="{{ action('HistopatologiaController@index') }}">Listado de Histopatología</a></li>
-        <li class="active">Edicion de Imagenes #{{ $item->factura_id }}</li>
+        <li><a href="{{ action('HistopatologiaController@edit', $item->histo->id) }}">Histopatología No. {{ $item->histo->facturas->num_factura }}</a></li>
+        <li class="active">Edicion de Imagenes # {{ $item->id }}</li>
     </ol>
 @stop
 

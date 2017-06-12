@@ -25,6 +25,7 @@
 <div class="row">
     {{--Diagnostico--}}
     <div class="col-md-12 form-group {{ $errors->has('diagnostico') ? ' has-error' : '' }}">
+        <label>Diagnóstico</label>
         {!! Form::textarea('diagnostico', null, ['tabindex' => 5, 'id' => 'diagnostico', 'class' => 'form-control textarea', 'rows' => 2,
         'placeholder' => 'Diagnostico Clinico']) !!}
     </div>
@@ -33,6 +34,7 @@
 <div class="row">
     {{-- F.U.R --}}
     <div class="col-md-3 form-group  {{ $errors->has('fur') ? ' has-error' : '' }}">
+        <label>F.U.R.</label>
         <input name="fur" placeholder="F.U.R" type="text"
                class="form-control"
                tabindex="6"
@@ -43,6 +45,7 @@
 
     {{-- F.U.P --}}
     <div class="col-md-3 form-group  {{ $errors->has('fup') ? ' has-error' : '' }}">
+        <label>F.U.P.</label>
         <input name="fup" placeholder="F.U.P" type="text"
                class="form-control"
                tabindex="6"
@@ -53,16 +56,19 @@
 
     {{-- gravidad --}}
     <div class="col-md-2 form-group form-group  {{ $errors->has('gravidad_id') ? ' has-error' : '' }}">
+        <label>Gravidad</label>
         {{ Form::number('gravidad', null, ['tabindex' => 8, 'class' => 'form-control', 'id' => 'gravidad', 'placeholder' => 'Gravidad']) }}
     </div>
 
     {{-- Para (Embarazos) --}}
     <div class="col-md-2 form-group  {{ $errors->has('para') ? ' has-error' : '' }}">
+        <label>Para</label>
         {{ Form::number('para', null, ['tabindex' => 9, 'class' => 'form-control', 'id' => 'para', 'placeholder' => 'Para']) }}
     </div>
 
     {{-- Abortos --}}
     <div class="col-md-2 form-group  {{ $errors->has('abortos') ? ' has-error' : '' }}">
+        <label>Abortos</label>
         {{ Form::number('abortos', null, ['tabindex' => 10, 'class' => 'form-control', 'id' => 'abortos', 'placeholder' => 'Abortos']) }}
     </div>
 
@@ -71,17 +77,20 @@
 <div class="row">
     {{-- id Cito --}}
     <div class="col-md-6 form-group  {{ $errors->has('icitologia_id') ? ' has-error' : '' }}">
+        <label>Identificador Citología</label>
         {{ Form::select('icitologia_id', $idCIto, null, ['class' => 'form-control']) }}
     </div>
 
 
     {{-- Firma 1 --}}
     <div class="col-md-3 form-group  {{ $errors->has('firma_id') ? ' has-error' : '' }}">
+        <label>Firma</label>
         {{ Form::select('firma_id', $firmas, null, ['class' => 'form-control']) }}
     </div>
 
     {{-- Fécha de Muestra --}}
     <div class="col-md-3 form-group  {{ $errors->has('fecha_muestra') ? ' has-error' : '' }}">
+        <label>Fecha de Muestra</label>
         <input name="fecha_muestra" placeholder="Fecha de Muestra" type="text"
                class="form-control"
                tabindex="11"
@@ -105,14 +114,14 @@
 
     {{-- Firma 2 --}}
     <div class="col-md-3 form-group  {{ $errors->has('firma2_id') ? ' has-error' : '' }}">
+        <label>Firma 2</label>
         {{ Form::select('firma2_id', $firmas, null, ['placeholder' => 'None', 'class' => 'form-control']) }}
     </div>
 
 
     {{-- Fécha de Informe --}}
     <div class="col-md-3 form-group  {{ $errors->has('fecha_informe') ? ' has-error' : '' }}">
-        {{--{{ Form::date('fecha_informe',  isset($item->fecha_informe) ? $item->fecha_informe : date("Y-m-d"), ['class' => 'form-control', 'id' => 'fechainforme']) }}--}}
-
+        <label>Fecha de Informe</label>
         <input name="fecha_informe" placeholder="Fecha de Informe" type="text"
                class="form-control"
                tabindex="11"
@@ -123,6 +132,7 @@
     
     {{-- Otros --}}
     <div class="col-md-12 form-group  {{ $errors->has('otros_b') ? ' has-error' : '' }}">
+        <label>Otros</label>
         {{ Form::text('otros_b', null, ['class' => 'form-control', 'id' => 'otros_b', 'placeholder' => 'Otros']) }}
     </div>
 </div>
@@ -130,6 +140,7 @@
 <div class="row {{ $errors->has('informe') ? ' has-error' : '' }}">
 
     <div class="col-md-12 form-group">
+        <label>Informe</label>
         {{ Form::textarea('informe', null, ['class' => 'textarea form-control ckeditor', 'id' => 'informe', 'tabindex' => 12]) }}
     </div>
 

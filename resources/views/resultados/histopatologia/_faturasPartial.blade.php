@@ -1,7 +1,7 @@
 <div class="row">
     <div class="form-group col-md-2 {{ $errors->has('serial') ? ' has-error' : '' }}">
             {!! Form::hidden('link_id', isset($link->id) ? $link->id : null) !!}
-        <label>Serial</label>
+        <label>No. de Biopsia</label>
             @if(isset($item->serial))
                 <span class="text-center form-control">
                     {{ $item->serial }}
