@@ -24,6 +24,6 @@ class PDF extends baseFpdf
         // Arial italic 8
         $this->SetFont('Arial','I',8);
         // Page number
-        $this->Cell(0,10,'Page '.$this->PageNo().'/ '. $this->ftitle,0,0,'L');
+        $this->Cell(0,10,'Page '.$this->PageNo().'/{nb} - Biopsia No.'. $this->ftitle,0,0,'L');
     }
 }

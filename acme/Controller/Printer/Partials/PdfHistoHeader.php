@@ -2,6 +2,7 @@
 
 namespace Acme\Controller\Printer\Partials;
 
+use Acme\Helpers\PdfStringConversor;
 use App\Histopatologia;
 
 class PdfHistoHeader {
@@ -13,10 +14,6 @@ class PdfHistoHeader {
 
     public function output(Histopatologia $data, $pdf)
     {
-        $pdf = app('FPDF');
-        setlocale(LC_CTYPE, 'en_US');
-
-        $pdf->AddPage();
 
         /**
          * Cabezera

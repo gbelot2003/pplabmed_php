@@ -1,4 +1,4 @@
-(function(){
+/*(function(){
     $('.imageCanvas').each(function (ind, val){
         var x = 0, y = 0;
 
@@ -41,7 +41,8 @@
             });
         });
 
-        $(btnSave).click(function(){
+        $(btnSave).click(function(e){
+            e.preventDefault();
             let canvas = $(className);
             let dataUrl = canvas.get(0).toDataURL();
             let linkId = $('input[name="link_id"]').val();
@@ -74,4 +75,8 @@
         })
 
     });
+})(jQuery);*/
+(function(){
+
 })(jQuery);
+

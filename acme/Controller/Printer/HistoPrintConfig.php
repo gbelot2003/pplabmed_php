@@ -18,18 +18,138 @@ class HistoPrintConfig{
         $pdf = new PDF($orientation = 'P', $unit = 'mm', $size = 'Letter', $ftitle = $ftitle);
         setlocale(LC_CTYPE, 'en_US');
 
-        $pdf->SetTopMargin(45);
+
         $pdf->SetLeftMargin(20);
+        $pdf->AliasNbPages();
+
+        $pdf->SetTopMargin(45);
         $pdf->AddPage();
 
         $this->PrintHeader($data, $pdf);
         $this->PrintBody($data, $pdf);
 
+        $pdf->SetTopMargin(10);
         $pdf->AddPage();
-
-
+        $this->PrintImages($data, $pdf);
 
         return $pdf->Output();
+    }
+
+    /**
+     * @param $pdf
+     */
+    protected function PrintImages($data, $pdf)
+    {
+        /**
+         *  INFORME
+         */
+        $pdf->SetFont('Helvetica', 'B', 13);
+        $pdf->Cell(180, 20, 'IMAGENES', 0, 0, 'C');
+        /**
+         * Salto
+         */
+        $pdf->ln();
+
+         /**
+         * Imagenes
+         */
+
+
+         if(isset($data->images[0])){
+             $pdf->SetFont('Helvetica', '', 10);
+             $pdf->Cell(55, 5, $pdf->Image(public_path() . "/img/histo/" .
+                 $data->images[0]->image_url, $pdf->GetX(), $pdf->GetY(), 50, 45) , 0, '');
+
+             if(!isset($data->images[1])){
+                 $pdf->ln(50);
+
+             }
+         }
+
+        if (isset($data->images[1])){
+            $pdf->SetX(80);
+            $pdf->Cell(55, 5, $pdf->Image(public_path() . "/img/histo/" .
+                $data->images[1]->image_url, $pdf->GetX(), $pdf->GetY(), 50, 45) , 0, '');
+
+            if(!isset($data->images[2])){
+                $pdf->ln(50);
+                $x = $pdf->GetX();
+                $y = $pdf->GetY();
+            }
+        }
+
+        if (isset($data->images[2])){
+            $pdf->SetX(140);
+            $pdf->Cell(55, 5, $pdf->Image(public_path() . "/img/histo/" .
+                $data->images[2]->image_url, $pdf->GetX(), $pdf->GetY(), 50, 45) , 0, '');
+            $pdf->ln(50);
+        }
+
+        if(isset($data->images[0])){
+            $x = $pdf->GetX();
+            $y = $pdf->GetY();
+
+            $pdf->MultiCell(55, 4, $data->images[0]->descripcion, 0, 'J');
+        }
+
+        if (isset($data->images[1])){
+            $pdf->SetXY($x + 58, $y);
+            $pdf->MultiCell(55, 4, $data->images[1]->descripcion, 0, 'J');
+        }
+
+        if (isset($data->images[2])){
+            $pdf->SetXY($x + 120, $y);
+            $pdf->MultiCell(55, 4, $data->images[2]->descripcion, 0, 'J');
+            $pdf->ln(10);
+        }
+
+        if (isset($data->images[3])){
+            $pdf->Cell(55, 5, $pdf->Image(public_path() . "/img/histo/" .
+                $data->images[3]->image_url, $pdf->GetX(), $pdf->GetY(), 50, 45) , 0, '');
+
+            if(!isset($data->images[4])){
+                $pdf->ln(50);
+
+            }
+        }
+
+        if (isset($data->images[4])){
+            $pdf->SetX(80);
+            $pdf->Cell(55, 5, $pdf->Image(public_path() . "/img/histo/" .
+                $data->images[4]->image_url, $pdf->GetX(), $pdf->GetY(), 50, 45) , 0, '');
+
+            if(!isset($data->images[5])){
+                $pdf->ln(50);
+                $x = $pdf->GetX();
+                $y = $pdf->GetY();
+            }
+        }
+
+        if (isset($data->images[5])){
+            $pdf->SetX(140);
+            $pdf->Cell(55, 5, $pdf->Image(public_path() . "/img/histo/" .
+                $data->images[1]->image_url, $pdf->GetX(), $pdf->GetY(), 50, 45) , 0, '');
+            $pdf->ln(50);
+        }
+
+
+        if (isset($data->images[3])){
+            $x2 = $pdf->GetX();
+            $y2 = $pdf->GetY();
+            $pdf->MultiCell(55, 4, $data->images[3]->descripcion, 0, 'J');
+        }
+
+        if (isset($data->images[4])){
+            $pdf->SetXY($x2 + 58, $y2);
+            $pdf->MultiCell(55, 4, $data->images[4]->descripcion, 0, 'J');
+        }
+
+        if (isset($data->images[5])){
+            $pdf->SetXY($x2 + 120, $y2);
+            $pdf->MultiCell(55, 4, $data->images[5]->descripcion, 0, 'J');
+        }
+
+
     }
 
 
