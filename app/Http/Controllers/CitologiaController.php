@@ -27,7 +27,6 @@ CitologiaController extends Controller
         $this->middleware('checkActive');
         $this->middleware('ManageCito');
         $this->formatDates = new FormatSimpleDates();
-        $this->validateExamenType = new validateExamenType();
     }
 
     /**
@@ -97,7 +96,6 @@ CitologiaController extends Controller
     public function update(CitologiaValidate $request, $id)
     {
         $cito = Citologia::findOrFail($id);
-        $this->validateExamenType();
 
         $cito->mm = isset($request['deteccion_cancer']) ? $request['deteccion_cancer'] = 1 : $request['deteccion_cancer'] = 0;
         $cito->mm = isset($request['indice_maduracion']) ? $request['indice_maduracion'] = 1 : $request['indice_maduracion'] = 0;
