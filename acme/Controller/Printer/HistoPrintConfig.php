@@ -100,6 +100,40 @@ class HistoPrintConfig{
         if (isset($data->images[3])){
             $pdf->SetXY($x2 + 85, $y2);
             $pdf->MultiCell(80, 4, $data->images[3]->descripcion, 0, 'J');
+
+        }
+
+        /**
+         * Firmas
+         */
+        if (isset($data->images[2])){
+            $pdf->ln(30);
+        } else {
+            $pdf->ln(125);
+        }
+
+
+        $pdf->Cell(35, 5, "Fecha de Informe:" , 0, '');
+        $pdf->SetFont('Arial', 'B', 10);
+        $pdf->Cell(75, 5, $data->firma->name , 0, '');
+        if (isset($data->firma2)){
+            $pdf->Cell(55, 5, $data->firma2->name , 0, '');
+        }
+        $pdf->SetFont('Arial', '', 10);
+        $pdf->ln();
+        $pdf->Cell(35, 5, $data->fecha_informe->formatLocalized('%d/%m/%Y') , 0, '');
+        $pdf->Cell(75, 5, $data->firma->collegiate , 0, '');
+        if (isset($data->firma2)) {
+            $pdf->Cell(55, 5, $data->firma2->collegiate, 0, '');
+        }
+        if ($data->firma->extra){
+            $pdf->ln();
+            $pdf->Cell(35, 5, "" , 0, '');
+            $pdf->Cell(75, 5, $data->firma->extra ,0, '');
+            if ($data->firma2->extra){
+                $pdf->Cell(75, 5, $data->firma2->extra , 0, '');
+            }
+            $pdf->ln();
         }
 
     }
