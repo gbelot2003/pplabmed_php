@@ -4,13 +4,16 @@
     <hr />
 </div>
 
-<div class="row">
-        @foreach($item->images as $image)
-        <div class="col-md-4 text-center imageCanvas">
-            <a href="{{ route('images.edit', $image->id) }}">
-                <img id="{{ $image->id }}" class="img-responsive img-thumbnail image img-{{ $i ++ }}" src="/img/histo/{{ $image->image_url }}" alt="{{ $image->image_url }}" />
-            </a>
-        </div>
-        @endforeach
-</div>
+    @foreach($item->images->chunk(4) as $images)
+    <div class="row">
+            @foreach($images as $image)
+            <div class="col-md-3 text-center imageCanvas">
+                <a href="{{ route('images.edit', $image->id) }}">
+                    <img id="{{ $image->id }}" class="img-responsive img-thumbnail image img-{{ $i ++ }}" src="/img/histo/{{ $image->image_url }}" alt="{{ $image->image_url }}" />
+                </a>
+            </div>
+            @endforeach
+    </div>
+        <br>
+    @endforeach
 @endif
