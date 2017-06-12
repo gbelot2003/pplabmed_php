@@ -6,6 +6,7 @@ use Acme\Helpers\Miselanius;
 use App\Http\Requests\ImagesValidator;
 use App\Image;
 use Illuminate\Http\Request;
+use Laracasts\Flash\Flash;
 
 class ImagesController extends Controller
 {
@@ -59,8 +60,8 @@ class ImagesController extends Controller
     {
         $images = Image::findOrfail($id);
         $images->delete();
-
-        return $id;
+        flash('La imágen a sido retirada exitosamente', 'success')->important();
+        return redirect()->to('/histopatologia/' .$images->histo->id ."/edit");
     }
 
 

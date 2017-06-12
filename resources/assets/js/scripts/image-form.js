@@ -143,6 +143,22 @@
             this.brightness(1);
         });
         $("#gfiltros").prop('disabled', false);
+    });
+
+    $('#preborrado').on('click', function (e) {
+        e.preventDefault();
+        $(this).hide();
+        $('#borrado').show();
+        $('#cborrado').show();
     })
+
+    $("#cborrado").on('click',function (e) {
+        e.preventDefault();
+        $(this).hide();
+        $('#preborrado').show();
+        $('#borrado').hide();
+    })
+
+
 
 })(jQuery);

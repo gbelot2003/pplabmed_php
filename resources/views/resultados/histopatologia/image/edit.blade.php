@@ -99,7 +99,6 @@
                                     <div id="demo-basic">
                                         <img name="img-responsive" src="/img/histo/{{ $item->image_url }}"
                                              alt="{{ $item->image_url }}" id="images2Cam" />
-
                                     </div>
                                     <div class="form-group">
                                         <br>
@@ -108,6 +107,18 @@
                                     </div>
                                 </div>
 
+                            </div>
+                            <div class="footer">
+                                <div class="text-right">
+                                    <br>
+                                    <button type="button" id="preborrado" class="btn btn-danger">Borrar</button>
+                                    <button type="button" id="cborrado" style="display: none;" class="btn btn-warning">
+                                        cancelar borrado
+                                    </button>
+                                    <a href="/histo/images/delete/{{ $item->id }}" id="borrado" style="display: none;" class="btn btn-danger">
+                                        ¿La imagen se perdera totalmente de la aplicación, esta seguro que desea continuar?
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </form>
