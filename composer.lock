@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5ee2712fa82ab851e6763622d987b1c9",
-    "content-hash": "e59dcc02a712f076fe9cb35ab3920385",
+    "hash": "370705fce0304ae9ce6a55130f89c260",
+    "content-hash": "6d8b7f62b89509c5f6022ff455a4d107",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -54,6 +54,47 @@
                 "pdf"
             ],
             "time": "2017-02-19 06:45:54"
+        },
+        {
+            "name": "crabbly/fpdf-laravel",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/crabbly/fpdf-laravel.git",
+                "reference": "9d87cc36119512a32e7099448eccc84a3b164f2b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/crabbly/fpdf-laravel/zipball/9d87cc36119512a32e7099448eccc84a3b164f2b",
+                "reference": "9d87cc36119512a32e7099448eccc84a3b164f2b",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": ">=5.1.0",
+                "illuminate/support": ">=5.1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Crabbly\\FPDF\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rodrigo Vieira",
+                    "email": "rodrigo@crabbly.com"
+                }
+            ],
+            "description": "Laravel package for FPDF.",
+            "keywords": [
+                "fpdf",
+                "laravel"
+            ],
+            "time": "2016-09-15 20:40:09"
         },
         {
             "name": "ddctd143/google-translate",

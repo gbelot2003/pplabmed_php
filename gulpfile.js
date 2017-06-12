@@ -22,6 +22,7 @@ elixir((mix) => {
         .scripts([
             'scripts/histopatologia-form.js'
             ], 'public/js/histopatologia-form.js')
+        .scripts(['scripts/image-form.js'], 'public/js/images-form.js')
         .scripts([
             'assets/jquery.js',
             'assets/bootstrap.js',

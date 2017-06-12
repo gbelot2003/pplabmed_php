@@ -6,6 +6,7 @@ use Acme\Helpers\Miselanius;
 use App\Http\Requests\ImagesValidator;
 use App\Image;
 use Illuminate\Http\Request;
+use Laracasts\Flash\Flash;
 
 class ImagesController extends Controller
 {
@@ -44,15 +45,23 @@ class ImagesController extends Controller
         $helpers = new Miselanius();
         $images = Image::findOrfail($id);
         $name = $helpers->setImges($request);
-        $images->update(['image_url' => $name]);
+
+        $images->image_url = $name;
+        if($request->has('descripcion'))
+        {
+            $images->descripcion = $request->get('descripcion');
+        }
+
+        $images->save();
+
     }
 
     public function delete($id)
     {
         $images = Image::findOrfail($id);
         $images->delete();
-
-        return $id;
+        flash('La imágen a sido retirada exitosamente', 'success')->important();
+        return redirect()->to('/histopatologia/' .$images->histo->id ."/edit");
     }
 
 

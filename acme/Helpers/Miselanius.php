@@ -45,7 +45,8 @@ Class Miselanius {
      */
     public function getImagesForUpload(ImagesValidator $request)
     {
-        $name = $request->images->getClientOriginalName();
+        $random = substr( md5(rand()), 0, 3);
+        $name = $random.'-' .$request->images->getClientOriginalName();
         $path = $request->file('images')->move(public_path('img/histo'), $name);
         $images = Image::create([
             'image_url' => $name,
