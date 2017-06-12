@@ -9,16 +9,17 @@
     $("#contrast").prop('disabled', true);
     $("#saturation").prop('disabled', true);
     $("#exposure").prop('disabled', true);
+    $("#descripcion").prop('disabled', true);
 
     function PostImage(resp, basic) {
-        let descripcion = $('#descripcion').val();
+
         $.ajax({
             type: "put",
             url: "/histo/images/update/" + id,
             data: {
                 '_token': crf,
                 'images': resp,
-                'descripcion': descripcion,
+                'descripcion': $('#descripcion').val(),
                 'link_id': linkId,
                 'name': name
             }
@@ -28,17 +29,17 @@
         });
     }
 
-    let url = $("#images2Cam").attr('src');
 
-    let linkId = $("#link_id").val();
-    let name = $("#image_name").val();
-    let id = $("#id").val();
-    let crf = $('input[name="_token"]').val();
-    let descripcion = $('#descripcion').val();
+    var linkId = $("#link_id").val();
+    var name = $("#image_name").val();
+    var id = $("#id").val();
+    var crf = $('input[name="_token"]').val();
+    var descripcion = $('#descripcion').val();
 
     $('#cortar').on('click', function(e){
 
         $(this).prop('disabled', true);
+        $("#descripcion").prop('disabled', false);
         $("#filtros").hide();
 
         $('#gcortar').show();
@@ -52,13 +53,13 @@
         $("#gcortar").on('click', function () {
 
             size = 'viewport';
-            console.log(descripcion);
             basic.croppie('result', {
                 type: 'canvas',
                 size: size
             }).then(function (resp) {
                 PostImage(resp, basic);
                 $(this).prop('disabled', false);
+                $("#descripcion").prop('disabled', true);
             });
 
 
@@ -75,11 +76,13 @@
         $(this).hide();
         $("#gfiltros").show();
         $("#gfiltros").prop('disabled', true);
+        $("#descripcion").prop('disabled', false);
     });
 
     $("#gfiltros").on('click', function (e) {
-        let canvas = $("#images2Cam");
-        let dataUrl = canvas.get(0).toDataURL();
+        var canvas = $("#images2Cam");
+        var dataUrl = canvas.get(0).toDataURL();
+
 
         $.ajax({
             type: "put",
@@ -87,7 +90,7 @@
             data: {
                 '_token': crf,
                 'images': dataUrl,
-                'descripcion': descripcion,
+                'descripcion': $('#descripcion').val(),
                 'link_id': linkId,
                 'name': name
             }
@@ -98,16 +101,17 @@
             $("#saturation").prop('disabled', true);
             $("#exposure").prop('disabled', true);
             $("#cortar").prop('disabled', false);
+            $("#descripcion").prop('disabled', true);
             $(this).hide();
             $("#filtros").show();
         });
     });
 
     $("#brightness, #contrast, #saturation, #exposure").on('change', function () {
-        let bright = $("#brightness").val();
-        let contrastF = $("#contrast").val();
-        let saturation = $("#saturation").val();
-        let exposure = $("#exposure").val();
+        var bright = $("#brightness").val();
+        var contrastF = $("#contrast").val();
+        var saturation = $("#saturation").val();
+        var exposure = $("#exposure").val();
         $("#gfiltros").prop('disabled', false);
 
         $('#brightnessValue').text(bright);
@@ -133,6 +137,13 @@
             });
         });
     });
+
+    $('#descripcion').on('change', function () {
+        Caman("#images2Cam", function () {
+            this.brightness(1);
+        });
+        $("#gfiltros").prop('disabled', false);
+    })
 
 /*
 
