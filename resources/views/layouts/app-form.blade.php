@@ -53,10 +53,19 @@
             background: -moz-linear-gradient(top,  #2d9b95 -1%, #0e1329 100%, #278180 100%, #0e1329 100%, #2d9b95 100%); /* FF3.6-15 */
             background: -webkit-linear-gradient(top,  #2d9b95 -1%,#0e1329 100%,#278180 100%,#0e1329 100%,#2d9b95 100%); /* Chrome10-25,Safari5.1-6 */
             background: linear-gradient(to bottom,  #2d9b95 -1%,#0e1329 100%,#278180 100%,#0e1329 100%,#2d9b95 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2d9b95', endColorstr='#2d9b95',GradientType=0 ); /* IE6-9
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2d9b95', endColorstr='#2d9b95',GradientType=0 ); /* IE6-9*/
+            }
+        .form-group{
+            margin-bottom: 0;
+        }
+
+        label{
+            margin-bottom: 0;
+            font-size: 11px;
+        }
+
         -->
     </style>
-
     {{--<script src="{{ asset('js/app.js') }}"></script>--}}
 </body>
 </html>
