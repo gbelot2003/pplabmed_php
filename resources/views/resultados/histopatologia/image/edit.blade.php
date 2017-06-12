@@ -87,6 +87,8 @@
                                         <div class="col-md-12">
                                             <br>
                                             <button type="button" class="btn btn-primary" id="cortar">Cortar</button>
+                                            <button type="button" class="btn btn-warning" id="filtros">Editar Filtros</button>
+                                            <button type="button" class="btn btn-info" style="display: none" id="gfiltros">Guardar</button>
                                             <button type="button" class="btn btn-info" style="display: none" id="gcortar">Guardar</button>
                                         </div>
                                     </div>
@@ -108,15 +110,6 @@
 
                             </div>
                         </div>
-                        <div class="footer">
-                            <div class="row">
-                                <div class="col-md-4"></div>
-                                <div class="col-md-8">
-                                    <button class="btn btn-default" type="submit" id="changeSave">Salvar</button>
-                                </div>
-                            </div>
-
-                        </div>
                     </form>
                 </div>
             </div>
@@ -125,6 +118,7 @@
     <style>
         #images2Cam{
             width: 100%;
+            height: 600px;
         }
 
         .cr-image{

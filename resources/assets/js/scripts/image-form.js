@@ -5,6 +5,11 @@
         }
     });
 
+    $("#brightness").prop('disabled', true);
+    $("#contrast").prop('disabled', true);
+    $("#saturation").prop('disabled', true);
+    $("#exposure").prop('disabled', true);
+
     function PostImage(resp, basic) {
         let descripcion = $('#descripcion').val();
         $.ajax({
@@ -33,7 +38,9 @@
 
     $('#cortar').on('click', function(e){
 
-        $(this).prop('disabled', false);
+        $(this).prop('disabled', true);
+        $("#filtros").hide();
+
         $('#gcortar').show();
         var basic = $('#images2Cam').croppie({
             viewport: {
@@ -45,12 +52,13 @@
         $("#gcortar").on('click', function () {
 
             size = 'viewport';
-            console.log(descripcion)
+            console.log(descripcion);
             basic.croppie('result', {
                 type: 'canvas',
                 size: size
             }).then(function (resp) {
                 PostImage(resp, basic);
+                $(this).prop('disabled', false);
             });
 
 
@@ -58,11 +66,49 @@
     });
 
 
+    $('#filtros').on('click', function (e) {
+        $("#brightness").prop('disabled', false);
+        $("#contrast").prop('disabled', false);
+        $("#saturation").prop('disabled', false);
+        $("#exposure").prop('disabled', false);
+        $("#cortar").prop('disabled', true);
+        $(this).hide();
+        $("#gfiltros").show();
+        $("#gfiltros").prop('disabled', true);
+    });
+
+    $("#gfiltros").on('click', function (e) {
+        let canvas = $("#images2Cam");
+        let dataUrl = canvas.get(0).toDataURL();
+
+        $.ajax({
+            type: "put",
+            url: "/histo/images/update/" + id,
+            data: {
+                '_token': crf,
+                'images': dataUrl,
+                'descripcion': descripcion,
+                'link_id': linkId,
+                'name': name
+            }
+        }).done(function (response) {
+            location.reload();
+            $("#brightness").prop('disabled', true);
+            $("#contrast").prop('disabled', true);
+            $("#saturation").prop('disabled', true);
+            $("#exposure").prop('disabled', true);
+            $("#cortar").prop('disabled', false);
+            $(this).hide();
+            $("#filtros").show();
+        });
+    });
+
     $("#brightness, #contrast, #saturation, #exposure").on('change', function () {
         let bright = $("#brightness").val();
         let contrastF = $("#contrast").val();
         let saturation = $("#saturation").val();
         let exposure = $("#exposure").val();
+        $("#gfiltros").prop('disabled', false);
 
         $('#brightnessValue').text(bright);
         $('#contrastValue').text(contrastF);

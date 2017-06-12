@@ -40,16 +40,6 @@ class HistoPrintConfig{
      */
     protected function PrintImages($data, $pdf)
     {
-        /**
-         *  INFORME
-         */
-        $pdf->SetFont('Helvetica', 'B', 13);
-        $pdf->Cell(180, 20, 'IMAGENES', 0, 0, 'C');
-        /**
-         * Salto
-         */
-        $pdf->ln();
-
          /**
          * Imagenes
          */
@@ -79,7 +69,7 @@ class HistoPrintConfig{
         }
 
         if (isset($data->images[2])){
-            $pdf->ln();
+            $pdf->ln(20);
             $pdf->Cell(85, 5, $pdf->Image(public_path() . "/img/histo/" .
                 $data->images[2]->image_url, $pdf->GetX(), $pdf->GetY(), 80, 65) , 0, '');
         }
@@ -107,7 +97,7 @@ class HistoPrintConfig{
          * Firmas
          */
         if (isset($data->images[2])){
-            $pdf->ln(30);
+            $pdf->ln(25);
         } else {
             $pdf->ln(125);
         }
