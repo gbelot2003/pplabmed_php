@@ -44,7 +44,15 @@ class ImagesController extends Controller
         $helpers = new Miselanius();
         $images = Image::findOrfail($id);
         $name = $helpers->setImges($request);
-        $images->update(['image_url' => $name]);
+
+        $images->image_url = $name;
+        if($request->has('descripcion'))
+        {
+            $images->descripcion = $request->get('descripcion');
+        }
+
+        $images->save();
+
     }
 
     public function delete($id)

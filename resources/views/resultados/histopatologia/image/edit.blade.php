@@ -1,6 +1,8 @@
 @extends('layouts.app-form')
 
 @section('jscode')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.4.1/croppie.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.4.1/croppie.css">
     <script src="{{ asset('js/images-form.js') }}"></script>
 @stop
 
@@ -19,9 +21,13 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="panel panel-default">
-                    <form action="">
-                        <div class="panel-heading">
+                <div class="">
+                    <form>
+                        {{ csrf_field() }}
+                        <input type="hidden" value="{{ $item->link_id }}" id="link_id">
+                        <input type="hidden" value="{{ $item->image_url }}" id="image_name">
+                        <input type="hidden" value="{{ $item->id }}" id="id">
+                        <div class="heading">
                             <div class="text-muted pull-right">
                                 <a class="imageCanvas" href="/histopatologia/{{ $item->histo->id }}/edit" class="btn btn-default">Regresar a
                                     Formulario</a>
@@ -29,30 +35,83 @@
                             <h4>Edición de Imagenes</h4>
                         </div>
 
-                        <div class="panel-body">
+                        <div class="body">
 
                             <div class="row">
-                                <div class="col-md-3">
-                                    <h4>Editor</h4>
+                                <div class="col-md-4">
+                                    <br>
+                                    <label style="font-size: 16px">Brillo</label>
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <input id="brightness" type="range" min="-100" max="100" value="0" step="1" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span id="brightnessValue">0</span>
+                                        </div>
+                                    </div>
+
+                                    <br>
+                                    <label style="font-size: 16px">Contraste</label>
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <input id="contrast" type="range" min="-100" max="100" value="0" step="1" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span id="contrastValue">0</span>
+                                        </div>
+                                    </div>
+
+                                    <br>
+                                    <label style="font-size: 16px">Saturación</label>
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <input id="saturation" type="range" min="0" max="10" step="0.1" value="0" data-filter="gamma">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span id="saturationValue">0</span>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <label style="font-size: 16px">Exposición</label>
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <input id="exposure" type="range" min="-100" max="100" value="0" step="1" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span id="exposureValue">0</span>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <label style="font-size: 16px">Opciones</label>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <br>
+                                            <button type="button" class="btn btn-primary" id="cortar">Cortar</button>
+                                            <button type="button" class="btn btn-info" style="display: none" id="gcortar">Guardar</button>
+                                        </div>
+                                    </div>
+
                                 </div>
 
-                                <div class="col-md-9" style="background: grey; padding: 5px">
-                                    <div class="image text-center">
-                                        <img name="image" src="/img/histo/{{ $item->image_url }}"
-                                             alt="{{ $item->image_url }}">
+                                <div class="col-md-8">
+                                    <div id="demo-basic">
+                                        <img name="img-responsive" src="/img/histo/{{ $item->image_url }}"
+                                             alt="{{ $item->image_url }}" id="images2Cam" />
+
                                     </div>
                                     <div class="form-group">
                                         <br>
-                                        <textarea name="descricion" class="form-control textarea" rows="2"></textarea>
+                                        {{ Form::textarea('descripcion', isset($item->descripcion) ? $item->descripcion : null,
+                                            ['id' => 'descripcion', 'class' => 'form-control', 'rows' => 2]) }}
                                     </div>
                                 </div>
 
                             </div>
                         </div>
-                        <div class="panel-footer">
+                        <div class="footer">
                             <div class="row">
-                                <div class="col-md-3"></div>
-                                <div class="col-md-9">
+                                <div class="col-md-4"></div>
+                                <div class="col-md-8">
                                     <button class="btn btn-default" type="submit" id="changeSave">Salvar</button>
                                 </div>
                             </div>
@@ -63,4 +122,13 @@
             </div>
         </div>
     </div>
+    <style>
+        #images2Cam{
+            width: 100%;
+        }
+
+        .cr-image{
+            position: relative !important;
+        }
+    </style>
 @stop
