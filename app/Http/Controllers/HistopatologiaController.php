@@ -39,8 +39,6 @@ class HistopatologiaController extends Controller
             'user_id' => Auth::user()->id
         ]);
 
-
-
         $firmas = Firma::where('status', 1)->pluck('name', 'id');
         $plantillas = Plantilla::all();
         return View('resultados.histopatologia.create', compact('serial', 'firmas', 'plantillas', 'link'));

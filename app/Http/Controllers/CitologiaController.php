@@ -4,11 +4,9 @@ namespace App\Http\Controllers;
 
 use Acme\Controller\CitologiaControllerHelper;
 use Acme\Helpers\SerialHelper;
-use Acme\Refactoria\Implement\FormatSimpleDates;
 use App\Categoria;
 use App\Citologia;
 use App\CitoSerial;
-use App\CitoUnbind;
 use App\Firma;
 use App\Http\Requests\CitologiaValidate;
 use Carbon\Carbon;
@@ -26,8 +24,7 @@ CitologiaController extends Controller
         $this->middleware('auth');
         $this->middleware('checkActive');
         $this->middleware('ManageCito');
-        $this->formatDates = new FormatSimpleDates();
-        $this->validateExamenType = new validateExamenType();
+        $this->serialHelper = new SerialHelper();
     }
 
     /**
@@ -44,8 +41,7 @@ CitologiaController extends Controller
      */
     public function create()
     {
-        $serialHelper = new SerialHelper();
-        $serial = $serialHelper->getSerial(1);
+        $serial = $this->serialHelper->getSerial(1);
         $idCIto = Categoria::where('status', 1)->pluck('name', 'id');
         $firmas = Firma::where('status', 1)->pluck('name', 'id');
 
@@ -58,11 +54,10 @@ CitologiaController extends Controller
      */
     public function store(CitologiaValidate $request)
     {
-        $serialHelper = new SerialHelper();
-        $request['serial'] = $serialHelper->getSerial(1);
+        $request['serial'] = $this->serialHelper->getSerial(1);
         $cito = Citologia::create($request->all());
         $cito->facturas->update($request->all());
-        $serialHelper->setSerial($request->input('serial'), 1);
+        $this->serialHelper->setSerial($request->input('serial'), 1);
         flash('Reegistro Creado', 'success')->important();
 
         return redirect()->to(action('CitologiaController@edit', $cito->id));
@@ -99,8 +94,8 @@ CitologiaController extends Controller
         $cito = Citologia::findOrFail($id);
         $this->validateExamenType();
 
-        $cito->mm = isset($request['deteccion_cancer']) ? $request['deteccion_cancer'] = 1 : $request['deteccion_cancer'] = 0;
-        $cito->mm = isset($request['indice_maduracion']) ? $request['indice_maduracion'] = 1 : $request['indice_maduracion'] = 0;
+        $cito->deteccion_cancer = isset($request['deteccion_cancer']) ? $request['deteccion_cancer'] = 1 : $request['deteccion_cancer'] = 0;
+        $cito->indice_maduracion = isset($request['indice_maduracion']) ? $request['indice_maduracion'] = 1 : $request['indice_maduracion'] = 0;
         $cito->mm = isset($request['mm']) ? $request['mm'] = 1 : $request['mm'] = 0;
         $cito->update($request->all());
         $cito->facturas->update($request->all());

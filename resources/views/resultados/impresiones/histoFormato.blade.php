@@ -60,7 +60,7 @@
                             <div>
                                 <span class="uppercase">Fecha de Biopsia: </span>
                                 <span class="strong">
-                                @if($items->fecha_biopcia)
+                                    @if($items->fecha_biopcia)
                                         {{ $items->fecha_biopcia->formatLocalized('%d/%m/%Y') }}
                                     @endif
                             </span>
@@ -82,7 +82,8 @@
                         <td>
                             <div>
                                 <span class="uppercase">No. de Biopsia: </span><span
-                                        class="strong">{{ $items->serial }} - {{ $items->created_at->format('Y') }}</span>
+                                        class="strong">{{ $items->serial }}
+                                    - {{ $items->created_at->format('Y') }}</span>
                             </div>
                             <span class="uppercase">No. de Factura: </span><span
                                     class="strong"> {{ $items->facturas->num_factura }}</span>

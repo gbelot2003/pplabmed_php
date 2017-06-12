@@ -7,6 +7,7 @@
     "require": {
         "php": ">=5.6.4",
         "barryvdh/laravel-dompdf": "^0.8.0",
+        "crabbly/fpdf-laravel": "^1.0",
         "ddctd143/google-translate": "dev-master",
         "doctrine/dbal": "^2.5",
         "laracasts/flash": "^2.0",
