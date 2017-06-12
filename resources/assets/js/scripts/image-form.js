@@ -36,7 +36,7 @@
     var crf = $('input[name="_token"]').val();
     var descripcion = $('#descripcion').val();
 
-    $('#cortar').on('click', function (e) {
+    $('#cortar').on('click', function(e){
 
         $(this).prop('disabled', true);
         $("#descripcion").prop('disabled', false);
@@ -123,7 +123,7 @@
             this.revert(false);
 
             this.brightness(parseInt(bright));
-            this.newLayer(function () {
+            this.newLayer(function (){
                 this.setBlendingMode('multiply');
                 this.copyParent();
                 this.filter.contrast(parseInt(contrastF));
@@ -142,7 +142,7 @@
         Caman("#images2Cam", function () {
             this.brightness(1);
         });
-
         $("#gfiltros").prop('disabled', false);
-    });
-});
+    })
+
+})(jQuery);
