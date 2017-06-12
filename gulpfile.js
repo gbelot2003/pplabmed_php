@@ -14,16 +14,16 @@ require('laravel-elixir-vue-2');
  */
 
 elixir((mix) => {
-    mix.sass('app.scss')
+    /*mix.sass('app.scss')
         .sass('login.scss')
         .webpack('app.js')
         .webpack('custom.js')
         .scripts(['scripts/citologias-form.js'], 'public/js/citologias-form.js')
         .scripts([
             'scripts/histopatologia-form.js'
-            ], 'public/js/histopatologia-form.js')
-        .scripts(['scripts/image-form.js'], 'public/js/images-form.js')
-        .scripts([
+            ], 'public/js/histopatologia-form.js')*/
+        mix.scripts(['scripts/image-form.js'], 'public/js/images-form.js')
+        /*.scripts([
             'assets/jquery.js',
             'assets/bootstrap.js',
             'assets/jquery.dataTables.js',
@@ -35,5 +35,5 @@ elixir((mix) => {
             'assets/jquery.inputmask.bundle.js',
         ], 'public/js/app2.js');
 
-    mix.less('login2.less');
+    mix.less('login2.less');*/
 });
