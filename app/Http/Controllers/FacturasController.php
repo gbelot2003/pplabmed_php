@@ -41,7 +41,7 @@ class FacturasController extends Controller
      */
     public function show($id)
     {
-        $item = Factura::where('num_factura', $id)->first();
+        $item = Factura::where('num_factura', $id)->with('examen')->first();
         return $item;
     }
 

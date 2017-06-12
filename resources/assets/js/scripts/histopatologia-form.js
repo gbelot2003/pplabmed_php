@@ -25,13 +25,30 @@
         }
     }
 
+    function checkItem(item){
+
+        items = [10328, 10328, 10332, 10333, 10334, 10335, 10336];
+        if (items.includes(item)) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
     $(document).ready(function () {
         $("#factura").focusout(function () {
             var id = $(this).val();
             //alert(id);
             $.get('/facturas/' + id)
                 .done(function (data) {
-                    console.log(data.nombre_completo_cliente);
+                    console.log(data.examen.item);
+
+                    if(checkItem(data.examen.item) === false){
+                        $("#factura").val() === "";
+                        return alert('Esta no es una Biopsia');
+                    }
+
                     $('#paciente').val(data.nombre_completo_cliente);
 
                     const fulldate =  getDate(data.fecha_nacimiento);
