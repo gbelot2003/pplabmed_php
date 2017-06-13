@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Acme\Controller\CitologiaControllerHelper;
 use Acme\Helpers\SerialHelper;
+use Acme\Refactoria\Implement\FormatSimpleDates;
 use App\Categoria;
 use App\Citologia;
 use App\CitoSerial;
+use App\CitoUnbind;
 use App\Firma;
 use App\Http\Requests\CitologiaValidate;
 use Carbon\Carbon;
@@ -24,7 +26,7 @@ CitologiaController extends Controller
         $this->middleware('auth');
         $this->middleware('checkActive');
         $this->middleware('ManageCito');
-        $this->serialHelper = new SerialHelper();
+        $this->formatDates = new FormatSimpleDates();
     }
 
     /**
@@ -41,7 +43,8 @@ CitologiaController extends Controller
      */
     public function create()
     {
-        $serial = $this->serialHelper->getSerial(1);
+        $serialHelper = new SerialHelper();
+        $serial = $serialHelper->getSerial(1);
         $idCIto = Categoria::where('status', 1)->pluck('name', 'id');
         $firmas = Firma::where('status', 1)->pluck('name', 'id');
 
@@ -54,10 +57,11 @@ CitologiaController extends Controller
      */
     public function store(CitologiaValidate $request)
     {
-        $request['serial'] = $this->serialHelper->getSerial(1);
+        $serialHelper = new SerialHelper();
+        $request['serial'] = $serialHelper->getSerial(1);
         $cito = Citologia::create($request->all());
         $cito->facturas->update($request->all());
-        $this->serialHelper->setSerial($request->input('serial'), 1);
+        $serialHelper->setSerial($request->input('serial'), 1);
         flash('Reegistro Creado', 'success')->important();
 
         return redirect()->to(action('CitologiaController@edit', $cito->id));
@@ -78,9 +82,7 @@ CitologiaController extends Controller
         $now = date("Y-m-d");
         $bdate = Carbon::createFromFormat('Y-m-d', $now)->startOfDay();
         $edate = Carbon::createFromFormat('Y-m-d', $now)->endOfDay();
-
         $today = Citologia::whereBetween('created_at', [$bdate, $edate])->count();
-
         return View('resultados.citologia.edit', compact('item','idCIto', 'firmas', 'gravidad', 'previous', 'next', 'total', 'today'));
     }
 
@@ -92,8 +94,6 @@ CitologiaController extends Controller
     public function update(CitologiaValidate $request, $id)
     {
         $cito = Citologia::findOrFail($id);
-        $this->validateExamenType();
-
         $cito->deteccion_cancer = isset($request['deteccion_cancer']) ? $request['deteccion_cancer'] = 1 : $request['deteccion_cancer'] = 0;
         $cito->indice_maduracion = isset($request['indice_maduracion']) ? $request['indice_maduracion'] = 1 : $request['indice_maduracion'] = 0;
         $cito->mm = isset($request['mm']) ? $request['mm'] = 1 : $request['mm'] = 0;
