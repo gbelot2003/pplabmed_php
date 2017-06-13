@@ -5,5 +5,5 @@ namespace Acme\Refactoria\Interfaces;
 
 interface RepositoryQueryInterface
 {
-    public function queryTimeRagesResults($bdate, $edate);
+    public function output($bdate, $edate);
 }

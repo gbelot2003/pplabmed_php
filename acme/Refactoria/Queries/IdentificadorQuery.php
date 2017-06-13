@@ -21,7 +21,7 @@ class IdentificadorQuery implements RepositoryQueryInterface
      * @param $edate
      * @return array
      */
-    public function queryTimeRagesResults($bdate, $edate)
+    public function output($bdate, $edate)
     {
         $a = $this->abstractQuery($bdate, $edate, 0, 14);
         $b = $this->abstractQuery($bdate, $edate, 15, 19);

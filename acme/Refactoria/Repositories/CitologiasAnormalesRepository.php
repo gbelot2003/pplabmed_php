@@ -24,7 +24,7 @@ class CitologiasAnormalesRepository implements QueryModelsInterfaces
     public function instancesRequires()
     {
         list($bdate, $edate) = $this->dateQuery->formatQueryDates($this->request);
-        list($a, $b, $c, $d, $e, $f, $g, $h, $i, $j, $k, $totales) = $this->identificador->queryTimeRagesResults($bdate, $edate);
+        list($a, $b, $c, $d, $e, $f, $g, $h, $i, $j, $k, $totales) = $this->identificador->output($bdate, $edate);
 
         return array($bdate, $edate, $a, $b, $c, $d, $e, $f, $g, $h, $i, $j, $k, $totales);
     }
