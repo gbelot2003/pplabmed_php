@@ -82,9 +82,7 @@ CitologiaController extends Controller
         $now = date("Y-m-d");
         $bdate = Carbon::createFromFormat('Y-m-d', $now)->startOfDay();
         $edate = Carbon::createFromFormat('Y-m-d', $now)->endOfDay();
-
         $today = Citologia::whereBetween('created_at', [$bdate, $edate])->count();
-
         return View('resultados.citologia.edit', compact('item','idCIto', 'firmas', 'gravidad', 'previous', 'next', 'total', 'today'));
     }
 
