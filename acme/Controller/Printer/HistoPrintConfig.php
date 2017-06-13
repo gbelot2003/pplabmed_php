@@ -29,11 +29,8 @@ class HistoPrintConfig{
         $this->PrintBody($data, $pdf);
 
         if(isset($data->images[0])){
-<<<<<<< HEAD
-            $pdf->SetTopMargin(45);
-=======
+
             $pdf->SetTopMargin(30);
->>>>>>> 96c5970b06f91cf0f3c54360c3f42d637e352acf
             $pdf->AddPage();
             $this->PrintImages($data, $pdf);
         }

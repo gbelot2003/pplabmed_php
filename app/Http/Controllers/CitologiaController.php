@@ -96,11 +96,6 @@ CitologiaController extends Controller
     public function update(CitologiaValidate $request, $id)
     {
         $cito = Citologia::findOrFail($id);
-<<<<<<< HEAD
- 
-=======
->>>>>>> 96c5970b06f91cf0f3c54360c3f42d637e352acf
-
         $cito->mm = isset($request['deteccion_cancer']) ? $request['deteccion_cancer'] = 1 : $request['deteccion_cancer'] = 0;
         $cito->mm = isset($request['indice_maduracion']) ? $request['indice_maduracion'] = 1 : $request['indice_maduracion'] = 0;
         $cito->mm = isset($request['mm']) ? $request['mm'] = 1 : $request['mm'] = 0;
