@@ -92,7 +92,7 @@ CitologiaController extends Controller
     public function update(CitologiaValidate $request, $id)
     {
         $cito = Citologia::findOrFail($id);
-        $this->validateExamenType();
+ 
 
         $cito->deteccion_cancer = isset($request['deteccion_cancer']) ? $request['deteccion_cancer'] = 1 : $request['deteccion_cancer'] = 0;
         $cito->indice_maduracion = isset($request['indice_maduracion']) ? $request['indice_maduracion'] = 1 : $request['indice_maduracion'] = 0;
