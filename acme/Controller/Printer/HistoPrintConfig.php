@@ -14,7 +14,7 @@ class HistoPrintConfig{
 
     public function printPdfHitoReport(Histopatologia $data)
     {
-        $ftitle = $data->created_at->format('Y') . "-" .$data->serial;
+        $ftitle =  $data->serial . "-" . $data->created_at->format('Y');
         $pdf = new PDF($orientation = 'P', $unit = 'mm', $size = 'Letter', $ftitle = $ftitle);
         setlocale(LC_CTYPE, 'en_US');
 
@@ -22,14 +22,18 @@ class HistoPrintConfig{
         $pdf->SetLeftMargin(20);
         $pdf->AliasNbPages();
 
-        $pdf->SetTopMargin(45);
+        $pdf->SetTopMargin(30);
         $pdf->AddPage();
 
         $this->PrintHeader($data, $pdf);
         $this->PrintBody($data, $pdf);
 
         if(isset($data->images[0])){
+<<<<<<< HEAD
             $pdf->SetTopMargin(45);
+=======
+            $pdf->SetTopMargin(30);
+>>>>>>> 96c5970b06f91cf0f3c54360c3f42d637e352acf
             $pdf->AddPage();
             $this->PrintImages($data, $pdf);
         }
