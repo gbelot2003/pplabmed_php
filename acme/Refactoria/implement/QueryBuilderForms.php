@@ -24,9 +24,9 @@ class QueryBuilderForms implements QueryBuilderInterface{
          * Funcion de busqueda concreta
          */
 
-        list($bdate, $edate, $pdf, $query) = $this->repo->instancesRequires();
+        list($bdate, $edate, $pdf, $direc, $query) = $this->repo->instancesRequires();
         $items = $query->get();
-        return array($bdate, $edate, $pdf, $items);
+        return array($bdate, $edate, $pdf, $direc, $items);
     }
 }
 

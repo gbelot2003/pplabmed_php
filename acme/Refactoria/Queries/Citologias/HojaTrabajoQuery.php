@@ -58,7 +58,7 @@ class HojaTrabajoQuery extends QueryBuilderAbstract implements QueryPostInterfac
 
         $data = $query->get();
 
-        return array($bdate, $edate, $data);
+        return array($bdate, $edate,  $data);
     }
 
 

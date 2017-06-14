@@ -21,7 +21,7 @@
 
     function checkItem(item){
 
-        items = [10328, 10328, 10332, 10333, 10334, 10335, 10336, 10337];
+        items = [10326, 10327, 10328, 10332, 10333, 10334, 10335, 10336];
         if (items.includes(item)) {
             return true;
         }
@@ -92,4 +92,4 @@
 
 
 })(jQuery);
-//# sourceMappingURL=Citologias-form.js.map
+//# sourceMappingURL=citologias-form.js.map

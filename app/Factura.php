@@ -33,7 +33,7 @@ class Factura extends Model
      */
     public function histopatologias()
     {
-        return $this->hasMany(Histopatologia::class, 'num_factura', 'num_factura');
+        return $this->hasMany(Histopatologia::class, 'factura_id', 'num_factura');
     }
 
     /**

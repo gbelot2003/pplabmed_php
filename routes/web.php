@@ -36,8 +36,8 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('plantillas/info/{id}', 'PlantillasController@getPlantilla');
     Route::get('plantillas/lista/{id}', 'PlantillasController@listado');
 
-    Route::resource('Citologias', 'CitologiaController');
-    Route::post('Citologias/config-serial', 'CitoSerialController@citologiaUpdate')->name('Citologias.config');
+    Route::resource('citologias', 'CitologiaController');
+    Route::post('citologias/config-serial', 'CitoSerialController@citologiaUpdate')->name('citologias.config');
     Route::get('citologia/listados', 'CitologiaController@listados');
     Route::get('citologia/busqueda', 'CitologiaController@searchPage');
     Route::post('Citologias/busqueda', 'CitologiaController@processForm');

@@ -18,7 +18,7 @@ elixir((mix) => {
         .sass('login.scss')
         .webpack('app.js')
         .webpack('custom.js')
-        .scripts(['scripts/Citologias-form.js'], 'public/js/Citologias-form.js')
+        .scripts(['scripts/citologias-form.js'], 'public/js/citologias-form.js')
         .scripts([
             'scripts/histopatologia-form.js'
             ], 'public/js/histopatologia-form.js')

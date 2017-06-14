@@ -27,9 +27,9 @@ class HistoBuild implements QueryConcreatInterface, QueryRequireConcreatInterfac
     {
         $repo = new HistoRepository($request);
         $query = new QueryBuilderForms($request, $repo);
-        list($bdate, $edate, $pdf, $items) = $query->buidQuery();
+        list($bdate, $edate, $pdf, $direc, $items) = $query->buidQuery();
 
-        return $this->resultsReturn($bdate, $edate, $pdf, $items);
+        return $this->resultsReturn($bdate, $edate, $pdf, $direc, $items);
     }
 
     /**
@@ -39,13 +39,13 @@ class HistoBuild implements QueryConcreatInterface, QueryRequireConcreatInterfac
      * @param $items
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    protected function resultsReturn($bdate, $edate, $pdf, $items)
+    protected function resultsReturn($bdate, $edate, $pdf, $direc, $items)
     {
         if (!isset($pdf)) {
-            return View('reportes.histo.hojaTrabajo.result', compact('items', 'bdate', 'edate'));
+            return View('reportes.histo.hojaTrabajo.result', compact('items', 'bdate', 'edate', 'direc'));
         } else {
             $pdf = App::make('dompdf.wrapper');
-            $pdf->loadView('reportes.histo.hojaTrabajo.result-pdf', compact('items', 'bdate', 'edate'));
+            $pdf->loadView('reportes.histo.hojaTrabajo.result-pdf', compact('items', 'bdate', 'edate', 'direc'));
             return $pdf->stream();
         }
     }
