@@ -1,4 +1,6 @@
-body{margin-top:3.5cm;font-family: Helvetica, Arial, sans-serif; font-size: 12px}
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+
+body{margin-top:3.5cm;font-family: 'Source Sans Pro', sans-serif;; font-size: 12px}
 @page {size: auto; margin: 0;}
 @media print{.no-print, .no-print * { display: none !important;}}
 #formulario{width: 17cm;height: 21cm; padding-left: 0.7cm}
@@ -14,7 +16,7 @@ body{margin-top:3.5cm;font-family: Helvetica, Arial, sans-serif; font-size: 12px
 .direccion-etiqueta{top:0.6cm;left: 0cm; width: 9.5cm;}
 .direccion{top:0.6cm;left: 1.9cm; width: 9.5cm;}
 .telefono-etiqueta{top:0.6cm;left: 11.5cm;}
-.solicitud-etiqueta{top: 1.5cm;left: 4.7cm;}
+.solicitud-etiqueta{top: 1.5cm;left: 4.9cm;}
 .deteccion-etiqueta{top: 2.3cm;left: 0}
 .indice-maduracion-etiqueta{top: 2.3cm;left:5.8cm}
 .otros-etiqueta{top: 2.3cm; left:11.7cm;}
