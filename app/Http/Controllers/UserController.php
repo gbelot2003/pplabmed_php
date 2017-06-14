@@ -45,7 +45,14 @@ class UserController extends Controller
         $helper = new Miselanius();
         $userHelper = new UsersControllerHelper();
 
-        $request = $this->checkPassworldStatus($request);
+        if ($request->input('password')):
+            $request['password'] = bcrypt($request->input('password'));
+            unset($request['password_confirmation']);
+        else:
+            unset($request['password']);
+            unset($request['password_confirmation']);
+        endif;
+
         $request['status'] = $helper->checkRequestStatus($request);
         $userHelper->storeAndSync($request);
         return redirect()->to('/usuarios');
@@ -73,7 +80,14 @@ class UserController extends Controller
         $helper = new Miselanius();
         $userHelper = new UsersControllerHelper();
 
-        $request = $this->checkPassworldStatus($request);
+        if ($request->input('password')):
+            $request['password'] = bcrypt($request->input('password'));
+            unset($request['password_confirmation']);
+        else:
+            unset($request['password']);
+            unset($request['password_confirmation']);
+        endif;
+
         $request['status'] = $helper->checkRequestStatus($request);
 
         $userHelper->UpdateAndSync($request, $user);
