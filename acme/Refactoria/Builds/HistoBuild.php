@@ -2,6 +2,7 @@
 
 namespace Acme\Refactoria\Builds;
 
+use Acme\Controller\Printer\Reportes\BiopiasHojaTrabajo;
 use Acme\Refactoria\Implement\QueryBuilderForms;
 use Acme\Refactoria\Implement\QueryRequireConcreatInterface;
 use Acme\Refactoria\Interfaces\QueryConcreatInterface;
@@ -41,6 +42,8 @@ class HistoBuild implements QueryConcreatInterface, QueryRequireConcreatInterfac
      */
     protected function resultsReturn($bdate, $edate, $pdf, $items)
     {
+        /*$print = new BiopiasHojaTrabajo();
+        return $print->printPdfHitoReport($items, $bdate, $edate);*/
         if (!isset($pdf)) {
             return View('reportes.histo.hojaTrabajo.result', compact('items', 'bdate', 'edate', 'direc'));
         } else {

@@ -45,5 +45,5 @@
 @stop
 
 @section('jscode')
-    <script src="{{ asset('Citologias') }}"></script>
+    <script src="{{ asset('citologias') }}"></script>
 @stop
