@@ -35,23 +35,21 @@
     {{-- F.U.R --}}
     <div class="col-md-3 form-group  {{ $errors->has('fur') ? ' has-error' : '' }}">
         <label>F.U.R.</label>
-        <input name="fur" placeholder="F.U.R" type="text"
+        <input name="fur" placeholder="F.U.R" type="date"
                class="form-control"
                tabindex="6"
-               onfocus="(this.type='date')" onblur="(this.type='text')"
                value="{{ isset($item->fur) ? $item->fur->format('Y-m-d') : null }}"
-               id="fur">
+               id="">
     </div>
 
     {{-- F.U.P --}}
     <div class="col-md-3 form-group  {{ $errors->has('fup') ? ' has-error' : '' }}">
         <label>F.U.P.</label>
-        <input name="fup" placeholder="F.U.P" type="text"
+        <input name="fup"  type="date"
                class="form-control"
-               tabindex="6"
-               onfocus="(this.type='date')" onblur="(this.type='text')"
+               tabindex="7"
                value="{{ isset($item->fup) ? $item->fup->format('Y-m-d') : null }}"
-               id="fup">
+               id="">
     </div>
 
     {{-- gravidad --}}
@@ -91,12 +89,11 @@
     {{-- Fécha de Muestra --}}
     <div class="col-md-3 form-group  {{ $errors->has('fecha_muestra') ? ' has-error' : '' }}">
         <label>Fecha de Muestra</label>
-        <input name="fecha_muestra" placeholder="Fecha de Muestra" type="text"
+        <input name="fecha_muestra" type="date"
                class="form-control"
                tabindex="11"
-               onfocus="(this.type='date')" onblur="(this.type='text')"
                value="{{ isset($item->fecha_muestra) ? $item->fecha_muestra->format('Y-m-d') : null }}"
-               id="fechamuestra">
+               id="">
     </div>
 
 </div>
@@ -124,7 +121,7 @@
         <label>Fecha de Informe</label>
         <input name="fecha_informe"  type="date"
                class="form-control"
-               tabindex="11"
+               tabindex="12"
                value="{{ isset($item->fecha_informe) ? $item->fecha_informe->format('Y-m-d') : date("Y-m-d") }}"
                id="">
     </div>
@@ -140,7 +137,7 @@
 
     <div class="col-md-12 form-group">
         <label>Informe</label>
-        {{ Form::textarea('informe', null, ['class' => 'textarea form-control ckeditor', 'id' => 'informe', 'tabindex' => 12]) }}
+        {{ Form::textarea('informe', null, ['class' => 'textarea form-control ckeditor', 'id' => 'informe', 'tabindex' => 13]) }}
     </div>
 
 </div>
