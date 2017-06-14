@@ -49,7 +49,7 @@ class IdentificadorQuery implements RepositoryQueryInterface
      */
     protected function abstractQuery($bdate, $edate, $byears, $eyeard)
     {
-        $query = $this->facturas->join('citologias as c', 'c.factura_id', '=', 'facturas.num_factura')
+        $query = $this->facturas->join('Citologias as c', 'c.factura_id', '=', 'facturas.num_factura')
             ->join('examenes as x', 'x.num_factura', '=', 'facturas.num_factura')
             ->selectRaw("SUM(IF(c.icitologia_id = 2, 1, 0)) as ID2,
                 SUM(IF(c.icitologia_id = 3, 1, 0)) as ID3,
@@ -76,7 +76,7 @@ class IdentificadorQuery implements RepositoryQueryInterface
      */
     protected function AbstractTotales($bdate, $edate)
     {
-        $totales = $this->facturas->join('citologias as c', 'c.factura_id', '=', 'facturas.num_factura')
+        $totales = $this->facturas->join('Citologias as c', 'c.factura_id', '=', 'facturas.num_factura')
             ->join('examenes as x', 'x.num_factura', '=', 'facturas.num_factura')
             ->selectRaw("SUM(IF(c.icitologia_id = 2, 1, 0)) as ID2,
                 SUM(IF(c.icitologia_id = 3, 1, 0)) as ID3,

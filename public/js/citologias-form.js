@@ -79,7 +79,7 @@
     document.addEventListener("keydown", function(event) {
         if(event.which === 107){
             if (confirm('¿Seguro que desea salir?, se perdera toda la Información no salvada!!')) {
-                window.location.href = '/citologias/create';
+                window.location.href = '/Citologias/create';
             }
         }
 
@@ -92,4 +92,4 @@
 
 
 })(jQuery);
-//# sourceMappingURL=citologias-form.js.map
+//# sourceMappingURL=Citologias-form.js.map

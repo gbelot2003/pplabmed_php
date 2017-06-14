@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Reportes;
 
-use Acme\Refactoria\Builds\CitologiaBuild;
+use Acme\Refactoria\Builds\Citologia\HojaTrabajoBuild;
+use App\Citologia;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Categoria;
+use App\Factura;
 
 class ReporteCitologiaController extends Controller
 {
@@ -15,7 +17,10 @@ class ReporteCitologiaController extends Controller
         $this->middleware('auth');
         $this->middleware('checkActive');
         $this->middleware('ShowReports');
-        $this->build = new CitologiaBuild();
+        $this->model = new Citologia();
+        $this->categoria = new Categoria();
+        $this->factura = new Factura();
+
     }
 
     /**
@@ -23,7 +28,8 @@ class ReporteCitologiaController extends Controller
      */
     public function index()
     {
-        list($idCito, $direc) = $this->build->builRequiresController();
+        $idCito = $this->categoria->where('status', 1)->pluck('name', 'id');
+        $direc = $this->factura->groupBy('direccion_entrega_sede')->select('direccion_entrega_sede')->pluck('direccion_entrega_sede', 'direccion_entrega_sede');
         return View('reportes.citologia.hojaTrabajo.index', compact('idCito', 'direc'));
     }
 
@@ -33,7 +39,8 @@ class ReporteCitologiaController extends Controller
      */
     public function results(Request $request)
     {
-        return $this->build->builCallController($request);
+        $build = new HojaTrabajoBuild($this->model, $request);
+        return $build->buildCall();
     }
 }
 

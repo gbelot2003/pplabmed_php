@@ -28,8 +28,8 @@ class CitologiaValidate extends FormRequest
 
         return  $rules =
                 [
-                    'serial' => 'numeric|unique:citologias,serial,' .$postId,
-                    'factura_id' => 'numeric|required|unique:citologias,factura_id,' .$postId,
+                    'serial' => 'numeric|unique:Citologias,serial,' .$postId,
+                    'factura_id' => 'numeric|required|unique:Citologias,factura_id,' .$postId,
                     'nombre_completo_cliente' => 'string|required',
                     'edad' => 'string|required',
                     'sexo' => 'string|max:1|required',

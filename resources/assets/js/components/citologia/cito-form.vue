@@ -364,9 +364,9 @@
         methods:{//TODO: Cambiar dirección windos/linux
             onSubmit: function(e){
                 e.preventDefault();
-              /*axios.post("/pplabmed/public/citologias", function(data, status, request){
+              /*axios.post("/pplabmed/public/Citologias", function(data, status, request){
                 }.bind(this));
-                window.location.href = "/pplabmed/public/citologias";*/
+                window.location.href = "/pplabmed/public/Citologias";*/
             },
 
             onBlurOut: function(){

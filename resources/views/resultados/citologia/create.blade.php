@@ -45,5 +45,5 @@
 @stop
 
 @section('jscode')
-    <script src="{{ asset('js/citologias-form.js') }}"></script>
+    <script src="{{ asset('Citologias') }}"></script>
 @stop

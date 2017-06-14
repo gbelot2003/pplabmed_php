@@ -36,11 +36,11 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('plantillas/info/{id}', 'PlantillasController@getPlantilla');
     Route::get('plantillas/lista/{id}', 'PlantillasController@listado');
 
-    Route::resource('citologias', 'CitologiaController');
-    Route::post('citologias/config-serial', 'CitoSerialController@citologiaUpdate')->name('citologias.config');
+    Route::resource('Citologias', 'CitologiaController');
+    Route::post('Citologias/config-serial', 'CitoSerialController@citologiaUpdate')->name('Citologias.config');
     Route::get('citologia/listados', 'CitologiaController@listados');
     Route::get('citologia/busqueda', 'CitologiaController@searchPage');
-    Route::post('citologias/busqueda', 'CitologiaController@processForm');
+    Route::post('Citologias/busqueda', 'CitologiaController@processForm');
     Route::any('citologia/resultados/{serial}/{factura_id}/{nombre}/{edad}/{sexo}/{corrreo}/{correo2}/{direccion}/{medico}/{otros}/{gravidad}/{icito}/{para}/{abortos}/{fur}/{fup}/{finfo}/{fmues}/{firma1}/{firma2}/{otrosb}/{informe}/{diagnostico}', 'CitologiaController@search');
     /***/Route::get('citologia/sobres/{id}', 'PrintController@sobresCitologia');
     /***/Route::get('citologia/formulario/{id}', 'PrintController@formatoCitologia');
@@ -78,8 +78,8 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('reportes/identificador-citologia', 'Reportes\ReportesIdentificadorCitologiaController@index')->name('reporte.identificador.index');
     Route::post('reportes/identificador-citologia', 'Reportes\ReportesIdentificadorCitologiaController@results')->name('reporte.identificador.results');
 
-    Route::get('reportes/reporte-citologias-anormales', 'Reportes\ReporteCitologiasAnormalesController@index')->name('reporte.anormales.index');
-    Route::post('reportes/reporte-citologias-anormales', 'Reportes\ReporteCitologiasAnormalesController@results')->name('reporte.anormales.result');
+    Route::get('reportes/reporte-Citologias-anormales', 'Reportes\ReporteCitologiasAnormalesController@index')->name('reporte.anormales.index');
+    Route::post('reportes/reporte-Citologias-anormales', 'Reportes\ReporteCitologiasAnormalesController@results')->name('reporte.anormales.result');
 
     Route::get('reportes/reporte-morfologia', 'Reportes\ReporteMorfologicoController@index')->name('reporte.morfo.index');
     Route::post('reportes/reporte-morfologia', 'Reportes\ReporteMorfologicoController@results')->name('reporte.morfo.results');
