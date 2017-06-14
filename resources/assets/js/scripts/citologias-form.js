@@ -21,7 +21,7 @@
 
     function checkItem(item){
 
-        items = [10328, 10328, 10332, 10333, 10334, 10335, 10336];
+        items = [10328, 10328, 10332, 10333, 10334, 10335, 10336, 10337];
         if (items.includes(item)) {
             return true;
         }
