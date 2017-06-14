@@ -42,14 +42,14 @@
 
                         </div>
 
-                        <div class="row">
+                        {{--<div class="row">
                             <div class="col-md-3 form-group {{ $errors->has('deteccion_cancer') ? ' has-error' : '' }}">
                                 <div class="checkbox checkbox-info">
                                     {!! Form::checkbox('pdf', 1, null, ['id' => 'checkbox1']) !!}
                                     <label for="checkbox1">Imprimir PDF (Para Consultas grandes)</label>
                                 </div>
                             </div>
-                        </div>
+                        </div>--}}
                     </div>
                     <div class="panel-footer">
                         {!! Form::submit('Buscar', ['class' => 'btn btn-primary']) !!}

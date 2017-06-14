@@ -49,12 +49,12 @@
                                 {{ Form::select('direccion', $direc, null, ['class' => 'form-control', 'placeholder' => 'Ninguno']) }}
                             </div>
 
-                            <div class="col-md-3 form-group {{ $errors->has('deteccion_cancer') ? ' has-error' : '' }}">
+                            {{--<div class="col-md-3 form-group {{ $errors->has('deteccion_cancer') ? ' has-error' : '' }}">
                                 <div class="checkbox checkbox-info">
                                     {!! Form::checkbox('pdf', 1, null, ['id' => 'checkbox1']) !!}
                                     <label for="checkbox1">Imprimir PDF (Para Consultas grandes)</label>
                                 </div>
-                            </div>
+                            </div>--}}
                         </div>
                     </div>
                     <div class="panel-footer">

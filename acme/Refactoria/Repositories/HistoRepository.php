@@ -45,6 +45,6 @@ class HistoRepository implements QueryModelsInterfaces
         }
 
 
-        return array($bdate, $edate, $pdf, $direc, $query);
+        return array($bdate, $edate, $pdf, $query);
     }
 }

@@ -15,7 +15,6 @@
             <div class="col-md-12">
                 <div class="text-center">
                     <h3>Hoja de Biopsias </h3>
-                    @if($direc) <p>{{ $direc }}</p> @endif
                     <script type="text/php">
                         if ( isset($pdf) ) {
                             $font = $fontMetrics->getFont("helvetica", "bold");
