@@ -122,12 +122,11 @@
     {{-- Fécha de Informe --}}
     <div class="col-md-3 form-group  {{ $errors->has('fecha_informe') ? ' has-error' : '' }}">
         <label>Fecha de Informe</label>
-        <input name="fecha_informe" placeholder="Fecha de Informe" type="text"
+        <input name="fecha_informe"  type="date"
                class="form-control"
                tabindex="11"
-               onfocus="(this.type='date')" onblur="(this.type='text')"
-               value="{{ isset($item->fecha_informe) ? $item->fecha_informe->format('Y-m-d') : null }}"
-               id="fechainforme">
+               value="{{ isset($item->fecha_informe) ? $item->fecha_informe->format('Y-m-d') : date("Y-m-d") }}"
+               id="">
     </div>
     
     {{-- Otros --}}
