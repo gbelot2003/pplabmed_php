@@ -5,7 +5,7 @@
     </div>
 
     <div class="col-md-5 col-md-push-1 form-group box-style">
-        <label for="nombre">Nombre de Área</label>
+        <label for="nombre">Nombre de Rol</label>
         {!! Form::text('display_name', null, ['class' => 'form-control']) !!}
     </div>
 
@@ -17,7 +17,7 @@
 
 <div class="row">
     <div class="col-md-10 col-md-push-1 form-group box-style">
-        <label for="Description">Descripción del Rol</label>
+        <label for="Description">Permisos de Rol</label>
         {!! Form::select('perms_lists[]', $perms, null, ['class' => 'form-control select2multiple', 'multiple']) !!}
     </div>
 </div>
