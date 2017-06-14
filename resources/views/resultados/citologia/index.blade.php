@@ -53,12 +53,12 @@
                     "order": [[ 0, "desc" ]],
                     ajax: '{!! URL::to(action('CitologiaController@listados')) !!}',
                     columns:[
-                        {data: 'serial', name: 'Citologias.serial'},
-                        {data: 'factura_id', name: 'Citologias.factura_id'},
+                        {data: 'serial', name: 'citologias.serial'},
+                        {data: 'factura_id', name: 'citologias.factura_id'},
                         {data: 'nombre_completo_cliente', name: 'facturas.nombre_completo_cliente'},
                         {data: 'citoId', name: 'categorias.name'},
                         {data: 'name', name: 'firmas.name'},
-                        {data: 'created_at', name: 'Citologias.created_at'},
+                        {data: 'created_at', name: 'citologias.created_at'},
                         {data: 'href', name: 'href',  "searchable": false},
 
                     ],

@@ -6,6 +6,7 @@ use Acme\Abstracts\QueryBuilderAbstract;
 use Acme\Intefaces\QueryPostInterface;
 use Acme\Refactoria\Implement\FormatSimpleDates;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HojaTrabajoQuery extends QueryBuilderAbstract implements QueryPostInterface
 {
@@ -31,25 +32,33 @@ class HojaTrabajoQuery extends QueryBuilderAbstract implements QueryPostInterfac
      */
     protected function constructQuery()
     {
-
+        $PDO = DB::connection('mysql')->getPdo();
         list($bdate, $edate) = $this->dateQuery->formatQueryDates($this->request);
-        $query = $this->model->with('facturas')->whereBetween('fecha_informe', [$bdate, $edate]);
 
+        //dd($this->request->all());
 
-        if ($this->request->has('icitologia_id')) {
-            $query->where('icitologia_id', $this->request->get('icitologia_id'));
-        }
+        $query = $this->model->select('facturas.num_factura', 'facturas.nombre_completo_cliente', 'facturas.edad', 'facturas.sexo',
+            'examenes.nombre_examen', 'facturas.direccion_entrega_sede', 'citologias.serial')
+            ->Join('examenes', 'examenes.num_factura', '=', 'facturas.num_factura')
+            ->leftJoin('citologias', 'facturas.num_factura', '=', 'citologias.factura_id')
+            ->whereBetween('facturas.created_at', [$bdate, $edate]);
 
         if ($this->request->has('direccion')) {
             $direc = $this->request->get('direccion');
-            $query->whereHas('facturas', function ($q) use ($direc) {
-                $q->where('direccion_entrega_sede', 'like', '%' . $direc . '%');
+
+            $query->where('facturas.direccion_entrega_sede', 'LIKE', '%' . $direc . '%');
+        }
+
+        if ($this->request->has('icitologia_id')) {
+            $idcito = $this->request->get('icitologia_id');
+            $query->whereHas('citologias', function ($q) use ($idcito) {
+                $q->where('icitologia_id', $idcito);
             });
         }
 
-        $results = $query->get();
+        $data = $query->get();
 
-        return array($bdate, $edate, $results);
+        return array($bdate, $edate, $data);
     }
 
 

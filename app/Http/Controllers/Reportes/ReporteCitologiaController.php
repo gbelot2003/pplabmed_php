@@ -17,7 +17,7 @@ class ReporteCitologiaController extends Controller
         $this->middleware('auth');
         $this->middleware('checkActive');
         $this->middleware('ShowReports');
-        $this->model = new Citologia();
+        $this->model = new Factura();
         $this->categoria = new Categoria();
         $this->factura = new Factura();
 
