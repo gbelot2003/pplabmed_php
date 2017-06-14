@@ -36,12 +36,14 @@ class HojaTrabajoQuery extends QueryBuilderAbstract implements QueryPostInterfac
         list($bdate, $edate) = $this->dateQuery->formatQueryDates($this->request);
 
         $list_id = [10326, 10327, 10328, 10332, 10333, 10334, 10335, 10336];
+
         $query = $this->model->select('facturas.num_factura', 'facturas.nombre_completo_cliente', 'facturas.edad', 'facturas.sexo',
             'examenes.nombre_examen', 'facturas.direccion_entrega_sede', 'citologias.serial')
             ->Join('examenes', 'examenes.num_factura', '=', 'facturas.num_factura')
             ->leftJoin('citologias', 'facturas.num_factura', '=', 'citologias.factura_id')
             ->whereBetween('facturas.created_at', [$bdate, $edate])
-        ->whereIn('examenes.item', $list_id);
+            ->whereIn('examenes.item', $list_id)
+            ->where('facturas.status', 'Valida');
 
         if ($this->request->has('direccion')) {
             $direc = $this->request->get('direccion');
