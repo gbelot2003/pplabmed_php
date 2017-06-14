@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 
-body{margin-top:3.5cm;font-family: 'Source Sans Pro', sans-serif;; font-size: 12px}
+body{margin-top:3.5cm;font-family: 'Source Sans Pro', sans-serif;; font-size: 13px}
 @page {size: auto; margin: 0;}
 @media print{.no-print, .no-print * { display: none !important;}}
 #formulario{width: 17cm;height: 21cm; padding-left: 0.7cm}
