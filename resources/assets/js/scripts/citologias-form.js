@@ -37,7 +37,9 @@
             //alert(id);
             $.get('/facturas/' + id)
                 .done(function (data) {
+
                     console.log(data.examen.item);
+
                     if(checkItem(data.examen.item) === false){
                         $("#factura").val() === "";
                         return alert('Esta no es una Citologia');
@@ -46,6 +48,7 @@
                     $('#paciente').val(data.nombre_completo_cliente);
 
                     const fulldate =  getDate(data.fecha_nacimiento);
+                    console.log(fulldate);
 
                     $('#edad').val(fulldate);
                     $('#edad2').val(fulldate);

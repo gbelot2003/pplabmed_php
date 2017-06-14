@@ -1,7 +1,7 @@
 body{margin-top:3.5cm;font-family: Helvetica, Arial, sans-serif; font-size: 12px}
 @page {size: auto; margin: 0;}
 @media print{.no-print, .no-print * { display: none !important;}}
-#formulario{width: 18.5cm;height: 21cm; padding-left: 0.7cm}
+#formulario{width: 18cm;height: 21cm; padding-left: 0.7cm}
 #cabezera{position: relative;}
 #cuerpo{position: relative}
 .parte {position: absolute; text-transform: uppercase}

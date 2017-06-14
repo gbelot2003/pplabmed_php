@@ -1,1 +1,107 @@
-!function(){function e(e){const n=new Date(e),t=moment(new Date),a=moment(n),o=t.diff(a,"year");a.add(o,"years");const i=t.diff(a,"months");a.add(i,"months");t.diff(a,"days");return o>0?o+" A":i+" M"}function n(e){return items=[10328,10328,10332,10333,10334,10335,10336],!items.includes(e)}$.ajaxSetup({headers:{"X-XSRF-TOKEN":$('input[name="_token"]').val()}}),$(document).ready(function(){$("#factura").focusout(function(){var t=$(this).val();$.get("/facturas/"+t).done(function(t){if(n(t.examen.item)===!1)return""===$("#factura").val(),alert("Esta no es una Biopsia");$("#paciente").val(t.nombre_completo_cliente);const a=e(t.fecha_nacimiento);$("#edad").val(a),$("#edad2").val(a),$("#email").val(t.correo),$("#direccion").val(t.direccion_entrega_sede),$("#sexo").val(t.sexo),$("#medico").val(t.medico)}).fail(function(){alert("failure")})})}),$("a.bt-insert").click(function(e){e.preventDefault();const n=$(this).attr("href");$.get("/plantillas/info/"+n).done(function(e){CKEDITOR.instances.informe.insertHtml(e.body)})}),$("#ImagesModal").on("shown.bs.modal",function(e){}),$(".colorbox").colorbox(),$("#topog").inputmask("#.9999"),document.addEventListener("keydown",function(e){107===e.which&&confirm("¿Seguro que desea salir?, se perdera toda la Información no salvada!!")&&(window.location.href="/Citologias/create"),e.ctrlKey===!0&&13==e.which&&$("#myForm").submit()})}(jQuery);
+
+(function(){
+    $.ajaxSetup({
+        headers: {
+            'X-XSRF-TOKEN': $('input[name="_token"]').val()
+        }
+    });
+
+    function getDate(date){
+
+        const mydate = new Date(date);
+        const a = moment(new Date());
+        const b = moment(mydate);
+        const years = a.diff(b, 'year');
+
+        b.add(years, 'years');
+        const months = a.diff(b, 'months');
+        b.add(months, 'months');
+        const days = a.diff(b, 'days');
+
+        if(years > 0){
+            return years + ' A';
+        } else {
+            return months + ' M';
+        }
+    }
+
+    function checkItem(item){
+
+        items = [10328, 10328, 10332, 10333, 10334, 10335, 10336];
+        if (items.includes(item)) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    $(document).ready(function () {
+        $("#factura").focusout(function () {
+            var id = $(this).val();
+            //alert(id);
+            $.get('/facturas/' + id)
+                .done(function (data) {
+                    console.log(data.examen.item);
+
+                    if(checkItem(data.examen.item) === false){
+                        $("#factura").val() === "";
+                        return alert('Esta no es una Biopsia');
+                    }
+
+                    $('#paciente').val(data.nombre_completo_cliente);
+
+                    const fulldate =  getDate(data.fecha_nacimiento);
+
+                    $('#edad').val(fulldate);
+                    $('#edad2').val(fulldate);
+
+                    $('#email').val(data.correo);
+
+                    $('#direccion').val(data.direccion_entrega_sede);
+
+                    $('#sexo').val(data.sexo);
+
+                    $('#medico').val(data.medico);
+
+                })
+                .fail(function () {
+                    alert('failure');
+                })
+        })
+    });
+
+    $('a.bt-insert').click(function(e){
+        e.preventDefault();
+        const id = $(this).attr("href");
+        $.get('/plantillas/info/' + id)
+            .done(function(data){
+                console.log(data);
+                CKEDITOR.instances['informe'].insertHtml(data.body);
+            });
+
+    });
+
+    $('#ImagesModal').on('shown.bs.modal', function (e) {
+        // Initialize Dropzone
+    });
+
+    $('.colorbox').colorbox();
+
+    $('#topog').inputmask("#.9999");
+
+    document.addEventListener("keydown", function(event) {
+        if(event.which === 107){
+            if (confirm('¿Seguro que desea salir?, se perdera toda la Información no salvada!!')) {
+                window.location.href = '/citologias/create';
+            }
+        }
+
+        if(event.ctrlKey === true && event.which == 13)
+        {
+            $( "#myForm" ).submit();
+        }
+    });
+
+})(jQuery);
+//# sourceMappingURL=histopatologia-form.js.map
