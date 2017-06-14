@@ -1,19 +1,19 @@
 body{margin-top:3.5cm;font-family: Helvetica, Arial, sans-serif; font-size: 12px}
 @page {size: auto; margin: 0;}
 @media print{.no-print, .no-print * { display: none !important;}}
-#formulario{width: 18cm;height: 21cm; padding-left: 0.7cm}
+#formulario{width: 17cm;height: 21cm; padding-left: 0.7cm}
 #cabezera{position: relative;}
 #cuerpo{position: relative}
 .parte {position: absolute; text-transform: uppercase}
-.linea{top:6.3cm; width: 92%}
+.linea{top:6.3cm; width: 98%}
 .menor{font-size: 10px; position: absolute;}
 .strong{font-weight: bolder;}
 .paciente-etiqueta{top:0;left: 0cm;}
-.edad-etiqueta{top: 0;left: 12.5cm;}
-.sexo-etiqueta{top:0;left: 15.5cm;}
+.edad-etiqueta{top: 0;left: 11.5cm;}
+.sexo-etiqueta{top:0;left: 14cm;}
 .direccion-etiqueta{top:0.6cm;left: 0cm; width: 9.5cm;}
 .direccion{top:0.6cm;left: 1.9cm; width: 9.5cm;}
-.telefono-etiqueta{top:0.6cm;left: 12.5cm;}
+.telefono-etiqueta{top:0.6cm;left: 11.5cm;}
 .solicitud-etiqueta{top: 1.5cm;left: 4.7cm;}
 .deteccion-etiqueta{top: 2.3cm;left: 0}
 .indice-maduracion-etiqueta{top: 2.3cm;left:5.8cm}
@@ -21,15 +21,15 @@ body{margin-top:3.5cm;font-family: Helvetica, Arial, sans-serif; font-size: 12px
 .diagnostico-clinico-etiqueta{top: 3cm}
 .fur-etiqueta{top: 4.3cm; left:0cm;}
 .fup-etiqueta{top: 4.3cm; left:5cm;}
-.gravidad-etiqueta{top: 4.3cm; left:9cm;}
-.para-etiqueta{top: 4.3cm; left:12cm;}
-.aborto-etiqueta{top: 4.3cm; left:14.5cm;}
+.gravidad-etiqueta{top: 4.3cm; left:8cm;}
+.para-etiqueta{top: 4.3cm; left:10.5cm;}
+.aborto-etiqueta{top: 4.3cm; left:12.8cm;}
 .material-enviado-etiqueta{top:4.8cm; left: 0cm;}
 .fecha-muestra-etiqueta{top:6cm; left: 0cm;}
-.medico-etiqueta{top:6cm; left:9cm;}
+.medico-etiqueta{top:6cm; left:8cm;}
 .factura-etiqueta{top: 6.7cm; left: 0.5cm;}
 .informe-sistema-etiqueta{top: 6.7cm; left: 5.5cm;}
-.serial-etiqueta{top: 6.7cm; left:12.9cm;}
+.serial-etiqueta{top: 6.7cm; left:11.5cm;}
 .informe-etiqueta{top:7.1cm; left: 0cm;}
 .mm{top:10.7cm; left: 0cm;}
 .fecha-informe-etiqueta{top:13.5cm;}
