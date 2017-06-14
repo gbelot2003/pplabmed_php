@@ -1,6 +1,6 @@
-/*@import url('https://fonts.googleapis.com/css?family=Roboto');*/
+@import url('https://fonts.googleapis.com/css?family=Lato');
 
-body{margin-top:3.5cm; font-family: Tahoma, Arial, Helvetica, sans-serif; font-size: 12px}
+body{margin-top:3.5cm; font-family: 'Lato', sans-serif; font-size: 12px}
 /*body{margin-top:3.5cm;font-family: 'Roboto', sans-serif; font-size: 12px}*/
 @page {size: auto; margin: 0;}
 @media print{.no-print, .no-print * { display: none !important;}}
