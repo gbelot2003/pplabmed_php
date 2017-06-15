@@ -5,6 +5,7 @@ namespace Acme\Controller\Printer\Reportes;
 
 use Acme\Helpers\PdfStringConversor;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class CitologiaHojaTrabajo
 {
@@ -17,26 +18,16 @@ class CitologiaHojaTrabajo
     {
         /**Configuraciones Iniciales **/
         $dates = ['inicio' => $bdate, 'fin' => $edate];
+        $user = Auth::User()->username;
         $ftitle =  $this->ConvertCharacters->convert("Hoja de Citología");
-        $pdf = new PDFReporte($orientation = 'P', $unit = 'mm', $size = 'Letter', $ftitle = $ftitle, $dates);
+        $pdf = new PDFReporte($orientation = 'P', $unit = 'mm', $size = 'Letter', $ftitle = $ftitle, $dates, $user);
         setlocale(LC_CTYPE, 'en_US');
         $pdf->AliasNbPages();
 
         $pdf->AddPage();
 
         $pdf->SetAutoPageBreak(true, 30);
-        /**
-         * Cabezera
-         */
-        $pdf->SetFont('Arial', 'B', 8);
-        $pdf->Cell('20', '5', 'No de Factura', 1, '', 'C');
-        $pdf->Cell('45', '5', 'Paciente', 1, '', 'C');
-        $pdf->Cell('10', '5', 'Sexo', 1, '', 'C');
-        $pdf->Cell('10', '5', 'Edad', 1, '', 'C');
-        $pdf->Cell('45', '5', 'Medico', 1, '', 'C');
-        $pdf->Cell('45', '5', 'Examen', 1, '', 'C');
-        $pdf->Cell('20', '5', 'Informe',1, 0, 'C', 0, '2');
-        $pdf->ln(5 );
+
         $pdf->SetFont('Arial', '', 8);
         foreach ($data as $rows){
 
@@ -76,12 +67,14 @@ class CitologiaHojaTrabajo
             /**
              * Examen
              */
-            $pdf->Cell('45', '5', $rows->examen['nombre_examen'] , 1, 'L', '');
 
+            $pdf->MultiCell('45', 10, $this->ConvertCharacters->convert(substr($rows->examen['nombre_examen'], 0,32)) , 'B', 'L', '');
+
+            $pdf->SetXY($x + 155 , $y);
             /**
              * Informe
              */
-            $pdf->Cell('20', '10', '2017-550013',1, 0, 'C', 0, '2');
+            $pdf->Cell('20', '10', strlen($rows->examen['nombre_examen']),1, 0, 'C', 0, '');
             $pdf->ln(10 );
         }
 
@@ -89,5 +82,39 @@ class CitologiaHojaTrabajo
 
         return $pdf->Output();
     }
+
+    public function checkValue($value)
+    {
+        if(isset($value)){
+            return $value;
+        }
+        else{
+            return "N/A";
+            }
+
+    }
+
+    public function getHeigthCel($string)
+    {
+        $len = strlen($string);
+        $overrydes = ['Cit. Aspiracion Mas De 4 Laminas'];
+
+        if ($len <= 33)
+        {
+            if(in_array($string, $overrydes)){
+                $size = 5;
+            } else {
+                $size = 10;
+            }
+
+        }
+        else if ($len >= 34)
+        {
+            $size = 5;
+        }
+
+        return $size;
+    }
+
 
 }

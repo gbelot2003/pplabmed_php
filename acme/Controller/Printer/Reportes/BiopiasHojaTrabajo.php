@@ -5,6 +5,7 @@ namespace Acme\Controller\Printer\Reportes;
 
 use Acme\Helpers\PdfStringConversor;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class BiopiasHojaTrabajo
 {
@@ -17,38 +18,65 @@ class BiopiasHojaTrabajo
     {
         /**Configuraciones Iniciales **/
         $dates = ['inicio' => $bdate, 'fin' => $edate];
-        $ftitle =  "Hoja de Biopsias";
-        $pdf = new PDFReporte($orientation = 'P', $unit = 'mm', $size = 'Letter', $ftitle = $ftitle, $dates);
+        $ftitle =  "Hoja de Trabajo - Biopsias";
+        $user = Auth::User()->username;
+
+        $pdf = new PDFReporte($orientation = 'P', $unit = 'mm', $size = 'Letter', $ftitle = $ftitle, $dates, $user);
         setlocale(LC_CTYPE, 'en_US');
         $pdf->AliasNbPages();
 
         $pdf->AddPage();
 
         $pdf->SetAutoPageBreak(true, 30);
-        /**
-         * Cabezera
-         */
-        $pdf->SetFont('Arial', 'B', 8);
-        $pdf->Cell('20', '5', 'No de Factura', 1, '', 'C');
-        $pdf->Cell('50', '5', 'Paciente', 1, '', 'C');
-        $pdf->Cell('10', '5', 'Sexo', 1, '', 'C');
-        $pdf->Cell('45', '5', 'Medico', 1, '', 'C');
-        $pdf->Cell('50', '5', 'Examen', 1, '', 'C');
-        $pdf->Cell('20', '5', 'Informe',1, 0, 'C', 0, '2');
-        $pdf->ln(5 );
+
+
         $pdf->SetFont('Arial', '', 8);
         foreach ($data as $rows){
+
+            /**
+             * No Factura
+             */
             $pdf->Cell('20  ', '10', $rows->num_factura, 1, '', 'L');
             $x = $pdf->GetX();
             $y = $pdf->GetY();
-            $pdf->MultiCell('50', '5', $rows->nombre_completo_cliente, 1, 'L');
+            /**
+             * Nombre Paciente
+             */
+            $pdf->MultiCell('45', '5', $this->ConvertCharacters->convert($rows->nombre_completo_cliente), 1, 'L');
             $pdf->SetXY($x , $y+5);
-            $pdf->MultiCell('50', '5', 'San Pedro Sula', 1, 'L');
-            $pdf->SetXY($x + 50 , $y);
-            $pdf->Cell('10', '10', 'F', 1, '', 'C');
-            $pdf->Cell('45', '10', 'Dr. Manuel Sandoval	', 1, '', 'L');
-            $pdf->Cell('50', '10', 'Cit. Genital Recibida En El Lab.', 1, '', 'L');
-            $pdf->Cell('20', '10', '2017-550013',1, 0, 'C', 0, '2');
+            /**
+             * Direccion sede
+             */
+            $pdf->MultiCell('45', '5', $this->ConvertCharacters->convert($rows->direccion_entrega_sede), 1, 'L');
+            $pdf->SetXY($x + 45 , $y);
+
+            /**
+             * Edad
+             */
+            $pdf->Cell('10', '10', $rows->sexo, 1, '', 'C');
+
+            /**
+             * Edad
+             */
+            $pdf->Cell('10', '10', $rows->edad, 1, '', 'C');
+
+
+            /**
+             * MEdico
+             */
+            $pdf->Cell('45', '10', $rows->medico, 1, '', 'L');
+
+            /**
+             * Examen
+             */
+
+            $pdf->MultiCell('45', 10, $this->ConvertCharacters->convert(substr($rows->examen['nombre_examen'], 0, 30)) , 'B', 'L', '');
+
+            $pdf->SetXY($x + 155 , $y);
+            /**
+             * Informe
+             */
+            $pdf->Cell('20', '10', strlen($rows->examen['nombre_examen']),1, 0, 'C', 0, '2');
             $pdf->ln(10 );
         }
 
@@ -56,5 +84,17 @@ class BiopiasHojaTrabajo
 
         return $pdf->Output();
     }
+
+    public function checkValue($value)
+    {
+        if(isset($value)){
+            return $value;
+        }
+        else{
+            return "N/A";
+        }
+
+    }
+
 
 }

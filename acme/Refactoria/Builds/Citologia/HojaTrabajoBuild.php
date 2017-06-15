@@ -3,6 +3,7 @@
 namespace Acme\Refactoria\Builds\Citologia;
 
 use Acme\Abstracts\BuildAbstract;
+use Acme\Controller\Printer\Reportes\CitologiaHojaTrabajo;
 use Acme\Refactoria\Queries\Citologias\HojaTrabajoQuery;
 use Acme\Refactoria\Repos\CitologíaRepo;
 use Illuminate\Database\Eloquent\Model;
@@ -48,12 +49,15 @@ class HojaTrabajoBuild extends BuildAbstract
     {
         list($bdate, $edate, $pdf, $items) = $this->queryBuilder();
 
-        if (!isset($pdf)) {
+        $print = new CitologiaHojaTrabajo();
+        return $print->printPdfHitoReport($items, $bdate, $edate);
+
+       /* if (!isset($pdf)) {
             return View('reportes.citologia.hojaTrabajo.results', compact('items', 'bdate', 'edate'));
         } else {
             $pdf = App::make('dompdf.wrapper');
             $pdf->loadView('reportes.citologia.hojaTrabajo.results-pdf', compact('items', 'bdate', 'edate'));
             return $pdf->stream();
-        }
+        }*/
     }
 }
