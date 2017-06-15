@@ -19,6 +19,7 @@ class FactutasApiController extends Controller
     public function store(Request $request)
     {
         $factHelp = new FacturasApiHeper();
+
         if ($request->has('fecha_nacimiento')){
             $fecha_nac = new DateHelper($request->get('fecha_nacimiento'));
             $request['fecha_nacimiento'] = $fecha_nac->getDate();
@@ -26,7 +27,10 @@ class FactutasApiController extends Controller
 
         $factura = Factura::create($request->all());
 
-        $factHelp->saveExamenes($request->get('examen'), $factura->num_factura);
+        if ($request->has('examen')){
+            $factHelp->saveExamenes($request->get('examen'), $factura->num_factura);
+        }
+
 
         return '200';
     }
