@@ -49,29 +49,33 @@ class SedesRepository implements QueryModelsInterfaces
             $direc = $this->request->get('direccion');
 
             $query = $PDO->prepare("
-                select f.num_factura, f.nombre_completo_cliente, f.edad, f.sexo, x.nombre_examen, f.direccion_entrega_sede, c.serial from facturas as f
-                RIGHT JOIN examenes as x on f.num_factura = x.num_factura
+                select DISTINCT f.id, f.num_factura, f.nombre_completo_cliente, f.edad, f.sexo, x.nombre_examen, f.direccion_entrega_sede, c.serial from facturas as f
+                left JOIN examenes as x on f.num_factura = x.num_factura
                 left JOIN citologias as c on f.num_factura = c.factura_id
                 where f.created_at BETWEEN '" . $bdate . "' AND '" . $edate . "'
                 AND f.direccion_entrega_sede = '" . $direc . "'
                 UNION
-                select f.num_factura, f.nombre_completo_cliente, f.edad, f.sexo, x.nombre_examen, f.direccion_entrega_sede, h.serial from facturas as f
+                select DISTINCT f.id, f.num_factura, f.nombre_completo_cliente, f.edad, f.sexo, x.nombre_examen, f.direccion_entrega_sede, h.serial from facturas as f
                 left JOIN histopatologias as h on f.num_factura = h.factura_id
-                RIGHT JOIN examenes as x on f.num_factura = x.num_factura
+                left JOIN examenes as x on f.num_factura = x.num_factura
                 where f.created_at BETWEEN '" . $bdate . "' AND '" . $edate . "'
                 AND f.direccion_entrega_sede = '" . $direc . "'
+                GROUP BY num_factura
+                ORDER BY id ASC
               ");
         } else {
             $query = $PDO->prepare("
-                select f.num_factura, f.nombre_completo_cliente, f.edad, f.sexo, x.nombre_examen, f.direccion_entrega_sede, c.serial from facturas as f
-                RIGHT JOIN examenes as x on f.num_factura = x.num_factura
+                select DISTINCT f.id, f.num_factura, f.nombre_completo_cliente, f.edad, f.sexo, x.nombre_examen, f.direccion_entrega_sede, c.serial from facturas as f
+                left JOIN examenes as x on f.num_factura = x.num_factura
                 left JOIN citologias as c on f.num_factura = c.factura_id
                 where f.created_at BETWEEN '" . $bdate . "' AND '" . $edate . "'
                 UNION
-                select f.num_factura, f.nombre_completo_cliente, f.edad, f.sexo, x.nombre_examen, f.direccion_entrega_sede, h.serial from facturas as f
-                RIGHT JOIN examenes as x on f.num_factura = x.num_factura
+                select DISTINCT f.id, f.num_factura, f.nombre_completo_cliente, f.edad, f.sexo, x.nombre_examen, f.direccion_entrega_sede, h.serial from facturas as f
+                left JOIN examenes as x on f.num_factura = x.num_factura
                 left JOIN histopatologias as h on f.num_factura = h.factura_id
                 where f.created_at BETWEEN '" . $bdate . "' AND '" . $edate . "'
+                GROUP BY num_factura
+                ORDER BY id ASC
               ");
         }
 

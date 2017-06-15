@@ -50,7 +50,7 @@
                                 {{ $item->facturas->direccion_entrega_sede }}
                             </td>
                             <td>{{ $item->facturas->medico }}</td>
-                            <td>{{ $item->facturas->examen['nombre_examen'] }}</td>
+
                             <td>
                                 @if($item->muestra_entrega == 1)
                                     SI

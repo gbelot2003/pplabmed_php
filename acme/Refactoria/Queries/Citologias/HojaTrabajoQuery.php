@@ -43,7 +43,8 @@ class HojaTrabajoQuery extends QueryBuilderAbstract implements QueryPostInterfac
             ->leftJoin('citologias', 'facturas.num_factura', '=', 'citologias.factura_id')
             ->whereBetween('facturas.created_at', [$bdate, $edate])
             ->whereIn('examenes.item', $list_id)
-            ->where('facturas.status', 'Valida');
+            ->where('facturas.status', 'Valida')
+            ->orderBy('facturas.created_at', 'ASC');
 
         if ($this->request->has('direccion')) {
             $direc = $this->request->get('direccion');

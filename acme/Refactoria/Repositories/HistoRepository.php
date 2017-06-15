@@ -47,7 +47,8 @@ class HistoRepository implements QueryModelsInterfaces
             ->leftJoin('histopatologias', 'facturas.num_factura', '=', 'histopatologias.factura_id')
             ->whereBetween('facturas.created_at', [$bdate, $edate])
             ->whereIn('examenes.item', $list_id)
-            ->where('facturas.status', 'Valida');
+            ->where('facturas.status', 'Valida')
+            ->orderBy('facturas.created_at', 'ASC');
 
 
         if ($this->request->has('direccion')) {
