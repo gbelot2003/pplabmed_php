@@ -39,12 +39,11 @@
 
     <div class="col-md-3 form-group  {{ $errors->has('fecha_informe') ? ' has-error' : '' }}">
         <label>Fecha de Informe</label>
-        <input name="fecha_informe" placeholder="Fecha de Informe" type="text"
+        <input name="fecha_informe" type="date"
                class="form-control"
                tabindex="4"
-               onfocus="(this.type='date')" onblur="(this.type='text')"
                value="{{ isset($item->fecha_informe) ? $item->fecha_informe->format('Y-m-d') : null }}"
-               id="fecha_informe">
+               >
     </div>
 
 
@@ -65,12 +64,11 @@
 
     <div class="col-md-3 form-group  {{ $errors->has('fecha_biopcia') ? ' has-error' : '' }}">
         <label>Fecha de Biopsia</label>
-        <input name="fecha_biopcia" placeholder="Fecha de Biopsia" type="text"
+        <input name="fecha_biopcia"  type="date"
                class="form-control"
                tabindex="5"
-               onfocus="(this.type='date')" onblur="(this.type='text')"
                value="{{ isset($item->fecha_biopcia) ? $item->fecha_biopcia->format('Y-m-d') : null }}"
-               id="fecha_biopcia">
+               >
     </div>
 
     <div class="col-md-4 form-group {{ $errors->has('firma2_id') ? ' has-error' : '' }}">
@@ -81,12 +79,11 @@
     <div class="col-md-3 form-group  {{ $errors->has('fecha_muestra') ? ' has-error' : '' }}">
         {{--{{ Form::date('fecha_muestra', isset($item->fecha_muestra) ? $item->fecha_muestra : date("Y-m-d"), ['tabindex' => 6, 'class' => 'form-control', 'id' => 'fecha_muestra']) }}--}}
         <label>Fecha de Muestra</label>
-        <input name="fecha_muestra" placeholder="Fecha de Muestra" type="text"
+        <input name="fecha_muestra" type="date"
                class="form-control"
                tabindex="6"
-               onfocus="(this.type='date')" onblur="(this.type='date')"
                value="{{ isset($item->fecha_muestra) ? $item->fecha_muestra->format('Y-m-d') : null }}"
-               id="fur">
+               >
     </div>
 
     <div class="col-md-2 form-group">
