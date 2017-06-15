@@ -42,7 +42,7 @@ class HistoRepository implements QueryModelsInterfaces
 
 
         $query = $this->histo->select('facturas.num_factura', 'facturas.nombre_completo_cliente', 'facturas.edad', 'facturas.sexo', 'facturas.medico',
-            'examenes.nombre_examen', 'facturas.direccion_entrega_sede', 'histopatologias.serial', 'histopatologias.created_at')
+            'examenes.nombre_examen', 'facturas.direccion_entrega_sede', 'histopatologias.serial', 'facturas.created_at')
             ->Join('examenes', 'examenes.num_factura', '=', 'facturas.num_factura')
             ->leftJoin('histopatologias', 'facturas.num_factura', '=', 'histopatologias.factura_id')
             ->whereBetween('facturas.created_at', [$bdate, $edate])

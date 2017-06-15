@@ -26,7 +26,7 @@ class PDFReporte extends baseFpdf
         // Arial italic 8
         $this->SetFont('Arial','I',8);
         // Page number
-        $this->Cell(150,10,'Page '.$this->PageNo().'/{nb} '. $this->ftitle . ', Fecha:'. $today ,0,0,'L');
+        $this->Cell(150,10,'Page '.$this->PageNo().'/{nb} '. $this->ftitle . ' '. $today ,0,0,'L');
         $this->Cell(55,10,'Por: '. $this->user ,0,0,'L');
         // Line break
         $this->Ln();
@@ -55,9 +55,9 @@ class PDFReporte extends baseFpdf
         $this->Cell('45', '5', 'Paciente', 1, '', 'C');
         $this->Cell('10', '5', 'Sexo', 1, '', 'C');
         $this->Cell('10', '5', 'Edad', 1, '', 'C');
-        $this->Cell('45', '5', 'Medico', 1, '', 'C');
+        $this->Cell('35', '5', 'Medico', 1, '', 'C');
         $this->Cell('45', '5', 'Examen', 1, '', 'C');
-        $this->Cell('20', '5', 'Informe',1, 0, 'C', 0, '2');
+        $this->Cell('30', '5', 'Informe',1, 0, 'C', 0, '2');
         $this->ln(5 );
 
     }

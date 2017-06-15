@@ -45,12 +45,15 @@ class CitologiaHojaTrabajo
             /**
              * Direccion sede
              */
+            $pdf->SetFont('Arial', '', 5.5);
+
             $pdf->MultiCell('45', '5', $this->ConvertCharacters->convert($rows->direccion_entrega_sede), 1, 'L');
             $pdf->SetXY($x + 45 , $y);
 
             /**
              * Edad
              */
+            $pdf->SetFont('Arial', '', 7);
             $pdf->Cell('10', '10', $rows->sexo, 1, '', 'C');
 
             /**
@@ -62,7 +65,7 @@ class CitologiaHojaTrabajo
             /**
              * MEdico
              */
-            $pdf->Cell('45', '10', $rows->medico, 1, '', 'L');
+            $pdf->Cell('35', '10', $rows->medico, 1, '', 'L');
 
             /**
              * Examen
@@ -70,17 +73,27 @@ class CitologiaHojaTrabajo
 
             $pdf->MultiCell('45', 10, $this->ConvertCharacters->convert(substr($rows->examen['nombre_examen'], 0,32)) , 'B', 'L', '');
 
-            $pdf->SetXY($x + 155 , $y);
+            $pdf->SetXY($x + 145 , $y);
             /**
              * Informe
              */
-            $pdf->Cell('20', '10', strlen($rows->examen['nombre_examen']),1, 0, 'C', 0, '');
+            $pdf->SetFont('Arial', '', 7);
+            $pdf->Cell('30', '10', $this->checkSerial($rows->created_at->format('Y'), $rows->examen['serial']),1, 0, 'C', 0, '');
             $pdf->ln(10 );
         }
 
-
-
         return $pdf->Output();
+    }
+
+    public function checkSerial($date, $value)
+    {
+        if(isset($value)){
+            return $date . '-' . $value;
+        }
+        else{
+            return "";
+        }
+
     }
 
     public function checkValue($value)
