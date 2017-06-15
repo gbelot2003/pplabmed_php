@@ -61,7 +61,7 @@ class SedesRepository implements QueryModelsInterfaces
                 where f.created_at BETWEEN '" . $bdate . "' AND '" . $edate . "'
                 AND f.direccion_entrega_sede = '" . $direc . "'
                 GROUP BY num_factura
-                ORDER BY id ASC
+                ORDER BY num_factura ASC
               ");
         } else {
             $query = $PDO->prepare("
@@ -75,7 +75,7 @@ class SedesRepository implements QueryModelsInterfaces
                 left JOIN histopatologias as h on f.num_factura = h.factura_id
                 where f.created_at BETWEEN '" . $bdate . "' AND '" . $edate . "'
                 GROUP BY num_factura
-                ORDER BY id ASC
+                ORDER BY num_factura ASC
               ");
         }
 

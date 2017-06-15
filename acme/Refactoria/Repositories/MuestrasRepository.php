@@ -24,7 +24,7 @@ class MuestrasRepository implements QueryModelsInterfaces
     public function instancesRequires()
     {
         list($bdate, $edate) = $this->dateQuery->formatQueryDates($this->request);
-        $query = $this->histo->with('facturas')->whereBetween('fecha_informe', [$bdate, $edate])->orderBy('created_at', 'asc');
+        $query = $this->histo->with('facturas')->whereBetween('fecha_informe', [$bdate, $edate])->orderBy('factura_id', 'asc');
 
         $pdf = $this->request->has('pdf') ? $this->request->get('pdf') : null;
 
