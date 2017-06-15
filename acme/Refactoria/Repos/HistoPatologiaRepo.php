@@ -7,7 +7,7 @@ use Acme\Intefaces\QueryPostInterface;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
-class CitologíaRepo extends RepositoryModelAbstract
+class HistoPatologiaRepo extends RepositoryModelAbstract
 {
     protected $model;
     function __construct(Model $model)

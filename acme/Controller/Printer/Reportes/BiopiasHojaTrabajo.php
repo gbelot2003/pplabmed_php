@@ -16,6 +16,8 @@ class BiopiasHojaTrabajo
 
     public function printPdfHitoReport($data, $bdate, $edate)
     {
+
+
         /**Configuraciones Iniciales **/
         $dates = ['inicio' => $bdate, 'fin' => $edate];
         $ftitle =  "Hoja de Trabajo - Biopsias";

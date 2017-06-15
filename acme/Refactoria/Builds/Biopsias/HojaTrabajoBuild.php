@@ -1,10 +1,10 @@
 <?php
 
-namespace Acme\Refactoria\Builds\Citologia;
+namespace Acme\Refactoria\Builds\Biopsias;
 
 use Acme\Abstracts\BuildAbstract;
-use Acme\Controller\Printer\Reportes\CitologiaHojaTrabajo;
-use Acme\Refactoria\Queries\Citologias\HojaTrabajoQuery;
+use Acme\Controller\Printer\Reportes\BiopiasHojaTrabajo;
+use Acme\Refactoria\Queries\Biopsias\HojaTrabajoQuery;
 use Acme\Refactoria\Repos\HistoPatologiaRepo;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -28,7 +28,6 @@ class HojaTrabajoBuild extends BuildAbstract
         $query = new HojaTrabajoQuery();
         list($bdate, $edate, $repo) = $this->repo->requireParams($this->request, $query);
         $pdf = $this->request->has('pdf') ? $this->request->get('pdf') : null;
-
         return array($bdate, $edate, $pdf, $repo);
     }
 
@@ -40,7 +39,7 @@ class HojaTrabajoBuild extends BuildAbstract
     {
         list($bdate, $edate, $pdf, $items) = $this->queryBuilder();
 
-        $print = new CitologiaHojaTrabajo();
+        $print = new BiopiasHojaTrabajo();
         return $print->printPdfHitoReport($items, $bdate, $edate);
     }
 
@@ -52,5 +51,6 @@ class HojaTrabajoBuild extends BuildAbstract
     {
         return $this->resultReturn();
     }
+
 
 }

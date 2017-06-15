@@ -17,12 +17,6 @@ abstract class BuildAbstract
     }
 
     /**
-     * Conecta y Retorna al controlador los resultados de resultReturn
-     * @return mixed
-     */
-    abstract public function buildCall();
-
-    /**
      * Aquí se concreta la query
      * @return mixed
      */
@@ -43,4 +37,11 @@ abstract class BuildAbstract
     {
         return $request;
     }
+
+    /**
+     * Conecta y Retorna al controlador los resultados de resultReturn
+     * @return mixed
+     */
+    abstract public function buildCall();
+
 }
