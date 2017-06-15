@@ -42,14 +42,14 @@ class HistoBuild implements QueryConcreatInterface, QueryRequireConcreatInterfac
      */
     protected function resultsReturn($bdate, $edate, $pdf, $items)
     {
-        /*$print = new BiopiasHojaTrabajo();
-        return $print->printPdfHitoReport($items, $bdate, $edate);*/
-        if (!isset($pdf)) {
+        $print = new BiopiasHojaTrabajo();
+        return $print->printPdfHitoReport($items, $bdate, $edate);
+        /*if (!isset($pdf)) {
             return View('reportes.histo.hojaTrabajo.result', compact('items', 'bdate', 'edate', 'direc'));
         } else {
             $pdf = App::make('dompdf.wrapper');
             $pdf->loadView('reportes.histo.hojaTrabajo.result-pdf', compact('items', 'bdate', 'edate', 'direc'));
             return $pdf->stream();
-        }
+        }*/
     }
 }
