@@ -78,7 +78,7 @@ class BiopiasHojaTrabajo
             /**
              * Informe
              */
-            $pdf->Cell('30', '10', $this->checkSerial($rows->created_at->format('Y'), $rows->examen['serial']),1, 0, 'C', 0, '2');
+            $pdf->Cell('30', '10', $this->checkSerial($rows->created_at->format('Y'), $rows->serial),1, 0, 'C', 0, '2');
             $pdf->ln(10 );
         }
 
