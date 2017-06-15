@@ -2,6 +2,7 @@
 
 namespace Acme\Refactoria\Builds;
 
+use Acme\Controller\Printer\Reportes\CitologiaHojaTrabajo;
 use Acme\Refactoria\Implement\QueryBuilderForms;
 use Acme\Refactoria\Implement\QueryRequireConcreatInterface;
 use Acme\Refactoria\Interfaces\QueryConcreatInterface;
@@ -52,13 +53,15 @@ class CitologiaBuild implements QueryConcreatInterface, QueryRequireConcreatInte
      */
     protected function resultsReturn($bdate, $edate, $pdf, $items)
     {
-        if (!isset($pdf)) {
+        $print = new CitologiaHojaTrabajo();
+        return $print->printPdfHitoReport($items, $bdate, $edate);
+       /* if (!isset($pdf)) {
             return View('reportes.citologia.hojaTrabajo.results', compact('items', 'bdate', 'edate'));
         } else {
             $pdf = App::make('dompdf.wrapper');
             $pdf->loadView('reportes.citologia.hojaTrabajo.results-pdf', compact('items', 'bdate', 'edate'));
             return $pdf->stream();
-        }
+        }*/
     }
 
 }
