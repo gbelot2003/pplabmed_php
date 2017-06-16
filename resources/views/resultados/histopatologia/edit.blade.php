@@ -35,13 +35,57 @@
             </div>
         </div>
     </div>
+    <div id="navTag">
+        <div class="row">
+            <div class="col-md-1">
+                <label>No de Factura</label><br>
+                <span class="name">{{ $item->facturas->num_factura }}</span>
+            </div>
+            <div class="col-md-1">
+                <label>Nombre</label><br>
+                <span class="name">{{ $item->facturas->nombre_completo_cliente }}</span>
+            </div>
+            <div class="col-md-2">
+                <label>Nombre</label><br>
+                <span class="name">{{ $item->facturas->direccion_entrega_sede }}</span>
+            </div>
+        </div>
+    </div>
 @stop
 
 @section('jscode')
+    <style>
+        #navTag {
+            position: fixed;
+            top: 74px;
+            right: 0px;
+            background: rgba(14, 155, 191, 0.73);
+            width: 80%;
+            height: 52px;
+            padding: 5px;
+            color: white;
+            display:none;
+        }
+    </style>
+
     <script src="/js/caman.full.min.js"></script>
     <script src="{{ asset('js/histopatologia-form.js') }}"></script>
 
-
+    <script type="text/javascript">
+        // EVENTO CUANDO SE MUEVE EL SCROLL, EL MISMO APLICA TAMBIEN CUANDO SE RESIZA
+        var change= false;
+        $(window).scroll(function(){
+            window_y = $(window).scrollTop(); // VALOR QUE SE HA MOVIDO DEL SCROLL
+            scroll_critical = 120; // VALOR DE TU DIV
+            if (window_y > scroll_critical) { // SI EL SCROLL HA SUPERADO EL ALTO DE TU DIV
+                // ACA MUESTRAS EL OTRO DIV Y EL OCULTAS EL DIV QUE QUIERES
+                $('#navTag').show('slow'); // VER
+            } else {
+                // ACA HACES TODO LO CONTRARIO
+                $('#navTag').hide('slow'); // OCULTAR
+            }
+        });
+    </script>
 @stop
 
 @section('modals')
