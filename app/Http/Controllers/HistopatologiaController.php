@@ -89,7 +89,7 @@ class HistopatologiaController extends Controller
         $item->update($request->all());
         $item->facturas->update($request->all());
 
-        flash('Reegistro Actualizado', 'success')->important();
+        flash('Registro Actualizado', 'success')->important();
         return redirect()->back();
     }
 
