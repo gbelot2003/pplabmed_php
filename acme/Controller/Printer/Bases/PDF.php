@@ -20,7 +20,7 @@ class PDF extends baseFpdf
     function Footer()
     {
         // Position at 1.5 cm from bottom
-        $this->SetY(-35);
+        $this->SetY(-55);
         // Arial italic 8
         $this->SetFont('Arial','I',8);
         // Page number

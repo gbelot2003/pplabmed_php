@@ -17,10 +17,11 @@ class HistoPrintConfig{
     {
         $ftitle =  $data->serial . "-" . $data->created_at->format('Y');
         $pdf = new PDF($orientation = 'P', $unit = 'mm', $size = 'Letter', $ftitle = $ftitle);
-        setlocale(LC_CTYPE, 'es_');
+        setlocale(LC_CTYPE, 'es_ES');
 
 
-        $pdf->SetLeftMargin(20);
+        $pdf->SetLeftMargin(5);
+        $pdf->SetRightMargin(5);
         $pdf->AliasNbPages();
 
         $pdf->SetTopMargin(30);
@@ -100,7 +101,6 @@ class HistoPrintConfig{
 
         }
 
-
         /**
          * Firmas
          */
@@ -109,9 +109,6 @@ class HistoPrintConfig{
         } else {
             $pdf->ln(125);
         }
-
-
-
 
         $pdf->Cell(45, 5, "Fecha de Informe:" , 0, '');
         $pdf->SetFont('Arial', 'B', 10);
@@ -155,15 +152,15 @@ class HistoPrintConfig{
          *  INFORME
          */
         $pdf->SetFont('Helvetica', 'B', 13);
-        $pdf->Cell(163, 20, 'INFORME', 0,  0, 'C');
+        $pdf->Cell(180, 5, 'INFORME', 0,  0, 'C');
 
         /**
          * Salto
          */
         $pdf->ln();
 
-        $pdf->SetFont('Helvetica', '', 10);
-        $pdf->MultiCell(163, 5,
+        $pdf->SetFont('Arial', '', 8);
+        $pdf->MultiCell(197, 5,
             strip_tags(utf8_decode(html_entity_decode($data->informe)))
             , 0, 'J', false);
 
@@ -222,7 +219,7 @@ class HistoPrintConfig{
         $pdf->Cell(20, 5, 'Nombre: ', 0, 0, 'L');
 
         $pdf->SetFont('Arial', 'B', 10);
-        $pdf->Cell(91, 5, $this->ConvertCharacters->convert($data->facturas->nombre_completo_cliente), 0, 0, 'L');
+        $pdf->Cell(120, 5, $this->ConvertCharacters->convert($data->facturas->nombre_completo_cliente), 0, 0, 'L');
 
         /**
          * Edad
@@ -282,7 +279,7 @@ class HistoPrintConfig{
         $pdf->Cell(22, 5, $this->ConvertCharacters->convert('Diagnóstico') .': ', 0, 0, 'L');
 
         $pdf->SetFont('Arial', 'B', 10);
-        $pdf->MultiCell(143, 5, $this->ConvertCharacters->convert($data->diagnostico), 0, 'L', false);
+        $pdf->Cell(175, 5, $this->ConvertCharacters->convert($data->diagnostico), 0, 'L', false);
 
         /**
          * Salto
@@ -338,7 +335,7 @@ class HistoPrintConfig{
         if($data->fecha_muestra){
             $pdf->Cell(78, 5, $data->fecha_muestra->formatLocalized('%d/%m/%Y'), 0, 0, 'L');
         } else {
-            $pdf->Cell(78, 5, " ", 0, 0, 'L');
+            $pdf->Cell(125, 5, " ", 0, 0, 'L');
         }
 
         /**
