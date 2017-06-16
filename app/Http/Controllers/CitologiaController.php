@@ -178,8 +178,10 @@ CitologiaController extends Controller
                 'citologias.factura_id',
                 'facturas.nombre_completo_cliente',
                 'categorias.name as citoId',
+                'facturas.medico',
                 'firmas.name',
-                'citologias.created_at'
+                'citologias.created_at',
+                'citologias.fecha_informe'
             ])
             ->Join('facturas', 'factura_id', '=', 'facturas.num_factura')
             ->Join('categorias', 'icitologia_id', '=', 'categorias.id')
@@ -188,6 +190,9 @@ CitologiaController extends Controller
         return Datatables::of($items)
             ->addColumn('href', function($items){
                 return '<a href="citologias/'. $items->id .'/edit" class="btn btn-xs btn-primary">Ver Detalle</a>';
+            })
+            ->addColumn('finforme', function($items){
+                return $items->fecha_informe->format('d/m/Y');
             })
             ->rawColumns(['href'])
             ->make(true);

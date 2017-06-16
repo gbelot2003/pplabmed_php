@@ -28,7 +28,7 @@
                                 <th>Serial</th>
                                 <th>No. Factura</th>
                                 <th>Nombre del Paciente</th>
-                                <th>Firma</th>
+                                <th>Medico</th>
                                 <th>Fecha de Informe</th>
                                 <th>Acciones</th>
                             </tr>
@@ -55,8 +55,8 @@
                         {data: 'serial', name: 'histopatologias.serial'},
                         {data: 'factura_id', name: 'histopatologias.factura_id'},
                         {data: 'nombre_completo_cliente', name: 'facturas.nombre_completo_cliente'},
-                        {data: 'name', name: 'firmas.name'},
-                        {data: 'created_at', name: 'histopatologias.created_at'},
+                        {data: 'medico', name: 'facturas.medico'},
+                        {data: 'finforme', name: 'histopatologias.created_at'},
                         {data: 'href', name: 'href',  "searchable": false},
 
                     ],

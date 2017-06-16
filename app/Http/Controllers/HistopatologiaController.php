@@ -302,8 +302,10 @@ class HistopatologiaController extends Controller
             'histopatologias.serial',
             'histopatologias.factura_id',
             'facturas.nombre_completo_cliente',
+            'facturas.medico',
             'firmas.name',
-            'histopatologias.created_at'
+            'histopatologias.created_at',
+            'histopatologias.fecha_informe'
         ])
             ->Join('facturas', 'factura_id', '=', 'facturas.num_factura')
             ->Join('firmas', 'firma_id', '=', 'firmas.id');
@@ -311,6 +313,9 @@ class HistopatologiaController extends Controller
         return Datatables::of($items)
             ->addColumn('href', function($items){
                 return '<a href="histopatologia/'. $items->id .'/edit" class="btn btn-xs btn-primary">Ver Detalle</a>';
+            })
+            ->addColumn('finforme', function($items){
+                return $items->fecha_informe->format('d/m/Y');
             })
             ->rawColumns(['href'])
             ->make(true);

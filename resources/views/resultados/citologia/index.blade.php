@@ -29,7 +29,7 @@
                                 <th>No. Factura</th>
                                 <th>Nombre del Paciente</th>
                                 <th>Id Cito.</th>
-                                <th>Firma</th>
+                                <th>Medico</th>
                                 <th>Fecha de Informe</th>
                                 <th>Acciones</th>
                             </tr>
@@ -57,8 +57,8 @@
                         {data: 'factura_id', name: 'citologias.factura_id'},
                         {data: 'nombre_completo_cliente', name: 'facturas.nombre_completo_cliente'},
                         {data: 'citoId', name: 'categorias.name'},
-                        {data: 'name', name: 'firmas.name'},
-                        {data: 'created_at', name: 'citologias.created_at'},
+                        {data: 'medico', name: 'facturas.medico'},
+                        {data: 'finforme', name: 'citologias.fecha_informe'},
                         {data: 'href', name: 'href',  "searchable": false},
 
                     ],
