@@ -48,6 +48,8 @@ class HistopatologiaController extends Controller
     {
         $serialHelper = new SerialHelper();
         $request['serial'] = $serialHelper->getSerial(2);
+
+
         $histo = Histopatologia::create($request->all());
         $histo->facturas->update($request->all());
         $serialHelper->setSerial($request->input('serial'), 2);
@@ -79,6 +81,11 @@ class HistopatologiaController extends Controller
     {
         $item = Histopatologia::findOrFail($id);
         $item->muestra_entrega = isset($request['muestra_entrega']) ? $request['muestra_entrega'] = 1 : $request['muestra_entrega'] = 0;
+        if ($request->has('informe'))
+        {
+            html_entity_decode($request->get('informe'));
+        }
+
         $item->update($request->all());
         $item->facturas->update($request->all());
 

@@ -17,7 +17,7 @@ class HistoPrintConfig{
     {
         $ftitle =  $data->serial . "-" . $data->created_at->format('Y');
         $pdf = new PDF($orientation = 'P', $unit = 'mm', $size = 'Letter', $ftitle = $ftitle);
-        setlocale(LC_CTYPE, 'en_US');
+        setlocale(LC_CTYPE, 'es_');
 
 
         $pdf->SetLeftMargin(20);
@@ -164,7 +164,7 @@ class HistoPrintConfig{
 
         $pdf->SetFont('Helvetica', '', 10);
         $pdf->MultiCell(163, 5,
-            $this->ConvertCharacters->convert(strip_tags($data->informe))
+            strip_tags(utf8_decode(html_entity_decode($data->informe)))
             , 0, 'J', false);
 
         if(!isset($data->images[0])){
