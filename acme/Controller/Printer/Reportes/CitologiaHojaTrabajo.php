@@ -6,6 +6,7 @@ namespace Acme\Controller\Printer\Reportes;
 use Acme\Helpers\PdfStringConversor;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Acme\Controller\Printer\Bases\PDFReporte;
 
 class CitologiaHojaTrabajo
 {

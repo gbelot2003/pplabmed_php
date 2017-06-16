@@ -1,6 +1,6 @@
 <?php
 
-namespace Acme\Controller\Printer;
+namespace Acme\Controller\Printer\Bases;
 
 use Crabbly\FPDF\Fpdf as baseFpdf;
 
