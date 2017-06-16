@@ -89,7 +89,7 @@
     <div class="col-md-2 form-group">
         <div class="checkbox checkbox-info">
             <br>
-            {!! Form::checkbox('muestra_entrega', 1, null, ['id' => 'checkbox1', 'tabindex' => 8]) !!}
+            {!! Form::checkbox('muestra_entrega', 1, null, ['id' => 'checkbox1']) !!}
             <label for="checkbox1">Se entrego muestra?</label>
         </div>
     </div>
@@ -105,8 +105,8 @@
         </ul>
     </div>
 
-    <div class="col-md-12 form-group  {{ $errors->has('fecha_muestra') ? ' has-error' : '' }}">
-    {{ Form::textarea('informe', null, ['class' => 'textarea form-control ckeditor', 'id' => 'informe']) }}
+    <div class="col-md-12 form-group  {{ $errors->has('fecha_muestra') ? ' has-error' : '' }}" tabindex="8">
+    {{ Form::textarea('informe', null, ['class' => 'textarea form-control ckeditor', 'id' => 'informe', 'tabindex' => 8]) }}
 </div>
 </div>
 

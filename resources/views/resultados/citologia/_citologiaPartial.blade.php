@@ -129,7 +129,7 @@
     {{-- Otros --}}
     <div class="col-md-12 form-group  {{ $errors->has('otros_b') ? ' has-error' : '' }}">
         <label>Otros</label>
-        {{ Form::text('otros_b', null, ['class' => 'form-control', 'id' => 'otros_b', 'placeholder' => 'Otros']) }}
+        {{ Form::text('otros_b', null, ['class' => 'form-control', 'id' => 'otros_b', 'placeholder' => 'Otros', 'tabindex' => 13]) }}
     </div>
 </div>
 
@@ -137,7 +137,7 @@
 
     <div class="col-md-12 form-group">
         <label>Informe</label>
-        {{ Form::textarea('informe', null, ['class' => 'textarea form-control ckeditor', 'id' => 'informe', 'tabindex' => 13]) }}
+        {{ Form::textarea('informe', null, ['class' => 'textarea form-control ckeditor', 'id' => 'informe', 'tabindex' => 14]) }}
     </div>
 
 </div>
