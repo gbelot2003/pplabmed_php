@@ -36,8 +36,8 @@ body{margin-top:3.5cm; font-family: 'Arial', sans-serif; font-size: 12px !import
 .informe-etiqueta{top:7.1cm; left: 0cm;}
 .mm{top:10.7cm; left: 0cm;}
 .fecha-informe-etiqueta{top:13.5cm;}
-.firma-1{top:13.5cm;left:5.5cm;display: block;width: 7cm;}
+.firma-1{top:13.5cm;left:4.5cm;display: block;width: 7cm;}
 .firma-1 div{text-align:  center;}
-.firma-2{top:13.5cm;left:12.5cm;display: block;width: 7cm;}
+.firma-2{top:13.5cm;left:10.5cm;display: block;width: 7cm;}
 .firma-2 div{text-align:  center;}
 .imprimir{display: inline-block; margin-bottom: 5px; color: white; padding: 4px;background: darkslategray; border-radius: 3px;}
