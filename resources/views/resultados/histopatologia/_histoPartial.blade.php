@@ -42,7 +42,7 @@
         <input name="fecha_informe" type="date"
                class="form-control"
                tabindex="4"
-               value="{{ isset($item->fecha_informe) ? $item->fecha_informe->format('Y-m-d') : null }}"
+               value="{{ isset($item->fecha_informe) ? $item->fecha_informe->format('Y-m-d') : date("Y-m-d") }}"
                >
     </div>
 

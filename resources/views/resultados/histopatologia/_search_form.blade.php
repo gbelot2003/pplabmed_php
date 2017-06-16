@@ -91,9 +91,14 @@
     </div>
 
     <div class="col-md-3 form-group  {{ $errors->has('fecha_informe') ? ' has-error' : '' }}">
-        <label for="para">Fecha de Informe: </label>
-        {{ Form::date('fecha_informe', null, ['class' => 'form-control', 'id' => 'fecha_informe']) }}
+        <label>Fecha de Informe</label>
+        <input name="fecha_informe" type="date"
+               class="form-control"
+               tabindex="4"
+               value="{{ isset($item->fecha_informe) ? $item->fecha_informe->format('Y-m-d') : date("Y-m-d") }}"
+        >
     </div>
+
 
     <div class="col-md-3 form-group  {{ $errors->has('fecha_biopcia') ? ' has-error' : '' }}">
         <label for="para">Fecha de Biopcia: </label>

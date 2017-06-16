@@ -88,7 +88,7 @@
 
     $('.colorbox').colorbox();
 
-    $('#topog').inputmask("#.9999");
+    $('#topog').inputmask("#99.9");
 
     document.addEventListener("keydown", function(event) {
         if(event.which === 107){
@@ -97,7 +97,7 @@
             }
         }
 
-        if(event.ctrlKey === true && event.which == 13)
+        if(event.which == 121)
         {
             $( "#myForm" ).submit();
         }

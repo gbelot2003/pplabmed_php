@@ -86,7 +86,7 @@
             }
         }
 
-        if(event.ctrlKey === true && event.which == 13)
+        if(event.which == 121)
         {
             $( "#myForm" ).submit();
         }

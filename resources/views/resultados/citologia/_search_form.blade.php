@@ -116,10 +116,13 @@
         {{ Form::date('fup', null, ['class' => 'form-control', 'id' => 'fup']) }}
     </div>
 
-    {{-- Fécha de Informe --}}
-    <div class="col-md-3 form-group  {{ $errors->has('fecha_informe') ? ' has-error' : '' }}">
+    <div class="col-md-3 form-group">
         <label>Fecha de Informe</label>
-        {{ Form::date('fecha_informe', null, ['class' => 'form-control', 'id' => 'fechainforme']) }}
+        <input name="fecha_informe" type="date"
+               class="form-control"
+               tabindex="4"
+               value="{{ isset($item->fecha_informe) ? $item->fecha_informe->format('Y-m-d') : date("Y-m-d") }}"
+        >
     </div>
 
     {{-- Fécha de Muestra --}}
