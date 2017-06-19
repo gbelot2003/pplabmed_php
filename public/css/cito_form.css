@@ -34,10 +34,10 @@ body{margin-top:3.5cm; font-family: 'Arial', sans-serif; font-size: 12px !import
 .informe-sistema-etiqueta{top: 6.7cm; left: 5.5cm;}
 .serial-etiqueta{top: 6.7cm; left:11.5cm;}
 .informe-etiqueta{top:7.1cm; left: 0cm;}
-.mm{top:10.7cm; left: 0cm;}
-.fecha-informe-etiqueta{top:12.4cm;}
-.firma-1{top:12.4cm;left:4.5cm;display: block;width: 7cm;}
+.mm{top:10cm; left: 0cm;}
+.fecha-informe-etiqueta{top:13cm;}
+.firma-1{top:13cm;left:4.5cm;display: block;width: 7cm;}
 .firma-1 div{text-align:  center;}
-.firma-2{top:12.4cm;left:10.5cm;display: block;width: 7cm;}
+.firma-2{top:13cm;left:10.5cm;display: block;width: 7cm;}
 .firma-2 div{text-align:  center;}
 .imprimir{display: inline-block; margin-bottom: 5px; color: white; padding: 4px;background: darkslategray; border-radius: 3px;}
