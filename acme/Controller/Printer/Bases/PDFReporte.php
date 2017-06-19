@@ -15,13 +15,11 @@ class PDFReporte extends baseFpdf
         $this->ftitle = $ftitle;
         $this->dates = $dates;
         $this->user = $user;
-
     }
 
     // Page header
     function Header()
     {
-
         $today = date("d/m/Y");
         // Arial italic 8
         $this->SetFont('Arial','I',8);
@@ -40,12 +38,11 @@ class PDFReporte extends baseFpdf
         // Line break
         $this->Ln();
 
-
         $this->Cell(70);
         // Arial bold 15
         $this->SetFont('Arial','',8);
         $this->Cell(80, 10, "Desde: " . $this->dates['inicio']->format('d/m/Y') . " - Hasta: " . $this->dates['fin']->format('d/m/Y'));
-// Line break
+        // Line break
         $this->Ln();
         /**
          * Cabezera
