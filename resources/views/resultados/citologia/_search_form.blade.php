@@ -6,7 +6,7 @@
 
     <div class="form-group col-md-2">
         <label for="factura">No. Factura</label>
-        {{ Form::number('factura_id',  null, ['class' => 'form-control box-style', 'id' => 'factura'] ) }}
+        {{ Form::number('factura_id',  null, ['class' => 'form-control box-style', 'id' => ''] ) }}
     </div>
 
     <div class="col-md-4 form-group ">
@@ -107,28 +107,28 @@
     {{-- F.U.R --}}
     <div class="col-md-3 form-group  {{ $errors->has('fur') ? ' has-error' : '' }}">
         <label for="fur">F.U.R</label>
-        {{ Form::date('fur', null, ['class' => 'form-control', 'id' => 'fur']) }}
+        {{ Form::text('fur', null, ['class' => 'form-control dateclass', 'id' => 'fur']) }}
     </div>
 
     {{-- F.U.P --}}
     <div class="col-md-3 form-group  {{ $errors->has('fup') ? ' has-error' : '' }}">
         <label for="fup">F.U.P</label>
-        {{ Form::date('fup', null, ['class' => 'form-control', 'id' => 'fup']) }}
+        {{ Form::text('fup', null, ['class' => 'form-control dateclass', 'id' => 'fup']) }}
     </div>
 
     <div class="col-md-3 form-group">
         <label>Fecha de Informe</label>
-        <input name="fecha_informe" type="date"
-               class="form-control"
+        <input name="fecha_informe" type="text"
+               class="form-control dateclass"
                tabindex="4"
-               value="{{ isset($item->fecha_informe) ? $item->fecha_informe->format('Y-m-d') : date("Y-m-d") }}"
+               value="{{ isset($item->fecha_informe) ? $item->fecha_informe->format('d/m/Y') : date("d/m/Y") }}"
         >
     </div>
 
     {{-- Fécha de Muestra --}}
     <div class="col-md-3 form-group  {{ $errors->has('fecha_muestra') ? ' has-error' : '' }}">
         <label>Fecha de Muestra</label>
-        {{ Form::date('fecha_muestra', null, ['class' => 'form-control', 'id' => 'fechamuestra']) }}
+        {{ Form::text('fecha_muestra', null, ['class' => 'form-control dateclass', 'id' => 'fechamuestra']) }}
     </div>
 </div>
 
@@ -168,3 +168,4 @@
         <button type="submit" class="btn btn-primary">Buscar</button>
     </div>
 </div>
+

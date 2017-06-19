@@ -35,20 +35,20 @@
     {{-- F.U.R --}}
     <div class="col-md-3 form-group  {{ $errors->has('fur') ? ' has-error' : '' }}">
         <label>F.U.R.</label>
-        <input name="fur" placeholder="F.U.R" type="date"
-               class="form-control"
+        <input name="fur" placeholder="F.U.R" type="text"
+               class="form-control dateclass"
                tabindex="6"
-               value="{{ isset($item->fur) ? $item->fur->format('Y-m-d') : null }}"
+               value="{{ isset($item->fur) ? $item->fur->format('d/m/Y') : null }}"
                id="">
     </div>
 
     {{-- F.U.P --}}
     <div class="col-md-3 form-group  {{ $errors->has('fup') ? ' has-error' : '' }}">
         <label>F.U.P.</label>
-        <input name="fup"  type="date"
-               class="form-control"
+        <input name="fup"  type="text"
+               class="form-control dateclass"
                tabindex="7"
-               value="{{ isset($item->fup) ? $item->fup->format('Y-m-d') : null }}"
+               value="{{ isset($item->fup) ? $item->fup->format('d/m/Y') : null }}"
                id="">
     </div>
 
@@ -89,10 +89,10 @@
     {{-- Fécha de Muestra --}}
     <div class="col-md-3 form-group  {{ $errors->has('fecha_muestra') ? ' has-error' : '' }}">
         <label>Fecha de Muestra</label>
-        <input name="fecha_muestra" type="date"
-               class="form-control"
+        <input name="fecha_muestra" type="text"
+               class="form-control dateclass"
                tabindex="11"
-               value="{{ isset($item->fecha_muestra) ? $item->fecha_muestra->format('Y-m-d') : null }}"
+               value="{{ isset($item->fecha_muestra) ? $item->fecha_muestra->format('d/m/Y') : null }}"
                id="">
     </div>
 
@@ -119,10 +119,10 @@
     {{-- Fécha de Informe --}}
     <div class="col-md-3 form-group  {{ $errors->has('fecha_informe') ? ' has-error' : '' }}">
         <label>Fecha de Informe</label>
-        <input name="fecha_informe"  type="date"
-               class="form-control"
+        <input name="fecha_informe"  type="text"
+               class="form-control dateclass"
                tabindex="12"
-               value="{{ isset($item->fecha_informe) ? $item->fecha_informe->format('Y-m-d') : date("Y-m-d") }}"
+               value="{{ isset($item->fecha_informe) ? $item->fecha_informe->format('d/m/Y') : date("d/m/Y") }}"
                id="">
     </div>
     

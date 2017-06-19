@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Acme\Controller\CitologiaControllerHelper;
+use Acme\Helpers\DateHelper;
 use Acme\Helpers\SerialHelper;
 use Acme\Refactoria\Implement\FormatSimpleDates;
 use App\Categoria;
@@ -59,6 +60,27 @@ CitologiaController extends Controller
     {
         $serialHelper = new SerialHelper();
         $request['serial'] = $serialHelper->getSerial(1);
+
+        if ($request->has('fur')) {
+            $fecha_nac = new DateHelper($request->get('fur'));
+            $request['fur'] = $fecha_nac->getDate();
+        }
+
+        if ($request->has('fup')) {
+            $fecha_nac = new DateHelper($request->get('fup'));
+            $request['fup'] = $fecha_nac->getDate();
+        }
+
+        if ($request->has('fecha_muestra')) {
+            $fecha_nac = new DateHelper($request->get('fecha_muestra'));
+            $request['fecha_muestra'] = $fecha_nac->getDate();
+        }
+
+        if ($request->has('fecha_informe')) {
+            $fecha_nac = new DateHelper($request->get('fecha_informe'));
+            $request['fecha_informe'] = $fecha_nac->getDate();
+        }
+
         $cito = Citologia::create($request->all());
         $cito->facturas->update($request->all());
         $serialHelper->setSerial($request->input('serial'), 1);
@@ -83,7 +105,7 @@ CitologiaController extends Controller
         $bdate = Carbon::createFromFormat('Y-m-d', $now)->startOfDay();
         $edate = Carbon::createFromFormat('Y-m-d', $now)->endOfDay();
         $today = Citologia::whereBetween('created_at', [$bdate, $edate])->count();
-        return View('resultados.citologia.edit', compact('item','idCIto', 'firmas', 'gravidad', 'previous', 'next', 'total', 'today'));
+        return View('resultados.citologia.edit', compact('item', 'idCIto', 'firmas', 'gravidad', 'previous', 'next', 'total', 'today'));
     }
 
     /**
@@ -97,6 +119,28 @@ CitologiaController extends Controller
         $cito->deteccion_cancer = isset($request['deteccion_cancer']) ? $request['deteccion_cancer'] = 1 : $request['deteccion_cancer'] = 0;
         $cito->indice_maduracion = isset($request['indice_maduracion']) ? $request['indice_maduracion'] = 1 : $request['indice_maduracion'] = 0;
         $cito->mm = isset($request['mm']) ? $request['mm'] = 1 : $request['mm'] = 0;
+
+        if ($request->has('fur')) {
+            $fecha_nac = new DateHelper($request->get('fur'));
+            $request['fur'] = $fecha_nac->getDate();
+        }
+
+        if ($request->has('fup')) {
+            $fecha_nac = new DateHelper($request->get('fup'));
+            $request['fup'] = $fecha_nac->getDate();
+        }
+
+        if ($request->has('fecha_muestra')) {
+            $fecha_nac = new DateHelper($request->get('fecha_muestra'));
+            $request['fecha_muestra'] = $fecha_nac->getDate();
+        }
+
+        if ($request->has('fecha_informe')) {
+            $fecha_nac = new DateHelper($request->get('fecha_informe'));
+            $request['fecha_informe'] = $fecha_nac->getDate();
+        }
+
+
         $cito->update($request->all());
         $cito->facturas->update($request->all());
 
@@ -161,10 +205,10 @@ CitologiaController extends Controller
         $firmas = Firma::where('status', 1)->pluck('name', 'id');
 
         $items = $citoHelper->contrucPagination($serial, $factura_id, $nombre, $edad, $sexo, $correo, $correo2, $direccion,
-                                            $medico, $otros, $gravidad, $icito, $para, $abortos, $fur, $fup, $finfo,
-                                            $fmues, $firma1, $firma2, $otrosb, $informe, $diagnostico);
+            $medico, $otros, $gravidad, $icito, $para, $abortos, $fur, $fup, $finfo,
+            $fmues, $firma1, $firma2, $otrosb, $informe, $diagnostico);
 
-        return View('resultados.citologia.search_results', compact('items','idCIto', 'firmas'));
+        return View('resultados.citologia.search_results', compact('items', 'idCIto', 'firmas'));
     }
 
     /**
@@ -173,25 +217,25 @@ CitologiaController extends Controller
     public function listados()
     {
         $items = Citologia::select([
-                'citologias.id',
-                'citologias.serial',
-                'citologias.factura_id',
-                'facturas.nombre_completo_cliente',
-                'categorias.name as citoId',
-                'facturas.medico',
-                'firmas.name',
-                'citologias.created_at',
-                'citologias.fecha_informe'
-            ])
+            'citologias.id',
+            'citologias.serial',
+            'citologias.factura_id',
+            'facturas.nombre_completo_cliente',
+            'categorias.name as citoId',
+            'facturas.medico',
+            'firmas.name',
+            'citologias.created_at',
+            'citologias.fecha_informe'
+        ])
             ->Join('facturas', 'factura_id', '=', 'facturas.num_factura')
             ->Join('categorias', 'icitologia_id', '=', 'categorias.id')
             ->Join('firmas', 'firma_id', '=', 'firmas.id');
 
         return Datatables::of($items)
-            ->addColumn('href', function($items){
-                return '<a href="citologias/'. $items->id .'/edit" class="btn btn-xs btn-primary">Ver Detalle</a>';
+            ->addColumn('href', function ($items) {
+                return '<a href="citologias/' . $items->id . '/edit" class="btn btn-xs btn-primary">Ver Detalle</a>';
             })
-            ->addColumn('finforme', function($items){
+            ->addColumn('finforme', function ($items) {
                 return $items->fecha_informe->format('d/m/Y');
             })
             ->rawColumns(['href'])

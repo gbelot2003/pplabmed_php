@@ -1,6 +1,7 @@
 <?php
 namespace Acme\Controller;
 
+use Acme\Helpers\DateHelper;
 use App\Citologia;
 use Illuminate\Http\Request;
 
@@ -156,6 +157,27 @@ Class CitologiaControllerHelper {
      */
     public function ProcessFormVariables(Request $request)
     {
+
+        if ($request->has('fur')) {
+            $fecha_nac = new DateHelper($request->get('fur'));
+            $request['fur'] = $fecha_nac->getDate();
+        }
+
+        if ($request->has('fup')) {
+            $fecha_nac = new DateHelper($request->get('fup'));
+            $request['fup'] = $fecha_nac->getDate();
+        }
+
+        if ($request->has('fecha_muestra')) {
+            $fecha_nac = new DateHelper($request->get('fecha_muestra'));
+            $request['fecha_muestra'] = $fecha_nac->getDate();
+        }
+
+        if ($request->has('fecha_informe')) {
+            $fecha_nac = new DateHelper($request->get('fecha_informe'));
+            $request['fecha_informe'] = $fecha_nac->getDate();
+        }
+
         $request->get('serial') ? $serial = $request->get('serial') : $serial = 'null';
         $request->get('factura_id') ? $factura_id = $request->get('factura_id') : $factura_id = 'null';
         $request->get('nombre_completo_cliente') ? $nombre = $request->get('nombre_completo_cliente') : $nombre = 'null';

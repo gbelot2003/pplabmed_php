@@ -40,6 +40,13 @@
     }
 
     $(document).ready(function () {
+
+        $( '.dateclass' ).datepicker({
+            dateFormat : 'dd/mm/yy',
+        });
+        $.datepicker.regional['es']
+        $('.dateclass').inputmask("##/##/####");
+
         $("#factura").focus();
         $("#factura").focusout(function () {
             var id = $(this).val();

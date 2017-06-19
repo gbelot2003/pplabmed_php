@@ -21,11 +21,15 @@
                     </div>
                     <div class="panel-body" id="app">
                         {!! Form::open(['action' => ['CitologiaController@processForm'], 'method' => 'POST']) !!}
-                            @include('resultados.citologia._search_form')
+                        @include('resultados.citologia._search_form')
                         {!!  Form::close() !!}
                     </div>
                 </div>
             </div>
         </div>
     </div>
+@stop
+
+@section('jscode')
+    <script src="{{ asset('js/citologias-form.js') }}"></script>
 @stop
