@@ -29,7 +29,7 @@ class BiopiasHojaTrabajo
 
         $pdf->AddPage();
 
-        $pdf->SetAutoPageBreak(true, 5);
+        $pdf->SetAutoPageBreak(true, 30);
 
 
         $pdf->SetFont('Arial', '', 8);
@@ -38,24 +38,20 @@ class BiopiasHojaTrabajo
             /**
              * No Factura
              */
+            $pdf->Cell('20  ', '10', $rows->num_factura, 1, '', 'L');
             $x = $pdf->GetX();
             $y = $pdf->GetY();
-            $pdf->SetFont('Arial', '', 7);
-            $pdf->MultiCell('20  ', '5', $this->ConvertCharacters->convert($rows->num_factura), 1, 'L', '');
+            /**
+             * Nombre Paciente
+             */
+            $pdf->MultiCell('45', '5', $this->ConvertCharacters->convert($rows->nombre_completo_cliente), 1, 'L');
             $pdf->SetXY($x , $y+5);
             /**
              * Direccion sede
              */
-            $pdf->SetFont('Arial', '', 4.5);
-            $pdf->MultiCell('20', '5', $this->ConvertCharacters->convert($rows->direccion_entrega_sede), 1, 'L');
-            $pdf->SetXY($x + 20 , $y);
-
-            /**
-             * Nombre Paciente
-             */
-            $pdf->SetFont('Arial', '', 8);
-            $pdf->Cell('45', '10', $this->ConvertCharacters->convert($rows->nombre_completo_cliente), 1, 'L');
-
+            $pdf->SetFont('Arial', '', 5.5);
+            $pdf->MultiCell('45', '5', $this->ConvertCharacters->convert($rows->direccion_entrega_sede), 1, 'L');
+            $pdf->SetXY($x + 45 , $y);
 
             /**
              * Edad
@@ -80,12 +76,12 @@ class BiopiasHojaTrabajo
 
             $pdf->MultiCell('45', 10, $this->ConvertCharacters->convert(substr($rows->examen['nombre_examen'], 0, 30)) , 'B', 'L', '');
 
-            $pdf->SetXY($x + 165 , $y);
+            $pdf->SetXY($x + 145 , $y);
             /**
              * Informe
              */
             $pdf->Cell('30', '10', $this->checkSerial($rows->created_at->format('Y'), $rows->serial),1, 0, 'C', 0, '2');
-            $pdf->ln();
+            $pdf->ln(10 );
         }
 
 
