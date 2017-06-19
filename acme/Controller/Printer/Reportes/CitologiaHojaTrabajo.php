@@ -30,13 +30,15 @@ class CitologiaHojaTrabajo
         $pdf->SetAutoPageBreak(false, 0);
 
         $pdf->SetFont('Arial', '', 8);
+
         foreach ($data as $rows){
-            $x = $pdf->GetX();
-            $y = $pdf->GetY();
+
             /**
              * No Factura
              */
             $pdf->MultiCell('20  ', '5', $this->ConvertCharacters->convert($rows->num_factura), 1, 'L');
+            $x = $pdf->GetX();
+            $y = $pdf->GetY();
             $pdf->SetXY($x , $y+5);
             /**
              * Direccion sede
