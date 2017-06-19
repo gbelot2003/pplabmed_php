@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Acme\Helpers\DateHelper;
 use Acme\Helpers\SerialHelper;
 use App\CitoSerial;
 use App\CitoUnbind;
@@ -49,6 +50,20 @@ class HistopatologiaController extends Controller
         $serialHelper = new SerialHelper();
         $request['serial'] = $serialHelper->getSerial(2);
 
+        if ($request->has('fecha_biopcia')) {
+            $fecha_nac = new DateHelper($request->get('fecha_biopcia'));
+            $request['fur'] = $fecha_nac->getDate();
+        }
+
+        if ($request->has('fecha_muestra')) {
+            $fecha_nac = new DateHelper($request->get('fecha_muestra'));
+            $request['fecha_muestra'] = $fecha_nac->getDate();
+        }
+
+        if ($request->has('fecha_informe')) {
+            $fecha_nac = new DateHelper($request->get('fecha_informe'));
+            $request['fecha_informe'] = $fecha_nac->getDate();
+        }
 
         $histo = Histopatologia::create($request->all());
         $histo->facturas->update($request->all());
@@ -84,6 +99,21 @@ class HistopatologiaController extends Controller
         if ($request->has('informe'))
         {
             html_entity_decode($request->get('informe'));
+        }
+
+        if ($request->has('fecha_biopcia')) {
+            $fecha_nac = new DateHelper($request->get('fecha_biopcia'));
+            $request['fecha_biopcia'] = $fecha_nac->getDate();
+        }
+
+        if ($request->has('fecha_muestra')) {
+            $fecha_nac = new DateHelper($request->get('fecha_muestra'));
+            $request['fecha_muestra'] = $fecha_nac->getDate();
+        }
+
+        if ($request->has('fecha_informe')) {
+            $fecha_nac = new DateHelper($request->get('fecha_informe'));
+            $request['fecha_informe'] = $fecha_nac->getDate();
         }
 
         $item->update($request->all());

@@ -39,10 +39,10 @@
 
     <div class="col-md-3 form-group  {{ $errors->has('fecha_informe') ? ' has-error' : '' }}">
         <label>Fecha de Informe</label>
-        <input name="fecha_informe" type="date"
-               class="form-control"
+        <input name="fecha_informe" type="text"
+               class="form-control dateclass"
                tabindex="4"
-               value="{{ isset($item->fecha_informe) ? $item->fecha_informe->format('Y-m-d') : date("Y-m-d") }}"
+               value="{{ isset($item->fecha_informe) ? $item->fecha_informe->format('d/m/Y') : date("d/m/Y") }}"
                >
     </div>
 
@@ -64,10 +64,10 @@
 
     <div class="col-md-3 form-group  {{ $errors->has('fecha_biopcia') ? ' has-error' : '' }}">
         <label>Fecha de Biopsia</label>
-        <input name="fecha_biopcia"  type="date"
-               class="form-control"
+        <input name="fecha_biopcia"  type="text"
+               class="form-control dateclass"
                tabindex="5"
-               value="{{ isset($item->fecha_biopcia) ? $item->fecha_biopcia->format('Y-m-d') : null }}"
+               value="{{ isset($item->fecha_biopcia) ? $item->fecha_biopcia->format('d/m/Y') : null }}"
                >
     </div>
 
@@ -77,12 +77,11 @@
     </div>
 
     <div class="col-md-3 form-group  {{ $errors->has('fecha_muestra') ? ' has-error' : '' }}">
-        {{--{{ Form::date('fecha_muestra', isset($item->fecha_muestra) ? $item->fecha_muestra : date("Y-m-d"), ['tabindex' => 6, 'class' => 'form-control', 'id' => 'fecha_muestra']) }}--}}
         <label>Fecha de Muestra</label>
-        <input name="fecha_muestra" type="date"
-               class="form-control"
+        <input name="fecha_muestra" type="text"
+               class="form-control dateclass"
                tabindex="6"
-               value="{{ isset($item->fecha_muestra) ? $item->fecha_muestra->format('Y-m-d') : null }}"
+               value="{{ isset($item->fecha_muestra) ? $item->fecha_muestra->format('d/m/Y') : null }}"
                >
     </div>
 
