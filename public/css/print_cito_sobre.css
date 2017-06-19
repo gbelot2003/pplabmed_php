@@ -17,7 +17,7 @@
 body{
     margin-top:2cm;
     margin-left: 4cm;
-    font-family: 'Arial', sans-serif; font-size: 13px !important
+    font-family: 'Arial', sans-serif; font-size: 14px !important
 }
 
 string {
@@ -45,15 +45,15 @@ string {
 }
 
 .medico{
-    top: 1.9cm;
+    top: 2.4cm;
 }
 
 .etiqueta{
-    top:2.4cm;
+    top:2.9cm;
 }
 
 .nombre_completo_cliente{
-    top:2.9cm;
+    top:3.4cm;
 }
 
 .correo{
