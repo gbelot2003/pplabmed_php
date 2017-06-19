@@ -3,6 +3,7 @@
 namespace Acme\Refactoria\Queries\Citologias;
 
 use Acme\Abstracts\QueryBuilderAbstract;
+use Acme\Helpers\DateHelper;
 use Acme\Intefaces\QueryPostInterface;
 use Acme\Refactoria\Implement\FormatSimpleDates;
 use Illuminate\Http\Request;
@@ -32,6 +33,17 @@ class HojaTrabajoQuery extends QueryBuilderAbstract implements QueryPostInterfac
      */
     protected function constructQuery()
     {
+
+        if ($this->request->has('inicio')) {
+            $fecha_nac = new DateHelper($this->request->get('inicio'));
+            $this->request['inicio'] = $fecha_nac->getDate();
+        }
+
+        if ($this->request->has('final')) {
+            $fecha_nac = new DateHelper($this->request->get('final'));
+            $this->request['final'] = $fecha_nac->getDate();
+        }
+
         list($bdate, $edate) = $this->dateQuery->formatQueryDates($this->request);
 
         $list_id = [10326, 10327, 10328, 10332, 10333, 10334, 10335, 10336];

@@ -22,11 +22,11 @@ class UserRequest extends FormRequest
      *
      * @return array
      */
-    public function rules(Request $request)
+    public function rules()
     {
         return [
-            'email' => 'required|email' .$request->get('id'),
-            'password' => 'required|confirmed'.$request->get('id') ,
+            'email' => 'required|email',
+            'password' => 'required|confirmed',
             'name' => 'required',
             'status' => 'required|integer'
         ];

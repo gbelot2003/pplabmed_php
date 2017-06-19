@@ -23,6 +23,18 @@ class HojaTrabajoQuery extends QueryBuilderAbstract implements QueryPostInterfac
      */
     protected function constructQuery()
     {
+
+        if ($this->request->has('inicio')) {
+            $fecha_nac = new DateHelper($this->request->get('inicio'));
+            $this->request['inicio'] = $fecha_nac->getDate();
+        }
+
+        if ($this->request->has('final')) {
+            $fecha_nac = new DateHelper($this->request->get('final'));
+            $this->request['final'] = $fecha_nac->getDate();
+        }
+
+
         list($bdate, $edate) = $this->dateQuery->formatQueryDates($this->request);
 
         $query = $this->model->whereBetween('facturas.fecha_informe', [$bdate, $edate]);
