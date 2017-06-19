@@ -26,13 +26,13 @@
 
                             <div class="col-md-3 form-group  {{ $errors->has('inicio') ? ' has-error' : '' }}">
                                 <label for="inicio">Fecha de Inicio</label>
-                                {{ Form::text('inicio', Carbon\Carbon::today()->toDateString(),
+                                {{ Form::text('inicio', Carbon\Carbon::today()->format('d/m/Y'),
                                 ['class' => 'form-control dateclass', 'id' => 'inicio', 'required']) }}
                             </div>
 
                             <div class="col-md-3 form-group  {{ $errors->has('final') ? ' has-error' : '' }}">
                                 <label for="inicio">Fecha de Final</label>
-                                {{ Form::text('final', Carbon\Carbon::today()->toDateString(),
+                                {{ Form::text('final', Carbon\Carbon::today()->format('d/m/Y'),
                                 ['class' => 'form-control dateclass', 'id' => 'final', 'required']) }}
                             </div>
 

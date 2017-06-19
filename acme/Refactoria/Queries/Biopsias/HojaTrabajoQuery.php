@@ -3,6 +3,7 @@
 namespace Acme\Refactoria\Queries\Biopsias;
 
 use Acme\Abstracts\QueryBuilderAbstract;
+use Acme\Helpers\DateHelper;
 use Acme\Intefaces\QueryPostInterface;
 use Acme\Refactoria\Implement\FormatSimpleDates;
 use Illuminate\Http\Request;

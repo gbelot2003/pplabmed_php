@@ -26,12 +26,14 @@
 
                             <div class="col-md-3 form-group  {{ $errors->has('inicio') ? ' has-error' : '' }}">
                                 <label for="inicio">Fecha de Inicio</label>
-                                {{ Form::date('inicio', Carbon\Carbon::today()->toDateString(), ['class' => 'form-control', 'id' => 'inicio', 'required']) }}
+                                {{ Form::text('inicio', Carbon\Carbon::today()->format('d/m/Y'),
+                                ['class' => 'form-control dateclass', 'id' => 'inicio', 'required']) }}
                             </div>
 
                             <div class="col-md-3 form-group  {{ $errors->has('final') ? ' has-error' : '' }}">
                                 <label for="inicio">Fecha de Final</label>
-                                {{ Form::date('final', Carbon\Carbon::today()->toDateString(), ['class' => 'form-control', 'id' => 'final', 'required']) }}
+                                {{ Form::text('final', Carbon\Carbon::today()->format('d/m/Y'),
+                                ['class' => 'form-control dateclass', 'id' => 'final', 'required']) }}
                             </div>
 
                             <div class="col-md-4 form-group  {{ $errors->has('final') ? ' has-error' : '' }}">
@@ -40,14 +42,6 @@
                             </div>
                         </div>
 
-                        {{--<div class="row">
-                            <div class="col-md-3 form-group {{ $errors->has('deteccion_cancer') ? ' has-error' : '' }}">
-                                <div class="checkbox checkbox-info">
-                                    {!! Form::checkbox('pdf', 1, null, ['id' => 'checkbox1']) !!}
-                                    <label for="checkbox1">Imprimir PDF (Para Consultas grandes)</label>
-                                </div>
-                            </div>
-                        </div>--}}
                     </div>
                     <div class="panel-footer">
                         {!! Form::submit('Buscar', ['class' => 'btn btn-primary']) !!}
@@ -57,4 +51,8 @@
             </div>
         </div>
     </div>
+@stop
+
+@section('jscode')
+    <script src="{{ asset('js/citologias-form.js') }}"></script>
 @stop
