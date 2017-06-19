@@ -41,12 +41,17 @@
 
     $(document).ready(function () {
 
+        $('#firma2_id').append($('<option>', {
+            value: 0,
+            text: 'Sin Firma',
+            attr: disabled
+        }));
+
         $( '.dateclass' ).datepicker({
             dateFormat : 'dd/mm/yy',
         });
         $.datepicker.regional['es']
         $('.dateclass').inputmask("##/##/####");
-
         $("#factura").focus();
         $("#factura").focusout(function () {
             var id = $(this).val();
