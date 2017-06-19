@@ -36,7 +36,6 @@
                     <th>No. Factura</th>
                     <th>Paciente</th>
                     <th>Medico</th>
-                    <th>Examen</th>
                     <th>Muestra entregada</th>
                     </thead>
                     <tbody>
