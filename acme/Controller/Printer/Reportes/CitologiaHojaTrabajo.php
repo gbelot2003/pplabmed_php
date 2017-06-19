@@ -30,7 +30,6 @@ class CitologiaHojaTrabajo
         $pdf->SetAutoPageBreak(true, 30);
 
         $pdf->SetFont('Arial', '', 8);
-
         foreach ($data as $rows){
             /**
              * No Factura
