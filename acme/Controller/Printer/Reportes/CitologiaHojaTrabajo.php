@@ -36,7 +36,7 @@ class CitologiaHojaTrabajo
              */
             $x = $pdf->GetX();
             $y = $pdf->GetY();
-            $pdf->SetFont('Arial', '', 7);
+            $pdf->SetFont('Arial', '', 6);
             $pdf->MultiCell('20  ', '5', $this->ConvertCharacters->convert($rows->num_factura), 1, 'L', '');
             $pdf->SetXY($x , $y+5);
             /**
