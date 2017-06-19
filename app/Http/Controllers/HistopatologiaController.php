@@ -221,69 +221,47 @@ class HistopatologiaController extends Controller
         }
 
         if($topo != 'null'){
-            $query->whereHas('facturas', function($q) use ($topo){
-                $q->where('topog', $topo);
-            });
+            $query->where('topog', $topo);
         }
 
         if($mor1 != 'null'){
-            $query->whereHas('facturas', function($q) use ($mor1){
-                $q->where('mor1', $mor1);
-            });
+            $query->where('mor1', $mor1);
         }
 
         if($mor2 != 'null'){
-            $query->whereHas('facturas', function($q) use ($mor2){
-                $q->where('mor2', $mor2);
-            });
+            $query->where('mor2', $mor2);
         }
 
         if($firma != 'null'){
-            $query->whereHas('facturas', function($q) use ($firma){
-                $q->where('firma_id', $firma);
-            });
+            $query->where('firma_id', $firma);
         }
         if($firma2 != 'null'){
-            $query->whereHas('facturas', function($q) use ($firma2){
-                $q->where('firma2_id', $firma2);
-            });
+            $query->where('firma2_id', $firma2);
         }
 
         if($diag != 'null'){
-            $query->whereHas('facturas', function($q) use ($diag){
-                $q->where('diagnostico', 'like', '%' . $diag . '%');
-            });
+            $query->where('diagnostico', 'like', '%' . $diag . '%');
         }
 
 
-        if($muestra != 'null'){
-            $query->whereHas('facturas', function($q) use ($muestra){
-                $q->where('muestra', $muestra);
-            });
+        if($muestra != 'null') {
+            $query->where('muestra', $muestra);
         }
 
         if($finfo != 'null'){
-            $query->whereHas('facturas', function($q) use ($finfo){
-                $q->where('fecha_informe', $finfo);
-            });
+            $query->where('fecha_informe', $finfo);
         }
 
-        if($fbiop != 'null'){
-            $query->whereHas('facturas', function($q) use ($fbiop){
-                $q->where('fecha_biopcia', $fbiop);
-            });
+        if($fbiop != 'null') {
+            $query->where('fecha_biopcia', $fbiop);
         }
 
         if($fmuest != 'null'){
-            $query->whereHas('facturas', function($q) use ($fmuest){
-                $q->where('fecha_muestra', $fmuest);
-            });
+            $query->where('fecha_muestra', $fmuest);
         }
 
-        if($informe != 'null'){
-            $query->whereHas('facturas', function($q) use ($informe){
-                $q->where('informe', 'like', '%' . $informe . '%');
-            });
+        if($informe != 'null') {
+            $query->where('informe', 'like', '%' . $informe . '%');
         }
 
         $items = $query->paginate(1);

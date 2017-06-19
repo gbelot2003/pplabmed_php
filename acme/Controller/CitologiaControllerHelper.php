@@ -89,6 +89,7 @@ Class CitologiaControllerHelper {
             });
         }
 
+
         if ($otros != 'null') {
             $query->where('otros_a', 'like', '%' . $otros . '%');
         }
@@ -130,7 +131,7 @@ Class CitologiaControllerHelper {
         }
 
         if ($firma2 != 'null') {
-            $query->where('firma_id', $firma2);
+            $query->where('firma2_id', $firma2);
         }
 
         if ($otrosb != 'null') {
