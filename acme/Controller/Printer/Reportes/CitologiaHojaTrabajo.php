@@ -64,7 +64,7 @@ class CitologiaHojaTrabajo
 
 
             /**
-             * MEdico
+             * Medico
              */
             $pdf->Cell('35', '10', $rows->medico, 1, '', 'L');
 
