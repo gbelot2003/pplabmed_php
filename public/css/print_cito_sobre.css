@@ -45,22 +45,22 @@ string {
 }
 
 .medico{
-    top: 2.7cm;
+    top: 2.4cm;
 }
 
 .etiqueta{
-    top:3.2cm;
+    top:2.9cm;
 }
 
 .nombre_completo_cliente{
-    top:3.7cm;
+    top:3.4cm;
 }
 
 .correo{
-    top: 4.1cm;
+    top: 3.9cm;
 }
 
 .correo2{
-    top: 4.5cm;
+    top: 4.4cm;
 }
 .imprimir{display: inline-block; margin-bottom: 5px; color: white; padding: 4px;background: darkslategray; border-radius: 3px;}
