@@ -1,1 +1,138 @@
-!function(){function e(e){const n=new Date(e),a=moment(new Date),o=moment(n),t=a.diff(o,"year");o.add(t,"years");const i=a.diff(o,"months");o.add(i,"months");a.diff(o,"days");return t>0?t+" A":i+" M"}function n(e){return items=[10328,10328,10332,10333,10334,10335,10336],!items.includes(e)}$.ajaxSetup({headers:{"X-XSRF-TOKEN":$('input[name="_token"]').val()}}),$(document).ready(function(){$("#factura").focusout(function(){var a=$(this).val();$.get("/facturas/"+a).done(function(a){if(n(a.examen.item)===!1)return""===$("#factura").val(),alert("Esta no es una Biopsia");$("#paciente").val(a.nombre_completo_cliente);const o=e(a.fecha_nacimiento);$("#edad").val(o),$("#edad2").val(o),$("#email").val(a.correo),$("#direccion").val(a.direccion_entrega_sede),$("#sexo").val(a.sexo),$("#medico").val(a.medico)}).fail(function(){alert("failure")})})}),$("a.bt-insert").click(function(e){e.preventDefault();const n=$(this).attr("href");$.get("/plantillas/info/"+n).done(function(e){CKEDITOR.instances.informe.insertHtml(e.body)})}),$("#ImagesModal").on("shown.bs.modal",function(e){}),$(".colorbox").colorbox(),$("#topog").inputmask("#99.9"),document.addEventListener("keydown",function(e){107===e.which&&confirm("¿Seguro que desea salir?, se perdera toda la Información no salvada!!")&&(window.location.href="/citologias/create"),121==e.which&&$("#myForm").submit()})}(jQuery);
+
+(function(){
+    $.ajaxSetup({
+        headers: {
+            'X-XSRF-TOKEN': $('input[name="_token"]').val()
+        }
+    });
+
+    function getDate(date){
+
+        const mydate = new Date(date);
+        const a = moment(new Date());
+        const b = moment(mydate);
+        const years = a.diff(b, 'year');
+
+        b.add(years, 'years');
+        const months = a.diff(b, 'months');
+        b.add(months, 'months');
+        const days = a.diff(b, 'days');
+
+        if(years > 0){
+            return years + ' A';
+        } else {
+            return months + ' M';
+        }
+    }
+
+    function checkItem(item){
+
+        items = [10328, 10328, 10332, 10333, 10334, 10335, 10336];
+        if (items.includes(item)) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    function isEmptyObject(obj) {
+
+        if (obj.length && obj.length > 0)
+            return false;
+
+        if (obj.length === 0)
+            return true;
+    }
+
+    $(document).ready(function () {
+        $("#factura").focus();
+        $("#factura").focusout(function () {
+            var id = $(this).val();
+            //alert(id);
+            $.get('/facturas/' + id)
+                .done(function (data) {
+
+                    if (isEmptyObject(data)){
+                        alert("no hay datos");
+                        $('#factura').val("");
+                        $('#paciente').val("");
+                        $('#edad').val("");
+                        $('#edad2').val("");
+                        $('#email').val("");
+                        $('#direccion').val("");
+                        $('#sexo').val("");
+                        $('#medico').val("");
+                        return;
+                    }
+
+                    if(checkItem(data.examen.item) === false){
+                        $("#factura").val() === "";
+                        return alert('Esta no es una Biopsia');
+                    }
+
+                    $('#paciente').val(data.nombre_completo_cliente);
+
+                    const fulldate =  getDate(data.fecha_nacimiento);
+
+                    $('#edad').val(fulldate);
+                    $('#edad2').val(fulldate);
+
+                    $('#email').val(data.correo);
+
+                    $('#direccion').val(data.direccion_entrega_sede);
+
+                    $('#sexo').val(data.sexo);
+
+                    $('#medico').val(data.medico);
+
+                })
+                .fail(function () {
+                    alert("Problemas con el servidor");
+                    $('#factura').val("");
+                    $('#paciente').val("");
+                    $('#edad').val("");
+                    $('#edad2').val("");
+                    $('#email').val("");
+                    $('#direccion').val("");
+                    $('#sexo').val("");
+                    $('#medico').val("");
+                    return;
+                })
+        })
+    });
+
+    $('a.bt-insert').click(function(e){
+        e.preventDefault();
+        const id = $(this).attr("href");
+        $.get('/plantillas/info/' + id)
+            .done(function(data){
+                console.log(data);
+                CKEDITOR.instances['informe'].insertHtml(data.body);
+            });
+
+    });
+
+    $('#ImagesModal').on('shown.bs.modal', function (e) {
+        // Initialize Dropzone
+    });
+
+    $('.colorbox').colorbox();
+
+    $('#topog').inputmask("#99.9");
+
+    document.addEventListener("keydown", function(event) {
+        if(event.which === 107){
+            if (confirm('¿Seguro que desea salir?, se perdera toda la Información no salvada!!')) {
+                window.location.href = '/citologias/create';
+            }
+        }
+
+        if(event.which == 121)
+        {
+            $( "#myForm" ).submit();
+        }
+    });
+
+})(jQuery);
+//# sourceMappingURL=histopatologia-form.js.map

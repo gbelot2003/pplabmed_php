@@ -30,15 +30,35 @@
         }
     }
 
-    $(document).ready(function () {
+    function isEmptyObject(obj) {
 
+        if (obj.length && obj.length > 0)
+            return false;
+
+        if (obj.length === 0)
+            return true;
+    }
+
+    $(document).ready(function () {
+        $("#factura").focus();
         $("#factura").focusout(function () {
             var id = $(this).val();
-            //alert(id);
             $.get('/facturas/' + id)
                 .done(function (data) {
 
-                    console.log(data.examen.item);
+                    if (isEmptyObject(data)){
+                        alert("no hay datos");
+                        $('#factura').val("");
+                        $('#paciente').val("");
+                        $('#edad').val("");
+                        $('#edad2').val("");
+                        $('#email').val("");
+                        $('#direccion').val("");
+                        $('#sexo').val("");
+                        $('#medico').val("");
+                        return;
+                    }
+
 
                     if(checkItem(data.examen.item) === false){
                         $("#factura").val() === "";
@@ -63,7 +83,15 @@
 
                 })
                 .fail(function () {
-                    alert('failure');
+                    alert("Problemas con el servidor");
+                    $('#paciente').val("");
+                    $('#edad').val("");
+                    $('#edad2').val("");
+                    $('#email').val("");
+                    $('#direccion').val("");
+                    $('#sexo').val("");
+                    $('#medico').val("");
+                    return;
                 })
         })
     });
