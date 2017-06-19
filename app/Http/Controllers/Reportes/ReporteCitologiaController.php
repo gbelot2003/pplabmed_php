@@ -19,8 +19,6 @@ class ReporteCitologiaController extends Controller
         $this->middleware('ShowReports');
         $this->model = new Factura();
         $this->categoria = new Categoria();
-        $this->factura = new Factura();
-
     }
 
     /**
@@ -29,7 +27,7 @@ class ReporteCitologiaController extends Controller
     public function index()
     {
         $idCito = $this->categoria->where('status', 1)->pluck('name', 'id');
-        $direc = $this->factura->groupBy('direccion_entrega_sede')->select('direccion_entrega_sede')->pluck('direccion_entrega_sede', 'direccion_entrega_sede');
+        $direc = $this->model->groupBy('direccion_entrega_sede')->select('direccion_entrega_sede')->pluck('direccion_entrega_sede', 'direccion_entrega_sede');
         return View('reportes.citologia.hojaTrabajo.index', compact('idCito', 'direc'));
     }
 

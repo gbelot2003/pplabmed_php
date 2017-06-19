@@ -36,6 +36,7 @@ class HojaTrabajoQuery extends QueryBuilderAbstract implements QueryPostInterfac
             ->whereBetween('facturas.created_at', [$bdate, $edate])
             ->whereIn('examenes.item', $list_id)
             ->where('facturas.status', 'Valida')
+            ->groupBy('facturas.num_factura')
             ->orderBy('facturas.num_factura', 'ASC');
 
         if ($this->request->has('direccion')) {
