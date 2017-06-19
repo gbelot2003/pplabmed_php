@@ -30,6 +30,7 @@ class CitologiaHojaTrabajo
         $pdf->SetAutoPageBreak(true, 30);
 
         $pdf->SetFont('Arial', '', 8);
+
         foreach ($data as $rows){
             /**
              * No Factura
@@ -81,7 +82,7 @@ class CitologiaHojaTrabajo
              * Informe
              */
             $pdf->Cell('30', '10', $this->checkSerial($rows->created_at->format('Y'), $rows->serial),1, 0, 'C', 0, '2');
-            $pdf->ln(10 );
+            $pdf->ln();
         }
 
         return $pdf->Output();
