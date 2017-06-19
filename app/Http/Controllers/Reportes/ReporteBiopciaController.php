@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Reportes;
 
-use Acme\Refactoria\Builds\Biopsias\HojaTrabajoBuild;
+use Acme\Controller\Printer\Reportes\BiopiasHojaTrabajo;
 use App\Http\Controllers\Controller;
+use Atlas\Reports\Patologia\HojasTrabajoPatologiaQuery;
 use Illuminate\Http\Request;
 use App\Factura;
 
@@ -26,7 +27,10 @@ class ReporteBiopciaController extends Controller
 
     public function results(Request $request)
     {
-        $build = new HojaTrabajoBuild($this->model, $request);
-        return $build->buildCall($request);
+        $query = new HojasTrabajoPatologiaQuery();
+        list($items, $bdate, $edate) = $query->queryBuilder($request);
+
+        $print = new BiopiasHojaTrabajo();
+        return $print->printPdfHitoReport($items, $bdate, $edate);
     }
 }

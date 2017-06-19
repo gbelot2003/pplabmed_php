@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Reportes;
 
-use Acme\Refactoria\Builds\Citologia\HojaTrabajoBuild;
-use App\Citologia;
+use Acme\Controller\Printer\Reportes\CitologiaHojaTrabajo;
 use App\Http\Controllers\Controller;
+use Atlas\Reports\Citologias\HojasTrabajoCitologiaQuery;
 use Illuminate\Http\Request;
 use App\Categoria;
 use App\Factura;
@@ -37,8 +37,11 @@ class ReporteCitologiaController extends Controller
      */
     public function results(Request $request)
     {
-        $build = new HojaTrabajoBuild($this->model, $request);
-        return $build->buildCall();
+        $query = new HojasTrabajoCitologiaQuery();
+        list($items, $bdate, $edate) = $query->queryBuilder($request);
+
+        $print = new CitologiaHojaTrabajo();
+        return $print->printPdfHitoReport($items, $bdate, $edate);
     }
 }
 

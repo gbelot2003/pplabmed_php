@@ -1,42 +1,22 @@
 <?php
 
-namespace Acme\Refactoria\Queries\Biopsias;
+namespace Atlas\Reports\Patologia;
 
-use Acme\Abstracts\QueryBuilderAbstract;
-use Acme\Helpers\DateHelper;
-use Acme\Intefaces\QueryPostInterface;
-use Acme\Refactoria\Implement\FormatSimpleDates;
+use App\Factura;
+use Atlas\Reports\QueryBuilder;
 use Illuminate\Http\Request;
 
-class HojaTrabajoQuery extends QueryBuilderAbstract implements QueryPostInterface
+class HojasTrabajoPatologiaQuery
 {
-
-    protected $model;
-    protected $request;
     function __construct()
     {
-        $this->dateQuery = new FormatSimpleDates();
+        $this->model = new Factura();
     }
 
-    /**
-     * Funcion de ejecucion de Querys
-     * @return mixed
-     */
-    protected function constructQuery()
+    public function queryBuilder(Request $request)
     {
-
-        if ($this->request->has('inicio')) {
-            $fecha_nac = new DateHelper($this->request->get('inicio'));
-            $this->request['inicio'] = $fecha_nac->getDate();
-        }
-
-        if ($this->request->has('final')) {
-            $fecha_nac = new DateHelper($this->request->get('final'));
-            $this->request['final'] = $fecha_nac->getDate();
-        }
-
-
-        list($bdate, $edate) = $this->dateQuery->formatQueryDates($this->request);
+        $query = new QueryBuilder();
+        list($bdate, $edate, $idCito, $direc, $mor1, $mor2, $topog) = $query->processRequirements($request);
 
         $query = $this->model->whereBetween('facturas.fecha_informe', [$bdate, $edate]);
 
@@ -52,35 +32,15 @@ class HojaTrabajoQuery extends QueryBuilderAbstract implements QueryPostInterfac
             ->groupBy('facturas.num_factura')
             ->orderBy('facturas.num_factura', 'ASC');
 
-        if ($this->request->has('direccion')) {
-            $direc = $this->request->get('direccion');
+        if ($request->has('direccion')) {
+            $direc = $request->get('direccion');
             $query->where('facturas.direccion_entrega_sede', 'LIKE', '%' . $direc . '%');
         }
 
-       $data = $query->get();
+        $data = $query->get();
 
-        return array($bdate, $edate, $data);
-    }
+        return array($data, $bdate, $edate);
 
-    /**
-     * @return mixed
-     */
-    public function output()
-    {
-        return $this->constructQuery();
-    }
-
-    /**
-     * @param Request $request
-     * @param $model
-     * @return mixed
-     * @internal param $Request $
-     */
-    public function getParams(Request $request, $model)
-    {
-        $this->model = $model;
-        $this->request = $request;
-        return array($this->request, $this->model);
     }
 
     /**
@@ -88,7 +48,7 @@ class HojaTrabajoQuery extends QueryBuilderAbstract implements QueryPostInterfac
      */
     protected function filteringList()
     {
-        return  [10245, 10246, 10247, 10248, 10249, 10250, 10251, 10252, 10253, 10254, 10255, 10256, 10257, 10258,
+        return [10245, 10246, 10247, 10248, 10249, 10250, 10251, 10252, 10253, 10254, 10255, 10256, 10257, 10258,
             10259, 10260, 10261, 10262, 10263, 10264, 10265, 10266, 10267, 10268, 10269, 10270, 10271, 10272, 10273,
             10274, 10275, 10276, 10277, 10278, 10279, 10280, 10281, 10282, 10283, 10284, 10285, 10286, 10287, 10288,
             10289, 10290, 10291, 10292, 10293, 10294, 10295, 10296, 10297, 10298, 10299, 10300, 10301, 10302, 10303,

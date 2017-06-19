@@ -77,6 +77,7 @@ $factory->define(App\Factura::class, function (Faker\Generator $faker){
         'nombre_completo_cliente' => $faker->name(),
         'fecha_nacimiento' => $faker->dateTime(),
         'correo' => $faker->freeEmail(),
+        'correo2' => $faker->freeEmail(),
         'direccion_entrega_sede' => $faker->sentence(),
         'medico' => $faker->name(),
         'status' => "Valida",
