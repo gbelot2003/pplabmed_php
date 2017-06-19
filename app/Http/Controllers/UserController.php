@@ -41,7 +41,7 @@ class UserController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(UserRequest $request)
+    public function store(Request $request)
     {
         $helper = new Miselanius();
         $userHelper = new UsersControllerHelper();
@@ -75,7 +75,7 @@ class UserController extends Controller
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UserRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
         $helper = new Miselanius();
