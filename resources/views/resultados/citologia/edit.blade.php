@@ -56,7 +56,7 @@
     <style>
         #navTag {
             position: fixed;
-            top: 74px;
+            top: 54px;
             right: 0px;
             background: rgba(14, 155, 191, 0.73);
             width: 80%;
