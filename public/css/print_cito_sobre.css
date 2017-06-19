@@ -17,6 +17,7 @@
 body{
     margin-top:2cm;
     margin-left: 4cm;
+    font-family: 'Arial', sans-serif; font-size: 13px !important
 }
 
 string {
@@ -48,18 +49,18 @@ string {
 }
 
 .etiqueta{
-    top:2.7cm;
+    top:2.4cm;
 }
 
 .nombre_completo_cliente{
-    top:3.3cm;
+    top:2.9cm;
 }
 
 .correo{
-    top: 3.7cm;
+    top: 3.4cm;
 }
 
 .correo2{
-    top: 4.2cm;
+    top: 3.9cm;
 }
 .imprimir{display: inline-block; margin-bottom: 5px; color: white; padding: 4px;background: darkslategray; border-radius: 3px;}
