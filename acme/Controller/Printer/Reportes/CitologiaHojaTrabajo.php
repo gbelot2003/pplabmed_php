@@ -27,7 +27,7 @@ class CitologiaHojaTrabajo
 
         $pdf->AddPage();
 
-        $pdf->SetAutoPageBreak(true, 30);
+        $pdf->SetAutoPageBreak(false, 0);
 
         $pdf->SetFont('Arial', '', 8);
         foreach ($data as $rows){
@@ -74,7 +74,7 @@ class CitologiaHojaTrabajo
 
             $pdf->MultiCell('45', 10, $this->ConvertCharacters->convert(substr($rows->examen['nombre_examen'], 0,32)) , 'B', 'L', '');
 
-            $pdf->SetXY($x + 165 , $y);
+            $pdf->SetXY($x + 164 , $y);
             /**
              * Informe
              */
