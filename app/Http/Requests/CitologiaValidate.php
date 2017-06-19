@@ -49,7 +49,7 @@ class CitologiaValidate extends FormRequest
                     'fecha_informe' => 'string|required',
                     'fecha_muestra' => 'string|nullable',
                     'firma_id' => 'required|integer',
-                    'firma2_id' => 'integer|nullable',
+                    'firma2_id' => 'nullable',
                     'otros_b' => 'string|nullable',
                     'mm' => 'boolean',
                     'diagnostico' => 'string|nullable',

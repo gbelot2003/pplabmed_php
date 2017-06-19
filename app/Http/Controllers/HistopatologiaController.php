@@ -65,6 +65,13 @@ class HistopatologiaController extends Controller
             $request['fecha_informe'] = $fecha_nac->getDate();
         }
 
+        if ($request->has('firma2_id')) {
+            $val = $request->get('firma2_id');
+            if ($val === 'none'){
+                $request['firma2_id'] = null;
+            }
+        }
+
         $histo = Histopatologia::create($request->all());
         $histo->facturas->update($request->all());
         $serialHelper->setSerial($request->input('serial'), 2);
@@ -114,6 +121,13 @@ class HistopatologiaController extends Controller
         if ($request->has('fecha_informe')) {
             $fecha_nac = new DateHelper($request->get('fecha_informe'));
             $request['fecha_informe'] = $fecha_nac->getDate();
+        }
+
+        if ($request->has('firma2_id')) {
+            $val = $request->get('firma2_id');
+            if ($val === 'none'){
+                $request['firma2_id'] = null;
+            }
         }
 
         $item->update($request->all());

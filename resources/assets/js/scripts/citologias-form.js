@@ -42,9 +42,9 @@
     $(document).ready(function () {
 
         $('#firma2_id').append($('<option>', {
-            value: 0,
-            text: 'Sin Firma',
-            attr: disabled
+            value: 'none',
+            text: 'None',
+            attr: 'disabled'
         }));
 
         $( '.dateclass' ).datepicker({

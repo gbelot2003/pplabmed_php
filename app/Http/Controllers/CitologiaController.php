@@ -81,6 +81,13 @@ CitologiaController extends Controller
             $request['fecha_informe'] = $fecha_nac->getDate();
         }
 
+        if ($request->has('firma2_id')) {
+            $val = $request->get('firma2_id');
+            if ($val === 'none'){
+                $request['firma2_id'] = null;
+            }
+        }
+
         $cito = Citologia::create($request->all());
         $cito->facturas->update($request->all());
         $serialHelper->setSerial($request->input('serial'), 1);
@@ -140,9 +147,17 @@ CitologiaController extends Controller
             $request['fecha_informe'] = $fecha_nac->getDate();
         }
 
+        if ($request->has('firma2_id')) {
+            $val = $request->get('firma2_id');
+            if ($val === 'none'){
+                $request['firma2_id'] = null;
+            }
+        }
 
         $cito->update($request->all());
         $cito->facturas->update($request->all());
+
+
 
         flash('Reegistro Actualizado', 'success')->important();
         return redirect()->back();

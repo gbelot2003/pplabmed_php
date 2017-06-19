@@ -112,7 +112,7 @@
     {{-- Firma 2 --}}
     <div class="col-md-3 form-group  {{ $errors->has('firma2_id') ? ' has-error' : '' }}">
         <label>Firma 2</label>
-        {{ Form::select('firma2_id', $firmas, null, ['placeholder' => 'None', 'class' => 'form-control']) }}
+        {{ Form::select('firma2_id', $firmas, null, ['placeholder' => 'None', 'class' => 'form-control', 'id' => 'firma2_id']) }}
     </div>
 
 
