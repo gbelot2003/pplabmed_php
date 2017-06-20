@@ -30,6 +30,11 @@ class PDFReporteSede extends baseFpdf
         // Line break
         $this->Ln();
 
+
+        $this->SetFont('Arial','B',10);
+        $this->Cell(220,5, "Laboratorios Medicos",0,0,'C');
+        $this->Ln();
+
         // Arial bold 15
         $this->SetFont('Arial','B',15);
         // Title
