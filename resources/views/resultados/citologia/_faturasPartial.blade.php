@@ -48,7 +48,7 @@
 
     <div class="col-md-3 form-group  {{ $errors->has('correo') ? ' has-error' : '' }}">
         <label>E-mail</label>
-        {{ Form::email('correo', isset($item->facturas->correo) ? $item->facturas->correo : null,
+        {{ Form::text('correo', isset($item->facturas->correo) ? $item->facturas->correo : null,
             ['class' => 'form-control box-style yellow', 'id' => 'email', 'placeholder' => 'E-mail']) }}
     </div>
 
