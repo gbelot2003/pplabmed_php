@@ -24,7 +24,7 @@ class SedeEntrega
             $ftitle =  $this->ConvertCharacters->convert("Reporte por Sedes");
         }
 
-        $pdf = new PDFReporteSede($orientation = 'P', $unit = 'mm', $size = 'Letter', $ftitle = $ftitle, $dates, $user);
+        $pdf = new PDFReporteSede($orientation = 'P', $unit = 'mm', $size = 'Letter', $ftitle = $ftitle, $dates, $user, $total);
 
         setlocale(LC_CTYPE, 'en_US');
         $pdf->SetLeftMargin(1);
@@ -77,6 +77,7 @@ class SedeEntrega
 
             $pdf->ln(10 );
         }
+
 
         return $pdf->Output();
 
