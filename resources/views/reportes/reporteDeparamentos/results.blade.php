@@ -33,24 +33,20 @@
                     <table class="table table-bordered table-striped dataTable">
                         <thead>
                         <th>No. Factura</th>
-                        <th>Sede</th>
                         <th>Paciente</th>
                         <th>Edad</th>
                         <th>Sexo</th>
                         <th>Examen</th>
-                        <th>No. informe</th>
                         <th>Firma</th>
                         </thead>
                         <tbody>
                         @foreach($items as $items)
                             <tr>
                                 <td>{{ $items['num_factura'] }}</td>
-                                <td>{{ $items['direccion_entrega_sede'] }}</td>
                                 <td>{{ $items['nombre_completo_cliente'] }}</td>
                                 <td>{{ $items['edad'] }}</td>
                                 <td>{{ $items['sexo'] }}</td>
                                 <td>{{ $items['nombre_examen'] }}</td>
-                                <td>{{ $items['serial'] }}</td>
                                 <td style="min-width: 12em"></td>
                             </tr>
                         @endforeach
