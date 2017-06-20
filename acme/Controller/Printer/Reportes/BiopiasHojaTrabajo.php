@@ -26,6 +26,7 @@ class BiopiasHojaTrabajo
         $pdf = new PDFReporte($orientation = 'P', $unit = 'mm', $size = 'Letter', $ftitle = $ftitle, $dates, $user);
         setlocale(LC_CTYPE, 'en_US');
         $pdf->AliasNbPages();
+        $pdf->SetLeftMargin(1);
 
         $pdf->SetAutoPageBreak(true, 20);
         $pdf->AddPage();
@@ -37,49 +38,53 @@ class BiopiasHojaTrabajo
             /**
              * No Factura
              */
-            $pdf->Cell('20  ', '10', $rows->num_factura, 1, '', 'L');
-            $x = $pdf->GetX();
-            $y = $pdf->GetY();
+            $pdf->SetFont('Arial', '', 8);
+            $pdf->Cell('15  ', '10', $rows->num_factura, 1, '', 'L');
+
+            /**
+             * Sede
+             */
+            $pdf->SetFont('Arial', '', 7);
+            $pdf->Cell('35  ', '10',  $this->ConvertCharacters->convert(substr($rows->direccion_entrega_sede, 0,20)), 1, '', 'L');
+
             /**
              * Nombre Paciente
              */
-            $pdf->MultiCell('45', '5', $this->ConvertCharacters->convert($rows->nombre_completo_cliente), 1, 'L');
-            $pdf->SetXY($x , $y+5);
-            /**
-             * Direccion sede
-             */
-            $pdf->SetFont('Arial', '', 5.5);
+            $pdf->SetFont('Arial', '', 9);
+            $pdf->Cell('64  ', '10', $this->ConvertCharacters->convert($rows->nombre_completo_cliente), 1, '', 'L');
 
-            $pdf->MultiCell('45', '5', $this->ConvertCharacters->convert($rows->direccion_entrega_sede), 1, 'L');
-            $pdf->SetXY($x + 45 , $y);
+            /**
+             * Sexo
+             */
+            $pdf->SetFont('Arial', '', 8);
+            $pdf->Cell('5', '10', $rows->sexo, 1, '', 'C');
 
             /**
              * Edad
              */
             $pdf->SetFont('Arial', '', 8);
-            $pdf->Cell('10', '10', $rows->sexo, 1, '', 'C');
+            $pdf->Cell('10', '10', $rows->edad, 1, '', 'C');
 
             /**
-             * Edad
+             * Mdico
              */
-            $pdf->Cell('10', '10', $rows->edad, 1, '', '');
-
-
-            /**
-             * Medico
-             */
-            $pdf->Cell('35', '10', $rows->medico, 1, '', 'L');
+            $pdf->SetFont('Arial', '', 6.5);
+            $pdf->Cell('30', '10', $rows->medico, 1, '', 'L');
 
             /**
              * Examen
              */
-            $pdf->MultiCell('45', 10, $this->ConvertCharacters->convert(substr($rows->examen['nombre_examen'], 0, 30)) , 'B', 'L', '');
-            $pdf->SetXY($x + 165 , $y);
+            $pdf->SetFont('Arial', '', 7);
+            $pdf->Cell('40', '10', $this->ConvertCharacters->convert(substr($rows->examen['nombre_examen'], 0,32)), 1, '', 'L');
+
             /**
              * Informe
              */
-            $pdf->Cell('30', '10', $this->checkSerial($rows->created_at->format('Y'), $rows->serial),1, 0, 'C', 0, '2');
-            $pdf->ln();
+            $pdf->SetFont('Arial', '', 7);
+            $pdf->Cell('15', '10', $this->checkSerial($rows->created_at->format('Y'), $rows->serial),1, 0, 'C', 0, '');
+
+
+            $pdf->ln(10 );
         }
 
 
