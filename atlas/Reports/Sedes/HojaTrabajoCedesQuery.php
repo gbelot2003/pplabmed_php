@@ -21,7 +21,7 @@ class HojaTrabajoCedesQuery
         $query = $this->model->select('facturas.num_factura', 'facturas.nombre_completo_cliente', 'facturas.edad',
             'facturas.medico', 'facturas.sexo', 'x.nombre_examen', 'facturas.direccion_entrega_sede');
         $query->join('examenes as x', 'x.num_factura', '=', 'facturas.num_factura')
-        ->whereBetween('factura.created_at', [$bdate, $edate]);
+        ->whereBetween('created_at', [$bdate, $edate]);
         if (isset($direc)){
             $query->where('direccion_entrega_sede', 'LIKE', '%' . $direc. '%');
         }
