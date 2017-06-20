@@ -23,11 +23,13 @@ class CitologiaHojaTrabajo
         $ftitle =  $this->ConvertCharacters->convert("Hoja de Citología");
         $pdf = new PDFReporte($orientation = 'P', $unit = 'mm', $size = 'Letter', $ftitle = $ftitle, $dates, $user);
         setlocale(LC_CTYPE, 'en_US');
+        $pdf->SetLeftMargin(0);
+
         $pdf->AliasNbPages();
 
         $pdf->AddPage();
 
-        $pdf->SetAutoPageBreak(true, 30);
+        $pdf->SetAutoPageBreak(true, 10);
 
 
 
@@ -43,13 +45,13 @@ class CitologiaHojaTrabajo
              * Sede
              */
             $pdf->SetFont('Arial', '', 7);
-            $pdf->Cell('30  ', '10',  $this->ConvertCharacters->convert(substr($rows->direccion_entrega_sede, 0,20)), 1, '', 'L');
+            $pdf->Cell('35  ', '10',  $this->ConvertCharacters->convert(substr($rows->direccion_entrega_sede, 0,20)), 1, '', 'L');
 
             /**
              * Nombre Paciente
              */
-            $pdf->SetFont('Arial', '', 8);
-            $pdf->Cell('45  ', '10', $this->ConvertCharacters->convert($rows->nombre_completo_cliente), 1, '', 'L');
+            $pdf->SetFont('Arial', '', 9);
+            $pdf->Cell('65  ', '10', $this->ConvertCharacters->convert($rows->nombre_completo_cliente), 1, '', 'L');
 
             /**
              * Sexo
@@ -78,9 +80,8 @@ class CitologiaHojaTrabajo
             /**
              * Informe
              */
-            $pdf->SetFont('Arial', '', 8);
-            $pdf->SetFont('Arial', '', 5);
-            $pdf->Cell('10', '10', $this->checkSerial($rows->created_at->format('Y'), $rows->serial),1, 0, 'C', 0, '');
+            $pdf->SetFont('Arial', '', 7);
+            $pdf->Cell('15', '10', $this->checkSerial($rows->created_at->format('Y'), $rows->serial),1, 0, 'C', 0, '');
 
 
             $pdf->ln(10 );
