@@ -116,13 +116,13 @@
     });
 
     document.addEventListener("keydown", function(event) {
-        if(event.which === 107){
+        if(event.which === 113){
             if (confirm('¿Seguro que desea salir?, se perdera toda la Información no salvada!!')) {
                 window.location.href = '/citologias/create';
             }
         }
 
-        if(event.which == 121)
+        if(event.which == 120)
         {
             $( "#myForm" ).submit();
         }
