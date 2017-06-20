@@ -51,7 +51,7 @@ class CitologiaHojaTrabajo
              * Nombre Paciente
              */
             $pdf->SetFont('Arial', '', 9);
-            $pdf->Cell('65  ', '10', $this->ConvertCharacters->convert($rows->nombre_completo_cliente), 1, '', 'L');
+            $pdf->Cell('64  ', '10', $this->ConvertCharacters->convert($rows->nombre_completo_cliente), 1, '', 'L');
 
             /**
              * Sexo
