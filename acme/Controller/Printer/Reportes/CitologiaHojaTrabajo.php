@@ -40,10 +40,10 @@ class CitologiaHojaTrabajo
             $pdf->Cell('15  ', '10', $rows->num_factura, 1, '', 'L');
 
             /**
-             * Nombre Paciente
+             * Sede
              */
-            $pdf->SetFont('Arial', '', 8);
-            $pdf->Cell('30  ', '10', $this->ConvertCharacters->convert($rows->direccion_entrega_sede), 1, '', 'L');
+            $pdf->SetFont('Arial', '', 7);
+            $pdf->Cell('30  ', '10',  $this->ConvertCharacters->convert(substr($rows->direccion_entrega_sede, 0,20)), 1, '', 'L');
 
             /**
              * Nombre Paciente
