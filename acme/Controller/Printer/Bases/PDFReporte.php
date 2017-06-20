@@ -45,19 +45,20 @@ class PDFReporte extends baseFpdf
         // Arial bold 15
         $this->SetFont('Arial','',8);
         $this->Cell(80, 10, "Desde: " . $this->dates['inicio']->format('d/m/Y') . " - Hasta: " . $this->dates['fin']->format('d/m/Y'));
-// Line break
+        // Line break
         $this->Ln();
         /**
          * Cabezera
          */
         $this->SetFont('Arial', 'B', 8);
-        $this->Cell('20', '5', 'No de Factura', 1, '', 'C');
+        $this->Cell('15', '5', 'No Factura', 1, '', 'C');
+        $this->Cell('30', '5', 'Sede', 1, '', 'C');
         $this->Cell('45', '5', 'Paciente', 1, '', 'C');
-        $this->Cell('10', '5', 'Sexo', 1, '', 'C');
+        $this->Cell('5', '5', 'Sx', 1, '', 'C');
         $this->Cell('10', '5', 'Edad', 1, '', 'C');
-        $this->Cell('35', '5', 'Medico', 1, '', 'C');
-        $this->Cell('45', '5', 'Examen', 1, '', 'C');
-        $this->Cell('30', '5', 'Informe',1, 0, 'C', 0, '2');
+        $this->Cell('30', '5', 'Medico', 1, '', 'C');
+        $this->Cell('40', '5', 'Examen', 1, '', 'C');
+        $this->Cell('10', '5', 'Infor',1, 0, 'C', 0, '2');
         $this->ln(5 );
 
     }
