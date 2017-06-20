@@ -106,11 +106,6 @@ CitologiaController extends Controller
         $previous = Citologia::where('id', '<', $item->id)->max('id');
         $next = Citologia::where('id', '>', $item->id)->min('id');
 
-
-        $total = Citologia::all()->count();
-        $first = $total->first();
-        $last = $total->last();
-
         $now = date("Y-m-d");
         $bdate = Carbon::createFromFormat('Y-m-d', $now)->startOfDay();
         $edate = Carbon::createFromFormat('Y-m-d', $now)->endOfDay();
