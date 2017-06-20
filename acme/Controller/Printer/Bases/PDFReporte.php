@@ -53,7 +53,7 @@ class PDFReporte extends baseFpdf
         $this->SetFont('Arial', 'B', 8);
         $this->Cell('15', '5', 'No Factura', 1, '', 'C');
         $this->Cell('35', '5', 'Sede', 1, '', 'C');
-        $this->Cell('65', '5', 'Paciente', 1, '', 'C');
+        $this->Cell('64', '5', 'Paciente', 1, '', 'C');
         $this->Cell('5', '5', 'Sx', 1, '', 'C');
         $this->Cell('10', '5', 'Edad', 1, '', 'C');
         $this->Cell('30', '5', 'Medico', 1, '', 'C');
