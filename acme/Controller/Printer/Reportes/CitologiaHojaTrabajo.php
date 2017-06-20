@@ -23,7 +23,7 @@ class CitologiaHojaTrabajo
         $ftitle =  $this->ConvertCharacters->convert("Hoja de Citología");
         $pdf = new PDFReporte($orientation = 'P', $unit = 'mm', $size = 'Letter', $ftitle = $ftitle, $dates, $user);
         setlocale(LC_CTYPE, 'en_US');
-        $pdf->SetLeftMargin(0);
+        $pdf->SetLeftMargin(1);
 
         $pdf->AliasNbPages();
 
