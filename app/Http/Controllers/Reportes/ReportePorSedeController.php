@@ -34,8 +34,8 @@ class ReportePorSedeController extends Controller
         list($items, $bdate, $edate, $total, $direccion) = $query->queryBuilder($request);
 
         $print = new SedeEntrega();
-        return $print->printPdfHitoReport($items, $bdate, $edate, $total, $direccion);
+        //return array($items, $bdate, $edate, $total, $direccion);
 
-        //return View('reportes.reporteDeparamentos.results', compact('items', 'total', 'bdate', 'edate', 'direccion'));
+        return $print->printPdfHitoReport($items, $bdate, $edate, $total, $direccion);
     }
 }
