@@ -5,11 +5,9 @@ namespace App\Http\Controllers;
 use Acme\Controller\CitologiaControllerHelper;
 use Acme\Helpers\DateHelper;
 use Acme\Helpers\SerialHelper;
-use Acme\Refactoria\Implement\FormatSimpleDates;
 use App\Categoria;
 use App\Citologia;
 use App\CitoSerial;
-use App\CitoUnbind;
 use App\Firma;
 use App\Http\Requests\CitologiaValidate;
 use Carbon\Carbon;
@@ -27,7 +25,6 @@ CitologiaController extends Controller
         $this->middleware('auth');
         $this->middleware('checkActive');
         $this->middleware('ManageCito');
-        $this->formatDates = new FormatSimpleDates();
     }
 
     /**
