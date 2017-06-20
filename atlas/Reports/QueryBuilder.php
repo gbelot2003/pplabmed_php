@@ -39,7 +39,6 @@ class QueryBuilder
             list($bdate, $edate) = $this->formatQuery->formatQueryDates($b_date, $e_date);
         }
 
-
         $idCito = $request->has('icitologia_id') ? $request->get('icitologia_id') : null;
         $direc = $request->has('direccion') ? $request->get('direccion') : null;
         $mor1 = $request->has('mor1') ? $request->get('mor1') : null;

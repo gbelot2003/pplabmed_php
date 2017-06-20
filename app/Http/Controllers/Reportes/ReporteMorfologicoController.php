@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Reportes;
 
 use Acme\Refactoria\Builds\MorfologiaBuild;
 use App\Http\Controllers\Controller;
+use Atlas\Reports\Patologia\ReporteMorfologicoQuery;
 use Illuminate\Http\Request;
 
 class ReporteMorfologicoController extends Controller
@@ -25,6 +26,9 @@ class ReporteMorfologicoController extends Controller
 
     public function results(Request $request)
     {
-        return $this->build->builCallController($request);
+        $query = new ReporteMorfologicoQuery();
+        list($items, $bdate, $edate) = $query->queryBuilder($request);
+
+        return View('reportes.histo.morfologias.results', compact('items', 'bdate', 'edate'));
     }
 }

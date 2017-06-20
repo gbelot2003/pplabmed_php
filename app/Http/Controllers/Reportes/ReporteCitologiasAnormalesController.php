@@ -15,7 +15,6 @@ class ReporteCitologiasAnormalesController extends Controller
      */
     function __construct()
     {
-        //$this->build = new CitologiasAnormalesBuild();
     }
 
     /**
