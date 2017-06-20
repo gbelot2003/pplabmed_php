@@ -24,7 +24,7 @@ class HojaTrabajoCedesQuery
         ->whereBetween('facturas.created_at', [$bdate, $edate])
         ->where('status', 'Valida');
         if (isset($direc)){
-            $query->where('direccion_entrega_sede', 'LIKE', '%' . $direc. '%');
+            $query->where('direccion_entrega_sede', $direc);
         }
         $query->groupBy('facturas.num_factura');
         $query->orderBy('facturas.num_factura', 'ASC');
