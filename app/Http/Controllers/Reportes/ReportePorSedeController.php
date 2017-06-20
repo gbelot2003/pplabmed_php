@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Reportes;
 
-use Acme\Refactoria\Builds\ReporteSedeBuild;
+use Acme\Controller\Printer\Reportes\SedeEntrega;
 use App\Factura;
 use App\Http\Controllers\Controller;
 use Atlas\Reports\Sedes\HojaTrabajoCedesQuery;
@@ -33,6 +33,9 @@ class ReportePorSedeController extends Controller
         $query = new HojaTrabajoCedesQuery();
         list($items, $bdate, $edate, $total, $direccion) = $query->queryBuilder($request);
 
-        return View('reportes.reporteDeparamentos.results', compact('items', 'total', 'bdate', 'edate', 'direccion'));
+        $print = new SedeEntrega();
+        return $print->printPdfHitoReport($items, $bdate, $edate, $total, $direccion);
+
+        //return View('reportes.reporteDeparamentos.results', compact('items', 'total', 'bdate', 'edate', 'direccion'));
     }
 }

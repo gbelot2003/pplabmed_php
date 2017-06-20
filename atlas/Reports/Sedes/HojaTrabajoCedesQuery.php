@@ -18,14 +18,14 @@ class HojaTrabajoCedesQuery
         if (isset($direc)) {
 
             $query = $PDO->prepare("
-                select DISTINCT f.id, f.num_factura, f.nombre_completo_cliente, f.edad, f.sexo, 
+                select DISTINCT f.id, f.num_factura, f.nombre_completo_cliente, f.edad, f.sexo, f.medico,
                 x.nombre_examen, f.direccion_entrega_sede, c.serial from facturas as f
                 left JOIN examenes as x on f.num_factura = x.num_factura
                 left JOIN citologias as c on f.num_factura = c.factura_id
                 where f.created_at BETWEEN '" . $bdate . "' AND '" . $edate . "'
                 AND f.direccion_entrega_sede = '" . $direc . "'
                 UNION
-                select DISTINCT f.id, f.num_factura, f.nombre_completo_cliente, f.edad, f.sexo, 
+                select DISTINCT f.id, f.num_factura, f.nombre_completo_cliente, f.edad, f.sexo, f.medico,
                 x.nombre_examen, f.direccion_entrega_sede, h.serial from facturas as f
                 left JOIN histopatologias as h on f.num_factura = h.factura_id
                 left JOIN examenes as x on f.num_factura = x.num_factura
@@ -36,13 +36,13 @@ class HojaTrabajoCedesQuery
               ");
         } else {
             $query = $PDO->prepare("
-                select DISTINCT f.id, f.num_factura, f.nombre_completo_cliente, f.edad, f.sexo, 
+                select DISTINCT f.id, f.num_factura, f.nombre_completo_cliente, f.edad, f.sexo, f.medico,
                 x.nombre_examen, f.direccion_entrega_sede, c.serial from facturas as f
                 left JOIN examenes as x on f.num_factura = x.num_factura
                 left JOIN citologias as c on f.num_factura = c.factura_id
                 where f.created_at BETWEEN '" . $bdate . "' AND '" . $edate . "'
                 UNION
-                select DISTINCT f.id, f.num_factura, f.nombre_completo_cliente, f.edad, f.sexo, 
+                select DISTINCT f.id, f.num_factura, f.nombre_completo_cliente, f.edad, f.sexo, f.medico,
                 x.nombre_examen, f.direccion_entrega_sede, h.serial from facturas as f
                 left JOIN examenes as x on f.num_factura = x.num_factura
                 left JOIN histopatologias as h on f.num_factura = h.factura_id
