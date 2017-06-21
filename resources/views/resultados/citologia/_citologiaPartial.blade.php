@@ -165,7 +165,7 @@
         content:"";
     }
 </style>
-<script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
+<script src="/js/ckeditor/ckeditor.js"></script>
 <script>
     CKEDITOR.config.enterMode = 2;
 </script>
