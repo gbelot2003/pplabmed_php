@@ -50,9 +50,10 @@ class HistopatologiaController extends Controller
         $serialHelper = new SerialHelper();
         $request['serial'] = $serialHelper->getSerial(2);
 
+
         if ($request->has('fecha_biopcia')) {
-            $fecha_nac = new DateHelper($request->get('fecha_biopcia'));
-            $request['fur'] = $fecha_nac->getDate();
+            $fecha_nac = new DateHelper($request->get('fecha_muestra'));
+            $request['fecha_biopcia'] = $fecha_nac->getDate();
         }
 
         if ($request->has('fecha_muestra')) {
@@ -109,7 +110,7 @@ class HistopatologiaController extends Controller
         }
 
         if ($request->has('fecha_biopcia')) {
-            $fecha_nac = new DateHelper($request->get('fecha_biopcia'));
+            $fecha_nac = new DateHelper($request->get('fecha_muestra'));
             $request['fecha_biopcia'] = $fecha_nac->getDate();
         }
 
