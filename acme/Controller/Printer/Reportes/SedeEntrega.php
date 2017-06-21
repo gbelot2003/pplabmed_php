@@ -65,7 +65,7 @@ class SedeEntrega
              * Medico
              */
             $pdf->SetFont('Arial', '', 8);
-            $pdf->Cell('30', '10', $rows['medico'], 1, '', 'L');
+            $pdf->Cell('30', '10', $this->ConvertCharacters->convert($rows['medico']), 1, '', 'L');
 
             /**
              * Examen
