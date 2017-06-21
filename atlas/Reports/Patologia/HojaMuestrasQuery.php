@@ -22,10 +22,13 @@ class HojaMuestrasQuery
 
         $data = $this->model->with('facturas')
             ->whereBetween('fecha_informe', [$bdate, $edate])
+            ->where('muestra_entrega', 1)
             ->orderBy('factura_id', 'asc');
 
+        $item = $data->get();
+        $total = $item->count();
 
-        return array($data, $bdate, $edate);
+        return array($item, $bdate, $edate, $total);
     }
 
 }
