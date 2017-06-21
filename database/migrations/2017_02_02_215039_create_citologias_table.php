@@ -13,7 +13,7 @@ class CreateCitologiasTable extends Migration
      */
     public function up()
     {
-        Schema::create('Citologias', function (Blueprint $table) {
+        Schema::create('citologias', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('serial')->unique();
             $table->integer('factura_id');
@@ -46,6 +46,6 @@ class CreateCitologiasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Citologias');
+        Schema::dropIfExists('citologias');
     }
 }
