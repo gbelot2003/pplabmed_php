@@ -120,4 +120,5 @@
         <button type="submit" class="btn btn-primary">Guardar</button>
     </div>
 </div>
-<script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
+<script src="/js/ckeditor/ckeditor.js"></script>
+
