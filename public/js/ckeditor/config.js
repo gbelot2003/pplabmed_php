@@ -10,9 +10,8 @@ CKEDITOR.editorConfig = function( config ) {
     config.toolbarCanCollapse = true;
 
     config.keystrokes = [
-        [ 120, 'save' ],
+        [ 120, 'save' ]
     ];
-
 
     config.linkShowAdvancedTab = false;
     config.linkShowTargetTab = false;
