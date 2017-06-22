@@ -19,8 +19,8 @@ class IdentificadorCitologiaQuery
     public function queryBuilder(Request $request)
     {
 
-        $query = new QueryBuilder();
-        list($bdate, $edate, $idCito, $direc, $mor1, $mor2, $topog) = $query->processRequirements($request);
+        $build = new QueryBuilder();
+        list($bdate, $edate, $idCito, $direc, $mor1, $mor2, $topog) = $build->processRequirements($request);
 
         $query = $this->citologia->whereBetween('fecha_informe', [$bdate, $edate]);
 
@@ -30,8 +30,9 @@ class IdentificadorCitologiaQuery
         $query->orderby('categorias.id', 'ASC');
 
         $items = $query->get();
-        $total = $items->count();
+        $cito = $this->citologia->whereBetween('fecha_informe', [$bdate, $edate])->get();
+        $total = $cito->count();
 
-        return array($query, $bdate, $edate, $total);
+        return array($items, $bdate, $edate, $total);
     }
 }
