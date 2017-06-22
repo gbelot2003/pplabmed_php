@@ -77,7 +77,7 @@ class HistopatologiaController extends Controller
         $histo->facturas->update($request->all());
         $serialHelper->setSerial($request->input('serial'), 2);
 
-        flash('Reegistro Creado', 'success')->important();
+        flash('Registro Creado', 'success')->important();
         return redirect()->to(action('HistopatologiaController@edit', $histo->id));
     }
 
