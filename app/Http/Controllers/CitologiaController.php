@@ -88,7 +88,7 @@ CitologiaController extends Controller
         $cito = Citologia::create($request->all());
         $cito->facturas->update($request->all());
         $serialHelper->setSerial($request->input('serial'), 1);
-        flash('Reegistro Creado', 'success')->important();
+        flash('Registro Creado', 'success')->important();
 
         return redirect()->to(action('CitologiaController@edit', $cito->id));
     }
@@ -161,7 +161,7 @@ CitologiaController extends Controller
 
 
 
-        flash('Reegistro Actualizado', 'success')->important();
+        flash('Registro Actualizado', 'success')->important();
         return redirect()->back();
     }
 
