@@ -34,7 +34,8 @@ class ReporteMorfologicoQuery {
         }
 
         $items = $query->get();
+        $total = $items->count();
 
-        return array($items, $bdate, $edate);
+        return array($items, $bdate, $edate, $total);
     }
 }

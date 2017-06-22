@@ -43,8 +43,9 @@ class HojasTrabajoCitologiaQuery {
         }
 
         $data = $query->get();
+        $total = $data->count();
 
-        return array($data, $bdate, $edate);
+        return array($data, $bdate, $edate, $total);
     }
 
 
