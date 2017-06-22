@@ -16,7 +16,8 @@ class UserController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('checkActive');
-        $this->middleware('ManageUsers');
+        $this->middleware('ManageUsers')->except('index');
+        $this->middleware('SeeUsers')->only('index');
     }
 
     /**

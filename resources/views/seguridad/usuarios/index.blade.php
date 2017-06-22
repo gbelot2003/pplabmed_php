@@ -8,7 +8,8 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <div class="text-muted pull-right">
-                            <a href="{{ action('UserController@create') }}" class="btn btn-info" alt="Crear Citologia"><span class="glyphicon glyphicon-plus"></span></a>
+                            <a href="{{ action('UserController@create') }}" class="btn btn-info"
+                               alt="Crear Citologia"><span class="glyphicon glyphicon-plus"></span></a>
                         </div>
                         <h4>Listado de Usuarios</h4>
                     </div>
@@ -20,8 +21,10 @@
                                 <th>Nombre</th>
                                 <th>Correo Electrónico</th>
                                 <th>Rol</th>
-                                <th>Estado</th>
-                                <th>Editar</th>
+                                @if(Entrust::can('manage-users'))
+                                    <th>Estado</th>
+                                    <th>Editar</th>
+                                @endif
                             </tr>
                             </thead>
                             <tbody>
@@ -35,19 +38,21 @@
                                             {{ $rol->display_name }}
                                         @endforeach
                                     </td>
-                                    <td class="checkcol">
-                                        <label>
-                                            {!! Form::checkbox('status', $item->id , $item->status,
-                                                [
-                                                'data-toggle' => 'toggle',
-                                                'data-on' => 'Activo',
-                                                'data-off' => 'Desactivado',
-                                                'class' => 'emiter'
-                                                ])
-                                            !!}
-                                        </label>
-                                    </td>
-                                    <td><a href="{{ action('UserController@edit', $item->id) }}">Editar</a></td>
+                                    @if(Entrust::can('manage-users'))
+                                        <td class="checkcol">
+                                            <label>
+                                                {!! Form::checkbox('status', $item->id , $item->status,
+                                                    [
+                                                    'data-toggle' => 'toggle',
+                                                    'data-on' => 'Activo',
+                                                    'data-off' => 'Desactivado',
+                                                    'class' => 'emiter'
+                                                    ])
+                                                !!}
+                                            </label>
+                                        </td>
+                                        <td><a href="{{ action('UserController@edit', $item->id) }}">Editar</a></td>
+                                    @endif
                                 </tr>
                             @endforeach
                             </tbody>
@@ -58,7 +63,7 @@
         </div>
     </div>
     <style type="text/css">
-        .checkcol{
+        .checkcol {
             width: 10rem;
         }
     </style>

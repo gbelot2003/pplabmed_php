@@ -28,6 +28,7 @@ class Kernel extends HttpKernel
         'ShowFact' =>  \App\Http\Middleware\FactPerm::class,
         'ShowReports' =>  \App\Http\Middleware\ReportsPerm::class,
         'ManageUsers' =>  \App\Http\Middleware\UsersPerm::class,
+        'SeeUsers' =>  \App\Http\Middleware\UsersSeePerm::class,
         'ManageRols' =>  \App\Http\Middleware\RolsPerm::class,
         'ManageTemplates' =>  \App\Http\Middleware\TemplatesPerm::class,
 
