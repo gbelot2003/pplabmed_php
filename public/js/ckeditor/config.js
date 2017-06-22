@@ -11,6 +11,13 @@ CKEDITOR.editorConfig = function( config ) {
 
     config.keystrokes = [
         [ 120, 'save' ],
+    ];
 
-    ]
+
+    config.linkShowAdvancedTab = false;
+    config.linkShowTargetTab = false;
+    config.removePlugins = 'font,format,Styles,forms,print,preview,find,about,maximize,showBlocks,undo,redo,find,replace,selectAll,removeFormat,image, flash, iFrame';
+    config.removeButtons = 'emoticons,Iframe,Table,Anchor,Underline,Strike,Subscript,Superscript';
+    config.removeButtons = 'Underline,JustifyCenter,Bloaquote';
+
 };
