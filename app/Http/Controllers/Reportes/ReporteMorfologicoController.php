@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Reportes;
 
-use Acme\Refactoria\Builds\MorfologiaBuild;
 use App\Http\Controllers\Controller;
 use Atlas\Reports\Patologia\ReporteMorfologicoQuery;
 use Illuminate\Http\Request;
@@ -15,7 +14,6 @@ class ReporteMorfologicoController extends Controller
         $this->middleware('auth');
         $this->middleware('checkActive');
         $this->middleware('ShowReports');
-        $this->build = new MorfologiaBuild();
     }
 
 
