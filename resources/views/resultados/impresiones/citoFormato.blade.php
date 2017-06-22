@@ -2,7 +2,7 @@
 @section('content')
     <link rel="stylesheet" href="/css/cito_form.css">
     <div id="formulario">
-        <span class="no-print"><a class="imprimir" onclick="window.print();" href="#">Imprimir</a></span>
+        <span class="no-print"><a class="imprimir" onclick="loadPrint()" href="#">Imprimir</a></span>
         <div id="cabezera">
             <span class="paciente-etiqueta parte">PACIENTE: <strong>{{ $items->facturas->nombre_completo_cliente }}</strong></span>
             <span class="edad-etiqueta parte">EDAD: <strong>{{ $items->facturas->edad }}</strong></span>
@@ -71,4 +71,10 @@
             @endif
         </div>
     </div>
+    <script>
+        function loadPrint() {
+            window.print();
+            setTimeout(function () { window.close(); }, 100);
+        }
+    </script>
 @stop

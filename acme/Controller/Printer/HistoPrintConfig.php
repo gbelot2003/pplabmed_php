@@ -37,7 +37,7 @@ class HistoPrintConfig{
             $this->PrintImages($data, $pdf);
         }
 
-
+        $pdf->IncludeJS("print('true');");
 
         return $pdf->Output();
     }
@@ -347,6 +347,7 @@ class HistoPrintConfig{
         $pdf->SetFont('Helvetica', 'B', 10);
         $pdf->Cell(30, 5, $data->facturas->num_factura, 0, 0, 'L');
     }
+
 
 }
 
