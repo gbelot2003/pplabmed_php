@@ -40,8 +40,8 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('citologias/config-serial', 'CitoSerialController@citologiaUpdate')->name('citologias.config');
     Route::get('citologia/listados', 'CitologiaController@listados');
     Route::get('citologia/busqueda', 'CitologiaController@searchPage');
-    Route::post('citologias/busqueda', 'CitologiaController@processForm');
-    Route::any('citologia/resultados/{serial}/{factura_id}/{nombre}/{edad}/{sexo}/{corrreo}/{correo2}/{direccion}/{medico}/{otros}/{gravidad}/{icito}/{para}/{abortos}/{fur}/{fup}/{finfo}/{fmues}/{firma1}/{firma2}/{otrosb}/{informe}/{diagnostico}', 'CitologiaController@search');
+    Route::get('citologias/busqueda/resultados/', 'CitologiaController@processForm');
+
     /***/Route::get('citologia/sobres/{id}', 'PrintController@sobresCitologia');
     /***/Route::get('citologia/formulario/{id}', 'PrintController@formatoCitologia');
 

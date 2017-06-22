@@ -80,7 +80,7 @@ CitologiaController extends Controller
 
         if ($request->has('firma2_id')) {
             $val = $request->get('firma2_id');
-            if ($val === 'none'){
+            if ($val === 'none') {
                 $request['firma2_id'] = null;
             }
         }
@@ -151,14 +151,13 @@ CitologiaController extends Controller
 
         if ($request->has('firma2_id')) {
             $val = $request->get('firma2_id');
-            if ($val === 'none'){
+            if ($val === 'none') {
                 $request['firma2_id'] = null;
             }
         }
 
         $cito->update($request->all());
         $cito->facturas->update($request->all());
-
 
 
         flash('Reegistro Actualizado', 'success')->important();
@@ -179,51 +178,17 @@ CitologiaController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function processForm(Request $request)
+    public function processForm()
     {
-        $citoHelper = new CitologiaControllerHelper();
-        $url = $citoHelper->ProcessFormVariables($request);
-        return redirect()->to($url);
-    }
 
-    /**
-     * @param $serial
-     * @param $factura_id
-     * @param $nombre
-     * @param $edad
-     * @param $sexo
-     * @param $correo
-     * @param $correo2
-     * @param $direccion
-     * @param $medico
-     * @param $otros
-     * @param $gravidad
-     * @param $icito
-     * @param $para
-     * @param $abortos
-     * @param $fur
-     * @param $fup
-     * @param $finfo
-     * @param $fmues
-     * @param $firma1
-     * @param $firma2
-     * @param $otrosb
-     * @param $informe
-     * @param $diagnostico
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @internal param Request $request
-     */
-    public function search($serial, $factura_id, $nombre, $edad, $sexo, $correo, $correo2, $direccion, $medico, $otros,
-                           $gravidad, $icito, $para, $abortos, $fur, $fup, $finfo, $fmues, $firma1, $firma2, $otrosb,
-                           $informe, $diagnostico)
-    {
-        $citoHelper = new CitologiaControllerHelper();
         $idCIto = Categoria::where('status', 1)->pluck('name', 'id');
         $firmas = Firma::where('status', 1)->pluck('name', 'id');
 
-        $items = $citoHelper->contrucPagination($serial, $factura_id, $nombre, $edad, $sexo, $correo, $correo2, $direccion,
-            $medico, $otros, $gravidad, $icito, $para, $abortos, $fur, $fup, $finfo,
-            $fmues, $firma1, $firma2, $otrosb, $informe, $diagnostico);
+        $query = Citologia::with('facturas');
+
+        $this->performSearchQuery($query);
+
+        $items = $query->paginate(1)->appends(\Request::all());
 
         return View('resultados.citologia.search_results', compact('items', 'idCIto', 'firmas'));
     }
@@ -257,6 +222,141 @@ CitologiaController extends Controller
             })
             ->rawColumns(['href'])
             ->make(true);
+    }
+
+    /**
+     * @param $query
+     */
+    protected function performSearchQuery($query)
+    {
+        if (\request()->has('serial')) {
+            $pacesholder = \request()->get('serial');
+            $query->where('serial', $pacesholder);
+        }
+
+        if (\request()->has('factura_id')) {
+            $pacesholder = \request()->get('factura_id');
+            $query->where('factura_id', $pacesholder);
+        }
+
+        if (\request()->has('nombre_completo_cliente')) {
+            $pacesholder = \request()->get('nombre_completo_cliente');
+            $query->whereHas('facturas', function ($q) use ($pacesholder) {
+                $q->Where('nombre_completo_cliente', $pacesholder);
+            });
+        }
+
+        if (\request()->has('edad')) {
+            $pacesholder = \request()->get('edad');
+            $query->whereHas('facturas', function ($q) use ($pacesholder) {
+                $q->Where('edad', $pacesholder);
+            });
+        }
+
+        if (\request()->has('sexo')) {
+            $pacesholder = \request()->get('sexo');
+            $query->whereHas('facturas', function ($q) use ($pacesholder) {
+                $q->Where('sexo', $pacesholder);
+            });
+        }
+
+        if (\request()->has('correo')) {
+            $pacesholder = \request()->get('correo');
+            $query->whereHas('facturas', function ($q) use ($pacesholder) {
+                $q->Where('correo', $pacesholder);
+            });
+        }
+
+        if (\request()->has('correo2')) {
+            $pacesholder = \request()->get('correo');
+            $query->whereHas('facturas', function ($q) use ($pacesholder) {
+                $q->Where('correo2', $pacesholder);
+            });
+        }
+
+        if (\request()->has('direccion_entrega_sede')) {
+            $pacesholder = \request()->get('direccion_entrega_sede');
+            $query->whereHas('facturas', function ($q) use ($pacesholder) {
+                $q->Where('direccion_entrega_sede', $pacesholder);
+            });
+        }
+
+        if (\request()->has('medico')) {
+            $pacesholder = \request()->get('medico');
+            $query->whereHas('facturas', function ($q) use ($pacesholder) {
+                $q->Where('medico', 'LIKE', '%' . $pacesholder . '%');
+            });
+        }
+
+        if (\request()->has('otros_a')) {
+            $pacesholder = \request()->get('otros_a');
+            $query->where('otros_a', $pacesholder);
+        }
+
+        if (\request()->has('icitologia_id')) {
+            $pacesholder = \request()->get('icitologia_id');
+            $query->where('icitologia_id', $pacesholder);
+        }
+
+        if (\request()->has('gravidad')) {
+            $pacesholder = \request()->get('gravidad');
+            $query->where('gravidad', $pacesholder);
+        }
+
+        if (\request()->has('abortos')) {
+            $pacesholder = \request()->get('abortos');
+            $query->where('abortos', $pacesholder);
+        }
+
+        if (\request()->has('fur')) {
+            $pacesholder = \request()->get('fur');
+
+            $query->where('fur', $pacesholder);
+        }
+
+        if (\request()->has('fup')) {
+            $pacesholder = \request()->get('fup');
+
+            $query->where('fup', $pacesholder);
+        }
+
+        if (\request()->has('fecha_informe')) {
+            $pacesholder = \request()->get('fecha_informe');
+
+            $query->where('fecha_informe', $pacesholder);
+        }
+
+        if (\request()->has('fecha_muestra')) {
+            $pacesholder = \request()->get('fecha_muestra');
+
+            $query->where('fecha_muestra', $pacesholder);
+        }
+
+        if (\request()->has('firma_id')) {
+            $pacesholder = \request()->get('firma_id');
+            $query->where('firma_id', $pacesholder);
+        }
+
+        if (\request()->has('firma2_id')) {
+            $pacesholder = \request()->get('firma2_id');
+            $query->where('firma2_id', $pacesholder);
+        }
+
+        if (\request()->has('otros_b')) {
+            $pacesholder = \request()->get('otros_b');
+            $query->where('otros_b', $pacesholder);
+        }
+
+        if (\request()->has('informe')) {
+            $pacesholder = \request()->get('informe');
+            $query->where('informe', 'LIKE', '%' . $pacesholder . '%');
+        }
+
+
+        if (\request()->has('diagnostico')) {
+            $pacesholder = \request()->get('diagnostico');
+            $query->where('diagnostico', 'LIKE', '%' . $pacesholder . '%');
+        }
     }
 }
 
