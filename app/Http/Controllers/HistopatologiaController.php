@@ -76,6 +76,13 @@ class HistopatologiaController extends Controller
         $histo->facturas->update($request->all());
         $serialHelper->setSerial($request->input('serial'), 2);
 
+        /*Audit::create([
+            'title' => 'Biopsias',
+            'action' => 'edicion',
+            'details' => $histo->serial . ' - Factura ' . $histo->facturas->num_factura,
+            'user_id' => Auth::user()->id
+        ]);*/
+
         flash('Registro Creado', 'success')->important();
         return redirect()->to(action('HistopatologiaController@edit', $histo->id));
     }
@@ -133,6 +140,13 @@ class HistopatologiaController extends Controller
         $item->update($request->all());
         $item->facturas->update($request->all());
 
+        /*Audit::create([
+            'title' => 'Biopsias',
+            'action' => 'edicion',
+            'details' => $item->serial . ' - Factura ' . $item->facturas->num_factura,
+            'user_id' => Auth::user()->id
+        ]);*/
+
         flash('Registro Actualizado', 'success')->important();
         return redirect()->back();
     }
@@ -159,7 +173,7 @@ class HistopatologiaController extends Controller
         $query = Histopatologia::with('facturas');
 
         $this->performSearchQuery($query);
-
+        $query->orderBy('serial', 'ASC');
         $items = $query->paginate(1)->appends(\Request::all());
         $i = 0;
 

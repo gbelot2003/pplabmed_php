@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Acme\Controller\CitologiaControllerHelper;
 use Acme\Helpers\SerialHelper;
+use App\Audit;
 use App\Categoria;
 use App\Citologia;
 use App\CitoSerial;
@@ -87,6 +88,14 @@ CitologiaController extends Controller
         $cito = Citologia::create($request->all());
         $cito->facturas->update($request->all());
         $serialHelper->setSerial($request->input('serial'), 1);
+
+        /*Audit::create([
+            'title' => 'Citología',
+            'action' => 'creacion',
+            'details' => $cito->serial . ' - Factura ' .$cito->facturas->num_factura,
+            'user_id' => Auth::user()->id
+        ]);*/
+
         flash('Registro Creado', 'success')->important();
 
         return redirect()->to(action('CitologiaController@edit', $cito->id));
@@ -158,6 +167,12 @@ CitologiaController extends Controller
         $cito->update($request->all());
         $cito->facturas->update($request->all());
 
+        /*Audit::create([
+            'title' => 'Citología',
+            'action' => 'edicion',
+            'details' => $cito->serial . ' - Factura ' . $cito->facturas->num_factura,
+            'user_id' => Auth::user()->id
+        ]);*/
 
         flash('Registro Actualizado', 'success')->important();
 
@@ -187,7 +202,7 @@ CitologiaController extends Controller
         $query = Citologia::with('facturas');
 
         $this->performSearchQuery($query);
-
+        $query->orderBy('serial', 'ASC');
         $items = $query->paginate(1)->appends(\Request::all());
 
         return View('resultados.citologia.search_results', compact('items', 'idCIto', 'firmas'));
