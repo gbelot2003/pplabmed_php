@@ -30,6 +30,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource('usuarios', 'UserController');
     Route::get('usuarios/state/{id}/{state}', 'UserController@state');
     Route::get('password-change', 'UserPasswordController@index')->name('change.password');
+    Route::post('password-change', 'UserPasswordController@changePassword')->name('change.changePassword');
 
 
     Route::resource('plantillas', 'PlantillasController');

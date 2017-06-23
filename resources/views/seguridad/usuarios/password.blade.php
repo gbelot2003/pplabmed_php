@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            {!! Form::open(['action' => ['UserController@store']]) !!}
+            {!! Form::open(['action' => ['UserPasswordController@changePassword']]) !!}
             <div class="col-md-10 col-md-offset-1">
 
                 <div class="panel panel-default">
@@ -16,7 +16,8 @@
                     <div class="row">
                         <div class="col-md-10 col-md-push-1 form-group box-style">
                             <label for="nombre">Nombre de Usuario</label>
-                            {!! Form::text('username', null, ['class' => 'form-control', 'disabled']) !!}
+                            {!! Form::text('username', $user->username, ['class' => 'form-control', 'disabled']) !!}
+                            {!! Form::hidden('user_id', $user->id) !!}
                         </div>
                     </div>
 
@@ -28,7 +29,7 @@
 
                         <div class="col-md-5 col-md-push-1 form-group box-style">
                             <label for="nombre">Repita Contraseña</label>
-                            {!! Form::password('password', ['class' => 'form-control']) !!}
+                            {!! Form::password('password_confirmation', ['class' => 'form-control']) !!}
                         </div>
                     </div>
                 </div>
