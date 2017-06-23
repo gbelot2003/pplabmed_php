@@ -23,8 +23,8 @@ class HojasTrabajoPatologiaQuery
         $query = $this->model->select('facturas.num_factura', 'facturas.nombre_completo_cliente', 'facturas.edad', 'facturas.sexo', 'facturas.medico',
             'examenes.nombre_examen', 'facturas.direccion_entrega_sede', 'histopatologias.serial', 'facturas.created_at')
             ->RightJoin('examenes', 'examenes.num_factura', '=', 'facturas.num_factura')
-            ->RightJoin('histopatologias', 'facturas.num_factura', '=', 'histopatologias.factura_id')
-            ->whereBetween('histopatologias.fecha_informe', [$bdate, $edate])
+            ->leftJoin('histopatologias', 'facturas.num_factura', '=', 'histopatologias.factura_id')
+            ->whereBetween('facturas.created_at', [$bdate, $edate])
             ->whereNotIn('examenes.item', $list_id)
             ->where('facturas.status', 'Valida')
             ->orderBy('facturas.num_factura', 'ASC');
