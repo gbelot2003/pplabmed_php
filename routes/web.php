@@ -49,8 +49,8 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('histopatologias/listados', 'HistopatologiaController@listados');
     Route::post('histopatologias/config-serial', 'CitoSerialController@histoUpdate')->name('histopatologia.config');
     Route::get('histopatologias/busqueda', 'HistopatologiaController@searchPage');
-    Route::post('histopatologia/process', 'HistopatologiaController@processForm');
-    Route::get('histopatologias/resultados/{serial}/{factura_id}/{nombre}/{edad}/{sexo}/{corrreo}/{correo2}/{direccion}/{medico}/{topo}/{mor1}/{mor2}/{firma}/{firma2}/{diag}/{muestra}/{finfo}/{fbiop}/{fmuest}/{informe}', 'HistopatologiaController@search');
+    Route::get('histopatologias/busqueda/resultados', 'HistopatologiaController@processForm');
+
     /***/Route::get('histopatologias/sobres/{id}', 'PrintController@sobreHistopatologia');
     /***/Route::get('histopatologias/formulario/{id}', 'PrintController@formatoHistopatologia');
 
