@@ -294,26 +294,26 @@ class HistopatologiaController extends Controller
         if (\request()->has('muestra')) {
             $pacesholder = \request()->get('muestra');
             $muestra = new DateHelper($pacesholder);
-            $query->where('muestra', $muestra);
+            $query->where('muestra', $muestra->getDate());
         }
 
 
         if (\request()->has('fecha_informe')) {
             $pacesholder = \request()->get('fecha_informe');
             $muestra = new DateHelper($pacesholder);
-            $query->where('fecha_informe', $muestra);
+            $query->where('fecha_informe', $muestra->getDate());
         }
 
         if (\request()->has('fecha_biopcia')) {
             $pacesholder = \request()->get('fecha_biopcia');
             $muestra = new DateHelper($pacesholder);
-            $query->where('fecha_biopcia', $muestra);
+            $query->where('fecha_biopcia', $muestra->getDate());
         }
 
         if (\request()->has('fecha_muestra')) {
             $pacesholder = \request()->get('fecha_muestra');
             $muestra = new DateHelper($pacesholder);
-            $query->where('fecha_muestra', $muestra);
+            $query->where('fecha_muestra', $muestra->getDate());
         }
 
         if (\request()->has('informe')) {
