@@ -24,7 +24,7 @@ class HojasTrabajoCitologiaQuery
             'examenes.nombre_examen', 'facturas.direccion_entrega_sede', 'citologias.serial', 'facturas.created_at')
             ->Join('examenes', 'examenes.num_factura', '=', 'facturas.num_factura')
             ->leftJoin('citologias', 'facturas.num_factura', '=', 'citologias.factura_id')
-            ->whereBetween('facturas.created_at', [$bdate, $edate])
+            ->whereBetween('citologias.fecha_informe', [$bdate, $edate])
             ->whereIn('examenes.item', $list_id)
             ->where('facturas.status', 'Valida')
             ->orderBy('facturas.num_factura', 'ASC');

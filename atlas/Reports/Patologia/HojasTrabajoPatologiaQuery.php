@@ -24,7 +24,7 @@ class HojasTrabajoPatologiaQuery
             'examenes.nombre_examen', 'facturas.direccion_entrega_sede', 'histopatologias.serial', 'facturas.created_at')
             ->RightJoin('examenes', 'examenes.num_factura', '=', 'facturas.num_factura')
             ->RightJoin('histopatologias', 'facturas.num_factura', '=', 'histopatologias.factura_id')
-            ->whereBetween('facturas.created_at', [$bdate, $edate])
+            ->whereBetween('histopatologias.fecha_informe', [$bdate, $edate])
             ->whereNotIn('examenes.item', $list_id)
             ->where('facturas.status', 'Valida')
             ->orderBy('facturas.num_factura', 'ASC');
