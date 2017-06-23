@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Acme\Helpers\DateHelper;
 use App\Factura;
 use App\Http\Requests\FacturasValidate;
 use Acme\Controller\FacturasApiHeper;
-use function GuzzleHttp\Promise\all;
+use Atlas\Helpers\DateHelper;
+use GuzzleHttp\Promise\all;
 use Illuminate\Http\Request;
 
 class FactutasApiController extends Controller
