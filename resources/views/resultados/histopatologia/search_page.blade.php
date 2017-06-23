@@ -21,7 +21,7 @@
                         <h4>Busqueda de Histopatología</h4>
                     </div>
                     <div class="panel-body" id="app">
-                        {!! Form::open(['action' => ['HistopatologiaController@processForm'], 'method' => 'POST']) !!}
+                        {!! Form::open(['action' => ['HistopatologiaController@processForm'], 'method' => 'GET']) !!}
                             @include('resultados.histopatologia._search_form')
                         {!!  Form::close() !!}
                     </div>
@@ -29,4 +29,7 @@
             </div>
         </div>
     </div>
+@stop
+@section('jscode')
+    <script src="{{ asset('js/histopatologia-form.js') }}"></script>
 @stop

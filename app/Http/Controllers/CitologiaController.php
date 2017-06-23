@@ -230,6 +230,34 @@ CitologiaController extends Controller
      */
     protected function performSearchQuery($query)
     {
+
+        if ($request->has('fur')) {
+            $fecha_nac = new DateHelper($request->get('fur'));
+            $request['fur'] = $fecha_nac->getDate();
+        }
+
+        if ($request->has('fup')) {
+            $fecha_nac = new DateHelper($request->get('fup'));
+            $request['fup'] = $fecha_nac->getDate();
+        }
+
+        if ($request->has('fecha_muestra')) {
+            $fecha_nac = new DateHelper($request->get('fecha_muestra'));
+            $request['fecha_muestra'] = $fecha_nac->getDate();
+        }
+
+        if ($request->has('fecha_informe')) {
+            $fecha_nac = new DateHelper($request->get('fecha_informe'));
+            $request['fecha_informe'] = $fecha_nac->getDate();
+        }
+
+        if ($request->has('firma2_id')) {
+            $val = $request->get('firma2_id');
+            if ($val === 'none') {
+                $request['firma2_id'] = null;
+            }
+        }
+
         if (\request()->has('serial')) {
             $pacesholder = \request()->get('serial');
             $query->where('serial', $pacesholder);

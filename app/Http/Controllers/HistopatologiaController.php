@@ -153,165 +153,18 @@ class HistopatologiaController extends Controller
      */
     public function processForm(Request $request)
     {
-        //dd($request->all());
-        $request->get('serial') ? $serial = $request->get('serial'): $serial = 'null';
-        $request->get('factura_id') ? $factura_id = $request->get('factura_id'): $factura_id = 'null';
-        $request->get('nombre_completo_cliente') ? $nombre = $request->get('nombre_completo_cliente'): $nombre = 'null';
-        $request->get('edad') ? $edad = $request->get('edad'): $edad = 'null';
-        $request->get('sexo') ? $sexo = $request->get('sexo'): $sexo = 'null';
-        $request->get('correo') ? $correo = $request->get('correo'): $correo = 'null';
-        $request->get('correo2') ? $correo2 = $request->get('correo2'): $correo2 = 'null';
-        $request->get('direccion_entrega_sede') ? $direccion = $request->get('direccion_entrega_sede'): $direccion = 'null';
-        $request->get('medico') ? $medico = $request->get('medico'): $medico = 'null';
-
-        $request->get('topog') ? $topo = $request->get('topog'): $topo = 'null';
-        $request->get('mor1') ? $mor1 = $request->get('mor1'): $mor1 = 'null';
-        $request->get('mor2') ? $mor2 = $request->get('mor2'): $mor2 = 'null';
-        $request->get('firma_id') ? $firma = $request->get('firma_id'): $firma = 'null';
-        $request->get('firma2_id') ? $firma2 = $request->get('firma2_id'): $firma2 = 'null';
-        $request->get('diagnostico') ? $diag = $request->get('diagnostico'): $diag = 'null';
-        $request->get('muestra') ? $muestra = $request->get('muestra'): $muestra = 'null';
-        $request->get('fecha_informe') ? $finfo = $request->get('fecha_informe'): $finfo = 'null';
-        $request->get('fecha_biopcia') ? $fbiop = $request->get('fecha_biopcia'): $fbiop = 'null';
-        $request->get('fecha_muestra') ? $fmuest = $request->get('fecha_muestra'): $fmuest = 'null';
-        $request->get('informe') ? $informe = $request->get('informe'): $informe = 'null';
-
-        $url = 'histopatologias/resultados/'.$serial.'/'.$factura_id.'/'.$nombre.'/'.$edad.'/'.$sexo.'/'.$correo.'/'.$correo2.'/'.$direccion.'/'.$medico;
-        $url .= '/'.$topo.'/'.$mor1.'/'.$mor2.'/'.$firma.'/'.$firma2.'/'.$diag.'/'.$muestra.'/'.$finfo.'/'.$fbiop.'/'.$fmuest.'/'.$informe;
-        return redirect()->to($url);
-    }
-
-    /**
-     * @param $serial
-     * @param $factura_id
-     * @param $nombre
-     * @param $edad
-     * @param $sexo
-     * @param $correo
-     * @param $correo2
-     * @param $direccion
-     * @param $medico
-     * @param $topo
-     * @param $mor1
-     * @param $mor2
-     * @param $firma
-     * @param $firma2
-     * @param $diag
-     * @param $muestra
-     * @param $finfo
-     * @param $fbiop
-     * @param $fmuest
-     * @param $informe
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @internal param $inicio
-     * @internal param $fin
-     */
-    public function search($serial, $factura_id, $nombre, $edad, $sexo, $correo, $correo2, $direccion, $medico, $topo, $mor1, $mor2, $firma, $firma2, $diag, $muestra, $finfo, $fbiop, $fmuest, $informe)
-    {
         $firmas = Firma::where('status', 1)->pluck('name', 'id');
         $plantillas = Plantilla::all();
-
+        $i = 0;
 
         $query = Histopatologia::with('facturas');
 
-        if($serial != 'null'){
-            $query->where('serial', $serial);
-        }
+        $this->performSearchQuery($query);
 
-        if($factura_id != 'null'){
-            $query->where('factura_id', $factura_id);
-        }
-
-        if($nombre != 'null'){
-            $query->whereHas('facturas', function($q) use ($nombre){
-                $q->Where('nombre_completo_cliente', 'like', '%' . $nombre . '%');
-            });
-        }
-
-        if($edad != 'null'){
-            $query->whereHas('facturas', function($q) use ($edad){
-                $q->where('edad', $edad);
-            });
-        }
-
-        if($sexo != 'null'){
-            $query->whereHas('facturas', function($q) use ($sexo){
-                $q->where('sexo', $sexo);
-            });
-        }
-
-        if($correo != 'null'){
-            $query->whereHas('facturas', function($q) use ($correo){
-                $q->where('correo', 'like', '%' . $correo . '%');
-            });
-        }
-
-        if($correo2 != 'null'){
-            $query->whereHas('facturas', function($q) use ($correo2){
-                $q->where('correo2', 'like', '%' . $correo2 . '%');
-            });
-        }
-
-        if($direccion != 'null'){
-            $query->whereHas('facturas', function($q) use ($direccion){
-                $q->where('direccion_entrega_sede', 'like', '%' . $direccion . '%');
-            });
-        }
-
-
-        if($medico != 'null'){
-            $query->whereHas('facturas', function($q) use ($medico){
-                $q->where('medico', 'like', '%' . $medico . '%');
-            });
-        }
-
-        if($topo != 'null'){
-            $query->where('topog', $topo);
-        }
-
-        if($mor1 != 'null'){
-            $query->where('mor1', $mor1);
-        }
-
-        if($mor2 != 'null'){
-            $query->where('mor2', $mor2);
-        }
-
-        if($firma != 'null'){
-            $query->where('firma_id', $firma);
-        }
-        if($firma2 != 'null'){
-            $query->where('firma2_id', $firma2);
-        }
-
-        if($diag != 'null'){
-            $query->where('diagnostico', 'like', '%' . $diag . '%');
-        }
-
-
-        if($muestra != 'null') {
-            $query->where('muestra', $muestra);
-        }
-
-        if($finfo != 'null'){
-            $query->where('fecha_informe', $finfo);
-        }
-
-        if($fbiop != 'null') {
-            $query->where('fecha_biopcia', $fbiop);
-        }
-
-        if($fmuest != 'null'){
-            $query->where('fecha_muestra', $fmuest);
-        }
-
-        if($informe != 'null') {
-            $query->where('informe', 'like', '%' . $informe . '%');
-        }
-
-        $items = $query->paginate(1);
+        $items = $query->paginate(1)->appends(\Request::all());
         $i = 0;
-        return View('resultados.histopatologia.search_results', compact('items', 'firmas', 'plantillas', 'i'));
+
+        return View('resultados.histopatologia.search_results', compact('items', 'plantillas', 'firmas', 'postId', 'i', 'today'));
 
     }
 
@@ -342,5 +195,131 @@ class HistopatologiaController extends Controller
             })
             ->rawColumns(['href'])
             ->make(true);
+    }
+
+    /**
+     * @param $query
+     */
+    protected function performSearchQuery($query)
+    {
+        if (\request()->has('serial')) {
+            $pacesholder = \request()->get('serial');
+            $query->where('serial', $pacesholder);
+        }
+
+        if (\request()->has('factura_id')) {
+            $pacesholder = \request()->get('factura_id');
+            $query->where('factura_id', $pacesholder);
+        }
+
+        if (\request()->has('nombre_completo_cliente')) {
+            $pacesholder = \request()->get('nombre_completo_cliente');
+            $query->whereHas('facturas', function ($q) use ($pacesholder) {
+                $q->Where('nombre_completo_cliente', $pacesholder);
+            });
+        }
+
+        if (\request()->has('edad')) {
+            $pacesholder = \request()->get('edad');
+            $query->whereHas('facturas', function ($q) use ($pacesholder) {
+                $q->Where('edad', $pacesholder);
+            });
+        }
+
+        if (\request()->has('sexo')) {
+            $pacesholder = \request()->get('sexo');
+            $query->whereHas('facturas', function ($q) use ($pacesholder) {
+                $q->Where('sexo', $pacesholder);
+            });
+        }
+
+        if (\request()->has('correo')) {
+            $pacesholder = \request()->get('correo');
+            $query->whereHas('facturas', function ($q) use ($pacesholder) {
+                $q->Where('correo', $pacesholder);
+            });
+        }
+
+        if (\request()->has('correo2')) {
+            $pacesholder = \request()->get('correo');
+            $query->whereHas('facturas', function ($q) use ($pacesholder) {
+                $q->Where('correo2', $pacesholder);
+            });
+        }
+
+        if (\request()->has('direccion_entrega_sede')) {
+            $pacesholder = \request()->get('direccion_entrega_sede');
+            $query->whereHas('facturas', function ($q) use ($pacesholder) {
+                $q->Where('direccion_entrega_sede', $pacesholder);
+            });
+        }
+
+        if (\request()->has('medico')) {
+            $pacesholder = \request()->get('medico');
+            $query->whereHas('facturas', function ($q) use ($pacesholder) {
+                $q->Where('medico', 'LIKE', '%' . $pacesholder . '%');
+            });
+        }
+
+
+        if (\request()->has('topog')) {
+            $pacesholder = \request()->get('topog');
+            $query->where('topog', $pacesholder);
+        }
+
+        if (\request()->has('mor1')) {
+            $pacesholder = \request()->get('mor1');
+            $query->where('mor1', $pacesholder);
+        }
+
+        if (\request()->has('mor2')) {
+            $pacesholder = \request()->get('mor2');
+            $query->where('mor2', $pacesholder);
+        }
+
+        if (\request()->has('firma_id')) {
+            $pacesholder = \request()->get('firma_id');
+            $query->where('firma_id', $pacesholder);
+        }
+
+        if (\request()->has('firma2_id')) {
+            $pacesholder = \request()->get('firma2_id');
+            $query->where('firma2_id', $pacesholder);
+        }
+
+        if (\request()->has('diagnostico')) {
+            $pacesholder = \request()->get('diagnostico');
+            $query->where('diagnostico', $pacesholder);
+        }
+
+        if (\request()->has('muestra')) {
+            $pacesholder = \request()->get('muestra');
+
+            $query->where('muestra', $pacesholder);
+        }
+
+
+        if (\request()->has('fecha_informe')) {
+            $pacesholder = \request()->get('fecha_informe');
+
+            $query->where('fecha_informe', $pacesholder);
+        }
+
+        if (\request()->has('fecha_biopcia')) {
+            $pacesholder = \request()->get('fecha_biopcia');
+
+            $query->where('fecha_biopcia', $pacesholder);
+        }
+
+        if (\request()->has('fecha_muestra')) {
+            $pacesholder = \request()->get('fecha_muestra');
+
+            $query->where('fecha_muestra', $pacesholder);
+        }
+
+        if (\request()->has('informe')) {
+            $pacesholder = \request()->get('informe');
+            $query->where('informe', 'LIKE', '%' . $pacesholder . '%');
+        }
     }
 }
