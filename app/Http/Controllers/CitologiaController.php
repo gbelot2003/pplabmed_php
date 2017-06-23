@@ -3,15 +3,14 @@
 namespace App\Http\Controllers;
 
 use Acme\Controller\CitologiaControllerHelper;
-use Acme\Helpers\DateHelper;
 use Acme\Helpers\SerialHelper;
 use App\Categoria;
 use App\Citologia;
 use App\CitoSerial;
 use App\Firma;
 use App\Http\Requests\CitologiaValidate;
+use Atlas\Helpers\DateHelper;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Auth;
 use Yajra\Datatables\Datatables;
 
