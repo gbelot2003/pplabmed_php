@@ -175,8 +175,8 @@ CitologiaController extends Controller
     }
 
     /**
-     * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
+     * @internal param Request $request
      */
     public function processForm()
     {
