@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Acme\Helpers\DateHelper;
 use Acme\Helpers\SerialHelper;
 use App\CitoSerial;
-use App\CitoUnbind;
 use App\Firma;
 use App\Histopatologia;
 use App\Http\Requests\HistopatiaValidation;
 use App\LinkImage;
 use App\Plantilla;
+use Atlas\Helpers\DateHelper;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

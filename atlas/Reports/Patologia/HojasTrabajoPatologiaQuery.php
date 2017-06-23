@@ -18,18 +18,15 @@ class HojasTrabajoPatologiaQuery
         $query = new QueryBuilder();
         list($bdate, $edate, $idCito, $direc, $mor1, $mor2, $topog) = $query->processRequirements($request);
 
-        //$query = $this->model->whereBetween('facturas.fecha_informe', [$bdate, $edate]);
-
         $list_id = $this->filteringList();
 
         $query = $this->model->select('facturas.num_factura', 'facturas.nombre_completo_cliente', 'facturas.edad', 'facturas.sexo', 'facturas.medico',
             'examenes.nombre_examen', 'facturas.direccion_entrega_sede', 'histopatologias.serial', 'facturas.created_at')
-            ->Join('examenes', 'examenes.num_factura', '=', 'facturas.num_factura')
-            ->leftJoin('histopatologias', 'facturas.num_factura', '=', 'histopatologias.factura_id')
+            ->RightJoin('examenes', 'examenes.num_factura', '=', 'facturas.num_factura')
+            ->RightJoin('histopatologias', 'facturas.num_factura', '=', 'histopatologias.factura_id')
             ->whereBetween('facturas.created_at', [$bdate, $edate])
             ->whereNotIn('examenes.item', $list_id)
             ->where('facturas.status', 'Valida')
-            ->groupBy('facturas.num_factura')
             ->orderBy('facturas.num_factura', 'ASC');
 
         if ($request->has('direccion')) {
