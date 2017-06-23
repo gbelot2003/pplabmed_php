@@ -339,26 +339,26 @@ CitologiaController extends Controller
 
         if (\request()->has('fur')) {
             $pacesholder = \request()->get('fur');
-
-            $query->where('fur', $pacesholder);
+            $fur = new DateHelper($pacesholder);
+            $query->where('fur', $fur);
         }
 
         if (\request()->has('fup')) {
             $pacesholder = \request()->get('fup');
-
-            $query->where('fup', $pacesholder);
+            $fup = new DateHelper($pacesholder);
+            $query->where('fup', $fup);
         }
 
         if (\request()->has('fecha_informe')) {
             $pacesholder = \request()->get('fecha_informe');
-
-            $query->where('fecha_informe', $pacesholder);
+            $fecha_informe = new DateHelper($pacesholder);
+            $query->where('fecha_informe', $fecha_informe);
         }
 
         if (\request()->has('fecha_muestra')) {
             $pacesholder = \request()->get('fecha_muestra');
-
-            $query->where('fecha_muestra', $pacesholder);
+            $fecha_muestra = new DateHelper($pacesholder);
+            $query->where('fecha_muestra', $fecha_muestra);
         }
 
         if (\request()->has('firma_id')) {
