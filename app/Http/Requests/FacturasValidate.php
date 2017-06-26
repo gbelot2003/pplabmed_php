@@ -26,11 +26,11 @@ class FacturasValidate extends FormRequest
     {
 
         return [
-            'num_factura' => 'numeric|required|unique:facturas,num_factura,' .$request->get('num_factura'),
+            'num_factura' => 'numeric|required',
             'num_cedula' => 'string|nullable',
             'nombre_completo_cliente' => 'required|string',
-            'fecha_nacimiento' => 'nullable',
-            'correo' => 'email|nullable',
+            'fecha_nacimiento' => 'string|nullable',
+            'correo' => 'string|nullable',
             'correo2' => 'string|nullable',
             'direccion_entrega_sede' => 'string|nullable',
             'medico' => 'string|nullable',

@@ -16,7 +16,7 @@ class FactutasApiController extends Controller
      * @param FacturasValidate|Request $request
      * @return string
      */
-    public function store(Request $request)
+    public function store(FacturasValidate $request)
     {
         $factHelp = new FacturasApiHeper();
 
