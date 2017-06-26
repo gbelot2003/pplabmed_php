@@ -26,7 +26,7 @@ class FacturasValidate extends FormRequest
     {
 
         return [
-            'num_factura' => 'numeric',
+            'num_factura' => 'numeric|required',
             'num_cedula' => 'string|nullable',
             'nombre_completo_cliente' => 'required|string',
             'fecha_nacimiento' => 'string|nullable',
