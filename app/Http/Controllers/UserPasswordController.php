@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Audit;
 use App\Http\Requests\PasswordRequest;
 use App\User;
 use Illuminate\Http\Request;
@@ -31,6 +32,14 @@ class UserPasswordController extends Controller
 
         $user = User::findOrFail($id);
         $user->password = bcrypt($pass);
+
+        Audit::create([
+            'title' => 'Usuario',
+            'action' => 'Cambio de password',
+            'details' => 'Plantillas ID: ' . $user->id,
+            'user_id' => Auth::user()->id
+        ]);
+
         $user->save();
 
         flash('Password a sido modificado', 'success')->important();

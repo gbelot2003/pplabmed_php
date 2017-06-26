@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Acme\Helpers\Miselanius;
+use App\Audit;
 use App\Plantilla;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PlantillasController extends Controller
 {
@@ -43,8 +45,15 @@ class PlantillasController extends Controller
         $helper = new Miselanius();
         $request['status'] = $helper->checkRequestStatus($request);
         $items->create($request->all());
-        flash('Reegistro Creado', 'success')->important();
 
+        Audit::create([
+            'title' => 'Plantillas',
+            'action' => 'creación',
+            'details' => 'Plantillas ID: ' . $items->id,
+            'user_id' => Auth::user()->id
+        ]);
+
+        flash('Reegistro Creado', 'success')->important();
         return redirect()->to(action('PlantillasController@index'));
     }
 
@@ -71,8 +80,15 @@ class PlantillasController extends Controller
         $helper = new Miselanius();
         $request['status'] = $helper->checkRequestStatus($request);
         $item->update($request->all());
-        flash('Reegistro Actualizado', 'success')->important();
 
+        Audit::create([
+            'title' => 'Plantillas',
+            'action' => 'edición',
+            'details' => 'Plantillas ID: ' . $item->id,
+            'user_id' => Auth::user()->id
+        ]);
+
+        flash('Reegistro Actualizado', 'success')->important();
         return redirect()->to(action('PlantillasController@index'));
     }
 

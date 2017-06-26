@@ -89,12 +89,12 @@ CitologiaController extends Controller
         $cito->facturas->update($request->all());
         $serialHelper->setSerial($request->input('serial'), 1);
 
-        /*Audit::create([
+        Audit::create([
             'title' => 'Citología',
-            'action' => 'creacion',
+            'action' => 'creación',
             'details' => $cito->serial . ' - Factura ' .$cito->facturas->num_factura,
             'user_id' => Auth::user()->id
-        ]);*/
+        ]);
 
         flash('Registro Creado', 'success')->important();
 
@@ -167,12 +167,12 @@ CitologiaController extends Controller
         $cito->update($request->all());
         $cito->facturas->update($request->all());
 
-        /*Audit::create([
+        Audit::create([
             'title' => 'Citología',
-            'action' => 'edicion',
+            'action' => 'edición',
             'details' => $cito->serial . ' - Factura ' . $cito->facturas->num_factura,
             'user_id' => Auth::user()->id
-        ]);*/
+        ]);
 
         flash('Registro Actualizado', 'success')->important();
 

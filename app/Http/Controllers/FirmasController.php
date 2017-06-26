@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Acme\Helpers\Miselanius;
+use App\Audit;
 use App\Firma;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FirmasController extends Controller
 {
@@ -48,6 +50,14 @@ class FirmasController extends Controller
         $check = new Miselanius();
         $request['status'] = $check->checkRequestStatus($request);
         $firma = Firma::create($request->all());
+
+        Audit::create([
+            'title' => 'Firmas',
+            'action' => 'creación',
+            'details' => 'Firma ID: ' . $firma->id,
+            'user_id' => Auth::user()->id
+        ]);
+
         flash('Reegistro Creado', 'success')->important();
         return redirect()->to('/firmas');
     }
@@ -77,6 +87,15 @@ class FirmasController extends Controller
         $check = new Miselanius();
         $request['status'] = $check->checkRequestStatus($request);
         $item->update($request->all());
+
+        Audit::create([
+            'title' => 'Firmas',
+            'action' => 'edición',
+            'details' => 'Firma ID: ' . $item->id,
+            'user_id' => Auth::user()->id
+        ]);
+
+
         flash('Reegistro Actualizado', 'success')->important();
         return redirect()->to('/firmas');
     }

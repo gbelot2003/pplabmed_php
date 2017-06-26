@@ -8,7 +8,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <div class="text-muted pull-right">
-                            @if(Entrust::can('create-firmas'))
+                            @if(Entrust::can('manage-ids'))
                             <a href="{{ action('FirmasController@create') }}" class="btn btn-info" alt="Crear Citologia"><span class="glyphicon glyphicon-plus"></span></a>
                             @endif
                         </div>

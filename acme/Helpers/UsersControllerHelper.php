@@ -1,8 +1,10 @@
 <?php
 namespace Acme\Helpers;
 
+use App\Audit;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UsersControllerHelper {
 
@@ -13,6 +15,12 @@ class UsersControllerHelper {
     {
         $item = User::create($request->all());
         $this->syncFiles($request, $item);
+        Audit::create([
+            'title' => 'Usuario',
+            'action' => 'Creacion',
+            'details' => 'Usuario ID: ' . $item->id,
+            'user_id' => Auth::user()->id
+        ]);
     }
 
     /**
@@ -23,6 +31,12 @@ class UsersControllerHelper {
     {
         $user->update($request->all());
         $this->syncFiles($request, $user);
+        Audit::create([
+            'title' => 'Usuario',
+            'action' => 'Edicion',
+            'details' => 'Usuario ID: ' . $user->id,
+            'user_id' => Auth::user()->id
+        ]);
     }
 
     /**

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Acme\Helpers\Miselanius;
+use App\Audit;
 use App\Categoria;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
@@ -47,7 +49,15 @@ class CategoryController extends Controller
     {
         $check = new Miselanius();
         $request['status'] = $check->checkRequestStatus($request);
-        Categoria::create($request->all());
+        $item = Categoria::create($request->all());
+
+        Audit::create([
+            'title' => 'Id Citologías',
+            'action' => 'creación',
+            'details' => 'Rol ID: ' . $item->id,
+            'user_id' => Auth::user()->id
+        ]);
+
         flash('Reegistro Creado', 'success')->important();
         return redirect()->to('/categorias');
     }
@@ -77,6 +87,14 @@ class CategoryController extends Controller
         $item = Categoria::findOrFail($id);
         $request['status'] = $check->checkRequestStatus($request);
         $item->update($request->all());
+
+        Audit::create([
+            'title' => 'Id Citologías',
+            'action' => 'edición',
+            'details' => 'Rol ID: ' . $item->id,
+            'user_id' => Auth::user()->id
+        ]);
+
         flash('Reegistro Creado', 'success')->important();
         return redirect()->to('/categorias');
     }

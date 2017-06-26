@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Audit;
 use App\Permission;
 use App\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RolesController extends Controller
 {
@@ -34,7 +36,6 @@ class RolesController extends Controller
      */
     public function create()
     {
-        //TODO: metodo para que la casilla de nombre solo en crear y desabilitada en edit
         $perms = Permission::pluck('display_name', 'id');
         return View('seguridad.roles.create', compact('item', 'perms'));
     }
@@ -49,6 +50,14 @@ class RolesController extends Controller
     {
         $role = Role::create($request->all());
         $role->perms()->sync($request->input('perms_lists'));
+
+        Audit::create([
+            'title' => 'Roles',
+            'action' => 'creación',
+            'details' => 'Rol ID: ' . $role->id,
+            'user_id' => Auth::user()->id
+        ]);
+
         return redirect()->to('/roles');
     }
 
@@ -74,10 +83,17 @@ class RolesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //dd($request->all());
         $role = Role::findOrFail($id);
         $role->update($request->all());
         $role->perms()->sync($request->input('perms_lists'));
+
+        Audit::create([
+            'title' => 'Roles',
+            'action' => 'edición',
+            'details' => 'Rol ID: ' . $role->id,
+            'user_id' => Auth::user()->id
+        ]);
+
         return redirect()->to('/roles');
     }
 }
