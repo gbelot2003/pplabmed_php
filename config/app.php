@@ -182,7 +182,8 @@ return [
         Orangehill\Iseed\IseedServiceProvider::class,
         Yajra\Datatables\DatatablesServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
-        Crabbly\FPDF\FpdfServiceProvider::class
+        Crabbly\FPDF\FpdfServiceProvider::class,
+        Dedicated\GoogleTranslate\GoogleTranslateProvider::class,
 
 
     ],

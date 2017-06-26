@@ -17,7 +17,7 @@
         "league/flysystem-sftp": "^1.0",
         "orangehill/iseed": "dev-master",
         "yajra/laravel-datatables-oracle": "^7.2",
-        "zizaco/entrust": "dev-laravel-5"
+        "zizaco/entrust": "dev-laravel-5",
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
