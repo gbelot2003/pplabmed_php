@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Acme\Helpers\SerialHelper;
+use App\Audit;
 use App\CitoSerial;
 use App\Firma;
 use App\Histopatologia;
