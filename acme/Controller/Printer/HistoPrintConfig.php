@@ -152,7 +152,7 @@ class HistoPrintConfig{
          *  INFORME
          */
         $pdf->SetFont('Helvetica', 'B', 13);
-        $pdf->Cell(180, 5, 'INFORME', 0,  0, 'C');
+        $pdf->Cell(205, 5, 'INFORME', 0,  0, 'C');
 
         /**
          * Salto
@@ -216,10 +216,10 @@ class HistoPrintConfig{
          * Nombre
          */
         $pdf->SetFont('Arial', '', 10);
-        $pdf->Cell(20, 5, 'PACIENTE: ', 0, 0, 'L');
+        $pdf->Cell(22, 5, 'PACIENTE: ', 0, 0, 'L');
 
         $pdf->SetFont('Arial', 'B', 10);
-        $pdf->Cell(120, 5, $this->ConvertCharacters->convert(strtoupper($data->facturas->nombre_completo_cliente)), 0, 0, 'L');
+        $pdf->Cell(118, 5, $this->ConvertCharacters->convert(strtoupper($data->facturas->nombre_completo_cliente)), 0, 0, 'L');
 
         /**
          * Edad
@@ -248,10 +248,10 @@ class HistoPrintConfig{
          * Medico
          */
         $pdf->SetFont('Arial', '', 10);
-        $pdf->Cell(20, 5, $this->ConvertCharacters->convert('MÉDICO: '), 0, 0, 'L');
+        $pdf->Cell(22, 5, $this->ConvertCharacters->convert('MÉDICO: '), 0, 0, 'L');
 
         $pdf->SetFont('Arial', 'B', 10);
-        $pdf->Cell(120, 5, $this->ConvertCharacters->convert(strtoupper($data->facturas->medico)), 0, 0, 'L');
+        $pdf->Cell(118, 5, $this->ConvertCharacters->convert(strtoupper($data->facturas->medico)), 0, 0, 'L');
 
         /**
          * Fecha de Biopsia
@@ -274,10 +274,10 @@ class HistoPrintConfig{
          * Dirección
          */
         $pdf->SetFont('Helvetica', '', 10);
-        $pdf->Cell(21, 5, $this->ConvertCharacters->convert('DIRECCIÓN:'), 0, 0, 'L');
+        $pdf->Cell(22, 5, $this->ConvertCharacters->convert('DIRECCIÓN:'), 0, 0, 'L');
 
         $pdf->SetFont('Arial', 'B', 10);
-        $pdf->Cell(119, 5, $this->ConvertCharacters->convert($data->facturas->direccion_entrega_sede), 0, 0, 'L');
+        $pdf->Cell(118, 5, $this->ConvertCharacters->convert($data->facturas->direccion_entrega_sede), 0, 0, 'L');
 
 
         /**
@@ -303,10 +303,10 @@ class HistoPrintConfig{
          * Diagnostico
          */
         $pdf->SetFont('Helvetica', '', 10);
-        $pdf->Cell(22, 5, $this->ConvertCharacters->convert('DIAG. CLÍNICO') .': ', 0, 0, 'L');
+        $pdf->Cell(26, 5, $this->ConvertCharacters->convert('DIAG. CLÍNICO') .': ', 0, 0, 'L');
 
         $pdf->SetFont('Arial', 'B', 10);
-        $pdf->Cell(175, 5, $this->ConvertCharacters->convert($data->diagnostico), 0, 'L', false);
+        $pdf->Cell(171, 5, $this->ConvertCharacters->convert(strtoupper($data->diagnostico)), 0, 'L', false);
 
         /**
          * Salto
@@ -317,10 +317,10 @@ class HistoPrintConfig{
          * Material Estudiado
          */
         $pdf->SetFont('Helvetica', '', 10);
-        $pdf->Cell(32, 5, $this->ConvertCharacters->convert('MATERIAL ESTUDIADO') .': ', 0, 0, 'L');
+        $pdf->Cell(41, 5, $this->ConvertCharacters->convert('MATERIAL ESTUDIADO') .': ', 0, 0, 'L');
 
         $pdf->SetFont('Helvetica', 'B', 10);
-        $pdf->Cell(130  , 5, $this->ConvertCharacters->convert($data->muestra), 0, 0, 'L');
+        $pdf->Cell(121  , 5, $this->ConvertCharacters->convert(strtoupper($data->muestra)), 0, 0, 'L');
 
         /**
          * Salto
