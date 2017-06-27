@@ -10,7 +10,7 @@
             <span class="direccion-etiqueta parte">ADDRESS:</span>
             <span class="direccion parte"><strong>{{ $items->facturas->direccion_entrega_sede }}</strong></span>
             <span class="telefono-etiqueta parte">DOCTOR: <strong>{{ $items->facturas->medico }}</strong></span>
-            <span CLASS="solicitud-etiqueta parte"><strong>SOLICITUD PARA ESTUDIO CITOLOGICO</strong></span>
+            <span CLASS="solicitud-etiqueta parte"><strong>CITOLOGICAL STUDY APPLICATION</strong></span>
 
             <span class="deteccion-etiqueta parte">CANCER DETECTION:
                 @if($items->deteccion_cancer == true)
@@ -33,7 +33,7 @@
             <span class="para-etiqueta parte">TO: <strong>{{ $items->para }}</strong></span>
             <span class="aborto-etiqueta parte">ABORTION: <strong>{{ $items->abortos }}</strong></span>
 
-            <span class="material-enviado-etiqueta parte">MATERIAL SENT: <strong>{{ $items->otros_b }}</strong></span>
+            <span class="material-enviado-etiqueta parte">MATERIAL SENT: <strong>{{ $material }}</strong></span>
 
             <span class="fecha-muestra-etiqueta parte">DATE OF SAMPLING: <strong>{{ isset($items->fecha_muestra) ? $items->fecha_muestra->formatLocalized('%d/%m/%Y') : "" }}</strong></span>
             <span class="medico-etiqueta parte">MEDICAL SENDER:  <strong>{{ $items->facturas->medico }}</strong></span>

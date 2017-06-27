@@ -37,15 +37,32 @@ class PrintController extends Controller
         $items = Citologia::with('facturas')->findOrFail($id);
         $translator = new GoogleTranslate\Translator();
 
-        $diagnostico = $translator->setSourceLang('es')
-            ->setTargetLang('en')
-            ->translate($items->diagnostico);
+        if($items->diagnostico){
+            $diagnostico = $translator->setSourceLang('es')
+                ->setTargetLang('en')
+                ->translate($items->diagnostico);
+        } else {
+            $diagnostico = null;
+        }
 
-        $informe = $translator->setSourceLang('es')
-            ->setTargetLang('en')
-            ->translate($items->informe);
+        if($items->informe) {
+            $informe = $translator->setSourceLang('es')
+                ->setTargetLang('en')
+                ->translate($items->informe);
+        } else {
+            $informe = null;
+        }
 
-        return View('resultados.impresiones.citoFormato_EN', compact('items', 'informe', 'diagnostico'));
+        if($items->otros_b) {
+            $material = $translator->setSourceLang('es')
+                ->setTargetLang('en')
+                ->translate($items->otros_b);
+        } else {
+            $material = null;
+        }
+
+
+        return View('resultados.impresiones.citoFormato_EN', compact('items', 'informe', 'diagnostico', 'material'));
     }
 
     public function sobreHistopatologia($id)
