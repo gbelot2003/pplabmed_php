@@ -6,6 +6,7 @@ use Acme\Controller\Printer\HistoPrintConfig;
 use App\Citologia;
 use App\Histopatologia;
 use Barryvdh\DomPDF\PDF;
+use Dedicated\GoogleTranslate;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
@@ -29,6 +30,22 @@ class PrintController extends Controller
     {
         $items = Citologia::with('facturas')->findOrFail($id);
         return View('resultados.impresiones.citoFormato', compact('items'));
+    }
+
+    public function formatoCitologiasEng($id)
+    {
+        $items = Citologia::with('facturas')->findOrFail($id);
+        $translator = new GoogleTranslate\Translator();
+
+        $diagnostico = $translator->setSourceLang('es')
+            ->setTargetLang('en')
+            ->translate($items->diagnostico);
+
+        $informe = $translator->setSourceLang('es')
+            ->setTargetLang('en')
+            ->translate($items->informe);
+
+        return View('resultados.impresiones.citoFormato_EN', compact('items', 'informe', 'diagnostico'));
     }
 
     public function sobreHistopatologia($id)

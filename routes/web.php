@@ -46,6 +46,10 @@ Route::group(['middleware' => 'auth'], function(){
 
     /***/Route::get('citologia/sobres/{id}', 'PrintController@sobresCitologia');
     /***/Route::get('citologia/formulario/{id}', 'PrintController@formatoCitologia');
+    /**
+     * Citologia ENG
+     */
+    /***/Route::get('citologia/formulario-end/{id}', 'PrintController@formatoCitologiasEng');
 
     Route::resource('histopatologia', 'HistopatologiaController');
     Route::get('histopatologias/listados', 'HistopatologiaController@listados');
