@@ -67,7 +67,7 @@ class HistoPrintConfig{
             $pdf->ln(70);
             $x = $pdf->GetX();
             $y = $pdf->GetY();
-            $pdf->SetFont('Helvetica', '', 10);
+            $pdf->SetFont('Arial', '', 10);
             $pdf->MultiCell(80, 4, $data->images[0]->descripcion, 0, 'J');
         }
 
@@ -151,7 +151,7 @@ class HistoPrintConfig{
         /**
          *  INFORME
          */
-        $pdf->SetFont('Helvetica', 'B', 13);
+        $pdf->SetFont('Arial', 'B', 13);
         $pdf->Cell(205, 5, 'INFORME', 0,  0, 'C');
 
         /**
@@ -159,7 +159,7 @@ class HistoPrintConfig{
          */
         $pdf->ln();
 
-        $pdf->SetFont('Arial', '', 8);
+        $pdf->SetFont('Arial', '', 11);
         $pdf->MultiCell(197, 5,
             strip_tags(utf8_decode(html_entity_decode($data->informe)))
             , 0, 'J', false);
@@ -204,7 +204,7 @@ class HistoPrintConfig{
         /**
          * Cabezera
          */
-        $pdf->SetFont('Helvetica', 'B', 14);
+        $pdf->SetFont('Arial', 'B', 14);
         $pdf->Cell(205, 10, $this->ConvertCharacters->convert("REPORTE DE HISTOPATOLOGÍA"), 0,  0, 'C');
 
         /**
@@ -256,11 +256,11 @@ class HistoPrintConfig{
         /**
          * Fecha de Biopsia
          */
-        $pdf->SetFont('Helvetica', '', 10);
+        $pdf->SetFont('Arial', '', 10);
         $pdf->Cell(30, 5, $this->ConvertCharacters->convert('FECHA BIOPSIA') .': ', 0, 0, 'L');
 
         if($data->fecha_biopcia){
-            $pdf->SetFont('Helvetica', 'B', 10);
+            $pdf->SetFont('Arial', 'B', 10);
             $pdf->Cell(20, 5, $data->fecha_biopcia->formatLocalized('%d/%m/%Y'), 0, 0, 'L');
         }
 
@@ -273,7 +273,7 @@ class HistoPrintConfig{
         /**
          * Dirección
          */
-        $pdf->SetFont('Helvetica', '', 10);
+        $pdf->SetFont('Arial', '', 10);
         $pdf->Cell(22, 5, $this->ConvertCharacters->convert('DIRECCIÓN:'), 0, 0, 'L');
 
         $pdf->SetFont('Arial', 'B', 10);
@@ -283,10 +283,10 @@ class HistoPrintConfig{
         /**
          * Muestra Recibida
          */
-        $pdf->SetFont('Helvetica', '', 10);
+        $pdf->SetFont('Arial', '', 10);
         $pdf->Cell(30, 5, $this->ConvertCharacters->convert('RECIBIDA:'), 0, 0, 'R');
 
-        $pdf->SetFont('Helvetica', 'B', 10);
+        $pdf->SetFont('Arial', 'B', 10);
         if($data->fecha_muestra){
             $pdf->Cell(78, 5, $data->fecha_muestra->formatLocalized('%d/%m/%Y'), 0, 0, 'L');
         } else {
@@ -302,7 +302,7 @@ class HistoPrintConfig{
         /**
          * Diagnostico
          */
-        $pdf->SetFont('Helvetica', '', 10);
+        $pdf->SetFont('Arial', '', 10);
         $pdf->Cell(26, 5, $this->ConvertCharacters->convert('DIAG. CLÍNICO') .': ', 0, 0, 'L');
 
         $pdf->SetFont('Arial', 'B', 10);
@@ -316,10 +316,10 @@ class HistoPrintConfig{
         /**
          * Material Estudiado
          */
-        $pdf->SetFont('Helvetica', '', 10);
+        $pdf->SetFont('Arial', '', 10);
         $pdf->Cell(41, 5, $this->ConvertCharacters->convert('MATERIAL ESTUDIADO') .': ', 0, 0, 'L');
 
-        $pdf->SetFont('Helvetica', 'B', 10);
+        $pdf->SetFont('Arial', 'B', 10);
         $pdf->Cell(121  , 5, $this->ConvertCharacters->convert(strtoupper($data->muestra)), 0, 0, 'L');
 
         /**
@@ -331,10 +331,10 @@ class HistoPrintConfig{
         /**
          * Numero de Biopsia
          */
-        $pdf->SetFont('Helvetica', '', 10);
+        $pdf->SetFont('Arial', '', 10);
         $pdf->Cell(165, 5, $this->ConvertCharacters->convert('No. BIOPSIA') .': ', 0, 0, 'R');
 
-        $pdf->SetFont('Helvetica', 'B', 10);
+        $pdf->SetFont('Arial', 'B', 10);
         $pdf->Cell(30, 5,  $data->serial. "-" .$data->created_at->format('Y'), 0, 0, 'L');
 
         /**
@@ -345,10 +345,10 @@ class HistoPrintConfig{
         /**
          * Numero de Factura
          */
-        $pdf->SetFont('Helvetica', '', 10);
+        $pdf->SetFont('Arial', '', 10);
         $pdf->Cell(165, 5, $this->ConvertCharacters->convert('C.I.') . ' ', 0, 0, 'R');
 
-        $pdf->SetFont('Helvetica', 'B', 10);
+        $pdf->SetFont('Arial', 'B', 10);
         $pdf->Cell(30, 5, $data->facturas->num_factura, 0, 0, 'L');
     }
 
