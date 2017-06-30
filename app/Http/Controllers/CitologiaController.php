@@ -201,11 +201,16 @@ CitologiaController extends Controller
 
         $query = Citologia::with('facturas');
 
+        $now = date("Y-m-d");
+        $bdate = Carbon::createFromFormat('Y-m-d', $now)->startOfDay();
+        $edate = Carbon::createFromFormat('Y-m-d', $now)->endOfDay();
+        $today = Citologia::whereBetween('created_at', [$bdate, $edate])->count();
+
         $this->performSearchQuery($query);
         $query->orderBy('serial', 'ASC');
         $items = $query->paginate(1)->appends(\Request::all());
 
-        return View('resultados.citologia.search_results', compact('items', 'idCIto', 'firmas'));
+        return View('resultados.citologia.search_results', compact('items', 'idCIto', 'firmas', 'today'));
     }
 
     /**
