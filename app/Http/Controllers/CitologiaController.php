@@ -108,6 +108,7 @@ CitologiaController extends Controller
     public function edit($id)
     {
         $item = Citologia::findOrFail($id);
+
         $idCIto = Categoria::where('status', 1)->pluck('name', 'id');
         $firmas = Firma::where('status', 1)->pluck('name', 'id');
 
@@ -122,6 +123,7 @@ CitologiaController extends Controller
         $bdate = Carbon::createFromFormat('Y-m-d', $now)->startOfDay();
         $edate = Carbon::createFromFormat('Y-m-d', $now)->endOfDay();
         $today = Citologia::whereBetween('created_at', [$bdate, $edate])->count();
+
         return View('resultados.citologia.edit', compact('item', 'idCIto', 'firmas', 'gravidad', 'previous', 'next', 'total', 'today', 'first', 'last'));
     }
 
@@ -132,6 +134,8 @@ CitologiaController extends Controller
      */
     public function update(CitologiaValidate $request, $id)
     {
+
+        dd($request->all());
         $cito = Citologia::findOrFail($id);
         $cito->deteccion_cancer = isset($request['deteccion_cancer']) ? $request['deteccion_cancer'] = 1 : $request['deteccion_cancer'] = 0;
         $cito->indice_maduracion = isset($request['indice_maduracion']) ? $request['indice_maduracion'] = 1 : $request['indice_maduracion'] = 0;
@@ -165,7 +169,7 @@ CitologiaController extends Controller
         }
 
         $cito->update($request->all());
-        $cito->facturas->update($request->all());
+        //$cito->facturas->update($request->all());
 
         Audit::create([
             'title' => 'Citología',

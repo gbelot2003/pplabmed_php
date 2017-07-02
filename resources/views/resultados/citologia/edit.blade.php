@@ -53,6 +53,7 @@
             </div>
         </div>
     </div>
+    @include('resultados.citologia._edit_factura_modal')
 @stop
 
 @section('jscode')

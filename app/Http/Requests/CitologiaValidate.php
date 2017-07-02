@@ -30,9 +30,9 @@ class CitologiaValidate extends FormRequest
                 [
                     'serial' => 'numeric|unique:citologias,serial,' .$postId,
                     'factura_id' => 'numeric|required',
-                    'nombre_completo_cliente' => 'string|required',
-                    'edad' => 'string|required',
-                    'sexo' => 'string|max:1|required',
+                    'nombre_completo_cliente' => 'string|nullable',
+                    'edad' => 'string|nullable',
+                    'sexo' => 'string|max:1|nullable',
                     'correo' => 'string|nullable',
                     'correo2' => 'string|nullable',
                     'direccion_entrega_sede' => 'string|nullable',
