@@ -34,8 +34,7 @@
     <div class="col-md-2 form-group  {{ $errors->has('edad') ? ' has-error' : '' }}">
         <label>Edad</label>
         {{ Form::text('edad', isset($item->facturas->edad) ? $item->facturas->edad : null,
-            ['class' => 'form-control box-style yellow', 'id' => 'edad2', 'placeholder' => 'Edad']) }}
-        {{ Form::hidden('edad', isset($item->facturas->edad) ? $item->facturas->edad : null, ['id' => 'edad']) }}
+            ['class' => 'form-control box-style yellow', 'id' => 'edad', 'placeholder' => 'Edad']) }}
     </div>
 
     <div class="col-md-2 form-group  {{ $errors->has('sexo') ? ' has-error' : '' }}">
