@@ -48,14 +48,14 @@
         }));
 
         $('.dateclass').inputmask("##/##/####");
-        $("#factura").focus();
+
+
         $("#factura").focusout(function () {
             var id = $(this).val();
             $.get('/facturas/' + id)
                 .done(function (data) {
 
                     if (isEmptyObject(data)){
-                        alert("no hay datos");
                         $('#factura').val("");
                         $('#paciente').val("");
                         $('#edad').val("");
@@ -64,9 +64,9 @@
                         $('#direccion').val("");
                         $('#sexo').val("");
                         $('#medico').val("");
+                        alert("no hay datos");
                         return;
                     }
-
 
                     if(checkItem(data.examen.item) === false){
                         $("#factura").val() === "";
@@ -74,9 +74,6 @@
                     }
 
                     $('#paciente').val(data.nombre_completo_cliente);
-
-                    const fulldate =  getDate(data.fecha_nacimiento);
-                    console.log(fulldate);
 
                     $('#edad').val(fulldate);
                     $('#edad2').val(fulldate);
@@ -104,17 +101,6 @@
         })
     });
 
-    $('a.bt-insert').click(function(e){
-        e.preventDefault();
-        const id = $(this).attr("href");
-        $.get('/plantillas/info/' + id)
-            .done(function(data){
-                console.log(data);
-                CKEDITOR.instances['adendum'].insertHtml(data.body);
-            });
-
-    });
-
     document.addEventListener("keydown", function(event) {
         if(event.which === 113){
             if (confirm('¿Seguro que desea salir?, se perdera toda la Información no salvada!!')) {
@@ -122,12 +108,23 @@
             }
         }
 
-        if(event.which == 120)
-        {
+        if(event.which == 120){
             $( "#myForm" ).submit();
         }
     });
 
-
+    // EVENTO CUANDO SE MUEVE EL SCROLL, EL MISMO APLICA TAMBIEN CUANDO SE RESIZA
+    var change= false;
+    $(window).scroll(function(){
+        window_y = $(window).scrollTop(); // VALOR QUE SE HA MOVIDO DEL SCROLL
+        scroll_critical = 120; // VALOR DE TU DIV
+        if (window_y > scroll_critical) { // SI EL SCROLL HA SUPERADO EL ALTO DE TU DIV
+            // ACA MUESTRAS EL OTRO DIV Y EL OCULTAS EL DIV QUE QUIERES
+            $('#navTag').show('slow'); // VER
+        } else {
+            // ACA HACES TODO LO CONTRARIO
+            $('#navTag').hide('slow'); // OCULTAR
+        }
+    });
 
 })(jQuery);

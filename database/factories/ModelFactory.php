@@ -27,46 +27,12 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\Area::class, function (Faker\Generator $faker) {
-    return [
-        'name' => $faker->word,
-        'status' => rand(0, 1)
-    ];
-});
 
-$factory->define(App\Firma::class, function (Faker\Generator $faker) {
+$factory->define(App\Examenes::class, function (Faker\Generator $faker){
     return [
-        'name' => $faker->name,
-        'code' => $faker->word,
-        'status' => rand(0, 1)
-    ];
-});
-
-$factory->define(App\Categoria::class, function (Faker\Generator $faker) { //IdCito
-    return [
-        'name' => $faker->word,
-        'status' => rand(0, 1)
-    ];
-});
-
-$factory->define(App\Morfologia::class, function (Faker\Generator $faker) {
-    return [
-        'name' => $faker->word,
-        'status' => rand(0, 1)
-    ];
-});
-
-$factory->define(App\Topologia::class, function (Faker\Generator $faker) {
-    return [
-        'name' => $faker->word,
-        'status' => rand(0, 1)
-    ];
-});
-
-$factory->define(App\Gravidad::class, function (Faker\Generator $faker) {
-    return [
-        'name' => $faker->word,
-        'status' => rand(0, 1)
+        'num_factura' => rand(100, 200),
+        'item' => rand(100, 200),
+        'nombre_examen' => $faker->words()
     ];
 });
 
@@ -85,11 +51,4 @@ $factory->define(App\Factura::class, function (Faker\Generator $faker){
     ];
 });
 
-
-function autoIncrement()
-{
-    for ($i = 0; $i < 1000; $i++) {
-        yield $i;
-    }
-}
 
