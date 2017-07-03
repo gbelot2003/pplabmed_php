@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>PPlabmed</title>
+    <title>@yield('pageTitle', 'PPLab')</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">

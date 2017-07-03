@@ -1,5 +1,5 @@
 @extends('layouts.pdf')
-@section('pageTitle', 'Citología')
+@section('pageTitle', 'Histopatología')
 
 @section('content')
 
@@ -24,7 +24,7 @@
             <td><b>Nombre de Examen</b></td>
             <td><b>Nombre del Cliente</b></td>
         </tr>
-        @foreach($items as $item)
+        @foreach($items2 as $item)
             <tr>
                 <td>{{ $item->Numero_Factura }}</td>
                 <td>{{ $item->Numero_Item }}</td>
@@ -36,7 +36,7 @@
             <td></td>
             <td></td>
             <td></td>
-            <td><b>Total: {{ $fir1total }}</b></td>
+            <td><b>Total: {{ $fir2total }}</b></td>
         </tr>
     </table>
 
