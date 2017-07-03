@@ -11,6 +11,8 @@ use Atlas\Helpers\DatesFormatHelper;
 use Atlas\Helpers\FormatQueryDates;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class ReportesMedicosHorasController extends Controller
 {
@@ -30,38 +32,61 @@ class ReportesMedicosHorasController extends Controller
 
     public function results(Request $request)
     {
-        $cito1  = new Citologia();
-        $cito2  = new Citologia();
-        $histo1  = new Histopatologia();
-        $histo2  = new Histopatologia();
+        $cito1 = new Citologia();
+        $cito2 = new Citologia();
+        $histo1 = new Histopatologia();
+        $histo2 = new Histopatologia();
 
-        if($request->has('inicio'))
-        {
+        if ($request->has('inicio')) {
             $date = new DatesFormatHelper($request->get('inicio'));
             $b_date = $date->setDate();
         }
 
-        if($request->has('final'))
-        {
+        if ($request->has('final')) {
             $date = new DatesFormatHelper($request->get('final'));
             $e_date = $date->setDate();
         }
 
-        if(isset($b_date) && isset($e_date)){
+        if (isset($b_date) && isset($e_date)) {
             list($bdate, $edate) = $this->formatQuery->formatQueryDates($b_date, $e_date);
         }
 
+
         $firma = Firma::findOrFail($request->get('firma_id'));
 
-        $f1 = $cito1->whereBetween('fecha_informe', [$bdate, $edate])->where('firma_id', $request->get('firma_id'))->count();
-        $f2 = $cito2->whereBetween('fecha_informe', [$bdate, $edate])->where('firma2_id', $request->get('firma_id'))->count();
+        $citologias = $cito1->with('facturas')->whereBetween('fecha_informe', [$bdate, $edate])
+            ->where('firma_id', $request->get('firma_id'))
+            ->orWhere('firma2_id', $request->get('firma_id'));
 
-        $f3 = $histo1->whereBetween('fecha_informe', [$bdate, $edate])->where('firma_id', $request->get('firma_id'))->count();
-        $f4 = $histo2->whereBetween('fecha_informe', [$bdate, $edate])->where('firma2_id', $request->get('firma_id'))->count();
+        $fir1 = $citologias->get();
+        $fir1total = $citologias->count();
 
-        $total = ($f1 + $f2 +  $f3 + $f4);
 
-        return View('reportes.medicos.results', compact('f1', 'f2', 'f3', 'f4', 'bdate', 'edate', 'total', 'firma'));
+        /*$f1 = $cito1->with('facturas')->whereBetween('fecha_informe', [$bdate, $edate])
+            ->where('firma_id', $request->get('firma_id'))->count();
+
+        $f2 = $cito2->with('facturas')->whereBetween('fecha_informe', [$bdate, $edate])
+            ->where('firma2_id', $request->get('firma_id'))->count();
+
+        $f3 = $histo1->with('facturas')->whereBetween('fecha_informe', [$bdate, $edate])
+            ->where('firma_id', $request->get('firma_id'))->count();
+
+        $f4 = $histo2->with('facturas')->whereBetween('fecha_informe', [$bdate, $edate])
+            ->where('firma2_id', $request->get('firma_id'))->count();
+
+        $total = ($f1 + $f2 +  $f3 + $f4);*/
+
+        $return = Excel::create('Reporte de Medicos Informantes', function ($excel) use ($fir1) {
+            $excel->sheet('Sheet 1', function ($sheet) use ($fir1) {
+                $sheet->fromArray($fir1);
+            });
+        })->export('xls');
+
+        /*return [
+            'citologias' => $fir1,
+            'citologias_total' => $fir1total
+        ];*/
+        //return View('reportes.medicos.results', compact('fir1', 'f1', 'f2', 'f3', 'f4', 'bdate', 'edate', 'total', 'firma'));
 
     }
 }
