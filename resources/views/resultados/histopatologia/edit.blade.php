@@ -46,7 +46,7 @@
                 <span class="name">{{ $item->facturas->nombre_completo_cliente }}</span>
             </div>
             <div class="col-md-4">
-                <label>Nombre</label><br>
+                <label>dirección</label><br>
                 <span class="name">{{ $item->facturas->direccion_entrega_sede }}</span>
             </div>
         </div>
