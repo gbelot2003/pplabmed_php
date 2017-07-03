@@ -5,7 +5,8 @@
 
     <table>
         <tr>
-            <td><b>Total: {{ $fir1total }}</b></td>
+            <td></td>
+            <td><b>Total: {{ $fir2total }}</b></td>
             <td></td>
             <td></td>
             <td></td>
@@ -14,9 +15,9 @@
             <td>
                 Medico Informante: {{ $firma->name }}
             </td>
-            <td>Fecha Informe</td>
-            <td>de : {{ $bdate }} </td>
-            <td>a: {{ $edate }}</td>
+            <td></td>
+            <td> </td>
+            <td>Fecha Informe de :{{ $bdate }} a:{{ $edate }}</td>
         </tr>
         <tr>
             <td><b>No. Factura</b></td>
@@ -30,9 +31,11 @@
                 <td>{{ $item->Numero_Item }}</td>
                 <td>{{ $item->Tipo_Examen }}</td>
                 <td>{{ $item->Nombre_Cliente }}</td>
+                <td>{{ $item->fecha_informe->formatLocalized('%d %B %Y') }}</td>
             </tr>
         @endforeach
         <tr>
+            <td></td>
             <td></td>
             <td></td>
             <td></td>

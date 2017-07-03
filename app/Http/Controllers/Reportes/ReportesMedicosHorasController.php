@@ -50,11 +50,13 @@ class ReportesMedicosHorasController extends Controller
 
         $firma = Firma::findOrFail($request->get('firma_id'));
 
+
         $citologias = $cito1->select([
             'facturas.num_factura as Numero_Factura',
             'examenes.item as Numero_Item',
             'examenes.nombre_examen as Tipo_Examen',
-            'facturas.nombre_completo_cliente as Nombre_Cliente'
+            'facturas.nombre_completo_cliente as Nombre_Cliente',
+            'citologias.fecha_informe'
         ])
             ->whereBetween('fecha_informe', [$bdate, $edate])
             ->where('firma_id', $request->get('firma_id'))
@@ -62,13 +64,28 @@ class ReportesMedicosHorasController extends Controller
             ->join('facturas', 'citologias.factura_id', '=', 'facturas.num_factura')
             ->join('examenes', 'facturas.num_factura', '=', 'examenes.num_factura');
 
+
+        $histo = $histo1->select([
+            'facturas.num_factura as Numero_Factura',
+            'examenes.item as Numero_Item',
+            'examenes.nombre_examen as Tipo_Examen',
+            'facturas.nombre_completo_cliente as Nombre_Cliente',
+            'histopatologias.fecha_informe'
+        ])
+            ->whereBetween('fecha_informe', [$bdate, $edate])
+            ->where('firma_id', $request->get('firma_id'))
+            ->orWhere('firma2_id', $request->get('firma_id'))
+            ->join('facturas', 'histopatologias.factura_id', '=', 'facturas.num_factura')
+            ->join('examenes', 'facturas.num_factura', '=', 'examenes.num_factura');
+
+
         $items = $citologias->get();
 
         $fir1total = $citologias->count();
 
-        $items2 = $items;
+        $items2 = $histo->get();
 
-        $fir2total = $fir1total;
+        $fir2total = $histo->count();
 
 
         $return = Excel::create('Reporte de Medicos Informantes', function ($excel) use ($items, $bdate, $edate, $firma, $fir1total, $fir2total, $items2) {

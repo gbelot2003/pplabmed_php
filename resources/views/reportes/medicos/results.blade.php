@@ -5,6 +5,7 @@
 
     <table>
         <tr>
+            <td></td>
             <td><b>Total: {{ $fir1total }}</b></td>
             <td></td>
             <td></td>
@@ -30,9 +31,11 @@
                 <td>{{ $item->Numero_Item }}</td>
                 <td>{{ $item->Tipo_Examen }}</td>
                 <td>{{ $item->Nombre_Cliente }}</td>
+                <td>{{ $item->fecha_informe->formatLocalized('%d %B %Y') }}</td>
             </tr>
         @endforeach
         <tr>
+            <td></td>
             <td></td>
             <td></td>
             <td></td>
