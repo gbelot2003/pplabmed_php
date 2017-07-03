@@ -169,7 +169,7 @@ CitologiaController extends Controller
         }
 
         $cito->update($request->all());
-        //$cito->facturas->update($request->all());
+        $cito->facturas->update($request->all());
 
         Audit::create([
             'title' => 'Citología',
