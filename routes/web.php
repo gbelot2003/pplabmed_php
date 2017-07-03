@@ -90,4 +90,5 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('reportes/reporte-morfologia', 'Reportes\ReporteMorfologicoController@index')->name('reporte.morfo.index');
     Route::post('reportes/reporte-morfologia', 'Reportes\ReporteMorfologicoController@results')->name('reporte.morfo.results');
 
+    Route::get('reportes/medico-informante', 'Reportes\ReportesMedicosHorasController@index')->name('medico.informante.index');
 });
