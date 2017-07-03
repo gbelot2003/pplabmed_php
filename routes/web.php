@@ -66,6 +66,9 @@ Route::group(['middleware' => 'auth'], function(){
     Route::put('histo/images/update/{id}', 'ImagesController@update');
     Route::get('histo/images/delete/{id}', 'ImagesController@delete');
 
+    Route::resource('/muestras', 'MuestrasController');
+    Route::get('muestra/listados', 'MuestrasController@listados');
+
     Route::resource('facturas', 'FacturasController');
     Route::get('factura/listados', 'FacturasController@listados');
 

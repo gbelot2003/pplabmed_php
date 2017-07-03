@@ -38,8 +38,10 @@
                                 <li class="dropdown-header">Histopatología</li>
                                 <li><a href="{{ action('HistopatologiaController@index') }}">Listado de
                                         Histopatología</a></li>
-                                <li><a href="{{ action('HistopatologiaController@create') }}">Nueva Histopatología</a>
-                                </li>
+                                <li><a href="{{ action('HistopatologiaController@create') }}">
+                                        Nueva Histopatología</a></li>
+                                <li><a href="{{ action('MuestrasController@index') }}">
+                                        Listado de muestras entregadas</a></li>
                             @endif
 
                             @if(Entrust::can('show-fact'))
