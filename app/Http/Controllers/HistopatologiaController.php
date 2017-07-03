@@ -52,7 +52,7 @@ class HistopatologiaController extends Controller
 
 
         if ($request->has('fecha_biopcia')) {
-            $fecha_nac = new DateHelper($request->get('fecha_muestra'));
+            $fecha_nac = new DateHelper($request->get('fecha_biopcia'));
             $request['fecha_biopcia'] = $fecha_nac->getDate();
         }
 
@@ -117,7 +117,7 @@ class HistopatologiaController extends Controller
         }
 
         if ($request->has('fecha_biopcia')) {
-            $fecha_nac = new DateHelper($request->get('fecha_muestra'));
+            $fecha_nac = new DateHelper($request->get('fecha_biopcia'));
             $request['fecha_biopcia'] = $fecha_nac->getDate();
         }
 
