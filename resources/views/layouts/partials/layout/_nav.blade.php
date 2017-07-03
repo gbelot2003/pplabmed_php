@@ -61,7 +61,7 @@
                             <li><a href="{{ route('reporte.cito.index') }}"> Informe de Citología</a></li>
                             <li><a href="{{ route('reporte.histo.index') }}"> Informe de Biopsias</a></li>
                             <li><a href="{{ route('reporte.sedes.index') }}"> Informe por sedes de entrega</a></li>
-                            <li><a href="{{ route('reporte.muestras.index') }}"> Reporte de entrega de muestrass</a>
+                            <li><a href="{{ route('reporte.muestras.index') }}"> Reporte de entrega de muestras</a>
                             </li>
                             <li class="divider"></li>
                             <li class="dropdown-header">Estadisticas</li>
