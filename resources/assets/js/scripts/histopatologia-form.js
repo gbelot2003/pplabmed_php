@@ -48,6 +48,12 @@
     $(document).ready(function () {
         $('.dateclass').inputmask("##/##/####");
 
+        $('#firma2_id').append($('<option>', {
+            value: 'none',
+            text: 'None',
+            attr: 'disabled'
+        }));
+
         $("#factura").focus();
         $("#factura").focusout(function () {
             var id = $(this).val();
