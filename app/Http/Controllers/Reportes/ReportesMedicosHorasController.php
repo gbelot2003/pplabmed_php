@@ -51,6 +51,7 @@ class ReportesMedicosHorasController extends Controller
             list($bdate, $edate) = $this->formatQuery->formatQueryDates($b_date, $e_date);
         }
 
+        $firma = Firma::findOrFail($request->get('firma_id'));
 
         $f1 = $cito1->whereBetween('fecha_informe', [$bdate, $edate])->where('firma_id', $request->get('firma_id'))->count();
         $f2 = $cito2->whereBetween('fecha_informe', [$bdate, $edate])->where('firma2_id', $request->get('firma_id'))->count();
@@ -60,13 +61,7 @@ class ReportesMedicosHorasController extends Controller
 
         $total = ($f1 + $f2 +  $f3 + $f4);
 
-        return [
-            'citologias' => $f1,
-            'citologias segunda firma' => $f2,
-            'Biopsias firma' => $f3,
-            'Biopsias segunda firma' => $f4,
-            'total' => $total
-        ];
+        return View('reportes.medicos.results', compact('f1', 'f2', 'f3', 'f4', 'bdate', 'edate', 'total', 'firma'));
 
     }
 }
