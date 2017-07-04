@@ -17,7 +17,7 @@ class FactutasApiController extends Controller
      * @param FacturasValidate|Request $request
      * @return string
      */
-    public function store(FacturasValidate $request)
+    public function store(Request $request)
     {
         $factHelp = new FacturasApiHeper();
 
@@ -57,7 +57,7 @@ class FactutasApiController extends Controller
      * @param Request $request
      * @return string
      */
-    protected function rewriteFile(Request $request): string
+    protected function rewriteFile(Request $request)
     {
         $fac_num = $request->get('num_factura');
         $factura = Factura::where('num_factura', $fac_num)->first();
