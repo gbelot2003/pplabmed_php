@@ -76,10 +76,8 @@
 
                     $('#paciente').val(data.nombre_completo_cliente);
 
-                    const fulldate =  getDate(data.fecha_nacimiento);
 
-                    $('#edad').val(fulldate);
-                    $('#edad2').val(fulldate);
+                    $('#edad').val(data.edad);
 
                     $('#email').val(data.correo);
 

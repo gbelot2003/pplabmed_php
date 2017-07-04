@@ -36,6 +36,18 @@ class FacturasController extends Controller
     }
 
     /**
+     *
+     */
+    public function update(Request $request, $id)
+    {
+        $item = Factura::where('num_factura', $id)->first();
+
+        $item->update($request->all());
+
+        return response()->json($item, 200);
+    }
+
+    /**
      * @param $id
      * @return mixed
      */

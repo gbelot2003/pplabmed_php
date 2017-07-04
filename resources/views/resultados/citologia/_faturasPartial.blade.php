@@ -75,7 +75,7 @@
     <div class="col-md-12">
         <div class="text-right">
             <br>
-            <a class="btn btn-success btn-xs text-center" href="#" data-toggle="modal" data-target="#EditModal">Edit</a>
+            <a class="btn btn-success btn-xs text-center" id="editModalBtn" href="#" rel="{{ $item->factura_id }}">Editar Factura</a>
         </div>
     </div>
 </div>
