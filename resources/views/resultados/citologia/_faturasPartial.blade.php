@@ -71,6 +71,7 @@
     </div>
 </div>
 
+@if(isset($item))
 <div class="row">
     <div class="col-md-12">
         <div class="text-right">
@@ -80,3 +81,4 @@
     </div>
 </div>
 <br>
+@endif

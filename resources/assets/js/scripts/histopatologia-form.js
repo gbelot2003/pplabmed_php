@@ -54,7 +54,6 @@
             attr: 'disabled'
         }));
 
-        $("#factura").focus();
         $("#factura").focusout(function () {
             var id = $(this).val();
             //alert(id);
@@ -81,10 +80,7 @@
 
                     $('#paciente').val(data.nombre_completo_cliente);
 
-                    const fulldate =  getDate(data.fecha_nacimiento);
-
-                    $('#edad').val(fulldate);
-                    $('#edad2').val(fulldate);
+                    $('#edad').val(data.edad);
 
                     $('#email').val(data.correo);
 
@@ -118,14 +114,11 @@
                 console.log(data);
                 CKEDITOR.instances['informe'].insertHtml(data.body);
             });
-
     });
 
     $('#ImagesModal').on('shown.bs.modal', function (e) {
         // Initialize Dropzone
     });
-
-    $('.colorbox').colorbox();
 
     $('#topog').inputmask("#99.9");
 

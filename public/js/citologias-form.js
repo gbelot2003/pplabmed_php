@@ -59,7 +59,6 @@
                         $('#factura').val("");
                         $('#paciente').val("");
                         $('#edad').val("");
-                        $('#edad2').val("");
                         $('#email').val("");
                         $('#direccion').val("");
                         $('#sexo').val("");
@@ -72,7 +71,6 @@
                         $("#factura").val("");
                         $('#paciente').val("");
                         $('#edad').val("");
-                        $('#edad2').val("");
                         $('#email').val("");
                         $('#direccion').val("");
                         $('#sexo').val("");
@@ -82,8 +80,7 @@
 
                     $('#paciente').val(data.nombre_completo_cliente);
 
-                    $('#edad').val(fulldate);
-                    $('#edad2').val(fulldate);
+                    $('#edad').val(data.edad);
 
                     $('#email').val(data.correo);
 

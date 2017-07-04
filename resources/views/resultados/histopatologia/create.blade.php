@@ -46,5 +46,5 @@
 @stop
 
 @section('jscode')
-    <script src="{{ asset('js/histopatologia-form.js') }}"></script>
+    <script src="{{ asset('js/histopatologia-create.js') }}"></script>
 @stop
