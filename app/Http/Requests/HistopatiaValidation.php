@@ -24,10 +24,11 @@ class HistopatiaValidation extends FormRequest
      */
     public function rules(Request $request)
     {
+        $postId = $this->route()->parameter('histopatologia');
 
         return [
             'serial' => 'numeric|unique:histopatologias,serial,' .$request->get('id'),
-            'factura_id' => 'numeric|required|unique:citologias,factura_id,' .$request->get('id'),
+            'factura_id' => 'numeric|required|unique:histopatologias,factura_id,' .$postId,
             'topog' => 'string|required',
             'mor1' => 'string|nullable',
             'mor2' => 'string|nullable',
