@@ -70,7 +70,7 @@ class FacturasController extends Controller
             'medico',
             'created_at'
         ])
-            ->osrderBy('num_factura', 'ASC')
+            ->orderBy('num_factura', 'ASC')
             ->get();
         return Datatables::of($facturas)
             ->addColumn('href', function($facturas){
