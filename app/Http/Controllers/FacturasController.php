@@ -63,7 +63,13 @@ class FacturasController extends Controller
      */
     public function listados()
     {
-        $facturas = Factura::all();
+        $facturas = Factura::select([
+            'num_factura',
+            'nombre_completo_cliente',
+            'correo',
+            'medico',
+            'created_at'
+        ])->get();
         return Datatables::of($facturas)
             ->addColumn('href', function($facturas){
                 return '<a href="facturas/'.$facturas->id.'/edit" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Ver</a>';
