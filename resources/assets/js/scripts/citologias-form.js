@@ -69,7 +69,14 @@
                     }
 
                     if(checkItem(data.examen.item) === false){
-                        $("#factura").val() === "";
+                        $("#factura").val("");
+                        $('#paciente').val("");
+                        $('#edad').val("");
+                        $('#edad2').val("");
+                        $('#email').val("");
+                        $('#direccion').val("");
+                        $('#sexo').val("");
+                        $('#medico').val("");
                         return alert('Esta no es una Citologia');
                     }
 
