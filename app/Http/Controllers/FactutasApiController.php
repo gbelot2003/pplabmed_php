@@ -6,6 +6,7 @@ use App\Factura;
 use App\Http\Requests\FacturasValidate;
 use Acme\Controller\FacturasApiHeper;
 use Atlas\Helpers\DateHelper;
+use Carbon\Carbon;
 use GuzzleHttp\Promise\all;
 use Illuminate\Http\Request;
 
@@ -20,22 +21,32 @@ class FactutasApiController extends Controller
     {
         $factHelp = new FacturasApiHeper();
 
-
-        if ($request->has('status')){
+        if ($request->has('status')) {
             $status = $request->get('status');
-            if ($status != 'Valida'){
+            if ($status != 'Valida') {
                 return $this->rewriteFile($request);
             }
         }
 
-        if ($request->has('fecha_nacimiento')){
+        if ($request->has('fecha_nacimiento')) {
             $fecha_nac = new DateHelper($request->get('fecha_nacimiento'));
             $request['fecha_nacimiento'] = $fecha_nac->getDate();
+
+            $age = $request->get('fecha_nacimiento');
+            $calcage =  Carbon::parse($age)->diff(Carbon::now())->format('%y');
+
+            if($calcage <= 0){
+                $cage = Carbon::parse($age)->diff(Carbon::now())->format('%m M');
+            } else {
+                $cage = Carbon::parse($age)->diff(Carbon::now())->format('%y A');
+            }
+
+            $request['edad'] = $cage;
         }
 
         $factura = Factura::create($request->all());
 
-        if ($request->has('examen')){
+        if ($request->has('examen')) {
             $factHelp->saveExamenes($request->get('examen'), $factura->num_factura);
         }
 

@@ -56,8 +56,8 @@ class FacturasApiControllerTest extends TestCase
         ];
 
         $response = $this->call('POST', '/api/facturas', $data);
-        $this->assertDatabaseHas('facturas', ['num_factura' => '5005963']);
         $response->assertStatus(200);
+        $this->assertDatabaseHas('facturas', ['num_factura' => '5005963']);
 
         /**
          * A factura entity can't handle id's repetitions, throw error 500
@@ -103,4 +103,59 @@ class FacturasApiControllerTest extends TestCase
         $this->assertDatabaseHas('facturas', ['status' => 'Anulada']);
         $response2->assertStatus(200);
     }
+
+    /**
+     * @test
+     */
+    public function a_factura_translate_the_age_from_fecha_nacimineto_to_years()
+    {
+        $data = [
+            'num_factura' => '5005963',
+            'num_cedula' => '0801198813342',
+            'nombre_completo_cliente' => 'Edith Marisol Alvarez Mena',
+            'fecha_nacimiento' => '02/06/2016',
+            'correo' => 'edith.m.mena@gmail.com',
+            'direccion_entrega_sede' => 'HOSPITAL MILITAR',
+            'medico' => 'Dr. Jorge Rodriguez',
+            'sexo' => 'F',
+            'status' => 'Valida',
+            'examen' => array(
+                ['codigo_examen' => 10260, 'nombre_examen' => 'Marcador Tumoral En Biopsia - Cd-30'],
+                ['codigo_examen' => 10261, 'nombre_examen' => 'Marcador Tumoral Antigeno Epitelial De Membrana'],
+                ['codigo_examen' => 10262, 'nombre_examen' => 'Marcador Tumoral En Biopsia']
+            )
+        ];
+
+        $response = $this->call('POST', '/api/facturas', $data);
+        $response->assertStatus(200);
+        $this->assertDatabaseHas('facturas', ['edad' => '1 A']);
+    }
+
+    /**
+     * @test
+     */
+    public function a_factura_translate_the_age_from_fecha_nacimineto_to_months_if_the_time_is_less_than_a_year()
+    {
+        $data = [
+            'num_factura' => '5005963',
+            'num_cedula' => '0801198813342',
+            'nombre_completo_cliente' => 'Edith Marisol Alvarez Mena',
+            'fecha_nacimiento' => '02/06/2017',
+            'correo' => 'edith.m.mena@gmail.com',
+            'direccion_entrega_sede' => 'HOSPITAL MILITAR',
+            'medico' => 'Dr. Jorge Rodriguez',
+            'sexo' => 'F',
+            'status' => 'Valida',
+            'examen' => array(
+                ['codigo_examen' => 10260, 'nombre_examen' => 'Marcador Tumoral En Biopsia - Cd-30'],
+                ['codigo_examen' => 10261, 'nombre_examen' => 'Marcador Tumoral Antigeno Epitelial De Membrana'],
+                ['codigo_examen' => 10262, 'nombre_examen' => 'Marcador Tumoral En Biopsia']
+            )
+        ];
+
+        $response = $this->call('POST', '/api/facturas', $data);
+        $response->assertStatus(200);
+        $this->assertDatabaseHas('facturas', ['edad' => '1 M']);
+    }
+
 }
