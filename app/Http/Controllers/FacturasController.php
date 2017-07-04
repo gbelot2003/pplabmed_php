@@ -69,7 +69,9 @@ class FacturasController extends Controller
             'correo',
             'medico',
             'created_at'
-        ])->get();
+        ])
+            ->limit(1500)
+            ->get();
         return Datatables::of($facturas)
             ->addColumn('href', function($facturas){
                 return '<a href="facturas/'.$facturas->id.'/edit" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Ver</a>';
