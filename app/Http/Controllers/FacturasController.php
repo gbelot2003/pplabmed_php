@@ -64,6 +64,7 @@ class FacturasController extends Controller
     public function listados()
     {
         $facturas = Factura::select([
+            'id',
             'num_factura',
             'nombre_completo_cliente',
             'correo',
