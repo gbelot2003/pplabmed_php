@@ -86,7 +86,6 @@ CitologiaController extends Controller
         }
 
         $cito = Citologia::create($request->all());
-        $cito->facturas->update($request->all());
         $serialHelper->setSerial($request->input('serial'), 1);
 
         Audit::create([
@@ -168,7 +167,6 @@ CitologiaController extends Controller
         }
 
         $cito->update($request->all());
-        $cito->facturas->update($request->all());
 
         Audit::create([
             'title' => 'Citología',

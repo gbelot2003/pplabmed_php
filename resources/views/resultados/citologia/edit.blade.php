@@ -70,7 +70,7 @@
             display:none;
         }
     </style>
-    <script src="{{ asset('js/citologias-create.js') }}"></script>
+    <script src="{{ asset('js/citologias-form.js') }}"></script>
 
     <script type="text/javascript">
         // EVENTO CUANDO SE MUEVE EL SCROLL, EL MISMO APLICA TAMBIEN CUANDO SE RESIZA
