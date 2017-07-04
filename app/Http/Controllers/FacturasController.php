@@ -70,8 +70,7 @@ class FacturasController extends Controller
             'medico',
             'created_at'
         ])
-            ->limit(1500)
-            ->orderBy('num_factura', 'ASC')
+            ->osrderBy('num_factura', 'ASC')
             ->get();
         return Datatables::of($facturas)
             ->addColumn('href', function($facturas){
