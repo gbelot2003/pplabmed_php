@@ -55,6 +55,7 @@ class FacturasApiControllerTest extends TestCase
         $response->assertStatus(200);
         $this->assertDatabaseHas('facturas', ['num_factura' => '5068096']);
         $this->assertDatabaseHas('examenes', ['num_factura' => '5068096']);
+        $this->assertDatabaseHas('examenes', ['nombre_examen' => 'Cit. Genital (B, Liq.) Tomada  En El Lab.']);
 
         /**
          * A factura entity can't handle id's repetitions, throw error 500
