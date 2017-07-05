@@ -33,7 +33,7 @@ class HistopatiaValidation extends FormRequest
             'mor1' => 'string|nullable',
             'mor2' => 'string|nullable',
             'firma_id' => 'required|integer',
-            'firma2_id' => 'integer|nullable',
+            'firma2_id' => 'nullable',
             'diagnostico' => 'string|nullable',
             'muestra' => 'string|nullable',
             'fecha_biopcia' => 'string|nullable',
