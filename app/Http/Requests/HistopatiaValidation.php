@@ -28,7 +28,7 @@ class HistopatiaValidation extends FormRequest
 
         return [
             'serial' => 'numeric|unique:histopatologias,serial,' .$request->get('id'),
-            'factura_id' => 'numeric|required|unique:histopatologias,factura_id,' .$postId,
+            'factura_id' => 'numeric|required',
             'topog' => 'string|required',
             'mor1' => 'string|nullable',
             'mor2' => 'string|nullable',
