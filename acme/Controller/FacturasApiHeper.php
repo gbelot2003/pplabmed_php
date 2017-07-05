@@ -43,7 +43,12 @@ Class FacturasApiHeper {
             ]);
 
             if(!$examen->exist){
-                throw new Exception('Error in saving data.');
+                Audit::create([
+                    'title' => 'Examen API Fail',
+                    'action' => 'Creacion error',
+                    'details' => 'Examen: ' . $examen->num_factura . "Item: " . $examenes['codigo_examen'],
+                    'user_id' => 1
+                ]);
             }
         }
     }

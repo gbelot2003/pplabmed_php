@@ -21,6 +21,7 @@ class FactutasApiController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request->all());
         $factHelp = new FacturasApiHeper();
 
         if ($request->has('status')) {
