@@ -77,6 +77,7 @@
         <div class="text-right">
             <br>
             <a class="btn btn-success btn-xs text-center" id="editModalBtn" href="#" rel="{{ $item->factura_id }}">Editar Factura</a>
+            <a class="btn btn-warning btn-xs text-center" id="duplicateBtn" href="#" rel="{{ $item->factura_id }}">Duplicar Factura</a>
         </div>
     </div>
 </div>

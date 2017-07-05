@@ -13,6 +13,7 @@ use App\Http\Requests\CitologiaValidate;
 use Atlas\Helpers\DateHelper;
 use Carbon\Carbon;
 use Auth;
+use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 
 class
@@ -91,7 +92,7 @@ CitologiaController extends Controller
         Audit::create([
             'title' => 'Citología',
             'action' => 'creación',
-            'details' => $cito->serial . ' - Factura ' .$cito->facturas->num_factura,
+            'details' => $cito->serial . ' - Factura ' . $cito->facturas->num_factura,
             'user_id' => Auth::user()->id
         ]);
 
@@ -379,6 +380,19 @@ CitologiaController extends Controller
             $pacesholder = \request()->get('diagnostico');
             $query->where('diagnostico', 'LIKE', '%' . $pacesholder . '%');
         }
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @internal param $id
+     */
+    public function updateFacturaNum(Request $request)
+    {
+        $cito = Citologia::findOrFail($request->get('id'));
+        $cito->factura_id = $request->get('factura_id');
+        $cito->save();
+        return redirect()->to(action('CitologiaController@edit', $cito->id));
     }
 }
 

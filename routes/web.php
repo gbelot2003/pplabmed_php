@@ -50,6 +50,10 @@ Route::group(['middleware' => 'auth'], function(){
      * Citologia ENG
      */
     /***/Route::get('citologia/formulario-end/{id}', 'PrintController@formatoCitologiasEng');
+    /**
+     * Duplicar Factura
+     */
+    Route::post('citologia/reescritura', 'CitologiaController@updateFacturaNum');
 
     Route::resource('histopatologia', 'HistopatologiaController');
     Route::get('histopatologias/listados', 'HistopatologiaController@listados');

@@ -54,6 +54,7 @@
         </div>
     </div>
     @include('resultados.citologia._edit_factura_modal')
+    @include('resultados.citologia._repeat_factura_modal')
 @stop
 
 @section('jscode')

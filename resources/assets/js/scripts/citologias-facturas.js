@@ -76,7 +76,9 @@
 
         });
 
-
+        $('#duplicateBtn').on('click', function () {
+            $('#repeatFactura').modal();
+        })
     })
 
 })(jQuery);
