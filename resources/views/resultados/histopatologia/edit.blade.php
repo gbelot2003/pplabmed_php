@@ -31,6 +31,9 @@
                         @include('resultados.histopatologia._histoPartial')
                         {!!  Form::close() !!}
                     </div>
+                    <div class="panel-footer">
+                        <a onclick="window.open('{{ action('PrintController@formatoHistoatologiaEng', $item->id) }}', '_blank', 'location=no,height=600,width=816,menubar=no,status=no,location=no,toolbar=no,scrollbars=yes,directories=no');" class="btn btn-info" alt="Buscar" ><span class="glyphicon glyphicon-print"></span> ENG</a>
+                    </div>
                 </div>
             </div>
         </div>

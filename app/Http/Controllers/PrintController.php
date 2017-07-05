@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Acme\Controller\Printer\HistoPrinConfigEng;
 use Acme\Controller\Printer\HistoPrintConfig;
 use App\Citologia;
 use App\Histopatologia;
@@ -77,4 +78,13 @@ class PrintController extends Controller
         $print = new HistoPrintConfig();
         $print->printPdfHitoReport($items);
     }
+
+    public function formatoHistoatologiaEng($id)
+    {
+        $items = Histopatologia::with('facturas')->findOrFail($id);
+        $print = new HistoPrinConfigEng();
+        $print->printPdfHitoReport($items);
+    }
+
+
 }

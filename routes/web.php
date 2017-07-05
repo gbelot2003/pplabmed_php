@@ -59,6 +59,7 @@ Route::group(['middleware' => 'auth'], function(){
 
     /***/Route::get('histopatologias/sobres/{id}', 'PrintController@sobreHistopatologia');
     /***/Route::get('histopatologias/formulario/{id}', 'PrintController@formatoHistopatologia');
+    /***/Route::get('histopatologias/formulario-eng/{id}', 'PrintController@formatoHistoatologiaEng');
 
     Route::get('histo/images/edit/{id}', 'ImagesController@edit')->name('images.edit');
 
