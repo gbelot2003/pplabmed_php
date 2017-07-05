@@ -72,7 +72,6 @@ class FacturasController extends Controller
             'created_at'
         ])
             ->orderBy('num_factura', 'ASC')
-            ->limit(1500)
             ->get();
         return Datatables::of($facturas)
             ->addColumn('href', function($facturas){
