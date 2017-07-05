@@ -392,6 +392,14 @@ CitologiaController extends Controller
         $cito = Citologia::findOrFail($request->get('id'));
         $cito->factura_id = $request->get('factura_id');
         $cito->save();
+
+        Audit::create([
+            'title' => 'Citología',
+            'action' => 'duplicación de Factura',
+            'details' => $cito->serial . ' - Factura ' . $cito->facturas->num_factura,
+            'user_id' => Auth::user()->id
+        ]);
+
         return redirect()->to(action('CitologiaController@edit', $cito->id));
     }
 }

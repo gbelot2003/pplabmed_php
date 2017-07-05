@@ -348,9 +348,17 @@ class HistopatologiaController extends Controller
      */
     public function updateFacturaNum(Request $request)
     {
-        $cito = Histopatologia::findOrFail($request->get('id'));
-        $cito->factura_id = $request->get('factura_id');
-        $cito->save();
-        return redirect()->to(action('HistopatologiaController@edit', $cito->id));
+        $histo = Histopatologia::findOrFail($request->get('id'));
+        $histo->factura_id = $request->get('factura_id');
+        $histo->save();
+
+        Audit::create([
+            'title' => 'Biopsias',
+            'action' => 'edición',
+            'details' => $histo->serial . ' - Factura ' . $histo->facturas->num_factura,
+            'user_id' => Auth::user()->id
+        ]);
+
+        return redirect()->to(action('HistopatologiaController@edit', $histo->id));
     }
 }
