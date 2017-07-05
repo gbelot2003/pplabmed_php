@@ -94,9 +94,13 @@ class HistopatologiaController extends Controller
         $firmas = Firma::where('status', 1)->pluck('name', 'id');
         $plantillas = Plantilla::all();
         $i = 0;
+
         $previous = Histopatologia::where('id', '<', $item->id)->max('id');
         $next = Histopatologia::where('id', '>', $item->id)->min('id');
-        $total = Histopatologia::all()->count();
+        $histo = Histopatologia::all();
+        $total = $histo->count();
+        $first = $histo->first();
+        $last = $histo->last();
 
         $now = date("Y-m-d");
         $bdate = Carbon::createFromFormat('Y-m-d', $now)->startOfDay();
@@ -104,7 +108,7 @@ class HistopatologiaController extends Controller
 
         $today = Histopatologia::whereBetween('created_at', [$bdate, $edate])->count();
 
-        return View('resultados.histopatologia.edit', compact('item', 'plantillas', 'firmas', 'postId', 'i', 'previous', 'next', 'total', 'today'));
+        return View('resultados.histopatologia.edit', compact('item', 'plantillas', 'firmas', 'postId', 'i', 'previous', 'next', 'total', 'today', 'first', 'last'));
     }
 
     public function update(HistopatiaValidation $request, $id)
