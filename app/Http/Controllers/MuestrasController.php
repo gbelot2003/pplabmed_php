@@ -34,18 +34,39 @@ class MuestrasController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $muestra = Muestra::create($request->all());
+        if($muestra->exist){
+
+            Audit::create([
+                'title' => 'Muestra',
+                'action' => 'creación',
+                'details' => 'ID: '. $muestra->id .' numero: ' . $muestra->num_factura,
+                'user_id' => 1
+            ]);
+
+            return redirect()->to(action('MuestrasController@edit', $muestra->id));
+        } else {
+
+            Audit::create([
+                'title' => 'Muestra',
+                'action' => 'creación error',
+                'details' => 'ID: '. $muestra->id .' numero: ' . $muestra->num_factura,
+                'user_id' => 1
+            ]);
+
+            return response()->json('error', 200);
+        }
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -58,14 +79,16 @@ class MuestrasController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
+        $muestra = Muestra::findOrFail($id);
+        $muestra->update($request->all());
 
-        return redirect()->to(route('muestras.index'));
+        return redirect()->to(action('MuestrasController@edit', $muestra->id));
     }
 
     /**
@@ -78,11 +101,14 @@ class MuestrasController extends Controller
             'id',
             'serial',
             'created_at',
-        ]);
+        ])
+            ->orderBy('serial', 'DESC')
+            ->limit(1500)
+            ->get();
 
         return Datatables::of($items)
             ->addColumn('href', function ($items) {
-                return '<a href="/muestras/' . $items->id .'/edit" class="btn btn-xs btn-primary">Ver Detalle</a>';
+                return '<a href="/muestras/' . $items->id . '/edit" class="btn btn-xs btn-primary">Ver Detalle</a>';
             })
             ->rawColumns(['href'])
             ->make(true);
