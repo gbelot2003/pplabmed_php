@@ -340,4 +340,17 @@ class HistopatologiaController extends Controller
             $query->where('informe', 'LIKE', '%' . $pacesholder . '%');
         }
     }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @internal param $id
+     */
+    public function updateFacturaNum(Request $request)
+    {
+        $cito = Histopatologia::findOrFail($request->get('id'));
+        $cito->factura_id = $request->get('factura_id');
+        $cito->save();
+        return redirect()->to(action('HistopatologiaController@edit', $cito->id));
+    }
 }
