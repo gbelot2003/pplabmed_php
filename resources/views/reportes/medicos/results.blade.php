@@ -6,7 +6,7 @@
     <table>
         <tr>
             <td></td>
-            <td><b>Total: {{ $fir1total }}</b></td>
+            <td><b>Total: {{ $citoTotal }}</b></td>
             <td></td>
             <td></td>
             <td></td>
@@ -34,12 +34,21 @@
                 <td>{{ $item->fecha_informe->formatLocalized('%d %B %Y') }}</td>
             </tr>
         @endforeach
+        @foreach($items2 as $item1)
+            <tr>
+                <td>{{ $item1->Numero_Factura }}</td>
+                <td>{{ $item1->Numero_Item }}</td>
+                <td>{{ $item1->Tipo_Examen }}</td>
+                <td>{{ $item1->Nombre_Cliente }}</td>
+                <td>{{ $item1->fecha_informe->formatLocalized('%d %B %Y') }}</td>
+            </tr>
+        @endforeach
         <tr>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
-            <td><b>Total: {{ $fir1total }}</b></td>
+            <td><b>Total: {{ $citoTotal }}</b></td>
         </tr>
     </table>
 

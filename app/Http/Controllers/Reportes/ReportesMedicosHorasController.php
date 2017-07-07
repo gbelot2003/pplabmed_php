@@ -8,6 +8,7 @@ use App\Histopatologia;
 use App\Http\Controllers\Controller;
 use Atlas\Helpers\DatesFormatHelper;
 use Atlas\Helpers\FormatQueryDates;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Maatwebsite\Excel\Facades\Excel;
@@ -31,7 +32,11 @@ class ReportesMedicosHorasController extends Controller
     public function results(Request $request)
     {
         $cito1 = new Citologia();
+        $cito2 = new Citologia();
         $histo1 = new Histopatologia();
+        $histo2 = new Histopatologia();
+        $firma = Firma::findOrFail($request->get('firma_id'));
+
 
         if ($request->has('inicio')) {
             $date = new DatesFormatHelper($request->get('inicio'));
@@ -48,21 +53,42 @@ class ReportesMedicosHorasController extends Controller
         }
 
 
-        $firma = Firma::findOrFail($request->get('firma_id'));
 
-
-        $citologias = $cito1->select([
+        $citologias = Citologia::select([
             'facturas.num_factura as Numero_Factura',
             'examenes.item as Numero_Item',
             'examenes.nombre_examen as Tipo_Examen',
             'facturas.nombre_completo_cliente as Nombre_Cliente',
-            'citologias.fecha_informe'
+            'citologias.fecha_informe',
+            'citologias.created_at'
         ])
-            ->whereBetween('fecha_informe', [$bdate, $edate])
-            ->where('firma_id', $request->get('firma_id'))
-            ->orWhere('firma2_id', $request->get('firma_id'))
+            ->whereBetween('citologias.created_at', [$bdate, $edate])
+            ->where('firma_id', $firma->id)
             ->join('facturas', 'citologias.factura_id', '=', 'facturas.num_factura')
             ->join('examenes', 'facturas.num_factura', '=', 'examenes.num_factura');
+
+
+        $items = $citologias->get();
+        $fir1total = $citologias->count();
+
+
+        $citologias2 = Citologia::select([
+            'facturas.num_factura as Numero_Factura',
+            'examenes.item as Numero_Item',
+            'examenes.nombre_examen as Tipo_Examen',
+            'facturas.nombre_completo_cliente as Nombre_Cliente',
+            'citologias.fecha_informe',
+            'citologias.created_at'
+        ])
+            ->whereBetween('citologias.created_at', [$bdate, $edate])
+            ->where('firma2_id', $firma->id)
+            ->join('facturas', 'citologias.factura_id', '=', 'facturas.num_factura')
+            ->join('examenes', 'facturas.num_factura', '=', 'examenes.num_factura');
+
+
+        $items2 = $citologias2->get();
+        $fir2total = $citologias2->count();
+        $citoTotal = $fir1total + $fir2total;
 
 
         $histo = $histo1->select([
@@ -70,43 +96,48 @@ class ReportesMedicosHorasController extends Controller
             'examenes.item as Numero_Item',
             'examenes.nombre_examen as Tipo_Examen',
             'facturas.nombre_completo_cliente as Nombre_Cliente',
-            'histopatologias.fecha_informe'
+            'histopatologias.fecha_informe',
+            'histopatologias.created_at'
         ])
-            ->whereBetween('fecha_informe', [$bdate, $edate])
-            ->where('firma_id', $request->get('firma_id'))
-            ->orWhere('firma2_id', $request->get('firma_id'))
+            ->whereBetween('facturas.created_at', [$bdate, $edate])
+            ->where('firma_id',$firma->id)
             ->join('facturas', 'histopatologias.factura_id', '=', 'facturas.num_factura')
             ->join('examenes', 'facturas.num_factura', '=', 'examenes.num_factura');
 
-
-        $items = $citologias->get();
-
-        $fir1total = $citologias->count();
-
-        $items2 = $histo->get();
-
-        $fir2total = $histo->count();
+        $items3 = $histo->get();
+        $fir3total = $histo->count();
 
 
-        $return = Excel::create('Reporte de Medicos Informantes', function ($excel) use ($items, $bdate, $edate, $firma, $fir1total, $fir2total, $items2) {
+        $histo2 = $histo1->select([
+            'facturas.num_factura as Numero_Factura',
+            'examenes.item as Numero_Item',
+            'examenes.nombre_examen as Tipo_Examen',
+            'facturas.nombre_completo_cliente as Nombre_Cliente',
+            'histopatologias.fecha_informe',
+            'histopatologias.created_at'
+        ])
+            ->whereBetween('facturas.created_at', [$bdate, $edate])
+            ->where('firma2_id',$firma->id)
+            ->join('facturas', 'histopatologias.factura_id', '=', 'facturas.num_factura')
+            ->join('examenes', 'facturas.num_factura', '=', 'examenes.num_factura');
 
-            $excel->sheet('Citologías', function ($sheet) use ($items, $bdate, $edate, $firma, $fir1total) {
-                $sheet->loadView('reportes.medicos.results', compact('bdate', 'edate', 'items', 'firma', 'fir1total'));
+        $items4 = $histo2->get();
+        $fir4total = $histo2->count();
+        $histoTotal = $fir3total + $fir4total;
+
+        $return = Excel::create('Reporte de Medicos Informantes ' . $firma->name, function ($excel) use ($items, $items2, $items3, $items4,
+            $bdate, $edate, $firma, $citoTotal, $fir2total, $items2, $histoTotal) {
+
+            $excel->sheet('Citologías', function ($sheet) use ($items, $items2, $bdate, $edate, $firma, $citoTotal) {
+                $sheet->loadView('reportes.medicos.results', compact('bdate', 'edate', 'items', 'firma', 'citoTotal', 'items2'));
             });
 
-            $excel->sheet('Histopatología', function ($sheet) use ($items2, $bdate, $edate, $firma, $fir2total) {
-                $sheet->loadView('reportes.medicos.results-histo', compact('bdate', 'edate', 'items2', 'firma', 'fir2total'));
+            $excel->sheet('Histopatología', function ($sheet) use ($items3, $items4, $bdate, $edate, $firma, $histoTotal) {
+                $sheet->loadView('reportes.medicos.results-histo', compact('bdate', 'edate', 'items3', 'items4', 'firma', 'histoTotal'));
             });
 
 
         })->export('xls');
-
-        /*return [
-            'citologias' => $fir1,
-            'citologias_total' => $fir1total
-        ];*/
-
-        //return View('reportes.medicos.results', compact( 'bdate', 'edate', 'items', 'firma'));
 
     }
 }
