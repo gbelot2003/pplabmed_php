@@ -34,11 +34,10 @@ class MuestrasController extends Controller
      */
     public function create()
     {
-        $body = "El Suscrito medico patólogo de Laboratorios Médicos hace constar que el material
+        $body = "El suscrito medico patólogo de Laboratorios Médicos hace constar que el material
         rotulado con el nombre [], contienen: [].
         Se entrega todo el material en archivo. Y para fines que al interesado convenga estiendo la presente
-        en Tegucigalpa M.D.C. a los [] del mes de [] del 20[]
-        ";
+        en Tegucigalpa M.D.C. a los [] del mes de [] del 20[]";
 
         $firmas = Firma::where('status', 1)->pluck('name', 'id');
         return View('resultados.muestras.create', compact('firmas', 'body'));

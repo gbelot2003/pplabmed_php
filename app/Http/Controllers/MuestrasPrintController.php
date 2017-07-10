@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Acme\Controller\Printer\ConstanciaPrint;
+use Acme\Controller\Printer\ConstanciaPrintEng;
 use App\Muestra;
 use Illuminate\Http\Request;
 
@@ -30,7 +31,9 @@ class MuestrasPrintController extends Controller
      */
     public function printMuestrasEng($id)
     {
-        return "print ENG";
+        $muestra = Muestra::findOrFail($id);
+        $print = new ConstanciaPrintEng();
+        $print->printPdfReport($muestra);
     }
 
 }
