@@ -26,6 +26,7 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Serial</th>
+                                <th>Firma</th>
                                 <th>Fecha</th>
                                 <th>Acción</th>
                             </tr>
@@ -51,7 +52,8 @@
                     columns:[
                         {data: 'id', name: 'serial'},
                         {data: 'serial', name: 'serial'},
-                        {data: 'created_at', name: 'factura_id'},
+                        {data: 'name', name: 'firmas.name'},
+                        {data: 'finforme', name: 'muestras.created_at'},
                         {data: 'href', name: 'href',  "searchable": false},
 
                     ],

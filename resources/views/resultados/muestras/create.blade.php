@@ -30,7 +30,35 @@
                     <div class="panel-body" id="app">
                         {!! Form::open(['action' => 'MuestrasController@store', 'id' => 'myForm']) !!}
                         <div class="panel-body">
-                            @include('resultados.muestras._form')
+                            <div class="row">
+                                {{--Serial--}}
+                                <div class="col-md-3 form-group {{ $errors->has('serial') ? ' has-error' : '' }}">
+                                    <label>No. de Biopsia</label>
+                                    {{ Form::number('serial', isset($item->facturas->name) ? $item->facturas->name : null,
+                                    ['class' => 'form-control box-style yellow', 'id' => 'serial', 'tabindex' => 1,'require', 'placeholder' => 'Serial'] ) }}
+                                </div>
+
+                                {{-- Firma 1 --}}
+                                <div class="col-md-6 form-group  {{ $errors->has('firma_id') ? ' has-error' : '' }}">
+                                    <label>Firma</label>
+                                    {{ Form::select('firma_id', $firmas, null, ['class' => 'form-control', 'tabindex' => 2]) }}
+                                </div>
+                            </div>
+
+                            <div class="row {{ $errors->has('informe') ? ' has-error' : '' }}">
+                                <div class="col-md-12 form-group">
+                                    <label>Informe</label>
+                                    {{ Form::textarea('body', $body, ['class' => 'textarea form-control ckeditor', 'id' => 'informe', 'tabindex' => 3]) }}
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="text-right">
+                                    <br>
+                                    <a class="btn btn-info" href="{{ action('MuestrasController@index') }}">Cancelar/Listado</a>
+                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                                </div>
+                            </div>
                         </div>
                         <div class="panel-footer">
 
@@ -47,5 +75,8 @@
     <script src="/js/ckeditor/ckeditor.js"></script>
     <script>
         CKEDITOR.config.enterMode = 2;
+        $(document).ready(function () {
+            CKEDITOR.instances['informe'].insertHtml("Este es texto que va dentro del campo");
+        });
     </script>
 @stop

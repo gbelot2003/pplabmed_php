@@ -40,7 +40,9 @@
                                         Histopatología</a></li>
                                 <li><a href="{{ action('HistopatologiaController@create') }}">
                                         Nueva Histopatología</a></li>
-                                <li><a href="{{ action('MuestrasController@index') }}">
+                                    <li class="divider"></li>
+
+                                    <li><a href="{{ action('MuestrasController@index') }}">
                                         Listado de muestras entregadas</a></li>
                             @endif
 

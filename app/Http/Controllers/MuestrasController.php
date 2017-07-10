@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Audit;
 use App\Firma;
+use App\Http\Requests\MuestrasRequest;
 use App\Muestra;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -10,6 +12,11 @@ use Yajra\Datatables\Datatables;
 
 class MuestrasController extends Controller
 {
+
+    function __construct()
+    {
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -27,20 +34,26 @@ class MuestrasController extends Controller
      */
     public function create()
     {
+        $body = "El Suscrito medico patólogo de Laboratorios Médicos hace constar que el material
+        rotulado con el nombre [], contienen: [].
+        Se entrega todo el material en archivo. Y para fines que al interesado convenga estiendo la presente
+        en Tegucigalpa M.D.C. a los [] del mes de [] del 20[]
+        ";
+
         $firmas = Firma::where('status', 1)->pluck('name', 'id');
-        return View('resultados.muestras.create', compact('firmas'));
+        return View('resultados.muestras.create', compact('firmas', 'body'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param MuestrasRequest|Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MuestrasRequest $request)
     {
         $muestra = Muestra::create($request->all());
-        if($muestra->exist){
+        if(!$muestra->exist){
 
             Audit::create([
                 'title' => 'Muestra',
@@ -59,7 +72,7 @@ class MuestrasController extends Controller
                 'user_id' => 1
             ]);
 
-            return response()->json('error', 200);
+            return response()->json('error', 500);
         }
     }
 
@@ -79,11 +92,11 @@ class MuestrasController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param MuestrasRequest|Request $request
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(MuestrasRequest $request, $id)
     {
         $muestra = Muestra::findOrFail($id);
         $muestra->update($request->all());
@@ -98,10 +111,12 @@ class MuestrasController extends Controller
     public function listados()
     {
         $items = Muestra::select([
-            'id',
-            'serial',
-            'created_at',
+            'muestras.id',
+            'muestras.serial',
+            'firmas.name as name',
+            'muestras.created_at',
         ])
+            ->Join('firmas', 'muestras.firma_id', '=', 'firmas.id')
             ->orderBy('serial', 'DESC')
             ->limit(1500)
             ->get();
@@ -110,6 +125,10 @@ class MuestrasController extends Controller
             ->addColumn('href', function ($items) {
                 return '<a href="/muestras/' . $items->id . '/edit" class="btn btn-xs btn-primary">Ver Detalle</a>';
             })
+            ->addColumn('finforme', function ($items) {
+                return $items->created_at->format('d/m/Y');
+            })
+
             ->rawColumns(['href'])
             ->make(true);
     }
