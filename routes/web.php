@@ -80,6 +80,10 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::resource('/muestras', 'MuestrasController');
     Route::get('muestra/listados', 'MuestrasController@listados');
+    Route::get('muestras/print/{id}', 'MuestrasPrintController@printMuestras');
+    Route::get('muestras/print-en/{id}', 'MuestrasPrintController@printMuestrasEng');
+
+
 
     Route::resource('facturas', 'FacturasController');
     Route::get('factura/listados', 'FacturasController@listados');

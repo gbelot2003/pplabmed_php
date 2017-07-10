@@ -2,6 +2,7 @@
     {{--Serial--}}
     <div class="col-md-3 form-group {{ $errors->has('serial') ? ' has-error' : '' }}">
         <label>No. de Biopsia</label>
+        {{ Form::hidden('id', $items->id)}}
         {{ Form::number('serial', isset($item->facturas->name) ? $item->facturas->name : null,
         ['class' => 'form-control box-style yellow', 'id' => 'serial', 'tabindex' => 1,'require', 'placeholder' => 'Serial'] ) }}
     </div>

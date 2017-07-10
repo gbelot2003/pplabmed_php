@@ -25,6 +25,9 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
+                        <div class="text-muted pull-right">
+                            <a onclick="window.open('{{ action('MuestrasPrintController@printMuestras', $items->id) }}', '_blank', 'location=no,height=570,width=520,menubar=no,status=no,location=no,toolbar=no,scrollbars=yes,directories=no');" class="btn btn-info" alt="Buscar" ><span class="glyphicon glyphicon-print"></span> ES</a>
+                        </div>
                         <h4>Agregar de Constancia</h4>
                     </div>
                     <div class="panel-body" id="app">

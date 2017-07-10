@@ -53,27 +53,16 @@ class MuestrasController extends Controller
     public function store(MuestrasRequest $request)
     {
         $muestra = Muestra::create($request->all());
-        if(!$muestra->exist){
 
-            Audit::create([
-                'title' => 'Muestra',
-                'action' => 'creación',
-                'details' => 'ID: '. $muestra->id .' numero: ' . $muestra->num_factura,
-                'user_id' => 1
-            ]);
+        Audit::create([
+            'title' => 'Muestra',
+            'action' => 'creación',
+            'details' => 'ID: '. $muestra->id .' numero: ' . $muestra->num_factura,
+            'user_id' => 1
+        ]);
 
-            return redirect()->to(action('MuestrasController@edit', $muestra->id));
-        } else {
-
-            Audit::create([
-                'title' => 'Muestra',
-                'action' => 'creación error',
-                'details' => 'ID: '. $muestra->id .' numero: ' . $muestra->num_factura,
-                'user_id' => 1
-            ]);
-
-            return response()->json('error', 500);
-        }
+        flash('Registro Creado', 'success')->important();
+        return redirect()->to(action('MuestrasController@edit', $muestra->id));
     }
 
     /**
@@ -100,7 +89,7 @@ class MuestrasController extends Controller
     {
         $muestra = Muestra::findOrFail($id);
         $muestra->update($request->all());
-
+        flash('Registro Actualizado', 'success')->important();
         return redirect()->to(action('MuestrasController@edit', $muestra->id));
     }
 

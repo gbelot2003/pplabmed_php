@@ -24,9 +24,9 @@ class MuestrasRequest extends FormRequest
      */
     public function rules(Request $request)
     {
-        $postId = $this->route()->parameter('muestras');
+
         return [
-            'serial' => 'numeric|exists:histopatologias,serial',
+            'serial' => 'numeric|exists:histopatologias,serial|unique:muestras,serial,'.$request->get('id'),
             'body' => 'string',
             'firma_id' => 'integer'
         ];
