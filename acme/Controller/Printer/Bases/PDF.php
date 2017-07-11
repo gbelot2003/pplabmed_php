@@ -57,7 +57,7 @@ class PDF extends baseFpdf
 // Page footer
     function Footer()
     {
-        /*$this->SetY(-38);
+        $this->SetY(-38);
         $this->Cell(45, 5, "Fecha de Informe:" , 0, '');
         $this->SetFont('Arial', 'B', 11);
         $this->Cell(75, 5, $this->data->firma->name , 0, 0, 'C');
@@ -81,7 +81,7 @@ class PDF extends baseFpdf
                 $this->Cell(75, 5, $this->data->firma2->extra , 0, 0, 'C');
             }
             $this->ln();
-        }*/
+        }
 
         // Position at 1.5 cm from bottom
         $this->SetY(-25);

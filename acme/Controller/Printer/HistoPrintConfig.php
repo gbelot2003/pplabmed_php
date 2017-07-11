@@ -228,7 +228,7 @@ class HistoPrintConfig{
             strip_tags(utf8_decode(html_entity_decode($data->informe)))
             , 0, 'J', false);
 
-        if(!isset($data->images[0])){
+        /*if(!isset($data->images[0])){
 
             $pdf->ln(75);
             $pdf->Cell(45, 5, "Fecha de Informe:" , 0, '');
@@ -255,7 +255,7 @@ class HistoPrintConfig{
                 }
                 $pdf->ln();
             }
-        }
+        }*/
     }
 
     /**
