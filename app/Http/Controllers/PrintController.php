@@ -38,7 +38,7 @@ class PrintController extends Controller
         $items = Citologia::with('facturas')->findOrFail($id);
         $translator = new GoogleTranslate\Translator();
 
-        if($items->diagnostico){
+        if ($items->diagnostico) {
             $diagnostico = $translator->setSourceLang('es')
                 ->setTargetLang('en')
                 ->translate($items->diagnostico);
@@ -46,7 +46,7 @@ class PrintController extends Controller
             $diagnostico = null;
         }
 
-        if($items->informe) {
+        if ($items->informe) {
             $informe = $translator->setSourceLang('es')
                 ->setTargetLang('en')
                 ->translate($items->informe);
@@ -54,7 +54,7 @@ class PrintController extends Controller
             $informe = null;
         }
 
-        if($items->otros_b) {
+        if ($items->otros_b) {
             $material = $translator->setSourceLang('es')
                 ->setTargetLang('en')
                 ->translate($items->otros_b);
@@ -75,6 +75,10 @@ class PrintController extends Controller
     public function formatoHistopatologia($id)
     {
         $items = Histopatologia::with('facturas')->findOrFail($id);
+        if (isset($items->images[0])) {
+            dd($items->images);
+        }
+
         $print = new HistoPrintConfig();
         $print->printPdfHitoReport($items);
     }
@@ -82,6 +86,9 @@ class PrintController extends Controller
     public function formatoHistoatologiaEng($id)
     {
         $items = Histopatologia::with('facturas')->findOrFail($id);
+        if (isset($items->images[0])) {
+            dd($items->images);
+        }
         $print = new HistoPrinConfigEng();
         $print->printPdfHitoReport($items);
     }

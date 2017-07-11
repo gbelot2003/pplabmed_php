@@ -10,11 +10,13 @@ class PDF extends baseFpdf
     var $javascript;
     var $n_js;
     protected $ftitle;
+    protected $data;
 
-    function __construct($orientation = 'P', $unit = 'mm', $size = 'A4', $ftitle = "title")
+    function __construct($orientation = 'P', $unit = 'mm', $size = 'A4', $ftitle = "title", $data)
     {
         parent::__construct($orientation, $unit, $size);
         $this->ftitle = $ftitle;
+        $this->data = $data;
     }
 
     function IncludeJS($script) {
@@ -50,9 +52,37 @@ class PDF extends baseFpdf
         }
     }
 
+
+
 // Page footer
     function Footer()
     {
+        $this->SetY(-38);
+        $this->Cell(45, 5, "Fecha de Informe:" , 0, '');
+        $this->SetFont('Arial', 'B', 11);
+        $this->Cell(75, 5, $this->data->firma->name , 0, 0, 'C');
+        if (isset($this->data->firma2)){
+            $this->Cell(75, 5, $this->data->firma2->name , 0, 0, 'C');
+        }
+        $this->SetFont('Arial', '', 10);
+        $this->ln();
+        $this->SetFont('Arial', 'B', 10);
+        $this->Cell(45, 5, $this->data->fecha_informe->formatLocalized('%d/%m/%Y') , 0, '');
+        $this->SetFont('Arial', '', 10);
+        $this->Cell(75, 5, $this->data->firma->collegiate , 0, 0, 'C');
+        if (isset($this->data->firma2)) {
+            $this->Cell(75, 5, $this->data->firma2->collegiate, 0, 0, 'C');
+        }
+        if ($this->data->firma->extra){
+            $this->ln();
+            $this->Cell(45, 5, "" , 0, '');
+            $this->Cell(75, 5, $this->data->firma->extra ,0, 0, 'C');
+            if (isset($this->data->firma2->extra)){
+                $this->pdf->Cell(75, 5, $this->data->firma2->extra , 0, 0, 'C');
+            }
+            $this->ln();
+        }
+
         // Position at 1.5 cm from bottom
         $this->SetY(-25);
         // Arial italic 8
