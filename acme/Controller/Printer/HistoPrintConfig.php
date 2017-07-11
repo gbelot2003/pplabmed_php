@@ -228,7 +228,7 @@ class HistoPrintConfig{
 
         if(!isset($data->images[0])){
 
-            $pdf->ln(95);
+            $pdf->ln(85);
             $pdf->Cell(45, 5, "Fecha de Informe:" , 0, '');
             $pdf->SetFont('Arial', 'B', 11);
             $pdf->Cell(75, 5, $data->firma->name , 0, 0, 'C');
