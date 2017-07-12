@@ -28,7 +28,7 @@ class HistoPrintConfig{
 
         $pdf->AddPage();
 
-        $this->PrintHeader($data, $pdf);
+        //$this->PrintHeader($data, $pdf);
         $pdf->SetAutoPageBreak(true, 30);
         $this->PrintBody($data, $pdf);
 
