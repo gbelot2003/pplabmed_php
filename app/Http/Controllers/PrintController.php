@@ -75,10 +75,6 @@ class PrintController extends Controller
     public function formatoHistopatologia($id)
     {
         $items = Histopatologia::with('facturas')->findOrFail($id);
-        if (isset($items->images[0])) {
-            dd($items->images);
-        }
-
         $print = new HistoPrintConfig();
         $print->printPdfHitoReport($items);
     }
@@ -86,9 +82,6 @@ class PrintController extends Controller
     public function formatoHistoatologiaEng($id)
     {
         $items = Histopatologia::with('facturas')->findOrFail($id);
-        if (isset($items->images[0])) {
-            dd($items->images);
-        }
         $print = new HistoPrinConfigEng();
         $print->printPdfHitoReport($items);
     }

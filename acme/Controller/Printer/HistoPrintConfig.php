@@ -226,35 +226,6 @@ class HistoPrintConfig{
         $pdf->MultiCell(197, 5,
             strip_tags(utf8_decode(html_entity_decode($data->informe)))
             , 0, 'J', false);
-
-        /*if(!isset($data->images[0])){
-
-            $pdf->ln(75);
-            $pdf->Cell(45, 5, "Fecha de Informe:" , 0, '');
-            $pdf->SetFont('Arial', 'B', 11);
-            $pdf->Cell(75, 5, $data->firma->name , 0, 0, 'C');
-            if (isset($data->firma2)){
-                $pdf->Cell(75, 5, $data->firma2->name , 0, 0, 'C');
-            }
-            $pdf->SetFont('Arial', '', 10);
-            $pdf->ln();
-            $pdf->SetFont('Arial', 'B', 10);
-            $pdf->Cell(45, 5, $data->fecha_informe->formatLocalized('%d/%m/%Y') , 0, '');
-            $pdf->SetFont('Arial', '', 10);
-            $pdf->Cell(75, 5, $data->firma->collegiate , 0, 0, 'C');
-            if (isset($data->firma2)) {
-                $pdf->Cell(75, 5, $data->firma2->collegiate, 0, 0, 'C');
-            }
-            if ($data->firma->extra){
-                $pdf->ln();
-                $pdf->Cell(45, 5, "" , 0, '');
-                $pdf->Cell(75, 5, $data->firma->extra ,0, 0, 'C');
-                if (isset($data->firma2->extra)){
-                    $pdf->Cell(75, 5, $data->firma2->extra , 0, 0, 'C');
-                }
-                $pdf->ln();
-            }
-        }*/
     }
 
     /**
@@ -267,18 +238,18 @@ class HistoPrintConfig{
          * Imagenes
          */
 
-        if(isset($data->images[0])){
+        if (isset($data->images[0])) {
             $pdf->Cell(85, 5, $pdf->Image(public_path() . "/img/histo/" .
-                $data->images[0]->image_url, $pdf->GetX(), $pdf->GetY(), 80, 65) , 0, '');
+                $data->images[0]->image_url, $pdf->GetX(), $pdf->GetY(), 80, 65), 0, '');
         }
 
-        if (isset($data->images[1])){
+        if (isset($data->images[1])) {
             $pdf->SetX(105);
             $pdf->Cell(85, 5, $pdf->Image(public_path() . "/img/histo/" .
-                $data->images[1]->image_url, $pdf->GetX(), $pdf->GetY(), 80, 65) , 0, '');
+                $data->images[1]->image_url, $pdf->GetX(), $pdf->GetY(), 80, 65), 0, '');
         }
 
-        if (isset($data->images[0])){
+        if (isset($data->images[0])) {
             $pdf->ln(70);
             $x = $pdf->GetX();
             $y = $pdf->GetY();
@@ -286,71 +257,37 @@ class HistoPrintConfig{
             $pdf->MultiCell(80, 4, $data->images[0]->descripcion, 0, 'J');
         }
 
-        if (isset($data->images[1])){
+        if (isset($data->images[1])) {
             $pdf->SetXY($x + 85, $y);
             $pdf->MultiCell(80, 4, $data->images[1]->descripcion, 0, 'J');
         }
 
-        if (isset($data->images[2])){
+        if (isset($data->images[2])) {
             $pdf->ln(20);
             $pdf->Cell(85, 5, $pdf->Image(public_path() . "/img/histo/" .
-                $data->images[2]->image_url, $pdf->GetX(), $pdf->GetY(), 80, 65) , 0, '');
+                $data->images[2]->image_url, $pdf->GetX(), $pdf->GetY(), 80, 65), 0, '');
         }
 
-        if (isset($data->images[3])){
+        if (isset($data->images[3])) {
             $pdf->SetX(105);
             $pdf->Cell(85, 5, $pdf->Image(public_path() . "/img/histo/" .
-                $data->images[3]->image_url, $pdf->GetX(), $pdf->GetY(), 80, 65) , 0, '');
+                $data->images[3]->image_url, $pdf->GetX(), $pdf->GetY(), 80, 65), 0, '');
         }
 
-        if (isset($data->images[2])){
+        if (isset($data->images[2])) {
             $pdf->ln(70);
             $x2 = $pdf->GetX();
             $y2 = $pdf->GetY();
             $pdf->MultiCell(80, 4, $data->images[2]->descripcion, 0, 'J');
         }
 
-        if (isset($data->images[3])){
+        if (isset($data->images[3])) {
             $pdf->SetXY($x2 + 85, $y2);
             $pdf->MultiCell(80, 4, $data->images[3]->descripcion, 0, 'J');
 
         }
 
-        /**
-         * Firmas
-         */
-        if (isset($data->images[2])){
-            $pdf->ln(25);
-        } else {
-            $pdf->ln(125);
-        }
-
-        $pdf->Cell(45, 5, "Fecha de Informe:" , 0, '');
-        $pdf->SetFont('Arial', 'B', 10);
-        $pdf->Cell(65, 5, $data->firma->name , 0, '');
-        if (isset($data->firma2)){
-            $pdf->Cell(55, 5, $data->firma2->name , 0, '');
-        }
-        $pdf->SetFont('Arial', '', 10);
-        $pdf->ln();
-        $pdf->SetFont('Arial', 'B', 10);
-        $pdf->Cell(45, 5, $data->fecha_informe->formatLocalized('%d/%m/%Y') , 0, '');
-        $pdf->SetFont('Arial', '', 10);
-        $pdf->Cell(65, 5, $data->firma->collegiate , 0, '');
-        if (isset($data->firma2)) {
-            $pdf->Cell(55, 5, $data->firma2->collegiate, 0, '');
-        }
-        if ($data->firma->extra){
-            $pdf->ln();
-            $pdf->Cell(45, 5, "" , 0, '');
-            $pdf->Cell(65, 5, $data->firma->extra ,0, '');
-            if (isset($data->firma2->extra)){
-                $pdf->Cell(75, 5, $data->firma2->extra , 0, '');
-            }
-            $pdf->ln();
-        }
     }
-
 }
 
 
