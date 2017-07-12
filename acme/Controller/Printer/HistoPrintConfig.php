@@ -20,9 +20,9 @@ class HistoPrintConfig{
         setlocale(LC_CTYPE, 'es_ES');
 
 
+        $pdf->AliasNbPages();
         $pdf->SetLeftMargin(5);
         $pdf->SetRightMargin(5);
-        $pdf->AliasNbPages();
 
         $pdf->SetTopMargin(30);
 
@@ -40,7 +40,6 @@ class HistoPrintConfig{
         }
 
         //$pdf->IncludeJS("print('true');");
-
         return $pdf->Output();
     }
 
