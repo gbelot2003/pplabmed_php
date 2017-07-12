@@ -43,7 +43,7 @@
                class="form-control dateclass"
                tabindex="4"
                value="{{ isset($item->fecha_informe) ? $item->fecha_informe->format('d/m/Y') : date("d/m/Y") }}"
-               >
+        >
     </div>
 
 
@@ -64,11 +64,11 @@
 
     <div class="col-md-3 form-group  {{ $errors->has('fecha_biopcia') ? ' has-error' : '' }}">
         <label>Fecha de Biopsia</label>
-        <input name="fecha_biopcia"  type="text"
+        <input name="fecha_biopcia" type="text"
                class="form-control dateclass"
                tabindex="5"
                value="{{ isset($item->fecha_biopcia) ? $item->fecha_biopcia->format('d/m/Y') : null }}"
-               >
+        >
     </div>
 
     <div class="col-md-4 form-group {{ $errors->has('firma2_id') ? ' has-error' : '' }}">
@@ -82,7 +82,7 @@
                class="form-control dateclass"
                tabindex="6"
                value="{{ isset($item->fecha_muestra) ? $item->fecha_muestra->format('d/m/Y') : null }}"
-               >
+        >
     </div>
 
     <div class="col-md-2 form-group">
@@ -105,8 +105,10 @@
     </div>
 
     <div class="col-md-12 form-group  {{ $errors->has('fecha_muestra') ? ' has-error' : '' }}" tabindex="8">
-    {{ Form::textarea('informe', null, ['class' => 'textarea form-control ckeditor', 'id' => 'informe', 'tabindex' => 8]) }}
-</div>
+        <textarea name="informe" id="informe" cols="30" rows="10" class="textarea form-control ckeditor" tabindex="8">
+            {{ isset($item->informe) ? $item->informe : null }}
+        </textarea>
+    </div>
 </div>
 
 <div class="row">

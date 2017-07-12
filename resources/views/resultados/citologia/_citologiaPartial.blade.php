@@ -137,7 +137,9 @@
 
     <div class="col-md-12 form-group">
         <label>Informe</label>
-        {{ Form::textarea('informe', null, ['class' => 'textarea form-control ckeditor', 'id' => 'informe', 'tabindex' => 14]) }}
+        <textarea name="informe" id="informe" cols="30" rows="10" class="textarea form-control ckeditor" tabindex="14">
+            {{ isset($item->informe) ? $item->informe : null }}
+        </textarea>
     </div>
 
 </div>
