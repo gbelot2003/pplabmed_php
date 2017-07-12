@@ -17,8 +17,8 @@
                     <h3>Citologias Anormales</h3>
                     <input type="button" class="btn btn-info btn-xs hidden-print" name="imprimir" value="Imprimir"
                            onclick="window.print();"> <span class="hidden-print"> | </span>
-                    <small>Desde:{{ $bdate->formatLocalized('%d %B %Y') }}
-                        Hasta: {{ $edate->formatLocalized('%d %B %Y') }}</small>
+                    <small>Desde:{{ $bdate->formatLocalized('%d/%m/%Y') }}
+                        Hasta: {{ $edate->formatLocalized('%d/%m/%Y') }}</small>
                 </div>
             </div>
         </div>
