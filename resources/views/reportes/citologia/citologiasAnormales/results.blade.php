@@ -15,8 +15,10 @@
             <div class="col-md-12">
                 <div class="text-center">
                     <h3>Citologias Anormales</h3>
-                    <input type="button" class="btn btn-info btn-xs hidden-print" name="imprimir" value="Imprimir" onclick="window.print();"> <span class="hidden-print"> | </span>
-                    <small>Desde:{{ $bdate->formatLocalized('%d %B %Y') }} Hasta: {{ $edate->formatLocalized('%d %B %Y') }}</small>
+                    <input type="button" class="btn btn-info btn-xs hidden-print" name="imprimir" value="Imprimir"
+                           onclick="window.print();"> <span class="hidden-print"> | </span>
+                    <small>Desde:{{ $bdate->formatLocalized('%d %B %Y') }}
+                        Hasta: {{ $edate->formatLocalized('%d %B %Y') }}</small>
                 </div>
             </div>
         </div>
@@ -25,11 +27,11 @@
                 <table class="table table-bordered table-striped dataTable" style="font-size: 10px">
                     <thead>
                     <th style="width: 10px">EDAD</th>
-                    <th style="width: 10px">BAJO GRADO NICI</th>
+                    <th style="width: 10px">BAJO GRADO NIC I</th>
                     <th style="width: 10px">ALTO GRADO NIC II</th>
-                    <th style="width: 10px">CA "INSITO" NIC III</th>
-                    <th style="width: 10px">CARCIOMA INVASOR</th>
-                    <th style="width: 10px">A TIPIADA DE SIGNIFICADO NO DETERMINADO</th>
+                    <th style="width: 10px">CA "IN SITO" NIC III</th>
+                    <th style="width: 10px">CARCINOMA INVASOR</th>
+                    <th style="width: 10px">ATIPIADA DE SIGNIFICADO NO DETERMINADO</th>
                     <th style="width: 10px">TOTAL</th>
                     <th style="width: 10px">CONVENCIONAL</th>
                     <th style="width: 10px">BASE LIQUIDA</th>
@@ -221,9 +223,6 @@
                             </td>
                             <td>{{ isset($uno->bs) ? $uno->bs : 0 }}</td>
                         @endforeach
-                    </tr>
-                    </tbody>
-                    <tfoot>
                     <tr>
                         <th>Totales</th>
                         @foreach($totales as $uno)
@@ -241,6 +240,9 @@
                             <td>{{ isset($uno->bs) ? $uno->bs : 0 }}</td>
                         @endforeach
                     </tr>
+                    </tbody>
+                    <tfoot>
+
                     </tfoot>
                 </table>
             </div>
