@@ -2,9 +2,9 @@
 
 namespace Acme\Controller\Printer;
 
+use Acme\Controller\Printer\Bases\PDFENG;
 use Acme\Helpers\PdfStringConversor;
 use App\Histopatologia;
-use Acme\Controller\Printer\Bases\PDF;
 use Dedicated\GoogleTranslate;
 
 class HistoPrinConfigEng {
@@ -19,7 +19,8 @@ class HistoPrinConfigEng {
         list($diagnostico, $informe, $muestra) = $this->TranslateText($data);
 
         $ftitle =  $data->serial . "-" . $data->created_at->format('Y');
-        $pdf = new PDF($orientation = 'P', $unit = 'mm', $size = 'Letter', $ftitle = $ftitle);
+
+        $pdf = new PDFENG($orientation = 'P', $unit = 'mm', $size = 'Letter', $ftitle = $ftitle, $data, $diagnostico, $informe, $muestra);
         setlocale(LC_CTYPE, 'es_ES');
 
 
@@ -30,7 +31,7 @@ class HistoPrinConfigEng {
         $pdf->SetTopMargin(30);
         $pdf->AddPage();
 
-        $this->PrintHeader($data, $pdf, $diagnostico, $muestra);
+        //$this->PrintHeader($data, $pdf, $diagnostico, $muestra);
         $this->PrintBody($data, $pdf, $informe);
 
         if(isset($data->images[0])){
@@ -226,37 +227,9 @@ class HistoPrinConfigEng {
 
         $pdf->SetFont('Arial', '', 10);
         $pdf->MultiCell(197, 5,
-            strip_tags(utf8_decode(html_entity_decode($informe)))
+            strip_tags($informe)
             , 0, 'J', false);
 
-        if(!isset($data->images[0])){
-
-            $pdf->ln(75);
-            $pdf->Cell(45, 5, "Report Date:" , 0, '');
-            $pdf->SetFont('Arial', 'B', 11);
-            $pdf->Cell(75, 5, $data->firma->name , 0, 0, 'C');
-            if (isset($data->firma2)){
-                $pdf->Cell(75, 5, $data->firma2->name , 0, 0, 'C');
-            }
-            $pdf->SetFont('Arial', '', 10);
-            $pdf->ln();
-            $pdf->SetFont('Arial', 'B', 10);
-            $pdf->Cell(45, 5, $data->fecha_informe->formatLocalized('%d/%m/%Y') , 0, '');
-            $pdf->SetFont('Arial', '', 10);
-            $pdf->Cell(75, 5, $data->firma->collegiate , 0, 0, 'C');
-            if (isset($data->firma2)) {
-                $pdf->Cell(75, 5, $data->firma2->collegiate, 0, 0, 'C');
-            }
-            if ($data->firma->extra){
-                $pdf->ln();
-                $pdf->Cell(45, 5, "" , 0, '');
-                $pdf->Cell(75, 5, $data->firma->extra ,0, 0, 'C');
-                if (isset($data->firma2->extra)){
-                    $pdf->Cell(75, 5, $data->firma2->extra , 0, 0, 'C');
-                }
-                $pdf->ln();
-            }
-        }
     }
 
     /**
@@ -317,40 +290,6 @@ class HistoPrinConfigEng {
             $pdf->MultiCell(80, 4, $data->images[3]->descripcion, 0, 'J');
 
         }
-
-        /**
-         * Firmas
-         */
-        if (isset($data->images[2])){
-            $pdf->ln(25);
-        } else {
-            $pdf->ln(125);
-        }
-
-        $pdf->Cell(45, 5, "Report Date:" , 0, '');
-        $pdf->SetFont('Arial', 'B', 10);
-        $pdf->Cell(65, 5, $data->firma->name , 0, '');
-        if (isset($data->firma2)){
-            $pdf->Cell(55, 5, $data->firma2->name , 0, '');
-        }
-        $pdf->SetFont('Arial', '', 10);
-        $pdf->ln();
-        $pdf->SetFont('Arial', 'B', 10);
-        $pdf->Cell(45, 5, $data->fecha_informe->formatLocalized('%d/%m/%Y') , 0, '');
-        $pdf->SetFont('Arial', '', 10);
-        $pdf->Cell(65, 5, $data->firma->collegiate , 0, '');
-        if (isset($data->firma2)) {
-            $pdf->Cell(55, 5, $data->firma2->collegiate, 0, '');
-        }
-        if ($data->firma->extra){
-            $pdf->ln();
-            $pdf->Cell(45, 5, "" , 0, '');
-            $pdf->Cell(65, 5, $data->firma->extra ,0, '');
-            if (isset($data->firma2->extra)){
-                $pdf->Cell(75, 5, $data->firma2->extra , 0, '');
-            }
-            $pdf->ln();
-        }
     }
 
     /**
@@ -370,9 +309,11 @@ class HistoPrinConfigEng {
         }
 
         if ($data->informe) {
-            $informe = $translator->setSourceLang('es')
+            $tinforme = strtr($data->informe, ["<br />" => "(ADA)"]);
+            $pinforme = $translator->setSourceLang('es')
                 ->setTargetLang('en')
-                ->translate($data->informe);
+                ->translate($tinforme, false);
+            $informe = nl2br(strtr($pinforme, ["(ADA)" => "\n \n"]));
         } else {
             $informe = null;
         }
