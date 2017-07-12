@@ -24,12 +24,12 @@ class HistoPrintConfig{
         $pdf->SetLeftMargin(5);
         $pdf->SetRightMargin(5);
 
-        $pdf->SetTopMargin(30);
+        $pdf->SetTopMargin(25);
 
         $pdf->AddPage();
 
         $this->PrintHeader($data, $pdf);
-        $pdf->SetAutoPageBreak(true, 55);
+        $pdf->SetAutoPageBreak(true, 30);
         $this->PrintBody($data, $pdf);
 
         if(isset($data->images[0])){
