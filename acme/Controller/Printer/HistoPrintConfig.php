@@ -24,7 +24,7 @@ class HistoPrintConfig{
         $pdf->SetLeftMargin(5);
         $pdf->SetRightMargin(5);
 
-        $pdf->SetTopMargin(25);
+        $pdf->SetTopMargin(28);
 
         $pdf->AddPage();
 

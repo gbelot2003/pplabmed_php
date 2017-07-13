@@ -28,7 +28,7 @@ class HistoPrinConfigEng {
         $pdf->SetRightMargin(5);
         $pdf->AliasNbPages();
 
-        $pdf->SetTopMargin(30);
+        $pdf->SetTopMargin(28);
         $pdf->AddPage();
 
         //$this->PrintHeader($data, $pdf, $diagnostico, $muestra);
