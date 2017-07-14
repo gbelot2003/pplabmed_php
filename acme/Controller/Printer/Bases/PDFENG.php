@@ -266,7 +266,7 @@ class PDFENG extends baseFpdf
         }
 
         // Position at 1.5 cm from bottom
-        $this->SetY(-20);
+        $this->SetY(-24);
         // Arial italic 8
         $this->SetFont('Arial','I',8);
         // Page number
