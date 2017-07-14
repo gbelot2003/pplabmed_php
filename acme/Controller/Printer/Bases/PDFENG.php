@@ -235,7 +235,7 @@ class PDFENG extends baseFpdf
         }
 
         if($this->last_page_flag == true){
-            $this->SetY(-30);
+            $this->SetY(-34);
             $this->Cell(45, 5, "Report Date:" , 0, '');
             $this->SetFont('Arial', 'B', 11);
 
