@@ -59,6 +59,7 @@ class ReportesMedicosHorasController extends Controller
             'examenes.item as Numero_Item',
             'examenes.nombre_examen as Tipo_Examen',
             'facturas.nombre_completo_cliente as Nombre_Cliente',
+            'facturas.total_factura as total_factura',
             'citologias.fecha_informe',
             'citologias.created_at'
         ])
@@ -77,6 +78,7 @@ class ReportesMedicosHorasController extends Controller
             'examenes.item as Numero_Item',
             'examenes.nombre_examen as Tipo_Examen',
             'facturas.nombre_completo_cliente as Nombre_Cliente',
+            'facturas.total_factura as total_factura',
             'citologias.fecha_informe',
             'citologias.created_at'
         ])
@@ -96,6 +98,7 @@ class ReportesMedicosHorasController extends Controller
             'examenes.item as Numero_Item',
             'examenes.nombre_examen as Tipo_Examen',
             'facturas.nombre_completo_cliente as Nombre_Cliente',
+            'facturas.total_factura as total_factura',
             'histopatologias.fecha_informe',
             'histopatologias.created_at'
         ])
@@ -113,6 +116,7 @@ class ReportesMedicosHorasController extends Controller
             'examenes.item as Numero_Item',
             'examenes.nombre_examen as Tipo_Examen',
             'facturas.nombre_completo_cliente as Nombre_Cliente',
+            'facturas.total_factura as total_factura',
             'histopatologias.fecha_informe',
             'histopatologias.created_at'
         ])

@@ -6,7 +6,7 @@
     <table>
         <tr>
             <td></td>
-            <td><b>Total: {{ $histoTotal }}</b></td>
+            <td><b>Numero Total: {{ $histoTotal }}</b></td>
             <td></td>
             <td></td>
             <td></td>
@@ -24,6 +24,8 @@
             <td><b>No. Item</b></td>
             <td><b>Nombre de Examen</b></td>
             <td><b>Nombre del Cliente</b></td>
+            <td><b>Fecha de Informe</b></td>
+            <td><b>Valor Total</b></td>
         </tr>
         @foreach($items3 as $item)
             <tr>
@@ -32,9 +34,9 @@
                 <td>{{ $item->Tipo_Examen }}</td>
                 <td>{{ $item->Nombre_Cliente }}</td>
                 <td>{{ $item->fecha_informe->formatLocalized('%d %B %Y') }}</td>
+                <td>{{ $item->valor_total }}</td>
             </tr>
         @endforeach
-
         @foreach($items4 as $item1)
             <tr>
                 <td>{{ $item1->Numero_Factura }}</td>
@@ -42,6 +44,7 @@
                 <td>{{ $item1->Tipo_Examen }}</td>
                 <td>{{ $item1->Nombre_Cliente }}</td>
                 <td>{{ $item1->fecha_informe->formatLocalized('%d %B %Y') }}</td>
+                <td>{{ $item->valor_total }}</td>
             </tr>
         @endforeach
         <tr>
@@ -49,7 +52,9 @@
             <td></td>
             <td></td>
             <td></td>
-            <td><b>Total: {{ $histoTotal }}</b></td>
+            <td></td>
+            <td></td>
+            <td><b>Numero Total: {{ $histoTotal }}</b></td>
         </tr>
     </table>
 

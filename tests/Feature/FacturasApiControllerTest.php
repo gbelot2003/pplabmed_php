@@ -29,6 +29,7 @@ class FacturasApiControllerTest extends TestCase
             'medico' => 'Dr. Hector Will',
             'sexo' => 'F',
             'status' => 'Valida',
+            'total_factura' => 1254.50,
             'examen' => array(
                 ['codigo_examen' => 10327, 'nombre_examen' => 'Cit. Genital (B, Liq.) Tomada  En El Lab.'],
             )
@@ -45,6 +46,7 @@ class FacturasApiControllerTest extends TestCase
             'medico' => 'Dr. Hector Will',
             'sexo' => 'F',
             'status' => 'Valida',
+            'total_factura' => 1254.50,
             'examen' => array(
                 ['codigo_examen' => 10327, 'nombre_examen' => 'Cit. Genital (B, Liq.) Tomada  En El Lab.'],
             )
@@ -55,6 +57,7 @@ class FacturasApiControllerTest extends TestCase
         $response->assertStatus(200);
         $this->assertDatabaseHas('facturas', ['num_factura' => '5068096']);
         $this->assertDatabaseHas('examenes', ['num_factura' => '5068096']);
+        $this->assertDatabaseHas('facturas', ['total_factura' => 1254.50]);
         $this->assertDatabaseHas('examenes', ['nombre_examen' => 'Cit. Genital (B, Liq.) Tomada  En El Lab.']);
 
         /**
@@ -78,7 +81,8 @@ class FacturasApiControllerTest extends TestCase
             'direccion_entrega_sede' => 'HOSPITAL MILITAR',
             'medico' => 'Dr. Jorge Rodriguez',
             'sexo' => 'F',
-            'status' => 'Valida'
+            'status' => 'Valida',
+             'total_factura' => 1254.50,
         ];
 
         $data2 = [
@@ -90,7 +94,8 @@ class FacturasApiControllerTest extends TestCase
             'direccion_entrega_sede' => 'HOSPITAL MILITAR',
             'medico' => 'Dr. Jorge Rodriguez',
             'sexo' => 'F',
-            'status' => 'Invalida'
+            'status' => 'Invalida',
+            'total_factura' => 1254.50,
         ];
 
         $response = $this->call('POST', '/api/facturas', $data);
@@ -117,6 +122,7 @@ class FacturasApiControllerTest extends TestCase
             'medico' => 'Dr. Jorge Rodriguez',
             'sexo' => 'F',
             'status' => 'Valida',
+            'total_factura' => 1254.50,
             'examen' => array(
                 ['codigo_examen' => 10260, 'nombre_examen' => 'Marcador Tumoral En Biopsia - Cd-30'],
                 ['codigo_examen' => 10261, 'nombre_examen' => 'Marcador Tumoral Antigeno Epitelial De Membrana'],
@@ -144,6 +150,7 @@ class FacturasApiControllerTest extends TestCase
             'medico' => 'Dr. Jorge Rodriguez',
             'sexo' => 'F',
             'status' => 'Valida',
+            'total_factura' => 1254.50,
             'examen' => array(
                 ['codigo_examen' => 10260, 'nombre_examen' => 'Marcador Tumoral En Biopsia - Cd-30'],
                 ['codigo_examen' => 10261, 'nombre_examen' => 'Marcador Tumoral Antigeno Epitelial De Membrana'],
