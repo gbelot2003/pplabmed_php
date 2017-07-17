@@ -44,7 +44,7 @@
                 <td>{{ $item1->Tipo_Examen }}</td>
                 <td>{{ $item1->Nombre_Cliente }}</td>
                 <td>{{ $item1->fecha_informe->formatLocalized('%d %B %Y') }}</td>
-                <td>{{ $item->valor_total }}</td>
+                <td>{{ $item1->valor_total }}</td>
             </tr>
         @endforeach
         <tr>
