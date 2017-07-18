@@ -313,7 +313,7 @@ class HistoPrinConfigEng {
             $pinforme = $translator->setSourceLang('es')
                 ->setTargetLang('en')
                 ->translate($tinforme, false);
-            $informe = nl2br(strtr($pinforme, ["(ADA)" => "\n \n"]));
+            $informe = nl2br(strtr($pinforme, ["(ADA)" => "\n"]));
         } else {
             $informe = null;
         }
