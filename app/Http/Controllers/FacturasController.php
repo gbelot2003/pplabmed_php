@@ -64,13 +64,15 @@ class FacturasController extends Controller
     public function listados()
     {
         $facturas = Factura::select([
-            'id',
-            'num_factura',
-            'nombre_completo_cliente',
-            'correo',
-            'medico',
-            'created_at'
+            'facturas.id',
+            'facturas.num_factura',
+            'facturas.nombre_completo_cliente',
+            'examenes.nombre_examen as nombre_examen',
+            'facturas.correo',
+            'facturas.medico',
+            'facturas.created_at'
         ])
+            ->RightJoin('examenes', 'examenes.num_factura', '=', 'facturas.num_factura')
             ->orderBy('num_factura', 'DESC')
             ->limit(1500)
             ->get();
