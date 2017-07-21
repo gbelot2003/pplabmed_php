@@ -7,8 +7,13 @@
         ['class' => 'form-control box-style yellow', 'id' => 'serial', 'tabindex' => 1,'require', 'placeholder' => 'Serial'] ) }}
     </div>
 
+    <div class="col-md-4">
+        <label>Nombre</label>
+        {{ Form::text('nombre', null, ['class' => 'form-control', 'id' => 'nombre']) }}
+    </div>
+
     {{-- Firma 1 --}}
-    <div class="col-md-6 form-group  {{ $errors->has('firma_id') ? ' has-error' : '' }}">
+    <div class="col-md-4 form-group  {{ $errors->has('firma_id') ? ' has-error' : '' }}">
         <label>Firma</label>
         {{ Form::select('firma_id', $firmas, null, ['class' => 'form-control', 'tabindex' => 2]) }}
     </div>

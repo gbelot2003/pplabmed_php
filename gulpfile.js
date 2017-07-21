@@ -24,6 +24,9 @@ elixir((mix) => {
             ], 'public/js/citologias-create.js')
 
         .scripts(
+            ['scripts/muestras-form.js'
+            ], 'public/js/muestras-form.js')
+        .scripts(
             ['scripts/citologias-form.js', 'scripts/citologias-facturas.js'
         ], 'public/js/citologias-form.js')
 

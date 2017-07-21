@@ -102,9 +102,12 @@ class MuestrasController extends Controller
             'muestras.id',
             'muestras.serial',
             'firmas.name as name',
+            'facturas.nombre_completo_cliente',
             'muestras.created_at',
         ])
             ->Join('firmas', 'muestras.firma_id', '=', 'firmas.id')
+            ->Join('histopatologias', 'histopatologias.serial', '=', 'muestras.serial')
+            ->Join('facturas', 'factura_id', '=', 'facturas.num_factura')
             ->orderBy('serial', 'DESC')
             ->limit(1500)
             ->get();

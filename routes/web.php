@@ -77,6 +77,11 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('histo/reescritura', 'HistopatologiaController@updateFacturaNum');
 
 
+    /**
+     * Ruta de busqueda por serial
+     */
+    Route::get('histo/serial/{serial}', 'HistopatologiaController@findBySerial');
+
 
     Route::resource('/muestras', 'MuestrasController');
     Route::get('muestra/listados', 'MuestrasController@listados');

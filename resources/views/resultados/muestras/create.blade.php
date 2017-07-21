@@ -27,6 +27,7 @@
                     <div class="panel-heading">
                         <h4>Agregar de Constancia</h4>
                     </div>
+                    
                     <div class="panel-body" id="app">
                         {!! Form::open(['action' => 'MuestrasController@store', 'id' => 'myForm']) !!}
                         <div class="panel-body">
@@ -38,8 +39,13 @@
                                     ['class' => 'form-control box-style yellow', 'id' => 'serial', 'tabindex' => 1,'require', 'placeholder' => 'Serial'] ) }}
                                 </div>
 
+                                <div class="col-md-4">
+                                    <label>Nombre</label>
+                                    {{ Form::text('nombre', null, ['class' => 'form-control', 'id' => 'nombre']) }}
+                                </div>
+
                                 {{-- Firma 1 --}}
-                                <div class="col-md-6 form-group  {{ $errors->has('firma_id') ? ' has-error' : '' }}">
+                                <div class="col-md-4 form-group  {{ $errors->has('firma_id') ? ' has-error' : '' }}">
                                     <label>Firma</label>
                                     {{ Form::select('firma_id', $firmas, null, ['class' => 'form-control', 'tabindex' => 2]) }}
                                 </div>
@@ -78,5 +84,27 @@
         $(document).ready(function () {
             CKEDITOR.instances['informe'].insertHtml("Este es texto que va dentro del campo");
         });
+    </script>
+    <script>
+        (function(){
+            $.ajaxSetup({
+                headers: {
+                    'X-XSRF-TOKEN': $('input[name="_token"]').val()
+                }
+            });
+
+            $(document).ready(function () {
+                $('#serial').focusout(function(){
+                    var id = $(this).val();
+
+                    $.get('/histo/serial/' + id)
+                        .done(function (data) {
+                            console.log(data.facturas.nombre_completo_cliente)
+                            $('#nombre').val(data.facturas.nombre_completo_cliente);
+                        })
+                });
+            });
+
+        })(jQuery);
     </script>
 @stop

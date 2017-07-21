@@ -68,7 +68,7 @@ class HistopatologiaController extends Controller
 
         if ($request->has('firma2_id')) {
             $val = $request->get('firma2_id');
-            if ($val === 'none'){
+            if ($val === 'none') {
                 $request['firma2_id'] = null;
             }
         }
@@ -115,8 +115,7 @@ class HistopatologiaController extends Controller
     {
         $item = Histopatologia::findOrFail($id);
         $item->muestra_entrega = isset($request['muestra_entrega']) ? $request['muestra_entrega'] = 1 : $request['muestra_entrega'] = 0;
-        if ($request->has('informe'))
-        {
+        if ($request->has('informe')) {
             html_entity_decode($request->get('informe'));
         }
 
@@ -137,7 +136,7 @@ class HistopatologiaController extends Controller
 
         if ($request->has('firma2_id')) {
             $val = $request->get('firma2_id');
-            if ($val === 'none'){
+            if ($val === 'none') {
                 $request['firma2_id'] = null;
             }
         }
@@ -205,10 +204,10 @@ class HistopatologiaController extends Controller
             ->Join('firmas', 'firma_id', '=', 'firmas.id');
 
         return Datatables::of($items)
-            ->addColumn('href', function($items){
-                return '<a href="histopatologia/'. $items->id .'/edit" class="btn btn-xs btn-primary">Ver Detalle</a>';
+            ->addColumn('href', function ($items) {
+                return '<a href="histopatologia/' . $items->id . '/edit" class="btn btn-xs btn-primary">Ver Detalle</a>';
             })
-            ->addColumn('finforme', function($items){
+            ->addColumn('finforme', function ($items) {
                 return $items->fecha_informe->format('d/m/Y');
             })
             ->rawColumns(['href'])
@@ -360,5 +359,11 @@ class HistopatologiaController extends Controller
         ]);
 
         return redirect()->to(action('HistopatologiaController@edit', $histo->id));
+    }
+
+    public function findBySerial($serial)
+    {
+        $histo = Histopatologia::where('serial', $serial)->with('facturas')->first();
+        return $histo;
     }
 }

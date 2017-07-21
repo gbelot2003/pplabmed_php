@@ -27,6 +27,7 @@
                                 <th>Id</th>
                                 <th>Serial</th>
                                 <th>Firma</th>
+                                <th>Nombre Cliente</th>
                                 <th>Fecha</th>
                                 <th>Acción</th>
                             </tr>
@@ -53,6 +54,7 @@
                         {data: 'id', name: 'serial'},
                         {data: 'serial', name: 'serial'},
                         {data: 'name', name: 'firmas.name'},
+                        {data: 'nombre_completo_cliente', name: 'nombre_completo_cliente'},
                         {data: 'finforme', name: 'muestras.created_at'},
                         {data: 'href', name: 'href',  "searchable": false},
 

@@ -54,4 +54,26 @@
     <script>
         CKEDITOR.config.enterMode = 2;
     </script>
+    <script>
+        (function(){
+            $.ajaxSetup({
+                headers: {
+                    'X-XSRF-TOKEN': $('input[name="_token"]').val()
+                }
+            });
+
+            $(document).ready(function () {
+                $('#serial').focusout(function(){
+                    var id = $(this).val();
+
+                    $.get('/histo/serial/' + id)
+                        .done(function (data) {
+                            console.log(data.facturas.nombre_completo_cliente)
+                            $('#nombre').val(data.facturas.nombre_completo_cliente);
+                        })
+                });
+            });
+
+        })(jQuery);
+    </script>
 @stop
