@@ -44,6 +44,10 @@
                 <label>No de Factura</label><br>
                 <span class="name">{{ $item->facturas->num_factura }}</span>
             </div>
+            <div class="col-md-1">
+                <label>No. de Citologia</label><br>
+                <span class="name">{{ $item->serial }}</span>
+            </div>
             <div class="col-md-3">
                 <label>Nombre</label><br>
                 <span class="name">{{ $item->facturas->nombre_completo_cliente }}</span>
