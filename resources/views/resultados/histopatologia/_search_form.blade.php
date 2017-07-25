@@ -91,7 +91,6 @@
         <input name="fecha_informe" type="text"
                class="form-control dateclass"
                tabindex="4"
-               value="{{ isset($item->fecha_informe) ? $item->fecha_informe->format('d/m/Y') : date("d/m/Y") }}"
         >
     </div>
 
