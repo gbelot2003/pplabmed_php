@@ -85,19 +85,20 @@ class HistopatologiaController extends Controller
         ]);
 
         flash('Registro Creado', 'success')->important();
-        return redirect()->to(action('HistopatologiaController@edit', $histo->id));
+        return redirect()->to(action('HistopatologiaController@edit', $histo->serial));
     }
 
     public function edit($id)
     {
-        $item = Histopatologia::findOrFail($id);
+        $item = Histopatologia::where('serial', $id)->first();
+
         $firmas = Firma::where('status', 1)->pluck('name', 'id');
         $plantillas = Plantilla::all();
         $i = 0;
 
-        $previous = Histopatologia::where('id', '<', $item->id)->max('id');
-        $next = Histopatologia::where('id', '>', $item->id)->min('id');
-        $histo = Histopatologia::all();
+        $previous = Histopatologia::where('serial', '<', $item->serial)->max('serial');
+        $next = Histopatologia::where('serial', '>', $item->serial)->min('serial');
+        $histo = Histopatologia::orderBy('serial', 'ASC')->get();
         $total = $histo->count();
         $first = $histo->first();
         $last = $histo->last();
@@ -105,7 +106,6 @@ class HistopatologiaController extends Controller
         $now = date("Y-m-d");
         $bdate = Carbon::createFromFormat('Y-m-d', $now)->startOfDay();
         $edate = Carbon::createFromFormat('Y-m-d', $now)->endOfDay();
-
         $today = Histopatologia::whereBetween('created_at', [$bdate, $edate])->count();
 
         return View('resultados.histopatologia.edit', compact('item', 'plantillas', 'firmas', 'postId', 'i', 'previous', 'next', 'total', 'today', 'first', 'last'));
@@ -113,7 +113,7 @@ class HistopatologiaController extends Controller
 
     public function update(HistopatiaValidation $request, $id)
     {
-        $item = Histopatologia::findOrFail($id);
+        $item = Histopatologia::where('serial', $id)->first();
         $item->muestra_entrega = isset($request['muestra_entrega']) ? $request['muestra_entrega'] = 1 : $request['muestra_entrega'] = 0;
         if ($request->has('informe')) {
             html_entity_decode($request->get('informe'));
@@ -205,7 +205,7 @@ class HistopatologiaController extends Controller
 
         return Datatables::of($items)
             ->addColumn('href', function ($items) {
-                return '<a href="histopatologia/' . $items->id . '/edit" class="btn btn-xs btn-primary">Ver Detalle</a>';
+                return '<a href="histopatologia/' . $items->serial . '/edit" class="btn btn-xs btn-primary">Ver Detalle</a>';
             })
             ->addColumn('finforme', function ($items) {
                 return $items->fecha_informe->format('d/m/Y');

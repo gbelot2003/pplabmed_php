@@ -4,7 +4,7 @@
     <ol class="breadcrumb">
         <li><a href="/home">Inicio</a></li>
         <li><a href="{{ action('CitologiaController@index') }}">Listado de Citologías</a></li>
-        <li class="active">Edicion de Citología factura #{{ $item->factura_id }}</li>
+        <li class="active">Edición de Citología factura #{{ $item->factura_id }}</li>
     </ol>
 @stop
 

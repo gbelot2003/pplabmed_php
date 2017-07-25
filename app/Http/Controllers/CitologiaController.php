@@ -107,14 +107,17 @@ CitologiaController extends Controller
      */
     public function edit($id)
     {
-        $item = Citologia::findOrFail($id);
+        $item = Citologia::where('serial', $id)->first();
 
         $idCIto = Categoria::where('status', 1)->pluck('name', 'id');
         $firmas = Firma::where('status', 1)->pluck('name', 'id');
 
-        $previous = Citologia::where('id', '<', $item->id)->max('id');
-        $next = Citologia::where('id', '>', $item->id)->min('id');
-        $CitoList = Citologia::all();
+
+        $CitoList = Citologia::orderBy('serial', 'ASC')->get();
+        $previous = Citologia::where('serial', '<', $item->serial)->max('serial');
+        $next = Citologia::where('id', '>', $item->serial)->min('serial');
+
+
         $total = $CitoList->count();
         $first = $CitoList->first();
         $last = $CitoList->last();
@@ -135,7 +138,7 @@ CitologiaController extends Controller
     public function update(CitologiaValidate $request, $id)
     {
 
-        $cito = Citologia::findOrFail($id);
+        $cito = Citologia::where('serial', $id)->first();
         $cito->deteccion_cancer = isset($request['deteccion_cancer']) ? $request['deteccion_cancer'] = 1 : $request['deteccion_cancer'] = 0;
         $cito->indice_maduracion = isset($request['indice_maduracion']) ? $request['indice_maduracion'] = 1 : $request['indice_maduracion'] = 0;
         $cito->mm = isset($request['mm']) ? $request['mm'] = 1 : $request['mm'] = 0;
@@ -237,7 +240,7 @@ CitologiaController extends Controller
 
         return Datatables::of($items)
             ->addColumn('href', function ($items) {
-                return '<a href="citologias/' . $items->id . '/edit" class="btn btn-xs btn-primary">Ver Detalle</a>';
+                return '<a href="citologias/' . $items->serial . '/edit" class="btn btn-xs btn-primary">Ver Detalle</a>';
             })
             ->addColumn('finforme', function ($items) {
                 return $items->fecha_informe->format('d/m/Y');
