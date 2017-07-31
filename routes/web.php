@@ -55,6 +55,13 @@ Route::group(['middleware' => 'auth'], function(){
      */
     Route::post('citologia/reescritura', 'CitologiaController@updateFacturaNum');
 
+    /**
+     * Version Ingles de formulario
+     */
+    Route::get('citologia-eng/{serial}', 'CitologiasEngController@editOrCreate');
+    Route::post('citologia-ang/{serial}', 'CitologiasEngController@updateTrans');
+
+
     Route::resource('histopatologia', 'HistopatologiaController');
     Route::get('histopatologias/listados', 'HistopatologiaController@listados');
     Route::post('histopatologias/config-serial', 'CitoSerialController@histoUpdate')->name('histopatologia.config');
@@ -76,6 +83,11 @@ Route::group(['middleware' => 'auth'], function(){
      */
     Route::post('histo/reescritura', 'HistopatologiaController@updateFacturaNum');
 
+    /**
+     * Version Ingles de formulario
+     */
+    Route::get('histo-eng/{serial}', 'HistopatologiasEngController@editOrCreate');
+    Route::post('histo-ang/{serial}', 'HistopatologiasEngController@updateTrans');
 
     /**
      * Ruta de busqueda por serial

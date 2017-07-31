@@ -15,25 +15,20 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <div class="text-muted pull-right">
-                            <a href="#" class="btn btn-default">Registros: {{ $today }}</a>
                             <a class="btn btn-default">Link Images ID: {{ $item->link_id }}</a>
-                            @include('resultados.histopatologia.paginador')
-                            <a onclick="window.open('{{ action('PrintController@sobreHistopatologia', $item->id) }}', '_blank', 'location=no,height=570,width=520,menubar=no,status=no,location=no,toolbar=no,scrollbars=yes,directories=no');" class="btn btn-info" alt="Buscar" ><span class="glyphicon glyphicon-envelope"></span></a>
                             <a onclick="window.open('{{ action('PrintController@formatoHistopatologia', $item->id) }}', '_blank', 'location=no,height=600,width=816,menubar=no,status=no,location=no,toolbar=no,scrollbars=yes,directories=no');" class="btn btn-info" alt="Buscar" ><span class="glyphicon glyphicon-print"></span></a>
-                            <a href="{{ action('HistopatologiaController@create') }}" class="btn btn-info" alt="Crear" ><span class="glyphicon glyphicon-plus"></span></a>
-                            <a href="{{ action('HistopatologiaController@searchPage') }}" class="btn btn-warning" alt="Buscar" ><span class="glyphicon glyphicon-search"></span></a>
                         </div>
                         <h4>Agregar de Histopatología</h4>
                     </div>
                     <div class="panel-body" id="app">
-                        {!! Form::model($item, ['action' => ['HistopatologiaController@update', $item->id], 'id' => 'myForm', 'method' => 'PATCH']) !!}
+                        {!! Form::model($item, ['action' => ['HistopatologiasEngController@updateTrans', $item->serial], 'id' => 'myForm']) !!}
                         @include('resultados.histopatologia._faturasPartial')
                         @include('resultados.histopatologia._histoPartial')
                         {!!  Form::close() !!}
                     </div>
                     <div class="panel-footer">
                         {{--<a onclick="window.open('{{ action('PrintController@formatoHistoatologiaEng', $item->id) }}', '_blank', 'location=no,height=600,width=816,menubar=no,status=no,location=no,toolbar=no,scrollbars=yes,directories=no');" class="btn btn-info" alt="Buscar" ><span class="glyphicon glyphicon-print"></span> ENG</a>--}}
-                        <a class="btn btn-info" alt="Buscar" href="{{ action('HistopatologiasEngController@editOrCreate', $item->serial) }}"><span class="glyphicon glyphicon-print"></span> EN</a>
+                        {{--<a class="btn btn-info" alt="Buscar" href="{{ action('HistopatologiasEngController@editOrCreate', $item->serial) }}"><span class="glyphicon glyphicon-print"></span> EN</a>--}}
 
                     </div>
                 </div>

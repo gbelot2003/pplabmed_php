@@ -114,6 +114,7 @@ class HistopatologiaController extends Controller
     public function update(HistopatiaValidation $request, $id)
     {
         $item = Histopatologia::where('serial', $id)->first();
+
         $item->muestra_entrega = isset($request['muestra_entrega']) ? $request['muestra_entrega'] = 1 : $request['muestra_entrega'] = 0;
         if ($request->has('informe')) {
             html_entity_decode($request->get('informe'));
@@ -142,7 +143,6 @@ class HistopatologiaController extends Controller
         }
 
         $item->update($request->all());
-        $item->facturas->update($request->all());
 
         Audit::create([
             'title' => 'Biopsias',
