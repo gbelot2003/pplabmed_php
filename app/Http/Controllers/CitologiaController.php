@@ -98,7 +98,7 @@ CitologiaController extends Controller
 
         flash('Registro Creado', 'success')->important();
 
-        return redirect()->to(action('CitologiaController@edit', $cito->id));
+        return redirect()->to(action('CitologiaController@edit', $cito->serial));
     }
 
     /**
@@ -137,8 +137,8 @@ CitologiaController extends Controller
      */
     public function update(CitologiaValidate $request, $id)
     {
+        $cito = Citologia::findOrFail($id);
 
-        $cito = Citologia::where('serial', $id)->first();
         $cito->deteccion_cancer = isset($request['deteccion_cancer']) ? $request['deteccion_cancer'] = 1 : $request['deteccion_cancer'] = 0;
         $cito->indice_maduracion = isset($request['indice_maduracion']) ? $request['indice_maduracion'] = 1 : $request['indice_maduracion'] = 0;
         $cito->mm = isset($request['mm']) ? $request['mm'] = 1 : $request['mm'] = 0;

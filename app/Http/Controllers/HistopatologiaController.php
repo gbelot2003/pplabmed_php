@@ -113,7 +113,7 @@ class HistopatologiaController extends Controller
 
     public function update(HistopatiaValidation $request, $id)
     {
-        $item = Histopatologia::where('serial', $id)->first();
+        $item = Histopatologia::findOrFail($id);
 
         $item->muestra_entrega = isset($request['muestra_entrega']) ? $request['muestra_entrega'] = 1 : $request['muestra_entrega'] = 0;
         if ($request->has('informe')) {
@@ -152,7 +152,7 @@ class HistopatologiaController extends Controller
         ]);
 
         flash('Registro Actualizado', 'success')->important();
-        return redirect()->back();
+        return redirect()->to(action('HistopatologiaController@edit', $item->serial));
     }
 
     /**
