@@ -33,7 +33,7 @@
                 <td>{{ $item->Numero_Item }}</td>
                 <td>{{ $item->Tipo_Examen }}</td>
                 <td>{{ $item->Nombre_Cliente }}</td>
-                <td>{{ $item->fecha_informe->formatLocalized('%d %B %Y') }}</td>
+                <td>{{ $item->fecha_informe->format('d-m-Y') }}</td>
                 <td>{{ $item->total_factura }}</td>
             </tr>
         @endforeach
@@ -43,7 +43,7 @@
                 <td>{{ $item1->Numero_Item }}</td>
                 <td>{{ $item1->Tipo_Examen }}</td>
                 <td>{{ $item1->Nombre_Cliente }}</td>
-                <td>{{ $item1->fecha_informe->formatLocalized('%d %B %Y') }}</td>
+                <td>{{ $item1->fecha_informe->format('d-m-Y') }}</td>
                 <td>{{ $item1->total_factura }}</td>
             </tr>
         @endforeach
