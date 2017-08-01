@@ -31,7 +31,7 @@ class HistoApiController extends Controller
                     'link_id' => $request->get('link_id')
                 ]);
 
-                return response()->setStatusCode(200);
+                return '200';
             }
         }
     }
