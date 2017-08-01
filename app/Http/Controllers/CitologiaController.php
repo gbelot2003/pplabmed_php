@@ -115,7 +115,7 @@ CitologiaController extends Controller
 
         $CitoList = Citologia::orderBy('serial', 'ASC')->get();
         $previous = Citologia::where('serial', '<', $item->serial)->max('serial');
-        $next = Citologia::where('id', '>', $item->serial)->min('serial');
+        $next = Citologia::where('serial', '>', $item->serial)->min('serial');
 
 
         $total = $CitoList->count();
