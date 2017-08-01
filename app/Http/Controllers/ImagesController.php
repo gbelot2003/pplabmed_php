@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Acme\Helpers\Miselanius;
+use App\Histopatologia;
 use App\Http\Requests\ImagesValidator;
 use App\Image;
 use Illuminate\Http\Request;
@@ -22,11 +23,15 @@ class ImagesController extends Controller
     public function uploadForm(ImagesValidator $request)
     {
         $helpers = new Miselanius();
+
+        $histo = Histopatologia::findOrFail($request->get('id'));
+
+
         if($request->hasFile('images')){
             $helpers->getImagesForUpload($request);
         }
 
-        return redirect()->to(action('HistopatologiaController@edit', $request->get('id')));
+        return redirect()->to(action('HistopatologiaController@edit', $histo->serial));
     }
 
     /**

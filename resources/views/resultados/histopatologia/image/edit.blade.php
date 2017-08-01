@@ -8,6 +8,7 @@
         CKEDITOR.config.removePlugins = 'Smiley,font,format,Styles,forms,print,preview,find,about,maximize,showBlocks,undo,redo,find,replace,selectAll,removeFormat, flash, iFrame';
         CKEDITOR.config.removeButtons = 'emoticons,Iframe,Table,Anchor,Underline,Strike,Subscript,Superscript';
         CKEDITOR.config.extraPlugins = 'jsplus_image_editor';
+        CKEDITOR.config.jsplus_image_editor_double_click = false;
     </script>
 @stop
 
@@ -34,7 +35,7 @@
                         <input type="hidden" value="{{ $item->id }}" id="id">
                         <div class="heading">
                             <div class="text-muted pull-right">
-                                <a class="imageCanvas" href="/histopatologia/{{ $item->histo->id }}/edit" class="btn btn-default">Regresar a
+                                <a class="imageCanvas" href="/histopatologia/{{ $item->histo->serial }}/edit" class="btn btn-default">Regresar a
                                     Formulario</a>
                             </div>
                             <h4>Edición de Imagenes</h4>

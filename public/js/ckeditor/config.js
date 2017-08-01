@@ -21,5 +21,5 @@ CKEDITOR.editorConfig = function( config ) {
     config.removePlugins = 'font,format,Styles,forms,print,preview,find,about,maximize,showBlocks,undo,redo,find,replace,selectAll,removeFormat,image, flash, iFrame';
     config.removeButtons = 'emoticons,Iframe,Table,Anchor,Underline,Strike,Subscript,Superscript';
     config.removeButtons = 'Underline,JustifyCenter,Bloaquote';
-
+    config.jsplus_image_editor_double_click = false;
 };
