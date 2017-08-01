@@ -10,6 +10,21 @@
         CKEDITOR.config.extraPlugins = 'jsplus_image_editor';
         CKEDITOR.config.jsplus_image_editor_double_click = false;
     </script>
+    <script>
+        $('#preborrado').on('click', function (e) {
+            e.preventDefault();
+            $(this).hide();
+            $('#borrado').show();
+            $('#cborrado').show();
+        })
+
+        $("#cborrado").on('click',function (e) {
+            e.preventDefault();
+            $(this).hide();
+            $('#preborrado').show();
+            $('#borrado').hide();
+        })
+    </script>
 @stop
 
 

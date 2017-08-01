@@ -66,7 +66,7 @@ class ImagesController extends Controller
         $images = Image::findOrfail($id);
         $images->delete();
         flash('La imágen a sido retirada exitosamente', 'success')->important();
-        return redirect()->to('/histopatologia/' .$images->histo->id ."/edit");
+        return redirect()->to('/histopatologia/' .$images->histo->serial ."/edit");
     }
 
 
