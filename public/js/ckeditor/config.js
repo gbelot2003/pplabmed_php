@@ -4,9 +4,12 @@
  */
 
 CKEDITOR.editorConfig = function( config ) {
-	config.language = 'es';
+    config.toolbar_custom = [
+    	{ name : 'new_group', items: ['jsplus_image_editor', 'jsplus_edit_tag'] }
+	]
+
+	config.language = 'en';
     //config.uiColor = '#F7B42C';
-    config.height = 300;
     config.toolbarCanCollapse = true;
 
     config.keystrokes = [
