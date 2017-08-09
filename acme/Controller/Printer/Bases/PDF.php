@@ -3,25 +3,15 @@
 namespace Acme\Controller\Printer\Bases;
 
 use Acme\Helpers\PdfStringConversor;
-use Crabbly\FPDF\Fpdf as baseFpdf;
+//use Crabbly\FPDF\Fpdf as baseFpdf;
+use Elibyy\TCPDF\TCPDFHelper as baseFpdf;
 
 class PDF extends baseFpdf
 {
 
-    var $javascript;
-    var $n_js;
-    protected $ftitle;
-    protected $data;
-    protected $last_page_flag;
-    protected $ConvertCharacters;
+    public $isLastPage = false;
 
-    var $B=0;
-    var $I=0;
-    var $U=0;
-    var $HREF='';
-    var $ALIGN='';
-
-    function __construct($orientation = 'P', $unit = 'mm', $size = 'A4', $ftitle = "title", $data)
+    function __construct($orientation = 'P', $unit = 'mm', $size = 'letter', $ftitle = "title", $data)
     {
         parent::__construct($orientation, $unit, $size);
         $this->ConvertCharacters = new PdfStringConversor();
@@ -29,53 +19,18 @@ class PDF extends baseFpdf
         $this->data = $data;
     }
 
-    function IncludeJS($script) {
-        $this->javascript=$script;
+    public function lastPage($resetmargins=false) {
+        $this->setPage($this->getNumPages(), $resetmargins);
+        $this->isLastPage = true;
     }
-
-    function _putjavascript() {
-        $this->_newobj();
-        $this->n_js=$this->n;
-        $this->_out('<<');
-        $this->_out('/Names [(EmbeddedJS) '.($this->n+1).' 0 R]');
-        $this->_out('>>');
-        $this->_out('endobj');
-        $this->_newobj();
-        $this->_out('<<');
-        $this->_out('/S /JavaScript');
-        $this->_out('/JS '.$this->_textstring($this->javascript));
-        $this->_out('>>');
-        $this->_out('endobj');
-    }
-
-    function _putresources() {
-        parent::_putresources();
-        if (!empty($this->javascript)) {
-            $this->_putjavascript();
-        }
-    }
-
-    function _putcatalog() {
-        parent::_putcatalog();
-        if (!empty($this->javascript)) {
-            $this->_out('/Names <</JavaScript '.($this->n_js).' 0 R>>');
-        }
-    }
-
-
-    public function Close() {
-        $this->last_page_flag = true;
-        parent::Close();
-    }
-
 
     function Header()
     {
         /**
          * Cabezera
          */
-        $this->SetFont('Arial', '', 14);
-        $this->Cell(205, 10, $this->ConvertCharacters->convert("REPORTE DE HISTOPATOLOGÍA"), 0,  0, 'C');
+        $this->SetFont('Helvetica', '', 14);
+        $this->Cell(205, 10, "REPORTE DE HISTOPATOLOGÍA", 0,  0, 'C');
 
         /**
          * Salto
@@ -85,28 +40,29 @@ class PDF extends baseFpdf
         /**
          * Nombre
          */
-        $this->SetFont('Arial', '', 10);
+        $this->SetFont('Helvetica', '', 10);
         $this->Cell(22, 5, 'PACIENTE: ', 0, 0, 'L');
 
-        $this->SetFont('Arial', '', 10);
+        $this->SetFont('Helvetica', '', 10);
         $this->Cell(118, 5, $this->ConvertCharacters->convert(strtoupper($this->data->facturas->nombre_completo_cliente)), 0, 0, 'L');
+
 
         /**
          * Edad
          */
-        $this->SetFont('Arial', '', 10);
+        $this->SetFont('Helvetica', '', 10);
         $this->Cell(12, 5, 'EDAD: ', 0, 0, 'L');
 
-        $this->SetFont('Arial', '', 10);
+        $this->SetFont('Helvetica', '', 10);
         $this->Cell(15, 5, $this->data->facturas->edad, 0, 0, 'L');
 
         /**
          * Sexo
          */
-        $this->SetFont('Arial', '', 10);
+        $this->SetFont('Helvetica', '', 10);
         $this->Cell(12, 5, 'SEXO: ', 0, 0, 'L');
 
-        $this->SetFont('Arial', '', 10);
+        $this->SetFont('Helvetica', '', 10);
         $this->Cell(15, 5, $this->data->facturas->sexo, 0, 0, 'L');
 
         /**
@@ -117,20 +73,20 @@ class PDF extends baseFpdf
         /**
          * Medico
          */
-        $this->SetFont('Arial', '', 10);
-        $this->Cell(22, 5, $this->ConvertCharacters->convert('MÉDICO: '), 0, 0, 'L');
+        $this->SetFont('Helvetica', '', 10);
+        $this->Cell(22, 5, 'MÉDICO: ', 0, 0, 'L');
 
-        $this->SetFont('Arial', '', 10);
+        $this->SetFont('Helvetica', '', 10);
         $this->Cell(118, 5, $this->ConvertCharacters->convert(strtoupper($this->data->facturas->medico)), 0, 0, 'L');
 
         /**
          * Fecha de Biopsia
          */
-        $this->SetFont('Arial', '', 10);
+        $this->SetFont('Helvetica', '', 10);
         $this->Cell(30, 5, $this->ConvertCharacters->convert('FECHA BIOPSIA') .': ', 0, 0, 'L');
 
         if($this->data->fecha_biopcia){
-            $this->SetFont('Arial', '', 10);
+            $this->SetFont('Helvetica', '', 10);
             $this->Cell(20, 5, $this->data->fecha_biopcia->formatLocalized('%d/%m/%Y'), 0, 0, 'L');
         }
 
@@ -143,20 +99,20 @@ class PDF extends baseFpdf
         /**
          * Dirección
          */
-        $this->SetFont('Arial', '', 10);
-        $this->Cell(22, 5, $this->ConvertCharacters->convert('DIRECCIÓN:'), 0, 0, 'L');
+        $this->SetFont('Helvetica', '', 10);
+        $this->Cell(22, 5, 'DIRECCIÓN:', 0, 0, 'L');
 
-        $this->SetFont('Arial', '', 10);
+        $this->SetFont('Helvetica', '', 10);
         $this->Cell(118, 5, $this->ConvertCharacters->convert($this->data->facturas->direccion_entrega_sede), 0, 0, 'L');
 
 
         /**
          * Muestra Recibida
          */
-        $this->SetFont('Arial', '', 10);
+        $this->SetFont('Helvetica', '', 10);
         $this->Cell(30, 5, $this->ConvertCharacters->convert('RECIBIDA:'), 0, 0, 'R');
 
-        $this->SetFont('Arial', '', 10);
+        $this->SetFont('Helvetica', '', 10);
         if($this->data->fecha_muestra){
             $this->Cell(78, 5, $this->data->fecha_muestra->formatLocalized('%d/%m/%Y'), 0, 0, 'L');
         } else {
@@ -172,10 +128,10 @@ class PDF extends baseFpdf
         /**
          * Diagnostico
          */
-        $this->SetFont('Arial', '', 10);
-        $this->Cell(26, 5, $this->ConvertCharacters->convert('DIAG. CLÍNICO') .': ', 0, 0, 'L');
+        $this->SetFont('Helvetica', '', 10);
+        $this->Cell(26, 5,'DIAG. CLÍNICO: ', 0, 0, 'L');
 
-        $this->SetFont('Arial', '', 10);
+        $this->SetFont('Helvetica', '', 10);
         $this->Cell(171, 5, $this->ConvertCharacters->convert(strtoupper($this->data->diagnostico)), 0, 'L', false);
 
         /**
@@ -186,10 +142,10 @@ class PDF extends baseFpdf
         /**
          * Material Estudiado
          */
-        $this->SetFont('Arial', '', 10);
+        $this->SetFont('Helvetica', '', 10);
         $this->Cell(41, 5, $this->ConvertCharacters->convert('MATERIAL ESTUDIADO') .': ', 0, 0, 'L');
 
-        $this->SetFont('Arial', '', 10);
+        $this->SetFont('Helvetica', '', 10);
         $this->Cell(121  , 5, $this->ConvertCharacters->convert(strtoupper($this->data->muestra)), 0, 0, 'L');
 
         /**
@@ -201,10 +157,10 @@ class PDF extends baseFpdf
         /**
          * Numero de Biopsia
          */
-        $this->SetFont('Arial', '', 10);
+        $this->SetFont('Helvetica', '', 10);
         $this->Cell(165, 5, $this->ConvertCharacters->convert('No. BIOPSIA') .': ', 0, 0, 'R');
 
-        $this->SetFont('Arial', '', 10);
+        $this->SetFont('Helvetica', '', 10);
         $this->Cell(30, 5,  $this->data->serial. "-" .$this->data->created_at->format('Y'), 0, 0, 'L');
 
         /**
@@ -215,10 +171,10 @@ class PDF extends baseFpdf
         /**
          * Numero de Factura
          */
-        $this->SetFont('Arial', '', 10);
+        $this->SetFont('Helvetica', '', 10);
         $this->Cell(165, 5, $this->ConvertCharacters->convert('C.I.') . ' ', 0, 0, 'R');
 
-        $this->SetFont('Arial', '', 10);
+        $this->SetFont('Helvetica', '', 10);
         $this->Cell(30, 5, $this->data->facturas->num_factura, 0, 0, 'L');
     }
 
@@ -232,10 +188,10 @@ class PDF extends baseFpdf
             $side = 75;
         }
 
-        if($this->last_page_flag == true){
+        if($this->isLastPage) {
             $this->SetY(-34);
             $this->Cell(45, 5, "Fecha de Informe:" , 0, '');
-            $this->SetFont('Arial', 'B', 11);
+            $this->SetFont('Helvetica', 'B', 11);
 
             $this->Cell($side, 5, $this->data->firma->name , 0, 0, 'C');
 
@@ -244,10 +200,10 @@ class PDF extends baseFpdf
             }
             $this->ln();
 
-            $this->SetFont('Arial', 'B', 10);
+            $this->SetFont('Helvetica', 'B', 10);
             $this->Cell(45, 5, $this->data->fecha_informe->formatLocalized('%d/%m/%Y') , 0, '');
 
-            $this->SetFont('Arial', '', 10);
+            $this->SetFont('Helvetica', '', 10);
             $this->Cell($side, 5, $this->data->firma->collegiate , 0, 0, 'C');
             if (isset($this->data->firma2)) {
                 $this->Cell(75, 5, $this->data->firma2->collegiate, 0, 0, 'C');
@@ -265,107 +221,9 @@ class PDF extends baseFpdf
 
         // Position at 1.5 cm from bottom
         $this->SetY(-24);
-        // Arial italic 8
-        $this->SetFont('Arial','I',8);
+        // Helvetica italic 8
+        $this->SetFont('Helvetica','I',8);
         // Page number
-        $this->Cell(0,10,'Page '.$this->PageNo().'/{nb} - Biopsia No.'. $this->ftitle,0,0,'L');
-    }
-
-    function WriteHTML($html)
-    {
-        //HTML parser
-        $html=str_replace("\n",' ',$html);
-        $a=preg_split('/<(.*)>/U',$html,-1,PREG_SPLIT_DELIM_CAPTURE);
-        foreach($a as $i=>$e)
-        {
-            if($i%2==0)
-            {
-                //Text
-                if($this->HREF)
-                    $this->PutLink($this->HREF,$e);
-                elseif($this->ALIGN=='center')
-                    $this->Cell(0,5,$e,0,1,'C');
-                else
-                    $this->Write(5,$e);
-            }
-            else
-            {
-                //Tag
-                if($e[0]=='/')
-                    $this->CloseTag(strtoupper(substr($e,1)));
-                else
-                {
-                    //Extract properties
-                    $a2=explode(' ',$e);
-                    $tag=strtoupper(array_shift($a2));
-                    $prop=array();
-                    foreach($a2 as $v)
-                    {
-                        if(preg_match('/([^=]*)=["\']?([^"\']*)/',$v,$a3))
-                            $prop[strtoupper($a3[1])]=$a3[2];
-                    }
-                    $this->OpenTag($tag,$prop);
-                }
-            }
-        }
-    }
-
-    function OpenTag($tag,$prop)
-    {
-        //Opening tag
-        if($tag=='B' || $tag=='I' || $tag=='U')
-            $this->SetStyle($tag,true);
-        if($tag=='A')
-            $this->HREF=$prop['HREF'];
-        if($tag=='BR')
-            $this->Ln(5);
-        if($tag=='P')
-            $this->ALIGN=$prop['ALIGN'];
-        if($tag=='HR')
-        {
-            if( !empty($prop['WIDTH']) )
-                $Width = $prop['WIDTH'];
-            else
-                $Width = $this->w - $this->lMargin-$this->rMargin;
-            $this->Ln(2);
-            $x = $this->GetX();
-            $y = $this->GetY();
-            $this->SetLineWidth(0.4);
-            $this->Line($x,$y,$x+$Width,$y);
-            $this->SetLineWidth(0.2);
-            $this->Ln(2);
-        }
-    }
-
-    function CloseTag($tag)
-    {
-        //Closing tag
-        if($tag=='B' || $tag=='I' || $tag=='U')
-            $this->SetStyle($tag,false);
-        if($tag=='A')
-            $this->HREF='';
-        if($tag=='P')
-            $this->ALIGN='';
-    }
-
-    function SetStyle($tag,$enable)
-    {
-        //Modify style and select corresponding font
-        $this->$tag+=($enable ? 1 : -1);
-        $style='';
-        foreach(array('B','I','U') as $s)
-            if($this->$s>0)
-                $style.=$s;
-        $this->SetFont('',$style);
-    }
-
-    function PutLink($URL,$txt)
-    {
-        //Put a hyperlink
-        $this->SetTextColor(0,0,255);
-        $this->SetStyle('U',true);
-        $this->Write(5,$txt,$URL);
-        $this->SetStyle('U',false);
-        $this->SetTextColor(0);
+        $this->Cell(0,10,'Page '.$this->getAliasNumPage().'/'.$this->getAliasNbPages().' - Biopsia No.'. $this->ftitle, 0,0,'L', 0, '', 0, false, 'T', 'M');
     }
 }

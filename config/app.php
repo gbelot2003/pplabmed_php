@@ -185,6 +185,7 @@ return [
         Crabbly\FPDF\FpdfServiceProvider::class,
         Dedicated\GoogleTranslate\GoogleTranslateProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Elibyy\TCPDF\ServiceProvider::class,
 
 
 
@@ -241,6 +242,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'TFPDF' => Elibyy\TCPDF\Facades\TCPDF::class,
     ],
 
 ];

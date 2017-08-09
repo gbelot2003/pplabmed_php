@@ -45,18 +45,18 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('citologias/busqueda/resultados/', 'CitologiaController@processForm');
 
     /***/Route::get('citologia/sobres/{id}', 'PrintController@sobresCitologia');
-    /***/Route::get('citologia/formulario/{id}', 'PrintController@formatoCitologia');
+    /***/Route::get('citologia/Formulario/{id}', 'PrintController@formatoCitologia');
     /**
      * Citologia ENG
      */
-    /***/Route::get('citologia/formulario-end/{id}', 'PrintController@formatoCitologiasEng');
+    /***/Route::get('citologia/Formulario-end/{id}', 'PrintController@formatoCitologiasEng');
     /**
      * Duplicar Factura
      */
     Route::post('citologia/reescritura', 'CitologiaController@updateFacturaNum');
 
     /**
-     * Version Ingles de formulario
+     * Version Ingles de Formulario
      */
     Route::get('citologia-eng/{serial}', 'CitologiasEngController@editOrCreate');
     Route::post('citologia-ang/{serial}', 'CitologiasEngController@updateTrans');
@@ -69,8 +69,8 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('histopatologias/busqueda/resultados', 'HistopatologiaController@processForm');
 
     /***/Route::get('histopatologias/sobres/{id}', 'PrintController@sobreHistopatologia');
-    /***/Route::get('histopatologias/formulario/{id}', 'PrintController@formatoHistopatologia');
-    /***/Route::get('histopatologias/formulario-eng/{id}', 'PrintController@formatoHistoatologiaEng');
+    /***/Route::get('histopatologias/Formulario/{id}', 'PrintController@formatoHistopatologia');
+    /***/Route::get('histopatologias/Formulario-eng/{id}', 'PrintController@formatoHistoatologiaEng');
 
     Route::get('histo/images/edit/{id}', 'ImagesController@edit')->name('images.edit');
 
@@ -84,7 +84,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('histo/reescritura', 'HistopatologiaController@updateFacturaNum');
 
     /**
-     * Version Ingles de formulario
+     * Version Ingles de Formulario
      */
     Route::get('histo-eng/{serial}', 'HistopatologiasEngController@editOrCreate');
     Route::post('histo-ang/{serial}', 'HistopatologiasEngController@updateTrans');
