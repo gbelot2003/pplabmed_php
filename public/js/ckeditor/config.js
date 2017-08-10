@@ -19,7 +19,7 @@ CKEDITOR.editorConfig = function( config ) {
     config.linkShowAdvancedTab = false;
     config.linkShowTargetTab = false;
     config.removePlugins = 'font,format,Styles,forms,print,preview,find,about,maximize,showBlocks,undo,redo,find,replace,selectAll,removeFormat,image, flash, iFrame';
-    config.removeButtons = 'emoticons,Iframe,Table,Anchor,Underline,Strike,Subscript,Superscript';
-    config.removeButtons = 'Underline,JustifyCenter,Bloaquote';
+    config.removeButtons = 'emoticons,Iframe,Table,Anchor,Strike,Subscript,Superscript';
+    config.removeButtons = 'Bloaquote';
     config.jsplus_image_editor_double_click = false;
 };
