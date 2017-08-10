@@ -40,29 +40,29 @@ class PDF extends baseFpdf
         /**
          * Nombre
          */
-        $this->SetFont('Helvetica', '', 10);
+        $this->SetFont('Helvetica', 'B', 10);
         $this->Cell(22, 5, 'PACIENTE: ', 0, 0, 'L');
 
-        $this->SetFont('Helvetica', '', 10);
+        $this->SetFont('Helvetica', 'B', 10);
         $this->Cell(118, 5, $this->ConvertCharacters->convert(strtoupper($this->data->facturas->nombre_completo_cliente)), 0, 0, 'L');
 
 
         /**
          * Edad
          */
-        $this->SetFont('Helvetica', '', 10);
+        $this->SetFont('Helvetica', 'B', 10);
         $this->Cell(12, 5, 'EDAD: ', 0, 0, 'L');
 
-        $this->SetFont('Helvetica', '', 10);
+        $this->SetFont('Helvetica', 'B', 10);
         $this->Cell(15, 5, $this->data->facturas->edad, 0, 0, 'L');
 
         /**
          * Sexo
          */
-        $this->SetFont('Helvetica', '', 10);
+        $this->SetFont('Helvetica', 'B', 10);
         $this->Cell(12, 5, 'SEXO: ', 0, 0, 'L');
 
-        $this->SetFont('Helvetica', '', 10);
+        $this->SetFont('Helvetica', 'B', 10);
         $this->Cell(15, 5, $this->data->facturas->sexo, 0, 0, 'L');
 
         /**
@@ -157,10 +157,10 @@ class PDF extends baseFpdf
         /**
          * Numero de Biopsia
          */
-        $this->SetFont('Helvetica', '', 10);
+        $this->SetFont('Helvetica', 'B', 10);
         $this->Cell(165, 5, $this->ConvertCharacters->convert('No. BIOPSIA') .': ', 0, 0, 'R');
 
-        $this->SetFont('Helvetica', '', 10);
+        $this->SetFont('Helvetica', 'B', 10);
         $this->Cell(30, 5,  $this->data->serial. "-" .$this->data->created_at->format('Y'), 0, 0, 'L');
 
         /**
