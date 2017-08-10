@@ -25,7 +25,7 @@ class ImagesValidator extends FormRequest
     {
         return [
             'descripcion' => "nullable|string",
-            'images' => "required"
+            'order' => "nullable"
         ];
     }
 }

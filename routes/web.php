@@ -75,7 +75,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('histo/images/edit/{id}', 'ImagesController@edit')->name('images.edit');
 
     Route::post('histo/images/', 'ImagesController@uploadForm');
-    Route::put('histo/images/update/{id}', 'ImagesController@update');
+    Route::post('histo/images/update/{id}', 'ImagesController@update');
     Route::get('histo/images/delete/{id}', 'ImagesController@delete');
 
     /**

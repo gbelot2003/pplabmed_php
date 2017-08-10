@@ -4,7 +4,7 @@
     <script src="/js/ckeditor/ckeditor.js"></script>
     <script>
         CKEDITOR.config.enterMode = 2;
-        CKEDITOR.config.height = 800;
+        CKEDITOR.config.height = 400;
         CKEDITOR.config.removePlugins = 'Smiley,font,format,Styles,forms,print,preview,find,about,maximize,showBlocks,undo,redo,find,replace,selectAll,removeFormat, flash, iFrame';
         CKEDITOR.config.removeButtons = 'emoticons,Iframe,Table,Anchor,Underline,Strike,Subscript,Superscript';
         CKEDITOR.config.extraPlugins = 'jsplus_image_editor';
@@ -43,7 +43,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="">
-                    <form>
+                    <form method="post" action="{{ action('ImagesController@update', $item->id) }}">
                         {{ csrf_field() }}
                         <input type="hidden" value="{{ $item->link_id }}" id="link_id">
                         <input type="hidden" value="{{ $item->image_url }}" id="image_name">
@@ -84,6 +84,23 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-12">
+                            <hr />
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label for="order">Orden de Impresión</label>
+                                    {{ Form::text('order', isset($item->order)? $item->order: 0, ['class' => 'form-control']) }}
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="order">Descripción</label>
+                                    {{ Form::text('descripcion', isset($item->descripcion)? $item->descripcion: 0, ['class' => 'form-control']) }}
+                                </div>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -92,7 +109,7 @@
     <style>
         #images2Cam{
             width: 100%;
-            height: 600px;
+            height: 350px;
         }
 
         .cr-image{

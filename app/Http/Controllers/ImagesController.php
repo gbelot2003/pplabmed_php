@@ -47,17 +47,21 @@ class ImagesController extends Controller
 
     public function update(ImagesValidator $request, $id)
     {
-        $helpers = new Miselanius();
+        //dd($request->all());
         $images = Image::findOrfail($id);
-        $name = $helpers->setImges($request);
 
-        $images->image_url = $name;
         if($request->has('descripcion'))
         {
             $images->descripcion = $request->get('descripcion');
         }
 
+        if($request->has('order'))
+        {
+            $images->order = $request->get('order');
+        }
+
         $images->save();
+        return redirect()->to('/histopatologia/' .$images->histo->serial ."/edit");
 
     }
 
