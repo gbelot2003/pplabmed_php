@@ -6,13 +6,31 @@
 
     @foreach($item->images->chunk(4) as $images)
     <div class="row">
-            @foreach($images as $image)
-            <div class="col-md-3 text-center imageCanvas">
-                <a href="{{ route('images.edit', $image->id) }}">
-                    <img id="{{ $image->id }}" class="img-responsive img-thumbnail image img-{{ $i ++ }}" src="/img/histo/{{ $image->image_url }}" alt="{{ $image->image_url }}" />
-                </a>
+
+            <div class="col-md-12">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <th>Imagen</th>
+                        <th>Descripción</th>
+                        <th>Orden</th>
+                    </thead>
+                    <tbody>
+                    @foreach($images as $image)
+                        <tr>
+                            <td width="180">
+                                <a href="{{ route('images.edit', $image->id) }}">
+                                    <img width="240" id="{{ $image->id }}" class="img-responsive img-thumbnail image img-{{ $i ++ }}" src="/img/histo/{{ $image->image_url }}" alt="{{ $image->image_url }}" />
+                                </a>
+                            </td>
+                            <td>{{ $image->descripcion }}</td>
+                            <td>{{ $image->order }}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+
             </div>
-            @endforeach
+
     </div>
         <br>
     @endforeach

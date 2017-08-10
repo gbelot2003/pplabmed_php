@@ -35,13 +35,13 @@ class HistoForm1
         $pdf = new PDF($orientation = 'P', $unit = 'mm', $size = 'Letter', $ftitle = $ftitle, $data);
         $pdf->SetHeaderMargin(28);
         $pdf->setFooterMargin(20);
-        $pdf->SetMargins(5, 28, 5);
+        $pdf->SetMargins(5, 35, 5);
 
 
         $pdf->SetLeftMargin(5);
         $pdf->SetRightMargin(5);
 
-        $pdf->SetTopMargin(68);
+        $pdf->SetTopMargin(75);
 
         $pdf->AddPage();
 
@@ -74,23 +74,24 @@ class HistoForm1
          * Salto
          */
         $pdf->ln();
-        //dd($data->informe);
+
         if (count($data->images) > 0 && count($data->images) <= 3) {
 
             $s = strstr($data->informe, "<div style=\"page-break-after:always\"><span style=\"display:none\">&nbsp;</span></div>");
             $b = strstr($data->informe, "<div style=\"page-break-after:always\"><span style=\"display:none\">&nbsp;</span></div>", true);
-            $result = str_replace("<div style=\"page-break-after:always\"><span style=\"display:none\">&nbsp;</span></div>", "", $b);
-            $result1 = str_replace("<div style=\"page-break-after:always\"><span style=\"display:none\">&nbsp;</span></div>", "", $s);
-            $result2 = str_replace("<br />", "", $result1);
+             $result = str_replace("<div style=\"page-break-after:always\"><span style=\"display:none\">&nbsp;</span></div>", "", $b);
+             $result2 = str_replace("<div style=\"page-break-after:always\"><span style=\"display:none\">&nbsp;</span></div>", "", $s);
+             $result3 = preg_replace('/$(\r\n\r\n)/', '', $result2);
 
-
+            //dd($result3);
             if (count($data->images) == 1) {
 
                 $pdf->SetFont('Helvetica', '', 10);
-                $pdf->writeHTMLCell(120, '', '', '', $result, 0, 0, FALSE, false, 'J', true);
+                $pdf->writeHTMLCell(120, '', '', '', $result, 0, 0, false, false, 'J', true);
 
                 $pdf->ln();
-                $pdf->writeHTMLCell(192, '', '', '', $result2, 0, 0, FALSE, false, 'J', true);
+                $pdf->SetFont('Helvetica', '', 10);
+                $pdf->writeHTMLCell(192, '', '', '', $result3, 0, 0, false, true, 'J', true);
 
                 $pdf->Image(public_path() . "/img/histo/" . $data->images[0]->image_url, 135, 75, 60, 50, '', '', '', true, 150, '', false, false, 1, false, false, false);
 
@@ -100,11 +101,12 @@ class HistoForm1
             if (count($data->images) == 2) {
 
                 $pdf->SetFont('Helvetica', '', 10);
-                $pdf->writeHTMLCell(120, '', '', '', $result, 0, 0, FALSE, false, 'J', true);
+                $pdf->writeHTMLCell(120, '', '', '', $result, 0, 0, false, false, 'J', true);
 
 
                 $pdf->ln();
-                $pdf->writeHTMLCell(192, '', '', '', $result2, 0, 0, FALSE, false, 'J', true);
+                $pdf->SetFont('Helvetica', '', 10);
+                $pdf->writeHTMLCell(192, '', '', '', $result2, 0, 0, false, true, 'J', true);
 
                 $pdf->Image(public_path() . "/img/histo/" . $data->images[0]->image_url, 135, 75, 60, 50, '', '', '', true, 150, '', false, false, 1, false, false, false);
 
@@ -120,7 +122,8 @@ class HistoForm1
 
 
                 $pdf->ln();
-                $pdf->writeHTMLCell(192, '', '', '', $result2, 0, 0, FALSE, false, 'J', true);
+                $pdf->SetFont('Helvetica', '', 10);
+                $pdf->writeHTMLCell(192, '', '', '', $result2, 0, 0, FALSE, true, 'J', true);
 
                 $pdf->Image(public_path() . "/img/histo/" . $data->images[0]->image_url, 135, 75, 60, 50, '', '', '', true, 150, '', false, false, 1, false, false, false);
 

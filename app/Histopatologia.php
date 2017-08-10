@@ -65,6 +65,6 @@ class Histopatologia extends Model
 
     public function images()
     {
-        return $this->hasMany(Image::class, 'link_id', 'link_id');
+        return $this->hasMany(Image::class, 'link_id', 'link_id')->orderBy('order', 'ASC');
     }
 }
