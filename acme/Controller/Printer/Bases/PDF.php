@@ -3,7 +3,6 @@
 namespace Acme\Controller\Printer\Bases;
 
 use Acme\Helpers\PdfStringConversor;
-//use Crabbly\FPDF\Fpdf as baseFpdf;
 use Elibyy\TCPDF\TCPDFHelper as baseFpdf;
 
 class PDF extends baseFpdf
