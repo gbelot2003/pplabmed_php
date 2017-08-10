@@ -6,25 +6,41 @@ use Acme\Helpers\PdfStringConversor;
 use App\Histopatologia;
 use Acme\Controller\Printer\Bases\PDF;
 
-class HistoPrintConfig{
+class HistoPrintConfig
+{
+    public $isLastPage = false;
+
 
     function __construct()
     {
         $this->ConvertCharacters = new PdfStringConversor();
     }
 
+    public function Close()
+    {
+        $this->last_page_flag = true;
+        parent::Close();
+    }
+
+    public function lastPage($resetmargins = false)
+    {
+        $this->setPage($this->getNumPages(), $resetmargins);
+        $this->isLastPage = true;
+    }
+
     public function printPdfHitoReport(Histopatologia $data)
     {
-        $ftitle =  $data->serial . "-" . $data->created_at->format('Y');
+        $ftitle = $data->serial . "-" . $data->created_at->format('Y');
         $pdf = new PDF($orientation = 'P', $unit = 'mm', $size = 'Letter', $ftitle = $ftitle, $data);
-        setlocale(LC_CTYPE, 'es_ES');
+        $pdf->SetHeaderMargin(28);
+        $pdf->setFooterMargin(20);
+        $pdf->SetMargins(5, 28, 5);
 
 
-        $pdf->AliasNbPages();
         $pdf->SetLeftMargin(5);
         $pdf->SetRightMargin(5);
 
-        $pdf->SetTopMargin(28);
+        $pdf->SetTopMargin(68);
 
         $pdf->AddPage();
 
@@ -32,7 +48,7 @@ class HistoPrintConfig{
         $pdf->SetAutoPageBreak(true, 30);
         $this->PrintBody($data, $pdf);
 
-        if(isset($data->images[0])){
+        if (isset($data->images[0])) {
 
             $pdf->SetTopMargin(30);
             $pdf->AddPage();
@@ -57,18 +73,22 @@ class HistoPrintConfig{
         /**
          *  INFORME
          */
-        $pdf->SetFont('Arial', 'B', 13);
-        $pdf->Cell(205, 5, 'INFORME', 0,  0, 'C');
+        $pdf->SetFont('Helvetica', 'B', 13);
+        $pdf->Cell(205, 5, 'INFORME', 0, 0, 'C');
 
         /**
          * Salto
          */
         $pdf->ln();
 
-        $pdf->SetFont('Arial', '', 10);
-        $pdf->MultiCell(197, 5,
-            strip_tags(utf8_decode(html_entity_decode($data->informe)))
-            , 0, 'J', false);
+        $pdf->SetFont('Helvetica', '', 10);
+        $pdf->writeHTMLCell(120, '', '', '', $data->informe, 0, 0, FALSE, false, 'J', true);
+        $pdf->SetXY(135, 75);
+        $pdf->Cell(55, 55, "Imagen", 1, 0);
+        $pdf->SetXY(135, 126);
+        $pdf->Cell(55, 55, "Imagen", 1, 0);
+        $pdf->SetXY(135, 176);
+        $pdf->Cell(55, 55, "Imagen", 1, 0);
     }
 
     /**
@@ -96,7 +116,7 @@ class HistoPrintConfig{
             $pdf->ln(70);
             $x = $pdf->GetX();
             $y = $pdf->GetY();
-            $pdf->SetFont('Arial', '', 10);
+            $pdf->SetFont('Helvetica', '', 10);
             $pdf->MultiCell(80, 4, $data->images[0]->descripcion, 0, 'J');
         }
 

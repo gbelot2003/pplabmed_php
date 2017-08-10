@@ -16,7 +16,7 @@
                     <div class="panel-heading">
                         <div class="text-muted pull-right">
                             <a class="btn btn-default">Link Images ID: {{ $item->link_id }}</a>
-                            <a onclick="window.open('{{ action('PrintController@formatoHistopatologia', $item->id) }}', '_blank', 'location=no,height=600,width=816,menubar=no,status=no,location=no,toolbar=no,scrollbars=yes,directories=no');" class="btn btn-info" alt="Buscar" ><span class="glyphicon glyphicon-print"></span></a>
+                            <a onclick="window.open('{{ action('PrintController@formatoHistoatologiaEng', $item->id) }}', '_blank', 'location=no,height=600,width=816,menubar=no,status=no,location=no,toolbar=no,scrollbars=yes,directories=no');" class="btn btn-info" alt="Buscar" ><span class="glyphicon glyphicon-print"></span></a>
                         </div>
                         <h4>Agregar de Histopatología</h4>
                     </div>
