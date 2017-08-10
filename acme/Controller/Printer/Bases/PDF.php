@@ -145,7 +145,7 @@ class PDF extends baseFpdf
         $this->Cell(41, 5, $this->ConvertCharacters->convert('MATERIAL ESTUDIADO') .': ', 0, 0, 'L');
 
         $this->SetFont('Helvetica', '', 10);
-        $this->Cell(121  , 5, $this->ConvertCharacters->convert(strtoupper($this->data->muestra)), 0, 0, 'L');
+        $this->Cell(121  , 5, $this->data->muestra, 0, 0, 'L');
 
         /**
          * Salto
@@ -159,7 +159,7 @@ class PDF extends baseFpdf
         $this->SetFont('Helvetica', 'B', 10);
         $this->Cell(165, 5, $this->ConvertCharacters->convert('No. BIOPSIA') .': ', 0, 0, 'R');
 
-        $this->SetFont('Helvetica', 'B', 10);
+        $this->SetFont('Helvetica', 'B', 12);
         $this->Cell(30, 5,  $this->data->serial. "-" .$this->data->created_at->format('Y'), 0, 0, 'L');
 
         /**
@@ -190,7 +190,7 @@ class PDF extends baseFpdf
         }
 
         if($this->isLastPage) {
-            $this->SetY(-34);
+            $this->SetY(-40);
             $this->Cell(45, 5, "Fecha de Informe:" , 0, '');
             $this->SetFont('Helvetica', 'B', 11);
 
@@ -221,7 +221,7 @@ class PDF extends baseFpdf
         }
 
         // Position at 1.5 cm from bottom
-        $this->SetY(-24);
+        $this->SetY(-28);
         // Helvetica italic 8
         $this->SetFont('Helvetica','I',8);
         // Page number
