@@ -176,6 +176,8 @@ class PDF extends baseFpdf
 
         $this->SetFont('Helvetica', '', 10);
         $this->Cell(30, 5, $this->data->facturas->num_factura, 0, 0, 'L');
+        $this->ln();
+        $this->writeHTML("<hr>", true, false, false, false, '');
     }
 
 

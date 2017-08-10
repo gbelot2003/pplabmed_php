@@ -17,13 +17,15 @@
                     <tbody>
                     @foreach($images as $image)
                         <tr>
-                            <td width="180">
+                            <td width="15%">
                                 <a href="{{ route('images.edit', $image->id) }}">
                                     <img width="240" id="{{ $image->id }}" class="img-responsive img-thumbnail image img-{{ $i ++ }}" src="/img/histo/{{ $image->image_url }}" alt="{{ $image->image_url }}" />
                                 </a>
                             </td>
-                            <td>{{ $image->descripcion }}</td>
-                            <td>{{ $image->order }}</td>
+                            <td width="85%">{{ $image->descripcion }}</td>
+                            <td width="15%">
+                               {{  $image->order  }}
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>
