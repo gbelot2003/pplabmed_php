@@ -43,7 +43,7 @@ class PDF extends baseFpdf
         $this->Cell(22, 5, 'PACIENTE: ', 0, 0, 'L');
 
         $this->SetFont('Helvetica', 'B', 10);
-        $this->Cell(118, 5, $this->ConvertCharacters->convert(strtoupper($this->data->facturas->nombre_completo_cliente)), 0, 0, 'L');
+        $this->Cell(118, 5, $this->data->facturas->nombre_completo_cliente, 0, 0, 'L');
 
 
         /**
@@ -76,7 +76,7 @@ class PDF extends baseFpdf
         $this->Cell(22, 5, 'MÉDICO: ', 0, 0, 'L');
 
         $this->SetFont('Helvetica', '', 10);
-        $this->Cell(118, 5, $this->ConvertCharacters->convert(strtoupper($this->data->facturas->medico)), 0, 0, 'L');
+        $this->Cell(118, 5, $this->data->facturas->medico, 0, 0, 'L');
 
         /**
          * Fecha de Biopsia
