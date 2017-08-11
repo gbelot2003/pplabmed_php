@@ -131,7 +131,7 @@ class PDF extends baseFpdf
         $this->Cell(26, 5,'DIAG. CLÍNICO: ', 0, 0, 'L');
 
         $this->SetFont('Helvetica', '', 10);
-        $this->Cell(171, 5, $this->ConvertCharacters->convert(strtoupper($this->data->diagnostico)), 0, 'L', false);
+        $this->Cell(171, 5, $this->data->diagnostico, 0, 'L', false);
 
         /**
          * Salto
