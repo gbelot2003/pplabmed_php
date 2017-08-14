@@ -42,21 +42,17 @@
     </div>
     <div id="navTag">
         <div class="row">
-            <div class="col-md-1">
-                <label>No de Factura</label><br>
-                <span class="name">{{ $item->facturas->num_factura }}</span>
-            </div>
-            <div class="col-md-1">
+            <div class="col-md-3">
                 <label>No. de Biopsia</label><br>
-                <span class="name">{{ $item->serial }}</span>
+                <span class="name"><strong style="font-size: 14px">{{ $item->serial }}</strong></span>
             </div>
             <div class="col-md-3">
                 <label>Nombre</label><br>
                 <span class="name">{{ $item->facturas->nombre_completo_cliente }}</span>
             </div>
-            <div class="col-md-4">
-                <label>dirección</label><br>
-                <span class="name">{{ $item->facturas->direccion_entrega_sede }}</span>
+            <div class="col-md-2">
+                <label>Edad</label><br>
+                <span class="name">{{ $item->facturas->edad }}</span>
             </div>
         </div>
     </div>
