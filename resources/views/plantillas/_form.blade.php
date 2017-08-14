@@ -15,7 +15,7 @@
 <div class="row">
     <div class="col-md-5 col-md-push-6 form-group box-style">
         <label for="tipo">Plantillas</label>
-        {!! Form::select('type', ['1' => 'Citología', '2' => 'Histología'], null, ['class' => 'form-control']) !!}
+        {!! Form::select('type', ['1' => 'Biopsias', '2' => 'Certificados'], null, ['class' => 'form-control']) !!}
     </div>
 </div>
 

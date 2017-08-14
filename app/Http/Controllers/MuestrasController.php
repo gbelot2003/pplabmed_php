@@ -6,6 +6,7 @@ use App\Audit;
 use App\Firma;
 use App\Http\Requests\MuestrasRequest;
 use App\Muestra;
+use App\Plantilla;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Yajra\Datatables\Datatables;
@@ -34,13 +35,10 @@ class MuestrasController extends Controller
      */
     public function create()
     {
-        $body = "El suscrito medico patólogo de Laboratorios Médicos hace constar que el material
-        rotulado con el nombre [], contienen: [].
-        Se entrega todo el material en archivo. Y para fines que al interesado convenga estiendo la presente
-        en Tegucigalpa M.D.C. a los [] del mes de [] del 20[]";
-
         $firmas = Firma::where('status', 1)->pluck('name', 'id');
-        return View('resultados.muestras.create', compact('firmas', 'body'));
+        $plantillas = Plantilla::where('type', 2)->get();
+
+        return View('resultados.muestras.create', compact('firmas', 'plantillas'));
     }
 
     /**
@@ -52,6 +50,8 @@ class MuestrasController extends Controller
     public function store(MuestrasRequest $request)
     {
         $muestra = Muestra::create($request->all());
+
+
 
         Audit::create([
             'title' => 'Muestra',
@@ -74,7 +74,10 @@ class MuestrasController extends Controller
     {
         $items = Muestra::findOrFail($id);
         $firmas = Firma::where('status', 1)->pluck('name', 'id');
-        return View('resultados.muestras.edit', compact('firmas', 'items'));
+
+        $plantillas = Plantilla::where('type', 2)->get();
+
+        return View('resultados.muestras.edit', compact('firmas', 'items', 'plantillas'));
     }
 
     /**

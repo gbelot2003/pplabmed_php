@@ -52,9 +52,17 @@
                             </div>
 
                             <div class="row {{ $errors->has('informe') ? ' has-error' : '' }}">
+
+                                <div class="col-md-12">
+                                    <ul class="nav nav-tabs">
+                                        @foreach($plantillas as $plantilla)
+                                            <li role="presentation"><a class="bt-insert" href="{{ $plantilla->id }}">{{ $plantilla->name }}</a></li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+
                                 <div class="col-md-12 form-group">
-                                    <label>Informe</label>
-                                    {{ Form::textarea('body', $body, ['class' => 'textarea form-control ckeditor', 'id' => 'informe', 'tabindex' => 3]) }}
+                                    {{ Form::textarea('body', null, ['class' => 'textarea form-control ckeditor', 'id' => 'informe', 'tabindex' => 3]) }}
                                 </div>
                             </div>
 
@@ -79,11 +87,26 @@
 
 @section('jscode')
     <script src="/js/ckeditor/ckeditor.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
     <script>
-        CKEDITOR.config.enterMode = 2;
         $(document).ready(function () {
-            CKEDITOR.instances['informe'].insertHtml("Este es texto que va dentro del campo");
+            $.ajaxSetup({
+                headers: {
+                    'X-XSRF-TOKEN': $('input[name="_token"]').val()
+                }
+            });
+
+            $('a.bt-insert').click(function(e){
+                e.preventDefault();
+                const id = $(this).attr("href");
+                $.get('/plantillas/info/' + id)
+                    .done(function(data){
+                        console.log(data);
+                        CKEDITOR.instances['informe'].insertHtml(data.body);
+                    });
+            });
         });
+
     </script>
     <script>
         (function(){

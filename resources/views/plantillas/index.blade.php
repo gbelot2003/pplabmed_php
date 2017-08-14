@@ -30,9 +30,9 @@
                                     <td>{{ $item->name }}</td>
                                     <td>
                                         @if($item->type == 1)
-                                            Citología
+                                            Biopsias
                                          @else
-                                            Histopatología
+                                            Certificados
                                         @endif
                                     </td>
                                     <td class="checkcol">

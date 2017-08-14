@@ -41,7 +41,7 @@ class HistopatologiaController extends Controller
         ]);
 
         $firmas = Firma::where('status', 1)->pluck('name', 'id');
-        $plantillas = Plantilla::all();
+        $plantillas = Plantilla::where('type', 1)->get();
         return View('resultados.histopatologia.create', compact('serial', 'firmas', 'plantillas', 'link'));
     }
 
@@ -93,7 +93,7 @@ class HistopatologiaController extends Controller
         $item = Histopatologia::where('serial', $id)->first();
 
         $firmas = Firma::where('status', 1)->pluck('name', 'id');
-        $plantillas = Plantilla::all();
+        $plantillas = Plantilla::where('type', 1)->get();
         $i = 0;
 
         $previous = Histopatologia::where('serial', '<', $item->serial)->max('serial');
