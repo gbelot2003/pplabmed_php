@@ -43,16 +43,16 @@
     <div id="navTag">
         <div class="row">
             <div class="col-md-3">
-                <label>No. de Biopsia</label><br>
-                <span class="name"><strong style="font-size: 14px">{{ $item->serial }}</strong></span>
-            </div>
-            <div class="col-md-3">
                 <label>Nombre</label><br>
                 <span class="name">{{ $item->facturas->nombre_completo_cliente }}</span>
             </div>
             <div class="col-md-2">
                 <label>Edad</label><br>
                 <span class="name">{{ $item->facturas->edad }}</span>
+            </div>
+            <div class="col-md-3">
+                <label>No. de Biopsia</label><br>
+                <span class="name"><strong style="font-size: 16px">{{ $item->serial }}</strong></span>
             </div>
         </div>
     </div>
@@ -68,7 +68,7 @@
             right: 0px;
             background: rgba(14, 155, 191, 0.73);
             width: 80%;
-            height: 52px;
+            height: 60px;
             padding: 5px;
             color: white;
             display:none;

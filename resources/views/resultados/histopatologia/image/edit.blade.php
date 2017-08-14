@@ -57,7 +57,27 @@
                         </div>
 
                         <div class="body">
+                            <div class="col-md-12">
+                                <hr />
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <label for=""><span style="visibility: hidden">a</span></label>
+                                        <button type="submit" class="btn btn-primary form-control">Guardar Cambios</button>
+                                    </div>
 
+                                    <div class="col-md-4">
+                                        <label for="order">Orden de Impresión</label>
+                                        {{ Form::text('order', isset($item->order)? $item->order: 0, ['class' => 'form-control']) }}
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="order">Descripción</label>
+                                        {{ Form::text('descripcion', isset($item->descripcion)? $item->descripcion: 0, ['class' => 'form-control']) }}
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <hr>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <textarea id="ckeditor" class="ckeditor">
@@ -81,23 +101,6 @@
                                     <a href="/histo/images/delete/{{ $item->id }}" id="borrado" style="display: none;" class="btn btn-danger">
                                         ¿La imagen se perdera totalmente de la aplicación, esta seguro que desea continuar?
                                     </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <hr />
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <label for="order">Orden de Impresión</label>
-                                    {{ Form::text('order', isset($item->order)? $item->order: 0, ['class' => 'form-control']) }}
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="order">Descripción</label>
-                                    {{ Form::text('descripcion', isset($item->descripcion)? $item->descripcion: 0, ['class' => 'form-control']) }}
                                 </div>
                             </div>
                         </div>
