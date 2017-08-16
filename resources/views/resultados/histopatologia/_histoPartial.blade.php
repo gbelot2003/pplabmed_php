@@ -119,7 +119,7 @@
     <div class="text-right">
         <br>
         <a class="btn btn-info" href="{{ action('HistopatologiaController@index') }}">Cancelar</a>
-        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button type="submit" id="submit" class="btn btn-primary">Guardar</button>
     </div>
 </div>
 <script src="/js/ckeditor/ckeditor.js"></script>

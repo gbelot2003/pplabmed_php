@@ -1,1 +1,88 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);@import url(https://fonts.googleapis.com/css?family=Poiret+One);body,html{height:100%;background:#000;position:relative}#login-box{position:absolute;top:18%;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%);width:350px;margin:0 auto;border:1px solid #000;background:rgba(97,91,88,.67);min-height:250px;padding:20px;z-index:9999}#login-box .logo .logo-caption{font-family:'Poiret One',cursive;color:#fff;text-align:center;margin-bottom:0}#login-box .controls input,#login-box button.btn-custom{font-family:Nunito,sans-serif}#login-box .logo .tweak{color:#5DFDF2}#login-box .controls{padding-top:30px}#login-box .controls input{border-radius:0;background:#626060;border:0;color:#fff}#login-box .controls input:focus{box-shadow:none}#login-box .controls input:first-child{border-top-left-radius:2px;border-top-right-radius:2px}#login-box .controls input:last-child{border-bottom-left-radius:2px;border-bottom-right-radius:2px}#login-box button.btn-custom{border-radius:2px;margin-top:8px;background:#5DFDF2;border-color:#302e2d;color:#000}#login-box button.btn-custom:hover{transition:all .5s ease;background:#302e2d;border-color:#5DFDF2}#particles-js{width:100%;height:100%;background-size:cover;background-position:50% 50%;position:fixed;top:0;z-index:1}
+@import url("https://fonts.googleapis.com/css?family=Nunito");
+@import url("https://fonts.googleapis.com/css?family=Poiret+One");
+body, html {
+  height: 100%;
+  background-repeat: no-repeat;
+  /*background-image: linear-gradient(rgb(12, 97, 33),rgb(104, 145, 162));*/
+  background: black;
+  position: relative;
+}
+
+#login-box {
+  position: absolute;
+  top: 18%;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  width: 350px;
+  margin: 0 auto;
+  border: 1px solid black;
+  background: rgba(97, 91, 88, 0.67);
+  min-height: 250px;
+  padding: 20px;
+  z-index: 9999;
+}
+
+#login-box .logo .logo-caption {
+  font-family: 'Poiret One', cursive;
+  color: white;
+  text-align: center;
+  margin-bottom: 0px;
+}
+
+#login-box .logo .tweak {
+  color: #5DFDF2;
+}
+
+#login-box .controls {
+  padding-top: 30px;
+}
+
+#login-box .controls input {
+  border-radius: 0px;
+  background: #626060;
+  border: 0px;
+  color: white;
+  font-family: 'Nunito', sans-serif;
+}
+
+#login-box .controls input:focus {
+  box-shadow: none;
+}
+
+#login-box .controls input:first-child {
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+}
+
+#login-box .controls input:last-child {
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+
+#login-box button.btn-custom {
+  border-radius: 2px;
+  margin-top: 8px;
+  background: #5DFDF2;
+  border-color: #302e2d;
+  color: black;
+  font-family: 'Nunito', sans-serif;
+}
+
+#login-box button.btn-custom:hover {
+  transition: all 500ms ease;
+  background: #302e2d;
+  border-color: #5DFDF2;
+}
+
+#particles-js {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: 50% 50%;
+  position: fixed;
+  top: 0px;
+  z-index: 1;
+}
+
+/*# sourceMappingURL=login.css.map */
