@@ -94,7 +94,7 @@ class HistoForm1
                 $pdf->writeHTMLCell(192, '', '', '', $result3, 0, 0, false, true, 'J', true);
 
                 $pdf->Image(public_path() . "/img/histo/" . $data->images[0]->image_url, 135, 75, 60, 50, '', '', '', true, 150, '', false, false, 0, false, false, false);
-                $pdf->writeHTMLCell(60, 10, 135, 115, $data->images[0]->descripcion, 0, 0, false, false, 'J', TRUE);
+                $pdf->writeHTMLCell(60, 10, 135, 112, $data->images[0]->descripcion, 0, 0, false, false, 'J', TRUE);
             }
 
             if (count($data->images) == 2) {
