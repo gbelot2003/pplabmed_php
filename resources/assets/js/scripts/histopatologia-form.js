@@ -122,13 +122,6 @@
 
     $('#topog').inputmask("#99.9");
 
-    $('#submit').attr('disabled',true);
-    $('#topog').keyup(function(){
-        if($(this).val().length !=0)
-            $('#submit').attr('disabled', false);
-        else
-            $('#submit').attr('disabled',true);
-    });
 
     document.addEventListener("keydown", function(event) {
         if(event.which === 113){
