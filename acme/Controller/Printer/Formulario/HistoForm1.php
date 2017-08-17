@@ -94,7 +94,7 @@ class HistoForm1
                 $pdf->writeHTMLCell(192, '', '', '', $result3, 0, 0, false, true, 'J', true);
 
                 $pdf->Image(public_path() . "/img/histo/" . $data->images[0]->image_url, 135, 75, 60, 50, '', '', '', true, 150, '', false, false, 0, false, false, false);
-                $pdf->writeHTMLCell(60, 10, 135, 121, $data->images[0]->descripcion, 0, 0, false, false, 'L', TRUE);
+                $pdf->writeHTMLCell(60, 10, 135, 120, $data->images[0]->descripcion, 0, 0, false, false, 'J', TRUE);
             }
 
             if (count($data->images) == 2) {
@@ -108,7 +108,7 @@ class HistoForm1
                 $pdf->writeHTMLCell(192, '', '', '', $result2, 0, 0, false, true, 'J', true);
 
                 $pdf->Image(public_path() . "/img/histo/" . $data->images[0]->image_url, 135, 75, 60, 50, '', '', '', true, 150, '', false, false, 0, false, false, false);
-                $pdf->writeHTMLCell(60, 10, 135, 122, $data->images[0]->descripcion, 0, 0, false, false, 'L', TRUE);
+                $pdf->writeHTMLCell(60, 10, 135, 120, $data->images[0]->descripcion, 0, 0, false, false, 'L', TRUE);
 
                 $pdf->Image(public_path() . "/img/histo/" . $data->images[1]->image_url, 135, 132, 60, 50, '', '', '', true, 150, '', false, false, 0, false, false, false);
                 $pdf->writeHTMLCell(60, 10, 135, 179, $data->images[1]->descripcion, 0, 0, false, false, 'L', TRUE);
@@ -126,7 +126,7 @@ class HistoForm1
                 $pdf->writeHTMLCell(192, '', '', '', $result2, 0, 0, FALSE, true, 'J', true);
 
                 $pdf->Image(public_path() . "/img/histo/" . $data->images[0]->image_url, 135, 75, 60, 50, '', '', '', true, 150, '', false, false, 0, false, false, false);
-                $pdf->writeHTMLCell(60, 10, 135, 122, $data->images[0]->descripcion, 0, 0, false, false, 'L', TRUE);
+                $pdf->writeHTMLCell(60, 10, 135, 120, $data->images[0]->descripcion, 0, 0, false, false, 'L', TRUE);
 
                 $pdf->Image(public_path() . "/img/histo/" . $data->images[1]->image_url, 135, 132, 60, 50, '', '', '', true, 150, '', false, false, 0, false, false, false);
                 $pdf->writeHTMLCell(60, 10, 135, 179, $data->images[1]->descripcion, 0, 0, false, false, 'L', TRUE);
