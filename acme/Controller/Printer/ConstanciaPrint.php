@@ -20,7 +20,6 @@ class ConstanciaPrint {
 
         $pdf->SetLeftMargin(25);
         $pdf->SetRightMargin(20);
-        $pdf->AliasNbPages();
 
         $pdf->SetTopMargin(50);
         $pdf->AddPage();
@@ -28,21 +27,21 @@ class ConstanciaPrint {
         /**
          * Cabezera
          */
-        $pdf->SetFont('Arial', 'B', 15);
+        $pdf->SetFont('Helvetica', 'B', 15);
         $pdf->Cell(165, 10, $this->ConvertCharacters->convert("CONSTANCIA"), 0,  0, 'C');
 
         /**
          * Salto
          */
         $pdf->ln(20);
-        $pdf->SetFont('Arial', '', 13);
-        $pdf->MultiCell(165, 10,  strip_tags(utf8_decode(html_entity_decode($data->body))), 0, 'J');
+        $pdf->SetFont('Helvetica', '', 13);
+        $pdf->writeHTMLCell(165, '10', '', '', $data->body, 0, 0, false, false, 'J', true);
 
         /**
          * Salto
          */
         $pdf->ln(35);
-        $pdf->SetFont('Arial', 'B', 13);
+        $pdf->SetFont('Helvetica', 'B', 13);
         $pdf->Cell(75, 5, $data->firma->name , 0, 0, 'C');
         $pdf->ln();
         $pdf->Cell(75, 5, $this->ConvertCharacters->convert("MEDICO PATOLOGO") , 0, 0, 'C');
