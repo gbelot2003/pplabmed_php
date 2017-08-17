@@ -47,9 +47,9 @@ Class Miselanius {
     {
         $random = substr( md5(rand()), 0, 3);
         $name = $random.'-' .$request->images->getClientOriginalName();
-        $path = $request->file('images')->move(public_path('img/histo'), $name);
+        $path = $request->file('images')->move(public_path('img/histo'), strtolower($name));
         $images = Image::create([
-            'image_url' => $name,
+            'image_url' => strtolower($name),
             'link_id' => $request->get('link_id')
         ]);
     }
