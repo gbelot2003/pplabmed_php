@@ -27,6 +27,7 @@
                     <thead>
                     <th>Fecha Examen</th>
                     <th>Factura</th>
+                    <th>Nombre</th>
                     <th>Morfología 1</th>
                     <th>Morfología 2</th>
                     <th>Topográfico</th>
@@ -37,6 +38,7 @@
                         <tr>
                             <td>{{ $item->fecha_informe }}</td>
                             <td>{{ $item->factura_id }}</td>
+                            <td>{{ $item->facturas->nombre_completo_cliente }}</td>
                             <td>{{ $item->mor1 }}</td>
                             <td>{{ $item->mor2 }}</td>
                             <td>{{ $item->topog }}</td>
@@ -47,7 +49,7 @@
                     <tfooter>
                         <tr>
                             <td>Recuento:</td>
-                            <td colspan="5" class="text-left"><string>{{ $items->count() }}</string></td>
+                            <td colspan="6" class="text-left"><string>{{ $items->count() }}</string></td>
                         </tr>
                     </tfooter>
                 </table>

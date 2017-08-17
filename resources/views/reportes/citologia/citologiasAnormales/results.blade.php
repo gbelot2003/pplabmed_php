@@ -29,9 +29,9 @@
                     <th style="width: 10px">EDAD</th>
                     <th style="width: 10px">BAJO GRADO NIC I</th>
                     <th style="width: 10px">ALTO GRADO NIC II</th>
-                    <th style="width: 10px">CA "IN SITO" NIC III</th>
+                    <th style="width: 10px">CA "IN SITU" NIC III</th>
                     <th style="width: 10px">CARCINOMA INVASOR</th>
-                    <th style="width: 10px">ATIPIADA DE SIGNIFICADO NO DETERMINADO</th>
+                    <th style="width: 10px">ATIPIA DE SIGNIFICADO NO DETERMINADO</th>
                     <th style="width: 10px">TOTAL</th>
                     <th style="width: 10px">CONVENCIONAL</th>
                     <th style="width: 10px">BASE LIQUIDA</th>

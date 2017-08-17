@@ -15,7 +15,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <div class="text-muted pull-right"></div>
-                        <h4>Reporte de entrega de muestras (Morfología)</h4>
+                        <h4>Reporte de entrega de muestras</h4>
                     </div>
                     <div class="panel-body">
                         <div class="row">

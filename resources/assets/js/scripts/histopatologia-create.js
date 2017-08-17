@@ -1,12 +1,11 @@
-
-(function(){
+(function () {
     $.ajaxSetup({
         headers: {
             'X-XSRF-TOKEN': $('input[name="_token"]').val()
         }
     });
 
-    function getDate(date){
+    function getDate(date) {
 
         const mydate = new Date(date);
         const a = moment(new Date());
@@ -18,14 +17,14 @@
         b.add(months, 'months');
         const days = a.diff(b, 'days');
 
-        if(years > 0){
+        if (years > 0) {
             return years + ' A';
         } else {
             return months + ' M';
         }
     }
 
-    function checkItem(item){
+    function checkItem(item) {
 
         items = [10328, 10328, 10332, 10333, 10334, 10335, 10336];
         if (items.includes(item)) {
@@ -61,7 +60,7 @@
             $.get('/facturas/' + id)
                 .done(function (data) {
 
-                    if (isEmptyObject(data)){
+                    if (isEmptyObject(data)) {
                         alert("no hay datos");
                         $('#factura').val("");
                         $('#paciente').val("");
@@ -74,7 +73,7 @@
                         return;
                     }
 
-                    if(checkItem(data.examen.item) === false){
+                    if (checkItem(data.examen.item) === false) {
                         $("#factura").val() === "";
                         return alert('Esta no es una Biopsia');
                     }
@@ -107,11 +106,11 @@
         })
     });
 
-    $('a.bt-insert').click(function(e){
+    $('a.bt-insert').click(function (e) {
         e.preventDefault();
         const id = $(this).attr("href");
         $.get('/plantillas/info/' + id)
-            .done(function(data){
+            .done(function (data) {
                 console.log(data);
                 CKEDITOR.instances['informe'].insertHtml(data.body);
             });
@@ -126,24 +125,24 @@
 
     $('#topog').inputmask("#99.9");
 
-    $('#submit').attr('disabled',true);
-    $('#topog').keyup(function(){
-        if($(this).val().length !=0)
+    $('#submit').attr('disabled', true);
+    $('#topog').keyup(function () {
+        if ($(this).val().length != 0)
             $('#submit').attr('disabled', false);
         else
-            $('#submit').attr('disabled',true);
+            $('#submit').attr('disabled', true);
     });
 
-    document.addEventListener("keydown", function(event) {
-        if(event.which === 113){
+    document.addEventListener("keydown", function (event) {
+        if (event.which === 113) {
             if (confirm('¿Seguro que desea salir?, se perdera toda la Información no salvada!!')) {
                 window.location.href = '/citologias/create';
             }
         }
 
-        if(event.which == 120)
-        {
-            $( "#myForm" ).submit();
+        if (event.which == 120) {
+            alert("#rasdf");
+            $("#myForm").submit();
         }
     });
 

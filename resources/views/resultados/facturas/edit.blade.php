@@ -63,7 +63,7 @@
                             <tbody>
                             @foreach($factura->citologias as $cito)
                                 <tr>
-                                    <td><a href="{{ action('CitologiaController@edit', $cito->id) }}">{{ $cito->id }}</a></td>
+                                    <td><a href="{{ action('CitologiaController@edit', $cito->serial) }}">{{ $cito->id }}</a></td>
                                     <td>{{ $cito->serial }}</td>
                                     <td>{{ $cito->medico }}</td>
                                     <td>{{ $cito->idcito->name }}</td>
