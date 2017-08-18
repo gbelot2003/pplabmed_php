@@ -124,15 +124,16 @@ class FacturasApiControllerTest extends TestCase
             'status' => 'Valida',
             'total_factura' => 1254.50,
             'examen' => array(
-                ['codigo_examen' => 10260, 'nombre_examen' => 'Marcador Tumoral En Biopsia - Cd-30'],
-                ['codigo_examen' => 10261, 'nombre_examen' => 'Marcador Tumoral Antigeno Epitelial De Membrana'],
-                ['codigo_examen' => 10262, 'nombre_examen' => 'Marcador Tumoral En Biopsia']
+                ['codigo_examen' => 11499, 'nombre_examen' => 'Marcador Tumoral en Biopsia Inmunoglobulina IgM'],
+                ['codigo_examen' => 11498, 'nombre_examen' => 'Marcador Tumoral en Biopsia Inmunoglobulina IgG'],
+                ['codigo_examen' => 11497, 'nombre_examen' => 'Marcador Tumoral en Biopsia Inmunoglobulina IgA']
             )
         ];
 
         $response = $this->call('POST', '/api/facturas', $data);
         $response->assertStatus(200);
         $this->assertDatabaseHas('facturas', ['edad' => '1 A']);
+        $this->assertDatabaseHas('examenes', ['item' => 11499]);
     }
 
     /**
@@ -160,7 +161,7 @@ class FacturasApiControllerTest extends TestCase
 
         $response = $this->call('POST', '/api/facturas', $data);
         $response->assertStatus(200);
-        $this->assertDatabaseHas('facturas', ['edad' => '1 M']);
+        $this->assertDatabaseHas('facturas', ['edad' => '2 M']);
     }
 
 }
