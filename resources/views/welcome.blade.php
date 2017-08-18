@@ -111,7 +111,6 @@
             z-index: 9999;
         }
         #login-box .logo .logo-caption {
-            font-family: 'Poiret One', cursive;
             color: white;
             text-align: center;
             margin-bottom: 0px;
