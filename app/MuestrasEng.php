@@ -4,19 +4,18 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Muestra extends Model
+class MuestrasEng extends Model
 {
-
     /**
      * @var string
      */
-    protected $table = 'muestras';
+    protected $table = 'muestras_engs';
 
     /**
      * @var array
      */
     protected $fillable = [
-        'serial', 'firma_id', 'body', 'nombre'
+        'serial', 'firma_id', 'body', 'nombre', 'muestra_id'
     ];
 
     /**
@@ -35,11 +34,9 @@ class Muestra extends Model
         return $this->belongsTo(Histopatologia::class, 'serial', 'serial');
     }
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function muestraEng()
+    public function muestras()
     {
-        return $this->hasOne(MuestraEng::class, 'muestra_id', 'id');
+        return $this->belongsTo(Muestra::class, 'muestra_id', 'id');
     }
+
 }
