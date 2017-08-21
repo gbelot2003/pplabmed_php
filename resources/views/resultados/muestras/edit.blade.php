@@ -41,7 +41,8 @@
                         {{ Form::close() }}
                     </div>
                     <div class="panel-footer">
-                        <a onclick="window.open('{{ action('MuestrasPrintController@printMuestrasEng', $items->id) }}', '_blank', 'location=no,height=755.90,width=699.21,menubar=no,status=no,location=no,toolbar=no,scrollbars=yes,directories=no');" class="btn btn-info" alt="Buscar" ><span class="glyphicon glyphicon-print"></span> EN</a>
+                        {{--<a onclick="window.open('{{ action('MuestrasPrintController@printMuestrasEng', $items->id) }}', '_blank', 'location=no,height=755.90,width=699.21,menubar=no,status=no,location=no,toolbar=no,scrollbars=yes,directories=no');" class="btn btn-info" alt="Buscar" ><span class="glyphicon glyphicon-print"></span> EN</a>--}}
+                        <a href="/muestras-eng/{{ $items->id }}" class="btn btn-info" alt="Buscar" ><span class="glyphicon glyphicon-print"></span> EN</a>
                     </div>
                 </div>
             </div>

@@ -18,6 +18,7 @@ class CreateMuestrasEngsTable extends Migration
             $table->integer('serial');
             $table->integer('muestra_id');
             $table->integer('firma_id')->index();
+            $table->string('nombre');
             $table->text('body');
             $table->timestamps();
         });

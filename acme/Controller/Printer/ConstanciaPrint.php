@@ -35,12 +35,12 @@ class ConstanciaPrint {
          */
         $pdf->ln(20);
         $pdf->SetFont('Helvetica', '', 13);
-        $pdf->writeHTMLCell(165, '', '', '', $data->body, 0, 0, false, false, 'J', false);
+        $pdf->writeHTMLCell(165, 10, '', '', $data->body, 0, 0, false, false, 'J', true);
 
         /**
          * Salto
          */
-        $pdf->ln(95);
+        $pdf->ln(135);
         $pdf->SetFont('Helvetica', 'B', 13);
         $pdf->Cell(75, 5, $data->firma->name , 0, 0, 'C');
         $pdf->ln();

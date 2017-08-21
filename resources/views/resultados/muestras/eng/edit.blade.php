@@ -3,8 +3,8 @@
 @section('breadcrumbs')
     <ol class="breadcrumb">
         <li><a href="/home">Inicio</a></li>
-        <li><a href="{{ action('MuestrasController@index') }}">Listado de Constancias INGLES</a></li>
-        <li class="active">Edición de Constancia de Muestra</li>
+        <li><a href="{{ action('MuestrasController@index') }}">Listado de Constancias</a></li>
+        <li class="active">Edición de Constancia de Muestra (INGLES)</li>
     </ol>
 @stop
 
@@ -26,14 +26,17 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <div class="text-muted pull-right">
-                            <a onclick="window.open('{{ action('MuestrasPrintController@printMuestras', $items->id) }}', '_blank', 'location=no,height=570,width=520,menubar=no,status=no,location=no,toolbar=no,scrollbars=yes,directories=no');" class="btn btn-info" alt="Buscar" ><span class="glyphicon glyphicon-print"></span> ES</a>
+
+                            {{--TODO: cambiar la direccion de impresion--}}
+                            <a onclick="window.open('{{ action('MuestrasPrintController@printMuestrasEng', $items->id) }}', '_blank', 'location=no,height=570,width=520,menubar=no,status=no,location=no,toolbar=no,scrollbars=yes,directories=no');" class="btn btn-info" alt="Buscar" ><span class="glyphicon glyphicon-print"></span> EN</a>
+
                         </div>
                         <h4>Agregar de Constancia</h4>
                     </div>
                     <div class="panel-body" id="app">
                         {!! Form::model($items, ['action' => ['MuestrasController@update', $items->id], 'method' => 'PATCH']) !!}
                         <div class="panel-body">
-                            @include('resultados.muestras._form')
+                            @include('resultados.muestras.eng._form')
                         </div>
                         <div class="panel-footer">
 
@@ -41,7 +44,7 @@
                         {{ Form::close() }}
                     </div>
                     <div class="panel-footer">
-                        <a onclick="window.open('{{ action('MuestrasPrintController@printMuestrasEng', $items->id) }}', '_blank', 'location=no,height=755.90,width=699.21,menubar=no,status=no,location=no,toolbar=no,scrollbars=yes,directories=no');" class="btn btn-info" alt="Buscar" ><span class="glyphicon glyphicon-print"></span> EN</a>
+                        {{--<a onclick="window.open('{{ action('MuestrasPrintController@printMuestrasEng', $items->id) }}', '_blank', 'location=no,height=755.90,width=699.21,menubar=no,status=no,location=no,toolbar=no,scrollbars=yes,directories=no');" class="btn btn-info" alt="Buscar" ><span class="glyphicon glyphicon-print"></span> EN</a>--}}
                     </div>
                 </div>
             </div>

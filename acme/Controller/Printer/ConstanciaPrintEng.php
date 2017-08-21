@@ -3,8 +3,8 @@
 namespace Acme\Controller\Printer;
 
 use Acme\Helpers\PdfStringConversor;
-use App\Muestra;
 use Acme\Controller\Printer\Bases\PDFConstancia as PDF;
+use App\MuestrasEng;
 use Dedicated\GoogleTranslate;
 
 class ConstanciaPrintEng
@@ -14,19 +14,12 @@ class ConstanciaPrintEng
         $this->ConvertCharacters = new PdfStringConversor();
     }
 
-    public function printPdfReport(Muestra $data)
+    public function printPdfReport(MuestrasEng $data)
     {
         $pdf = new PDF($orientation = 'P', $unit = 'mm', $size = 'Letter', $ftitle = "Titulo");
-        $translator = new GoogleTranslate\Translator();
-        if ($data->body) {
-            $body = $translator->setSourceLang('es')
-                ->setTargetLang('en')
-                ->translate($data->body);
-        }
 
         $pdf->SetLeftMargin(25);
         $pdf->SetRightMargin(20);
-        $pdf->AliasNbPages();
 
         $pdf->SetTopMargin(50);
         $pdf->AddPage();
@@ -34,24 +27,24 @@ class ConstanciaPrintEng
         /**
          * Cabezera
          */
-        $pdf->SetFont('Arial', 'B', 15);
-        $pdf->Cell(165, 10, $this->ConvertCharacters->convert("CONSTANCE"), 0, 0, 'C');
+        $pdf->SetFont('Helvetica', 'B', 15);
+        $pdf->Cell(165, 10, "CONSTANCE", 0,  0, 'C');
 
         /**
          * Salto
          */
         $pdf->ln(20);
-        $pdf->SetFont('Arial', '', 13);
-        $pdf->MultiCell(165, 10, strip_tags(utf8_decode(html_entity_decode($body))), 0, 'J');
+        $pdf->SetFont('Helvetica', '', 13);
+        $pdf->writeHTMLCell(165, 10, '', '', $data->body, 0, 0, false, false, 'J', true);
 
         /**
          * Salto
          */
-        $pdf->ln(35);
-        $pdf->SetFont('Arial', 'B', 13);
-        $pdf->Cell(75, 5, $data->firma->name, 0, 0, 'C');
+        $pdf->ln(135);
+        $pdf->SetFont('Helvetica', 'B', 13);
+        $pdf->Cell(75, 5, $data->firma->name , 0, 0, 'C');
         $pdf->ln();
-        $pdf->Cell(75, 5, $this->ConvertCharacters->convert("MEDICO PATOLOGO"), 0, 0, 'C');
+        $pdf->Cell(75, 5, $this->ConvertCharacters->convert("MEDICAL PATHOLOGIST") , 0, 0, 'C');
 
         return $pdf->Output();
     }
