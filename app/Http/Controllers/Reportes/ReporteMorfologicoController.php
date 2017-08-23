@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Reportes;
 
+use Acme\Controller\Printer\Reportes\EstadisticasMorfologicas;
 use App\Http\Controllers\Controller;
 use Atlas\Reports\Patologia\ReporteMorfologicoQuery;
 use Illuminate\Http\Request;
@@ -27,6 +28,8 @@ class ReporteMorfologicoController extends Controller
         $query = new ReporteMorfologicoQuery();
         list($items, $bdate, $edate) = $query->queryBuilder($request);
 
-        return View('reportes.histo.morfologias.results', compact('items', 'bdate', 'edate'));
+        $morfo = new EstadisticasMorfologicas();
+        $morfo->printPdfHitoReport($items, $bdate, $edate);
+        //return View('reportes.histo.morfologias.results', compact('items', 'bdate', 'edate'));
     }
 }
