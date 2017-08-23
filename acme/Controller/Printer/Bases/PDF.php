@@ -129,10 +129,10 @@ class PDF extends baseFpdf
          */
 
         $this->SetFont('Helvetica', 'B', 10);
-        $this->Cell(26, 5,'DIAG. CLÍNICO: ', 1, 0, 'L');
+        $this->Cell(26, 5,'DIAG. CLÍNICO: ', 0, 0, 'L');
 
         $this->SetFont('Helvetica', '', 10);
-        $this->MultiCell(171, 5, strtoupper($this->data->diagnostico), 1, 'L', false);
+        $this->MultiCell(171, 5, strtoupper($this->data->diagnostico), 0, 'L', false);
         /**
          * Salto
          */
@@ -143,10 +143,10 @@ class PDF extends baseFpdf
          */
         $this->setY(62);
         $this->SetFont('Helvetica', 'B', 10);
-        $this->Cell(41, 5, $this->ConvertCharacters->convert('MATERIAL ESTUDIADO') .': ', 1, 0, 'L');
+        $this->Cell(41, 5, $this->ConvertCharacters->convert('MATERIAL ESTUDIADO') .': ', 0, 0, 'L');
 
         $this->SetFont('Helvetica', '', 10);
-        $this->MultiCell(156  , 5, strtoupper($this->data->muestra), 1, 'L', false);
+        $this->MultiCell(156  , 5, strtoupper($this->data->muestra), 0, 'L', false);
 
         /**
          * Salto
