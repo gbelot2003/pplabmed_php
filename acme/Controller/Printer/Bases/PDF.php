@@ -196,7 +196,7 @@ class PDF extends baseFpdf
         }
 
         if($this->isLastPage) {
-            $this->SetY(-48);
+            $this->SetY(-58);
             $this->Cell(45, 5, "Fecha de Informe:" , 0, '');
             $this->SetFont('Helvetica', 'B', 11);
 
