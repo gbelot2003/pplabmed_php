@@ -227,7 +227,7 @@ class PDF extends baseFpdf
         }
 
         // Position at 1.5 cm from bottom
-        $this->SetY(-36);
+        $this->SetY(-51);
         // Helvetica italic 8
         $this->SetFont('Helvetica','I',8);
         // Page number
