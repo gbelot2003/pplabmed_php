@@ -94,9 +94,9 @@ class HistoForm1
                 $pdf->writeHTMLCell(192, '', '', '', $result3, 0, 0, false, true, 'J', true);
 
 
-                $pdf->Image(public_path() . "/img/histo/" . $data->images[0]->image_url, 145, 75, 60, 50, '', '', '', true, 150, '', false, false, 0, false, false, false);
+                $pdf->Image(public_path() . "/img/histo/" . $data->images[0]->image_url, 140, 82, 65, 55, '', '', '', true, 150, '', false, false, 0, false, false, false);
                 //$pdf->writeHTMLCell(60, 10, 135, 112, $data->images[0]->descripcion, 0, 0, false, false, 'J', TRUE);
-                $pdf->SetXY(145,123);
+                $pdf->SetXY(140,135);
                 $pdf->Cell(60, 10, $data->images[0]->descripcion, 0,  0, 'L');
 
 
@@ -105,42 +105,42 @@ class HistoForm1
             if (count($data->images) == 2) {
 
                 $pdf->SetFont('Helvetica', '', 10);
-                $pdf->writeHTMLCell(130, '', '', '', $result, 0, 0, false, false, 'J', true);
+                $pdf->writeHTMLCell(135, '', '', '', $result, 0, 0, false, false, 'J', true);
 
 
                 $pdf->ln();
                 $pdf->SetFont('Helvetica', '', 10);
                 $pdf->writeHTMLCell(192, '', '', '', $result2, 0, 0, false, true, 'J', true);
 
-                $pdf->Image(public_path() . "/img/histo/" . $data->images[0]->image_url, 145, 75, 60, 50, '', '', '', true, 150, '', false, false, 0, false, false, false);
-                $pdf->SetXY(145,123);
+                $pdf->Image(public_path() . "/img/histo/" . $data->images[0]->image_url, 140, 82, 65, 55, '', '', '', true, 150, '', false, false, 0, false, false, false);
+                $pdf->SetXY(140,134);
                 $pdf->Cell(60, 10, $data->images[0]->descripcion, 0,  0, 'L');
 
-                $pdf->Image(public_path() . "/img/histo/" . $data->images[1]->image_url, 145, 132, 60, 50, '', '', '', true, 150, '', false, false, 0, false, false, false);
-                $pdf->SetXY(145,179);
+                $pdf->Image(public_path() . "/img/histo/" . $data->images[1]->image_url, 140, 144, 65, 55, '', '', '', true, 150, '', false, false, 0, false, false, false);
+                $pdf->SetXY(140,198);
                 $pdf->Cell(60, 10, $data->images[1]->descripcion, 0,  0, 'L');
             }
 
             if (count($data->images) == 3) {
 
                 $pdf->SetFont('Helvetica', '', 10);
-                $pdf->writeHTMLCell(130, '', '', '', $result, 0, 0, FALSE, false, 'J', true);
+                $pdf->writeHTMLCell(139, '', '', '', $result, 0, 0, FALSE, false, 'J', true);
 
 
                 $pdf->ln();
                 $pdf->SetFont('Helvetica', '', 10);
-                $pdf->writeHTMLCell(192, '', '', '', $result2, 0, 0, FALSE, true, 'J', true);
+                $pdf->writeHTMLCell(194, '', '', '', $result2, 0, 0, FALSE, true, 'J', true);
 
-                $pdf->Image(public_path() . "/img/histo/" . $data->images[0]->image_url, 145, 75, 60, 50, '', '', '', true, 150, '', false, false, 0, false, false, false);
-                $pdf->SetXY(145,123);
+                $pdf->Image(public_path() . "/img/histo/" . $data->images[0]->image_url, 145, 82, 55, 45, '', '', '', true, 150, '', false, false, 0, false, false, false);
+                $pdf->SetXY(145,126);
                 $pdf->Cell(60, 10, $data->images[0]->descripcion, 0,  0, 'L');
 
-                $pdf->Image(public_path() . "/img/histo/" . $data->images[1]->image_url, 145, 132, 60, 50, '', '', '', true, 150, '', false, false, 0, false, false, false);
+                $pdf->Image(public_path() . "/img/histo/" . $data->images[1]->image_url, 145, 136, 55, 45, '', '', '', true, 150, '', false, false, 0, false, false, false);
                 $pdf->SetXY(145,179);
                 $pdf->Cell(60, 10, $data->images[1]->descripcion, 0,  0, 'L');
 
-                $pdf->Image(public_path() . "/img/histo/" . $data->images[2]->image_url, 145, 188, 60, 50, '', '', '', true, 150, '', false, false, 0, false, false, false);
-                $pdf->SetXY(145,236);
+                $pdf->Image(public_path() . "/img/histo/" . $data->images[2]->image_url, 145, 190, 55, 45, '', '', '', true, 150, '', false, false, 0, false, false, false);
+                $pdf->SetXY(145,233);
                 $pdf->Cell(60, 10, $data->images[2]->descripcion, 0,  0, 'L');
             }
 
