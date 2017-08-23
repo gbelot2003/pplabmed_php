@@ -15,14 +15,16 @@
             <div class="col-md-12">
                 <div class="text-center">
                     <h3>Reporte de Identificador para Citología</h3>
-                    <input type="button" class="btn btn-info btn-xs hidden-print" name="imprimir" value="Imprimir" onclick="window.print();"> <span class="hidden-print"> | </span>
-                    <small>Desde:{{ $bdate->formatLocalized('%d %B %Y') }} Hasta: {{ $edate->formatLocalized('%d %B %Y') }}</small>
+                    <input type="button" class="btn btn-info btn-xs hidden-print" name="imprimir" value="Imprimir"
+                           onclick="window.print();"> <span class="hidden-print"> | </span>
+                    <small>Desde:{{ $bdate->formatLocalized('%d %B %Y') }}
+                        Hasta: {{ $edate->formatLocalized('%d %B %Y') }}</small>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-4">
-                <strong>Fecha de Informe:  {{  \Carbon\Carbon::now()->formatLocalized('%d %B %Y  %H:%m') }}</strong>
+                <strong>Fecha de Informe: {{  \Carbon\Carbon::now()->formatLocalized('%d %B %Y  %H:%m') }}</strong>
             </div>
         </div>
         <div class="row">
@@ -50,4 +52,11 @@
             </div>
         </div>
 
-    </div>@stop
+    </div>
+    <style type="text/css" media="print">
+        @page {
+            size: auto;   /* auto is the initial value */
+            margin: 0;  /* this affects the margin in the printer settings */
+        }
+    </style>
+@stop

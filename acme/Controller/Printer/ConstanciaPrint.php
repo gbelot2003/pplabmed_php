@@ -31,7 +31,7 @@ class ConstanciaPrint {
         $pdf->Cell(165, 10, $this->ConvertCharacters->convert("CONSTANCIA"), 0,  0, 'C');
 
         /**
-         * Salto
+         * Cuerpo
          */
         $pdf->ln(20);
         $pdf->SetFont('Helvetica', '', 13);
@@ -40,7 +40,7 @@ class ConstanciaPrint {
 
 
         /**
-         * Salto
+         * firmas
          */
         $pdf->ln(125);
         $pdf->SetFont('Helvetica', 'B', 13);
