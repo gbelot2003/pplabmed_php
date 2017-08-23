@@ -5,7 +5,7 @@
         @if(isset($item->serial))
             <span class="text-center form-control">
                     {{ $item->serial }}
-                {!! Form::hidden('id', $item->id) !!}
+                    {!! Form::hidden('id', $item->id) !!}
                 </span>
         @else
             <span class="text-center form-control">

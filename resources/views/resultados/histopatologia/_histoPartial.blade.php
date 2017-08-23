@@ -105,7 +105,7 @@
     </div>
 
     <div class="col-md-12 form-group  {{ $errors->has('fecha_muestra') ? ' has-error' : '' }}" tabindex="8">
-        <textarea name="informe" id="informe" cols="30" rows="10" class="textarea form-control ckeditor" tabindex="8">
+        <textarea name="informe" id="informe" cols="30" rows="10" class="textarea form-control" tabindex="8">
             {{ isset($item->informe) ? $item->informe : null }}
         </textarea>
     </div>

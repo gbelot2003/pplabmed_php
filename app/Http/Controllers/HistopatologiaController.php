@@ -113,6 +113,7 @@ class HistopatologiaController extends Controller
 
     public function update(HistopatiaValidation $request, $id)
     {
+        //dd($request->all());
         $item = Histopatologia::findOrFail($id);
 
         $item->muestra_entrega = isset($request['muestra_entrega']) ? $request['muestra_entrega'] = 1 : $request['muestra_entrega'] = 0;

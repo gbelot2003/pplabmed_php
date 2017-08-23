@@ -12,10 +12,6 @@ CKEDITOR.editorConfig = function( config ) {
     //config.uiColor = '#F7B42C';
     config.toolbarCanCollapse = true;
 
-    config.keystrokes = [
-        [ 120, 'save' ]
-    ];
-
     config.linkShowAdvancedTab = false;
     config.linkShowTargetTab = false;
     config.removePlugins = 'font,format,Styles,forms,print,preview,find,about,maximize,showBlocks,undo,redo,find,replace,selectAll,removeFormat,image, flash, iFrame';

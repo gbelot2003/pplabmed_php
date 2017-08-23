@@ -121,21 +121,63 @@
         // Initialize Dropzone
     });
 
-    $('.colorbox').colorbox();
 
     $('#topog').inputmask("#99.9");
 
-    document.addEventListener("keydown", function (event) {
-        if (event.which === 113) {
-            if (confirm('¿Seguro que desea salir?, se perdera toda la Información no salvada!!')) {
-                window.location.href = '/citologias/create';
-            }
-        }
+    function save(text) {
 
+        const serialize =  $("#myForm").serialize();
+
+        $.ajax({
+            method: "POST",
+            url: "/histipatologiaApi/store",
+            data: serialize,
+        }).done(function (data) {
+            console.log(data);
+            toastr.success('La biopsia a sido salvada exitosamente!!', 'Registro Guardado');
+            window.location = '/histopatologia/ '+ Number(data.serial) + '/edit'
+        }).fail(function (data) {
+            console.log(data);
+            toastr.error('El servidor dice:  ' +data.statusText, 'Status: ' + data.status + ' -- '+ data.responseText)
+        });
+    }
+
+    $("#informe").ckeditor(function () {
+
+// Once the editor is loaded, we can add custom commands
+
+        /** Alt + A will alert a greeting message **/
+        // First, we define our custom command
+        this.addCommand('myGreetingCommand', {
+            exec: function (editor, data) {
+                save("inside");
+            }
+        });
+
+        // Then, we set up the key combination
+        this.keystrokeHandler.keystrokes[120 /* A */] = 'myGreetingCommand';
+
+        /** Ctrl + B will alert a good bye message **/
+        this.addCommand('myGoodByeCommand', {
+            exec: function (editor, data) {
+                save("inside!");
+            }
+        });
+
+        this.keystrokeHandler.keystrokes[CKEDITOR.CTRL + 66 /* B */] = 'myGoodByeCommand';
+
+    });
+
+    document.addEventListener("keydown", function (event) {
         if (event.which == 120) {
-            alert("#rasdf");
-            $("#myForm").submit();
+            save("outside")
         }
     });
+
+    $('#myForm').submit(function (e) {
+        e.preventDefault();
+        save("outside");
+
+    })
 
 })(jQuery);

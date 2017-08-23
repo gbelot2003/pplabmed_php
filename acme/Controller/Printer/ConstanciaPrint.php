@@ -35,7 +35,7 @@ class ConstanciaPrint {
          */
         $pdf->ln(20);
         $pdf->SetFont('Helvetica', '', 13);
-        $pdf->writeHTMLCell(165, 10, '', '', $data->body, 0, 0, 0, true, 'J', true);
+        $pdf->MultiCell(165, 10, '', '', $data->body, 0, 0, 0, false, 'J', true);
         //w, h, x, y, html = '', border = 0, ln = 1, fill = 0, reseth = true, align = '', autopadding = true
 
 

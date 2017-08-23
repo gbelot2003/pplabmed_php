@@ -1,12 +1,12 @@
-
-(function(){
+(function () {
     $.ajaxSetup({
         headers: {
             'X-XSRF-TOKEN': $('input[name="_token"]').val()
         }
     });
 
-    function getDate(date){
+
+    function getDate(date) {
 
         const mydate = new Date(date);
         const a = moment(new Date());
@@ -18,14 +18,14 @@
         b.add(months, 'months');
         const days = a.diff(b, 'days');
 
-        if(years > 0){
+        if (years > 0) {
             return years + ' A';
         } else {
             return months + ' M';
         }
     }
 
-    function checkItem(item){
+    function checkItem(item) {
 
         items = [10328, 10328, 10332, 10333, 10334, 10335, 10336];
         if (items.includes(item)) {
@@ -60,7 +60,7 @@
             $.get('/facturas/' + id)
                 .done(function (data) {
 
-                    if (isEmptyObject(data)){
+                    if (isEmptyObject(data)) {
                         alert("no hay datos");
                         $('#factura').val("");
                         $('#paciente').val("");
@@ -73,7 +73,7 @@
                         return;
                     }
 
-                    if(checkItem(data.examen.item) === false){
+                    if (checkItem(data.examen.item) === false) {
                         $("#factura").val() === "";
                         return alert('Esta no es una Biopsia');
                     }
@@ -106,11 +106,11 @@
         })
     });
 
-    $('a.bt-insert').click(function(e){
+    $('a.bt-insert').click(function (e) {
         e.preventDefault();
         const id = $(this).attr("href");
         $.get('/plantillas/info/' + id)
-            .done(function(data){
+            .done(function (data) {
                 console.log(data);
                 CKEDITOR.instances['informe'].insertHtml(data.body);
             });
@@ -123,18 +123,60 @@
     $('#topog').inputmask("#99.9");
 
 
-    document.addEventListener("keydown", function(event) {
-        if(event.which === 113){
-            if (confirm('¿Seguro que desea salir?, se perdera toda la Información no salvada!!')) {
-                window.location.href = '/citologias/create';
-            }
-        }
+    function save(text) {
 
-        if(event.which == 120)
-        {
-            alert("text");
-            $( "#myForm" ).submit();
+        const serialize =  $("#myForm").serialize();
+        const id = $("input[name='id']").val();
+
+        $.ajax({
+            method: "PATCH",
+            url: "/histipatologiaApi/update/" + id,
+            data: serialize,
+        }).done(function (data) {
+            console.log(data);
+            toastr.success('La biopsia a sido salvada exitosamente!!', 'Registro Guardado');
+        }).fail(function (data) {
+            console.log(data);
+            toastr.error('El servidor dice:  ' +data.statusText, 'Status: ' + data.status + ' -- '+ data.responseText)
+        });
+    }
+
+    $("#informe").ckeditor(function () {
+
+// Once the editor is loaded, we can add custom commands
+
+        /** Alt + A will alert a greeting message **/
+        // First, we define our custom command
+        this.addCommand('myGreetingCommand', {
+            exec: function (editor, data) {
+                save("inside");
+            }
+        });
+
+        // Then, we set up the key combination
+        this.keystrokeHandler.keystrokes[120 /* A */] = 'myGreetingCommand';
+
+        /** Ctrl + B will alert a good bye message **/
+        this.addCommand('myGoodByeCommand', {
+            exec: function (editor, data) {
+                save("inside!");
+            }
+        });
+
+        this.keystrokeHandler.keystrokes[CKEDITOR.CTRL + 66 /* B */] = 'myGoodByeCommand';
+
+    });
+
+    document.addEventListener("keydown", function (event) {
+        if (event.which == 120) {
+            save("outside")
         }
     });
+
+    $('#myForm').submit(function (e) {
+        e.preventDefault();
+        save("outside");
+
+    })
 
 })(jQuery);

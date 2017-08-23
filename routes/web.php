@@ -63,6 +63,13 @@ Route::group(['middleware' => 'auth'], function(){
 
 
     Route::resource('histopatologia', 'HistopatologiaController');
+
+    /**
+     * Funciones api
+     */
+    Route::patch('histipatologiaApi/update/{id}', 'HistopatologiaApiController@update');
+    Route::post('histipatologiaApi/store', 'HistopatologiaApiController@store');
+
     Route::get('histopatologias/listados', 'HistopatologiaController@listados');
     Route::post('histopatologias/config-serial', 'CitoSerialController@histoUpdate')->name('histopatologia.config');
     Route::get('histopatologias/busqueda', 'HistopatologiaController@searchPage');

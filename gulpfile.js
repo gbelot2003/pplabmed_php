@@ -31,11 +31,11 @@ elixir((mix) => {
         ], 'public/js/citologias-form.js')
 
         .scripts(
-            ['scripts/histopatologia-create.js',
+            ['scripts/jqAdapter.js', 'scripts/histopatologia-create.js',
             ], 'public/js/histopatologia-create.js')
 
         .scripts(
-            ['scripts/histopatologia-form.js', 'scripts/citologias-facturas.js'
+            ['scripts/jqAdapter.js', 'scripts/histopatologia-form.js', 'scripts/citologias-facturas.js'
         ], 'public/js/histopatologia-form.js')
 
         .scripts(
