@@ -170,4 +170,5 @@
 <script src="/js/ckeditor/ckeditor.js"></script>
 <script>
     CKEDITOR.config.enterMode = 2;
+    CKEDITOR.config.keystrokes = [[ 120, 'save' ]];
 </script>
