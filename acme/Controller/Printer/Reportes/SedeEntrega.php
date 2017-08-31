@@ -71,7 +71,7 @@ class SedeEntrega
              * Examen
              */
             $pdf->SetFont('Arial', '', 7);
-            $pdf->Cell('45', '10', $this->ConvertCharacters->convert(substr($rows['nombre_examen'], 0,32)), 1, '', 'L');
+            $pdf->Cell('45', '10', $this->ConvertCharacters->convert(substr($rows['nombre_examen'], 0,35)), 1, '', 'L');
 
             $pdf->Cell('40', 10, '', 1);
 
