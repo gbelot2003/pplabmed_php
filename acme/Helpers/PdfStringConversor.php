@@ -6,6 +6,6 @@ class PdfStringConversor {
 
     public function convert($string)
     {
-        return iconv('UTF-8', 'windows-1252', $string);
+        return iconv('UTF-8', 'windows-1252//IGNORE', $string);
     }
 }
