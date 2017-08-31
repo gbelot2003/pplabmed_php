@@ -75,7 +75,7 @@ class BiopiasHojaTrabajo
              * Examen
              */
             $pdf->SetFont('Arial', '', 7);
-            $pdf->Cell('40', '10', $this->ConvertCharacters->convert(substr($rows->examen['nombre_examen'], 0,32)), 1, '', 'L');
+            $pdf->Cell('40', '10', $this->ConvertCharacters->convert(substr($rows->examen['nombre_examen'], 0,35)), 1, '', 'L');
 
             /**
              * Informe
