@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 
 
-body{margin-top:4cm; font-family: 'Arial', sans-serif; font-size: 12px !important}
+body{margin-top:3.5cm; margin-left:2cm; font-family: 'Arial', sans-serif; font-size: 12px !important}
 @page {size: auto; margin: 0;}
 @media print{.no-print, .no-print * { display: none !important;}}
 #formulario{width: 17cm;height: 21cm; padding-left: 0.7cm}
