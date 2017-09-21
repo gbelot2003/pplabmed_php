@@ -34,7 +34,7 @@ body{margin-top:3.5cm; margin-left:2cm; font-family: 'Arial', sans-serif; font-s
 .informe-sistema-etiqueta{top: 6.7cm; left: 5.5cm;}
 .serial-etiqueta{top: 6.7cm; left:11.5cm;}
 .informe-etiqueta{top:7.1cm; left: 0cm;}
-.mm{top:11cm; left: 0cm;}
+.mm{top:11cm; left: 0cm; text-align: justify;}
 .fecha-informe-etiqueta{top:14cm;}
 .firma-1{top:14cm;left:4.5cm;display: block;width: 7cm;}
 .firma-1 div{text-align:  center;}
