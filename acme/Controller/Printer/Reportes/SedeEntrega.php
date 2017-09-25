@@ -23,6 +23,7 @@ class SedeEntrega
         } else {
             $ftitle =  $this->ConvertCharacters->convert("Reporte por Sedes");
         }
+        dd($direccion);
 
         $pdf = new PDFReporteSede($orientation = 'P', $unit = 'mm', $size = 'Letter', $ftitle = $ftitle, $dates, $user, $total);
 

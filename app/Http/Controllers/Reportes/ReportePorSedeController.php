@@ -30,7 +30,6 @@ class ReportePorSedeController extends Controller
      */
     public function results(Request $request)
     {
-        dd($request->all());
         $query = new HojaTrabajoCedesQuery();
         list($items, $bdate, $edate, $total, $direccion) = $query->queryBuilder($request);
 
