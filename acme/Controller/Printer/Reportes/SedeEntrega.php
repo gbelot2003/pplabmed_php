@@ -26,7 +26,7 @@ class SedeEntrega
 
         $pdf = new PDFReporteSede($orientation = 'P', $unit = 'mm', $size = 'Letter', $ftitle = $ftitle, $dates, $user, $total);
 
-        setlocale(LC_CTYPE, 'es_HN');
+        setlocale(LC_CTYPE, 'en_US');
         $pdf->SetLeftMargin(1);
 
         $pdf->AliasNbPages();

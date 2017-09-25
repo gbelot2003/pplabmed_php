@@ -33,9 +33,10 @@ class ReportePorSedeController extends Controller
         $query = new HojaTrabajoCedesQuery();
         list($items, $bdate, $edate, $total, $direccion) = $query->queryBuilder($request);
 
-        $print = new SedeEntrega();
+        //$print = new SedeEntrega();
         //return array($items, $bdate, $edate, $total, $direccion);
 
-        return $print->printPdfHitoReport($items, $bdate, $edate, $total, $direccion);
+        //return $print->printPdfHitoReport($items, $bdate, $edate, $total, $direccion);
+        return $query;
     }
 }
