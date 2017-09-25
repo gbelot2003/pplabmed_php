@@ -23,11 +23,10 @@ class SedeEntrega
         } else {
             $ftitle =  $this->ConvertCharacters->convert("Reporte por Sedes");
         }
-        dd($ftitle);
 
         $pdf = new PDFReporteSede($orientation = 'P', $unit = 'mm', $size = 'Letter', $ftitle = $ftitle, $dates, $user, $total);
 
-        setlocale(LC_CTYPE, 'en_US');
+        setlocale(LC_CTYPE, 'es_HN');
         $pdf->SetLeftMargin(1);
 
         $pdf->AliasNbPages();
