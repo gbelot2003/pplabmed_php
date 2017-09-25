@@ -37,6 +37,6 @@ class ReportePorSedeController extends Controller
         //return array($items, $bdate, $edate, $total, $direccion);
 
         //return $print->printPdfHitoReport($items, $bdate, $edate, $total, $direccion);
-        return $items;
+        return $direccion;
     }
 }
