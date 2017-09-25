@@ -79,7 +79,7 @@ class SedeEntrega
         }
 
 
-        return $pdf->Output();
+        return $pdf->Output('D','filename.pdf');
 
     }
 }
