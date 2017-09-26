@@ -18,6 +18,7 @@ class SedeEntrega
     {
 
         $dates = ['inicio' => $bdate, 'fin' => $edate];
+        $today = date("d/m/Y");
         $user = Auth::User()->username;
         if(isset($direccion)){
             $ftitle =  $this->ConvertCharacters->convert($direccion);
@@ -81,7 +82,7 @@ class SedeEntrega
         }
 
 
-        return $pdf->Output('D','filename.pdf');
+        return $pdf->Output('D', $ftitle . ' - ' . $user . '-' . $today);
 
     }
 }
