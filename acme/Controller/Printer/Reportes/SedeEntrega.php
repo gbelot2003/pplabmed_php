@@ -16,6 +16,7 @@ class SedeEntrega
 
     public function printPdfHitoReport($data, $bdate, $edate, $total, $direccion)
     {
+
         $dates = ['inicio' => $bdate, 'fin' => $edate];
         $user = Auth::User()->username;
         if(isset($direccion)){
@@ -26,6 +27,7 @@ class SedeEntrega
 
         $pdf = new PDFReporteSede($orientation = 'P', $unit = 'mm', $size = 'Letter', $ftitle = $ftitle, $dates, $user, $total);
 
+        header('Content-type: application/pdf');
         setlocale(LC_CTYPE, 'en_US');
         $pdf->SetLeftMargin(1);
 
