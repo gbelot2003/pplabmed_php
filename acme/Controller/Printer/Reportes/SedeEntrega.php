@@ -81,8 +81,13 @@ class SedeEntrega
             $pdf->ln(10 );
         }
 
+        if(isset($direccion)){
+            return $pdf->Output('D', $ftitle . ' - ' . $user . '-' . $today);
+        } else {
+            return $pdf->Output();
+        }
 
-        return $pdf->Output('D', $ftitle . ' - ' . $user . '-' . $today);
+
 
     }
 }
