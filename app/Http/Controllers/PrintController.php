@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Acme\Controller\Printer\Bases\PDFImges;
 use Acme\Controller\Printer\Formulario\HistoForm1;
 use Acme\Controller\Printer\Formulario\HistoForm1Eng;
-use Acme\Controller\Printer\HistoPrinConfigEng;
-use Acme\Controller\Printer\HistoPrintConfig;
+use Acme\Controller\Printer\Formulario\HistoForm1EngImage;
+use Acme\Controller\Printer\Formulario\HistoForm2;
 use App\Citologia;
 use App\Histopatologia;
 use App\HistopatologiasEng;
-use Barryvdh\DomPDF\PDF;
 use Dedicated\GoogleTranslate;
-use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
+
 
 class PrintController extends Controller
 {
@@ -78,15 +77,27 @@ class PrintController extends Controller
     public function formatoHistopatologia($id)
     {
         $items = Histopatologia::with('facturas')->findOrFail($id);
-        $print = new HistoForm1();
-        $print->printPdfHitoReport($items);
+
+        if (isset($items->images[0])) {
+            $print = new HistoForm2();
+            $print->printPdfHitoReport($items);
+        } else {
+            $print = new HistoForm1();
+            $print->printPdfHitoReport($items);
+        }
+
     }
 
     public function formatoHistoatologiaEng($id)
     {
         $items = HistopatologiasEng::with('facturas')->findOrFail($id);
-        $print = new HistoForm1Eng();
-        $print->printPdfHitoReport($items);
+        if (isset($items->images[0])) {
+            $print = new HistoForm1EngImage();
+            $print->printPdfHitoReport($items);
+        } else {
+            $print = new HistoForm1Eng();
+            $print->printPdfHitoReport($items);
+        }
     }
 
 
