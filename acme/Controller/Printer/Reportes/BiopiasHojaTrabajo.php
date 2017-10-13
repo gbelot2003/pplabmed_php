@@ -21,6 +21,7 @@ class BiopiasHojaTrabajo
         /**Configuraciones Iniciales **/
         $dates = ['inicio' => $bdate, 'fin' => $edate];
         $ftitle =  "Hoja de Trabajo - Biopsias";
+        $today = date("d/m/Y");
         $user = Auth::User()->username;
 
         $pdf = new PDFReporte($orientation = 'P', $unit = 'mm', $size = 'Letter', $ftitle = $ftitle, $dates, $user);
@@ -87,12 +88,9 @@ class BiopiasHojaTrabajo
             $pdf->ln(10 );
         }
 
-
         $pdf->SetFont('Arial', '', 8);
 
-
-
-        return $pdf->Output();
+        return $pdf->Output('D', $ftitle . ' - ' . $user . '-' . $today. ".pdf");
     }
 
 
