@@ -233,6 +233,6 @@ class PDFImges extends baseFpdf
         $this->SetFont('Helvetica','I',8);
         // Page number
         $this->Cell(0,10,'Page '.$this->getAliasNumPage().'/'.$this->getAliasNbPages().' - Biopsia No.'. $this->ftitle, 0,0,'L', 0, '', 0, false, 'T', 'M');
-        $this->Image(public_path() . "/img/footer.jpg", 0, 250, 215, 28, '', '', '', true, 150, '', false, false, 0, false, false, false);
+        $this->Image(public_path() . "/img/footer.jpg", 0, 255, 215, 28, '', '', '', true, 150, '', false, false, 0, false, false, false);
     }
 }
