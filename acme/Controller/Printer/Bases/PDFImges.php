@@ -135,7 +135,7 @@ class PDFImges extends baseFpdf
 
         $this->SetFont('Helvetica', '', 10);
         //$this->setXY(32, 53);
-        $this->MultiCell(171, 3, strtoupper($this->data->diagnostico),0, 'L', 0, 1, 32, 53, false, 0, false, true, '', 'B');
+        $this->MultiCell(171, 3, strtoupper(substr($this->data->diagnostico, 0, 114)),0, 'L', 0, 1, 32, 53, false, 0, false, true, '', 'B');
         /**
          * Salto
          */
@@ -150,7 +150,7 @@ class PDFImges extends baseFpdf
 
         $this->SetFont('Helvetica', '', 10);
         $this->setX(47);
-        $this->MultiCell(156  , 5, strtoupper($this->data->muestra), 0, 'L', false);
+        $this->MultiCell(156  , 5, strtoupper(substr($this->data->muestra, 0, 114)), 0, 'L', false);
 
         /**
          * Salto

@@ -131,7 +131,7 @@ class PDFENGImage extends baseFpdf
         $this->Cell(26, 5, $this->ConvertCharacters->convert('DIAG. CLINICAL') .': ', 0, 0, 'L');
 
         $this->SetFont('Helvetica', '', 10);
-        $this->Cell(171, 5, $this->ConvertCharacters->convert(strtoupper($this->data->diagnostico)), 0, 'L', false);
+        $this->Cell(171, 5, $this->ConvertCharacters->convert(strtoupper(substr($this->data->diagnostico, 0, 114))), 0, 'L', false);
 
         /**
          * Salto
@@ -145,7 +145,7 @@ class PDFENGImage extends baseFpdf
         $this->Cell(41, 5, $this->ConvertCharacters->convert('STUDIED MATERIAL') .': ', 0, 0, 'L');
 
         $this->SetFont('Helvetica', '', 10);
-        $this->Cell(121  , 5, $this->ConvertCharacters->convert(strtoupper($this->data->muestra)), 0, 0, 'L');
+        $this->Cell(121  , 5, $this->ConvertCharacters->convert(strtoupper(substr($this->data->muestra, 0, 114))), 0, 0, 'L');
 
         /**
          * Salto
