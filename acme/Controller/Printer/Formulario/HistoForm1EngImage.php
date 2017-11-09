@@ -37,6 +37,7 @@ class HistoForm1EngImage
         $pdf->SetHeaderMargin(28);
         $pdf->setFooterMargin(20);
         $pdf->SetMargins(5, 35, 5);
+        $pdf->setImageScale(1.53);
 
 
         $pdf->SetLeftMargin(5);
