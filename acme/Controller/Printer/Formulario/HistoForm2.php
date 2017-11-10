@@ -96,9 +96,9 @@ class HistoForm2
 
                 $pdf->setJPEGQuality(100);
                 $pdf->setImageScale(1.63);
-                $pdf->Image(public_path() . "/img/histo/" . $data->images[0]->image_url, 140, 82, 65, 55, '', '', '', true, 300, '', false, false, 0, false, false, false);
+                $pdf->Image(public_path() . "/img/histo/" . $data->images[0]->image_url, 149, 82, 56, 60, '', '', '', true, 150, '', false, false, 0, false, false, false);
                 //$pdf->writeHTMLCell(60, 10, 135, 112, $data->images[0]->descripcion, 0, 0, false, false, 'J', TRUE);
-                $pdf->SetXY(140,135);
+                $pdf->SetXY(150,139);
                 $pdf->Cell(60, 10, $data->images[0]->descripcion, 0,  0, 'L');
 
 
@@ -116,14 +116,14 @@ class HistoForm2
 
                 $pdf->setJPEGQuality(100);
                 $pdf->setImageScale(1.53);
-                $pdf->Image(public_path() . "/img/histo/" . $data->images[0]->image_url, 140, 82, 65, 55, '', '', '', true, 300, '', false, false, 0, false, false, false);
-                $pdf->SetXY(140,134);
+                $pdf->Image(public_path() . "/img/histo/" . $data->images[0]->image_url, 149, 82, 56, 60, '', '', '', true, 150, '', false, false, 0, false, false, false);
+                $pdf->SetXY(150,140);
                 $pdf->Cell(60, 10, $data->images[0]->descripcion, 0,  0, 'L');
 
                 $pdf->setJPEGQuality(100);
                 $pdf->setImageScale(1.53);
-                $pdf->Image(public_path() . "/img/histo/" . $data->images[1]->image_url, 140, 144, 65, 55, '', '', '', true, 300, '', false, false, 0, false, false, false);
-                $pdf->SetXY(140,198);
+                $pdf->Image(public_path() . "/img/histo/" . $data->images[1]->image_url, 149, 148, 56, 60, '', '', '', true, 150, '', false, false, 0, false, false, false);
+                $pdf->SetXY(150,206);
                 $pdf->Cell(60, 10, $data->images[1]->descripcion, 0,  0, 'L');
             }
 
@@ -139,20 +139,20 @@ class HistoForm2
 
                 $pdf->setJPEGQuality(100);
                 $pdf->setImageScale(1.53);
-                $pdf->Image(public_path() . "/img/histo/" . $data->images[0]->image_url, 150, 82, 50, 40, '', '', '', true, 300, '', false, false, 0, false, false, false);
-                $pdf->SetXY(150,120);
+                $pdf->Image(public_path() . "/img/histo/" . $data->images[0]->image_url, 165, 82, 41, 43, '', '', '', true, 150, '', false, false, 0, false, false, false);
+                $pdf->SetXY(165,122);
                 $pdf->Cell(60, 10, $data->images[0]->descripcion, 0,  0, 'L');
 
                 $pdf->setJPEGQuality(100);
                 $pdf->setImageScale(1.53);
-                $pdf->Image(public_path() . "/img/histo/" . $data->images[1]->image_url, 150, 128, 50, 40, '', '', '', true, 300, '', false, false, 0, false, false, false);
-                $pdf->SetXY(150,166);
+                $pdf->Image(public_path() . "/img/histo/" . $data->images[1]->image_url, 165, 130, 41, 43, '', '', '', true, 150, '', false, false, 0, false, false, false);
+                $pdf->SetXY(165,170);
                 $pdf->Cell(60, 10, $data->images[1]->descripcion, 0,  0, 'L');
 
                 $pdf->setJPEGQuality(100);
                 $pdf->setImageScale(1.53);
-                $pdf->Image(public_path() . "/img/histo/" . $data->images[2]->image_url, 150, 175, 50, 40, '', '', '', true, 300, '', false, false, 0, false, false, false);
-                $pdf->SetXY(150,212);
+                $pdf->Image(public_path() . "/img/histo/" . $data->images[2]->image_url, 165, 178, 41, 43, '', '', '', true, 150, '', false, false, 0, false, false, false);
+                $pdf->SetXY(165,218);
                 $pdf->Cell(60, 10, $data->images[2]->descripcion, 0,  0, 'L');
             }
 
