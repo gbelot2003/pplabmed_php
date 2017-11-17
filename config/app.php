@@ -165,6 +165,7 @@ return [
         Zizaco\Entrust\EntrustServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
 
+
         /*
          * Package Service Providers...
          */
@@ -186,6 +187,7 @@ return [
         Dedicated\GoogleTranslate\GoogleTranslateProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Elibyy\TCPDF\ServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
 
 
@@ -243,6 +245,7 @@ return [
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'TFPDF' => Elibyy\TCPDF\Facades\TCPDF::class,
+        'Images' => Intervention\Image\Facades\Image::class
     ],
 
 ];
