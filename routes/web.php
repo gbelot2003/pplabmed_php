@@ -137,4 +137,7 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::get('reportes/medico-informante', 'Reportes\ReportesMedicosHorasController@index')->name('medico.informante.index');
     Route::post('reportes/medico-informante', 'Reportes\ReportesMedicosHorasController@results')->name('medico.informante.results');
+
+    Route::get('reportes/logs', 'Reportes\ReportesLogs@index')->name('reporte.logs.index');
+    Route::post('reportes/logs', 'Reportes\ReportesLogs@results')->name('reporte.logs.results');
 });

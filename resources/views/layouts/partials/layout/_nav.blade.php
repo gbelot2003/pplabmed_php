@@ -74,6 +74,8 @@
                             <li><a href="{{ route('reporte.anormales.index') }}"> Citologías Anormales</a></li>
                             <li><a href="{{ route('reporte.morfo.index') }}"> Estadisticas de Morfologías</a></li>
                             <li><a href="{{ route('medico.informante.index') }}"> Reporte de Medico Informante</a></li>
+                            <li class="divider"></li>
+                            <li><a href="{{ route('reporte.logs.index') }}">Reporte de Logs</a></li>
                         </ul>
                     </li>
                 @endif
