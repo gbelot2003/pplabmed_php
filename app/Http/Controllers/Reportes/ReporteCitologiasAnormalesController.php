@@ -15,6 +15,9 @@ class ReporteCitologiasAnormalesController extends Controller
      */
     function __construct()
     {
+        $this->middleware('auth');
+        $this->middleware('checkActive');
+        $this->middleware('ShowReports');
     }
 
     /**

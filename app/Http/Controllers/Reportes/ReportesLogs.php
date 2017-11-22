@@ -16,6 +16,7 @@ class ReportesLogs extends Controller
         $this->middleware('auth');
         $this->middleware('checkActive');
         $this->middleware('ShowReports');
+        $this->middleware('ShowLogs');
         $this->formatQuery = new FormatQueryDates();
     }
 

@@ -31,6 +31,7 @@ class Kernel extends HttpKernel
         'SeeUsers' =>  \App\Http\Middleware\UsersSeePerm::class,
         'ManageRols' =>  \App\Http\Middleware\RolsPerm::class,
         'ManageTemplates' =>  \App\Http\Middleware\TemplatesPerm::class,
+        'ShowLogs' => \App\Http\Middleware\LogsPerms::class,
 
     ];
 
