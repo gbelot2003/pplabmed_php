@@ -3,7 +3,7 @@
     <div class="col-md-8 form-group  {{ $errors->has('diagnostico') ? ' has-error' : '' }}">
         <label>Diagnóstico</label>
         {{ Form::textarea('diagnostico', null,
-        ['tabindex' => 2, 'class' => 'form-control textarea', 'id' => 'diagnostico', 'rows' => 2, 'placeholder' => 'Diagnostico', 'maxlength' => 180]) }}
+        ['tabindex' => 2, 'class' => 'form-control textarea', 'id' => 'diagnostico', 'rows' => 2, 'placeholder' => 'Diagnostico', 'maxlength' => 110]) }}
     </div>
 
     <div class="col-md-4">
@@ -19,7 +19,7 @@
     <div class="col-md-8 form-group  {{ $errors->has('muestra') ? ' has-error' : '' }}">
         <label>Muestra</label>
         {{ Form::textarea('muestra', null,
-        ['tabindex' => 3, 'class' => 'form-control', 'id' => 'muestra', 'rows' => 2, 'placeholder' => 'Muestra', 'maxlength' => 180]) }}
+        ['tabindex' => 3, 'class' => 'form-control', 'id' => 'muestra', 'rows' => 2, 'placeholder' => 'Muestra', 'maxlength' => 110]) }}
     </div>
 
     <div class="col-md-4">
