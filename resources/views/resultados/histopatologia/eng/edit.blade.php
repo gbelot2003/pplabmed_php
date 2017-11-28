@@ -75,7 +75,7 @@
     </style>
 
     <script src="/js/caman.full.min.js"></script>
-    <script src="{{ asset('js/histopatologia-form.js') }}"></script>
+    <script src="{{ asset('js/histopatologia-form-eng.js') }}"></script>
     <script type="text/javascript">
         // EVENTO CUANDO SE MUEVE EL SCROLL, EL MISMO APLICA TAMBIEN CUANDO SE RESIZA
         var change= false;

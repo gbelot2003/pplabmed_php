@@ -90,7 +90,9 @@ class HistopatologiasEngController extends Controller
 
     public function updateTrans(Request $request, $id)
     {
-        $item = HistopatologiasEng::where('serial', $id)->first();
+        //dd($request->all());
+
+        $item = HistopatologiasEng::where('factura_id', $id)->first();
 
         $item->muestra_entrega = isset($request['muestra_entrega']) ? $request['muestra_entrega'] = 1 : $request['muestra_entrega'] = 0;
 

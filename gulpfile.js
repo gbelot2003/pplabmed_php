@@ -39,6 +39,10 @@ elixir((mix) => {
         ], 'public/js/histopatologia-form.js')
 
         .scripts(
+            ['scripts/jqAdapter.js', 'scripts/histopatologia-form-eng.js', 'scripts/citologias-facturas.js'
+            ], 'public/js/histopatologia-form-eng.js')
+
+        .scripts(
             ['scripts/image-form.js'
         ], 'public/js/images-form.js')
 

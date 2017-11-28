@@ -20,9 +20,10 @@ class HistopatologiaController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('checkActive');
-        $this->middleware('ManageHisto');
+        //TODO: Remover excepción
+        $this->middleware('auth')->except(['histoData']);
+        $this->middleware('checkActive')->except(['histoData']);
+        $this->middleware('ManageHisto')->except(['histoData']);
     }
 
     public function index()
@@ -364,6 +365,15 @@ class HistopatologiaController extends Controller
     public function findBySerial($serial)
     {
         $histo = Histopatologia::where('serial', $serial)->with('facturas')->first();
+        return $histo;
+    }
+
+    /**
+     * Funcion de salida para API
+     */
+    public function histoData($serial)
+    {
+        $histo = Histopatologia::where('serial', $serial)->with('images')->first();
         return $histo;
     }
 }

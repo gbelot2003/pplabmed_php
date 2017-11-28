@@ -15,6 +15,8 @@ Route::get('/', 'PagesController@index' );
 
 Auth::routes();
 
+Route::get('/histoData/{serial}', 'HistopatologiaController@histoData');
+
 Route::group(['middleware' => 'auth'], function(){
     Route::get('/home', 'HomeController@index');
 
@@ -141,3 +143,4 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('reportes/logs', 'Reportes\ReportesLogs@index')->name('reporte.logs.index');
     Route::post('reportes/logs', 'Reportes\ReportesLogs@results')->name('reporte.logs.results');
 });
+
