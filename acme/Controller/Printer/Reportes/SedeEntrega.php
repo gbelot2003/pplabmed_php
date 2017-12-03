@@ -86,7 +86,8 @@ class SedeEntrega
         } else {
             return $pdf->Output();
         }*/
-        return $pdf->Output();
+        $pdf->Output();
+        return exit;
 
 
 

@@ -87,7 +87,8 @@ class CitologiaHojaTrabajo
             $pdf->ln(10 );
         }
 
-        return $pdf->Output();
+        $pdf->Output();
+        return exit;
     }
 
     public function checkSerial($date, $value)

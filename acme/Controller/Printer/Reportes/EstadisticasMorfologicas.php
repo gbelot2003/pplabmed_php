@@ -76,7 +76,8 @@ class EstadisticasMorfologicas
         $pdf->SetFont('Arial', '', 8);
 
 
-        return $pdf->Output();
+        $pdf->Output();
+        return exit;
     }
 
 
