@@ -92,6 +92,7 @@ class BiopiasHojaTrabajo
 
         //return $pdf->Output('D', $ftitle . ' - ' . $user . '-' . $today. ".pdf");
         return $pdf->Output();
+        exit;
     }
 
 
