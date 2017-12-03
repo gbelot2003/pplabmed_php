@@ -308,12 +308,12 @@ class HistopatologiaController extends Controller
 
         if (\request()->has('diagnostico')) {
             $pacesholder = \request()->get('diagnostico');
-            $query->where('diagnostico', $pacesholder);
+            $query->where('diagnostico', 'LIKE', '%' . $pacesholder .'%');
         }
 
         if (\request()->has('muestra')) {
             $pacesholder = \request()->get('muestra');
-            $query->where('muestra', $pacesholder);
+            $query->where('muestra', 'LIKE', '%' . $pacesholder . '%');
         }
 
 
@@ -373,7 +373,7 @@ class HistopatologiaController extends Controller
      */
     public function histoData($serial)
     {
-        $histo = Histopatologia::where('serial', $serial)->with('images')->first();
+        $histo = Histopatologia::where('serial', $serial)->with('images', 'facturas')->first();
         return $histo;
     }
 }
