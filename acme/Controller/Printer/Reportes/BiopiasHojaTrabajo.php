@@ -91,8 +91,8 @@ class BiopiasHojaTrabajo
         $pdf->SetFont('Arial', '', 8);
 
         //return $pdf->Output('D', $ftitle . ' - ' . $user . '-' . $today. ".pdf");
-        return $pdf->Output();
-        exit;
+        $pdf->Output();
+        return exit;
     }
 
 
