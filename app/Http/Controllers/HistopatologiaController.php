@@ -373,7 +373,7 @@ class HistopatologiaController extends Controller
      */
     public function histoData($serial)
     {
-        $histo = Histopatologia::where('serial', $serial)->with('images', 'facturas')->first();
+        $histo = Histopatologia::where('serial', $serial)->with('images', 'facturas', 'firma', 'firma2')->first();
         return $histo;
     }
 }
