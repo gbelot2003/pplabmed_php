@@ -5,7 +5,7 @@
         {{--{{ Form::textarea('diagnostico', null,
         ['tabindex' => 2, 'class' => 'form-control textarea', 'id' => 'diagnostico', 'rows' => 2, 'placeholder' => 'Diagnostico', 'maxlength' => 110]) }}--}}
         <textarea name="diagnostico" id="diagnostico" class="form-control" cols="30" rows="2">
-            @if(isset($item)): {{ $item->diagnostico }} @endif
+            @if(isset($item)) {{ $item->diagnostico }} @endif
         </textarea>
     </div>
 
@@ -24,7 +24,7 @@
         {{--{{ Form::textarea('muestra', $item->muestra,
         ['tabindex' => 3, 'class' => 'form-control', 'id' => 'muestra', 'rows' => 2, 'placeholder' => 'Muestra', 'maxlength' => 110]) }}--}}
         <textarea name="muestra" class="form-control" id="muestra" cols="30" rows="2">
-            @if(isset($item)): {{ $item->muestra }} @endif
+            @if(isset($item)) {{ $item->muestra }} @endif
         </textarea>
     </div>
 
