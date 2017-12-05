@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Histopatologia;
 use App\Image;
 use App\User;
 use Illuminate\Http\Request;
@@ -47,6 +48,26 @@ class HistoApiController extends Controller
         }
 
         return 'denie';
+    }
+
+    /**
+     * Funcion de salida para API
+     */
+    public function histoData(Request $request)
+    {
+        $username = $request->get('username');
+        $password = $request->get('password');
+        $serial = $request->get('serial');
+        $factura = $request->get('factura');
+
+        if (Auth::attempt(['username' => $username, 'password' => $password])) {
+            $histo = Histopatologia::where('serial', $serial)
+            ->where('factura_id', $factura)
+            ->with('images', 'facturas', 'firma', 'firma2')->first();
+            return $histo;
+        }
+        return "null";
+
     }
 
 }

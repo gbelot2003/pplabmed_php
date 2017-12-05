@@ -368,12 +368,5 @@ class HistopatologiaController extends Controller
         return $histo;
     }
 
-    /**
-     * Funcion de salida para API
-     */
-    public function histoData($serial)
-    {
-        $histo = Histopatologia::where('serial', $serial)->with('images', 'facturas', 'firma', 'firma2')->first();
-        return $histo;
-    }
+
 }
