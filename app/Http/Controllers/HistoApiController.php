@@ -70,7 +70,7 @@ class HistoApiController extends Controller
         return "null";
     }
 
-    public function histDatEng(Request $request)
+    public function histoDataEng(Request $request)
     {
         $username = $request->get('username');
         $password = $request->get('password');
