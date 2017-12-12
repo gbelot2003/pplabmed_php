@@ -108,7 +108,7 @@ class PDFENG extends baseFpdf
          * Muestra Recibida
          */
         $this->SetFont('Helvetica', '', 10);
-        $this->Cell(30, 5, $this->ConvertCharacters->convert('RECEIVED:'), 0, 0, 'R');
+        $this->Cell(30, 5, $this->ConvertCharacters->convert('RECEIVED:           '), 0, 0, 'R');
 
         $this->SetFont('Helvetica', '', 10);
         if($this->data->fecha_muestra){
@@ -127,7 +127,7 @@ class PDFENG extends baseFpdf
          * Diagnostico
          */
         $this->SetFont('Helvetica', '', 10);
-        $this->Cell(26, 5, $this->ConvertCharacters->convert('DIAG. CLINICAL') .': ', 0, 0, 'L');
+        $this->Cell(29, 5, $this->ConvertCharacters->convert('DIAG. CLINICAL') .':', 0, 0, 'L');
 
         $this->SetFont('Helvetica', '', 10);
         $this->Cell(171, 5, $this->ConvertCharacters->convert(strtoupper($this->data->diagnostico)), 0, 'L', false);
