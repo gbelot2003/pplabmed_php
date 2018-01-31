@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Audit;
 use App\Factura;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Yajra\Datatables\Datatables;
-
 
 class FacturasController extends Controller
 {
@@ -44,6 +45,15 @@ class FacturasController extends Controller
 
         $item->update($request->all());
 
+        $audit =  new Audit();
+
+        $audit->create([
+            'title' => 'Facturas',
+            'action' => 'Edición directa',
+            'details' => $id,
+            'user_id' => Auth::user()->id
+        ]);
+
         return response()->json($item, 200);
     }
 
@@ -58,8 +68,8 @@ class FacturasController extends Controller
     }
 
     /**
-     * @param Datatables $datatables
      * @return \Illuminate\Http\JsonResponse
+     * @internal param Datatables $datatables
      */
     public function listados()
     {

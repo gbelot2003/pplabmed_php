@@ -26,7 +26,8 @@ class ReportesLogs extends Controller
 
         $tipo = [
             'Biopsia' => 'Biopsia',
-            'Citología' => 'Citología'
+            'Citología' => 'Citología',
+            'Facturas' => 'Facturas'
         ];
 
         return view('reportes.logs.index', compact('user', 'tipo'));
