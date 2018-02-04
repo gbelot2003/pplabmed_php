@@ -15,39 +15,27 @@ use Illuminate\Support\Facades\Auth;
 class FactutasApiController extends Controller
 {
 
+    function __construct()
+    {
+        $this->factHelp = new FacturasApiHeper();
+    }
+
     /**
      * @param FacturasValidate|Request $request
      * @return string
      */
     public function store(Request $request)
     {
-        //dd($request->all());
-        $factHelp = new FacturasApiHeper();
+        $prerequest = $this->factHelp->formatRequest($request);
 
-        if ($request->has('status')) {
-            $status = $request->get('status');
+        if ($prerequest->has('status')) {
+            $status = $prerequest->get('status');
             if ($status != 'Valida') {
-                return $this->rewriteFile($request);
+                return $this->factHelp->rewriteFile($prerequest);
             }
         }
 
-        if ($request->has('fecha_nacimiento')) {
-            $fecha_nac = new DateHelper($request->get('fecha_nacimiento'));
-            $request['fecha_nacimiento'] = $fecha_nac->getDate();
-
-            $age = $request->get('fecha_nacimiento');
-            $calcage =  Carbon::parse($age)->diff(Carbon::now())->format('%y');
-
-            if($calcage <= 0){
-                $cage = Carbon::parse($age)->diff(Carbon::now())->format('%m M');
-            } else {
-                $cage = Carbon::parse($age)->diff(Carbon::now())->format('%y A');
-            }
-
-            $request['edad'] = $cage;
-        }
-
-        $factura = Factura::create($request->all());
+        $factura = Factura::create($prerequest->all());
 
         if ($factura->exists) {
 
@@ -59,29 +47,15 @@ class FactutasApiController extends Controller
             ]);
 
             if ($request->has('examen')) {
-                $factHelp->saveExamenes($request->get('examen'), $factura->num_factura);
+                $this->factHelp->saveExamenes($request->get('examen'), $factura->num_factura);
             }
+
             return '200';
+
         } else {
             return response()->json('error', 500);
         }
-
-
-
-
     }
 
-    /**
-     * @param Request $request
-     * @return string
-     */
-    protected function rewriteFile(Request $request)
-    {
-        $fac_num = $request->get('num_factura');
-        $factura = Factura::where('num_factura', $fac_num)->first();
-        $factura->status = 'Anulada';
-        $factura->save();
-        return '200';
-    }
 
 }

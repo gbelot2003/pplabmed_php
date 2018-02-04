@@ -141,11 +141,14 @@ class FacturasApiControllerTest extends TestCase
      */
     public function a_factura_translate_the_age_from_fecha_nacimineto_to_months_if_the_time_is_less_than_a_year()
     {
+        // ATENCION, La prueba fallara si no se cambian los paramentros de fecha para que coincidan. Espera 2 meses desde 02/12/2018 a 04/02/2018
+        // Ajustar la fecha o el total de meses de diferencia.
+
         $data = [
             'num_factura' => '5005963',
             'num_cedula' => '0801198813342',
             'nombre_completo_cliente' => 'Edith Marisol Alvarez Mena',
-            'fecha_nacimiento' => '02/06/2017',
+            'fecha_nacimiento' => '02/12/2017',
             'correo' => 'edith.m.mena@gmail.com',
             'direccion_entrega_sede' => 'HOSPITAL MILITAR',
             'medico' => 'Dr. Jorge Rodriguez',
