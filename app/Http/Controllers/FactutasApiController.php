@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use GuzzleHttp\Promise\all;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class FactutasApiController extends Controller
 {
@@ -35,26 +36,31 @@ class FactutasApiController extends Controller
             }
         }
 
-        $factura = Factura::create($prerequest->all());
+        DB::beginTransaction();
 
-        if ($factura->exists) {
+            $factura = Factura::create($prerequest->all());
+            if ($factura->exists) {
+                $audit = Audit::create([
+                    'title' => 'Factura API',
+                    'action' => 'creación',
+                    'details' => 'Factura: ' . $factura->num_factura,
+                    'user_id' => 1
+                ]);
 
-            Audit::create([
-                'title' => 'Factura API',
-                'action' => 'creación',
-                'details' => 'Factura: ' . $factura->num_factura,
-                'user_id' => 1
-            ]);
+                if ($prerequest->has('examen')) {
+                    $this->factHelp->saveExamenes($prerequest->get('examen'), $factura->num_factura);
+                }
 
-            if ($request->has('examen')) {
-                $this->factHelp->saveExamenes($request->get('examen'), $factura->num_factura);
             }
 
-            return '200';
+         if(!$audit || !$factura){
+             DB::rollBack();
+             return response()->json('error', 500);
+         } else{
+             DB::commit();
+             return '200';
+         }
 
-        } else {
-            return response()->json('error', 500);
-        }
     }
 
 
