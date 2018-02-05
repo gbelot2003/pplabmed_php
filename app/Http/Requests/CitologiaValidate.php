@@ -28,7 +28,7 @@ class CitologiaValidate extends FormRequest
 
         return  $rules =
                 [
-                    'serial' => 'numeric|unique:citologias,serial,' .$postId,
+                    'serial' => 'numeric',
                     'factura_id' => 'numeric|required|exists:facturas,num_factura|unique:citologias,factura_id,' .$postId,
                     'deteccion_cancer' => 'boolean',
                     'indice_maduracion' => 'boolean',

@@ -15,7 +15,7 @@ class CreateHistopatologiasTable extends Migration
     {
         Schema::create('histopatologias', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('serial')->unique();
+            $table->integer('serial');
             $table->integer('factura_id');
             $table->integer('link_id')->unique();
             $table->string('topog')->nullable();
