@@ -36,32 +36,28 @@ class FactutasApiController extends Controller
             }
         }
 
-        DB::beginTransaction();
+        $result = DB::transaction(function () use ($prerequest) {
 
-            $factura = Factura::create($prerequest->all());
-            if ($factura->exists) {
+            try {
+                $factura = Factura::create($prerequest->all());
                 $audit = Audit::create([
                     'title' => 'Factura API',
                     'action' => 'creación',
                     'details' => 'Factura: ' . $factura->num_factura,
                     'user_id' => 1
                 ]);
-
                 if ($prerequest->has('examen')) {
                     $this->factHelp->saveExamenes($prerequest->get('examen'), $factura->num_factura);
                 }
 
+                return '200';
+
+            } catch (\Exception $e) {
+                return response()->json('error', 500);
             }
 
-         if(!$audit || !$factura){
-             DB::rollBack();
-             return response()->json('error', 500);
-         } else{
-             DB::commit();
-             return '200';
-         }
+        }, 10);
 
+        return $result;
     }
-
-
 }
