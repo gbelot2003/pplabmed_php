@@ -35,9 +35,8 @@ class HistoForm1Eng
         $ftitle = $data->serial . "-" . $data->fecha_informe->format('Y');
         $pdf = new PDFENG($orientation = 'P', $unit = 'mm', $size = 'Letter', $ftitle = $ftitle, $data);
         $pdf->SetHeaderMargin(28);
-        $pdf->setFooterMargin(20);
+        $pdf->setFooterMargin(30);
         $pdf->SetMargins(5, 35, 5);
-        $pdf->setImageScale(1.53);
 
 
         $pdf->SetLeftMargin(5);

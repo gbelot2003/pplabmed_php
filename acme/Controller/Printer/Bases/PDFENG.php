@@ -190,7 +190,7 @@ class PDFENG extends baseFpdf
         }
 
         if($this->isLastPage == true){
-            $this->SetY(-34);
+            $this->SetY(-58);
             $this->Cell(45, 5, "Report Date:" , 0, '');
             $this->SetFont('Helvetica', 'B', 11);
 
@@ -221,10 +221,10 @@ class PDFENG extends baseFpdf
         }
 
         // Position at 1.5 cm from bottom
-        $this->SetY(-24);
+        $this->SetY(-51);
         // Helvetica italic 8
         $this->SetFont('Helvetica','I',8);
         // Page number
-        $this->Cell(0,10,'Page '.$this->PageNo().'/{nb} - Biopsia No.'. $this->ftitle,0,0,'L');
+        $this->Cell(0,10,'Page '.$this->getAliasNumPage().'/'.$this->getAliasNbPages().' - Biopsia No.'. $this->ftitle, 0,0,'L', 0, '', 0, false, 'T', 'M');
     }
 }
