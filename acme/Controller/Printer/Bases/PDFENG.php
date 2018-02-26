@@ -126,11 +126,11 @@ class PDFENG extends baseFpdf
         /**
          * Diagnostico
          */
-        $this->SetFont('Helvetica', '', 10);
-        $this->Cell(29, 5, $this->ConvertCharacters->convert('DIAG. CLINICAL') .':', 0, 0, 'L');
+        $this->SetFont('Helvetica', '', 10);//Clinical Diagnosis
+        $this->Cell(39, 5, $this->ConvertCharacters->convert('CLINICAL DIAGNOSIS') .':', 0, 0, 'L');
 
         $this->SetFont('Helvetica', '', 10);
-        $this->Cell(171, 5, $this->ConvertCharacters->convert(strtoupper($this->data->diagnostico)), 0, 'L', false);
+        $this->Cell(161, 5, $this->ConvertCharacters->convert(strtoupper($this->data->diagnostico)), 0, 'L', false);
 
         /**
          * Salto
@@ -141,10 +141,10 @@ class PDFENG extends baseFpdf
          * Material Estudiado
          */
         $this->SetFont('Helvetica', '', 10);
-        $this->Cell(41, 5, $this->ConvertCharacters->convert('STUDIED MATERIAL') .': ', 0, 0, 'L');
+        $this->Cell(20, 5, $this->ConvertCharacters->convert('SPECIMEN') .': ', 0, 0, 'L');
 
         $this->SetFont('Helvetica', '', 10);
-        $this->Cell(121  , 5, $this->ConvertCharacters->convert(strtoupper($this->data->muestra)), 0, 0, 'L');
+        $this->Cell(175  , 5, $this->ConvertCharacters->convert(strtoupper($this->data->muestra)), 0, 0, 'L');
 
         /**
          * Salto
@@ -159,10 +159,10 @@ class PDFENG extends baseFpdf
         $this->Cell(165, 5, $this->ConvertCharacters->convert('No. BIOPSY') .': ', 0, 0, 'R');
 
         $this->SetFont('Helvetica', '', 10);
-        $this->Cell(30, 5,  $this->data->serial. "-" .$this->data->created_at->format('Y'), 0, 0, 'L');
+        $this->Cell(30, 5,  $this->data->serial. "-" .$this->data->fecha_informe->format('Y'), 0, 0, 'L');
 
         /**
-         * Salto
+         * Saltos
          */
         $this->ln();
 
