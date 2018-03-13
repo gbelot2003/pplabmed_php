@@ -26,7 +26,7 @@ class MuestrasRequest extends FormRequest
     {
 
         return [
-            'serial' => 'numeric|exists:histopatologias,serial|unique:muestras,serial,'.$request->get('id'),
+            'serial' => 'numeric',
             'body' => 'string',
             'firma_id' => 'integer'
         ];
