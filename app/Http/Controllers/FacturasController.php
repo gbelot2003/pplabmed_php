@@ -69,6 +69,7 @@ class FacturasController extends Controller
 
     /**
      * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
      * @internal param Datatables $datatables
      */
     public function listados()
@@ -82,10 +83,9 @@ class FacturasController extends Controller
             'facturas.medico',
             'facturas.created_at'
         ])
-            ->RightJoin('examenes', 'examenes.num_factura', '=', 'facturas.num_factura')
-            ->orderBy('num_factura', 'DESC')
-            ->limit(1500)
-            ->get();
+            ->Join('examenes', 'examenes.num_factura', '=', 'facturas.num_factura')
+            ->orderBy('num_factura', 'DESC');
+
         return Datatables::of($facturas)
             ->addColumn('href', function($facturas){
                 return '<a href="facturas/'.$facturas->id.'/edit" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Ver</a>';
