@@ -78,18 +78,20 @@ class FacturasController extends Controller
             'facturas.id',
             'facturas.num_factura',
             'facturas.nombre_completo_cliente',
-            'examenes.nombre_examen as nombre_examen',
+            'examenes.nombre_examen',
             'facturas.correo',
             'facturas.medico',
             'facturas.created_at'
         ])
             ->Join('examenes', 'examenes.num_factura', '=', 'facturas.num_factura')
-            ->orderBy('num_factura', 'DESC');
+            ->orderBy('num_factura', 'DESC')
+            ->limit(2500);
 
         return Datatables::of($facturas)
             ->addColumn('href', function($facturas){
                 return '<a href="facturas/'.$facturas->id.'/edit" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Ver</a>';
             })
+
             ->rawColumns(['href'])
             ->make(true);
     }

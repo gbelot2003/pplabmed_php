@@ -220,6 +220,7 @@ CitologiaController extends Controller
 
     /**
      * @return mixed
+     * @throws \Exception
      */
     public function listados()
     {

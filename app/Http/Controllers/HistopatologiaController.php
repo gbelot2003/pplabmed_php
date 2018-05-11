@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Acme\Helpers\SerialHelper;
 use App\Audit;
 use App\CitoSerial;
+use App\Events\OpenCloseFormEvent;
 use App\Firma;
 use App\Histopatologia;
 use App\Http\Requests\HistopatiaValidation;
@@ -108,6 +109,8 @@ class HistopatologiaController extends Controller
         $bdate = Carbon::createFromFormat('Y-m-d', $now)->startOfDay();
         $edate = Carbon::createFromFormat('Y-m-d', $now)->endOfDay();
         $today = Histopatologia::whereBetween('created_at', [$bdate, $edate])->count();
+
+        event(new OpenCloseFormEvent($item));
 
         return View('resultados.histopatologia.edit', compact('item', 'plantillas', 'firmas', 'postId', 'i', 'previous', 'next', 'total', 'today', 'first', 'last'));
     }
