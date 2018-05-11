@@ -53,7 +53,7 @@
                        {data: 'nombre_completo_cliente', name: 'nombre_completo_cliente'},
                        {data: 'correo', name: 'correo'},
                        {data: 'medico', name: 'medico'},
-                       {data: 'nombre_examen', name: 'nombre_examen'},
+                       {data: 'nombre_examen', name: 'examenes.nombre_examen'},
                        {data: 'created_at', name: 'created_at'},
                        {data: 'href', name:'href'},
                    ],
