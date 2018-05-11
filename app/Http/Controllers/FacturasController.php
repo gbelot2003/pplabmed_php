@@ -84,8 +84,7 @@ class FacturasController extends Controller
             'facturas.created_at'
         ])
             ->Join('examenes', 'examenes.num_factura', '=', 'facturas.num_factura')
-            ->orderBy('num_factura', 'DESC')
-            ->limit(2500);
+            ->orderBy('num_factura', 'DESC');
 
         return Datatables::of($facturas)
             ->addColumn('href', function($facturas){
