@@ -11,3 +11,4 @@ Homestead.yaml
 /logs
 /config/database.php
 /storage/database.sqlite
+16_05_18.sql

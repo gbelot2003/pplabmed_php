@@ -94,7 +94,7 @@ class HistopatologiaController extends Controller
 
     public function edit($id)
     {
-        $item = Histopatologia::where('serial', $id)->first();
+        $item = Histopatologia::where('factura_id', $id)->first();
         $user = Auth::User();
 
         $object['user_id'] = $user->id;
@@ -226,7 +226,7 @@ class HistopatologiaController extends Controller
 
         return Datatables::of($items)
             ->addColumn('href', function ($items) {
-                return '<a href="histopatologia/' . $items->serial . '/edit" class="btn btn-xs btn-primary">Ver Detalle</a>';
+                return '<a href="histopatologia/' . $items->factura_id . '/edit" class="btn btn-xs btn-primary">Ver Detalle</a>';
             })
             ->addColumn('finforme', function ($items) {
                 return $items->fecha_informe->format('d/m/Y');

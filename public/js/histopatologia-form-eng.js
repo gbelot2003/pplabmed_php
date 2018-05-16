@@ -1,1 +1,277 @@
-!function(e){if("undefined"==typeof e)throw Error("jQuery should be loaded before CKEditor jQuery adapter.");if("undefined"==typeof CKEDITOR)throw Error("CKEditor should be loaded before CKEditor jQuery adapter.");CKEDITOR.config.jqueryOverrideVal="undefined"==typeof CKEDITOR.config.jqueryOverrideVal||CKEDITOR.config.jqueryOverrideVal,e.extend(e.fn,{ckeditorGet:function(){var e=this.eq(0).data("ckeditorInstance");if(!e)throw"CKEditor is not initialized yet, use ckeditor() with a callback.";return e},ckeditor:function(t,a){if(!CKEDITOR.env.isCompatible)throw Error("The environment is incompatible.");if(!e.isFunction(t)){var n=a;a=t,t=n}var o=[];a=a||{},this.each(function(){var n=e(this),i=n.data("ckeditorInstance"),r=n.data("_ckeditorInstanceLock"),d=this,c=new e.Deferred;o.push(c.promise()),i&&!r?(t&&t.apply(i,[this]),c.resolve()):r?i.once("instanceReady",function(){setTimeout(function(){i.element?(i.element.$==d&&t&&t.apply(i,[d]),c.resolve()):setTimeout(arguments.callee,100)},0)},null,null,9999):((a.autoUpdateElement||"undefined"==typeof a.autoUpdateElement&&CKEDITOR.config.autoUpdateElement)&&(a.autoUpdateElementJquery=!0),a.autoUpdateElement=!1,n.data("_ckeditorInstanceLock",!0),i=e(this).is("textarea")?CKEDITOR.replace(d,a):CKEDITOR.inline(d,a),n.data("ckeditorInstance",i),i.on("instanceReady",function(a){var o=a.editor;setTimeout(function(){if(o.element){if(a.removeListener(),o.on("dataReady",function(){n.trigger("dataReady.ckeditor",[o])}),o.on("setData",function(e){n.trigger("setData.ckeditor",[o,e.data])}),o.on("getData",function(e){n.trigger("getData.ckeditor",[o,e.data])},999),o.on("destroy",function(){n.trigger("destroy.ckeditor",[o])}),o.on("save",function(){return e(d.form).submit(),!1},null,null,20),o.config.autoUpdateElementJquery&&n.is("textarea")&&e(d.form).length){var i=function(){n.ckeditor(function(){o.updateElement()})};e(d.form).submit(i),e(d.form).bind("form-pre-serialize",i),n.bind("destroy.ckeditor",function(){e(d.form).unbind("submit",i),e(d.form).unbind("form-pre-serialize",i)})}o.on("destroy",function(){n.removeData("ckeditorInstance")}),n.removeData("_ckeditorInstanceLock"),n.trigger("instanceReady.ckeditor",[o]),t&&t.apply(o,[d]),c.resolve()}else setTimeout(arguments.callee,100)},0)},null,null,9999))});var i=new e.Deferred;return this.promise=i.promise(),e.when.apply(this,o).then(function(){i.resolve()}),this.editor=this.eq(0).data("ckeditorInstance"),this}}),CKEDITOR.config.jqueryOverrideVal&&(e.fn.val=CKEDITOR.tools.override(e.fn.val,function(t){return function(a){if(arguments.length){var n=this,o=[],i=this.each(function(){var n=e(this),i=n.data("ckeditorInstance");if(n.is("textarea")&&i){var r=new e.Deferred;return i.setData(a,function(){r.resolve()}),o.push(r.promise()),!0}return t.call(n,a)});if(o.length){var r=new e.Deferred;return e.when.apply(this,o).done(function(){r.resolveWith(n)}),r.promise()}return i}var i=e(this).eq(0),d=i.data("ckeditorInstance");return i.is("textarea")&&d?d.getData():t.call(i)}}))}(window.jQuery),function(){function e(e){return items=[10328,10328,10332,10333,10334,10335,10336],!items.includes(e)}function t(e){return!(e.length&&e.length>0)&&(0===e.length||void 0)}function a(e){const t=$("#myForm").serialize(),a=$("#factura").val();$.ajax({method:"POST",url:"/histo-ang/"+a,data:t}).done(function(e){toastr.success("La biopsia a sido salvada exitosamente!!","Registro Guardado")}).fail(function(e){toastr.error("El servidor dice:  "+e.statusText,"Status: "+e.status+" -- "+e.responseText)})}$.ajaxSetup({headers:{"X-XSRF-TOKEN":$('input[name="_token"]').val()}}),$(document).ready(function(){$(".dateclass").inputmask("##/##/####"),$("#firma2_id").append($("<option>",{value:"none",text:"None",attr:"disabled"})),$("#factura").focusout(function(){var a=$(this).val();$.get("/facturas/"+a).done(function(a){return t(a)?(alert("no hay datos"),$("#factura").val(""),$("#paciente").val(""),$("#edad").val(""),$("#edad2").val(""),$("#email").val(""),$("#direccion").val(""),$("#sexo").val(""),void $("#medico").val("")):e(a.examen.item)===!1?(""===$("#factura").val(),alert("Esta no es una Biopsia")):($("#paciente").val(a.nombre_completo_cliente),$("#edad").val(a.edad),$("#email").val(a.correo),$("#direccion").val(a.direccion_entrega_sede),$("#sexo").val(a.sexo),void $("#medico").val(a.medico))}).fail(function(){alert("Problemas con el servidor"),$("#factura").val(""),$("#paciente").val(""),$("#edad").val(""),$("#edad2").val(""),$("#email").val(""),$("#direccion").val(""),$("#sexo").val(""),$("#medico").val("")})})}),$("a.bt-insert").click(function(e){e.preventDefault();const t=$(this).attr("href");$.get("/plantillas/info/"+t).done(function(e){CKEDITOR.instances.informe.insertHtml(e.body)})}),$("#ImagesModal").on("shown.bs.modal",function(e){}),$("#topog").inputmask("#99.9"),$("#informe").ckeditor(function(){this.addCommand("myGreetingCommand",{exec:function(e,t){a("inside")}}),this.keystrokeHandler.keystrokes[120]="myGreetingCommand",this.addCommand("myGoodByeCommand",{exec:function(e,t){a("inside!")}}),this.keystrokeHandler.keystrokes[CKEDITOR.CTRL+66]="myGoodByeCommand"}),document.addEventListener("keydown",function(e){120==e.which&&a("outside")}),$("#myForm").submit(function(e){e.preventDefault(),a("outside")})}(jQuery),function(){function e(e){return!(e.length&&e.length>0)&&(0===e.length||void 0)}$.ajaxSetup({headers:{"X-CSRF-TOKEN":$('meta[name="csrf-token"]').attr("content")}}),jQuery(document).ready(function(){$("#editModalBtn").on("click",function(){$("#myModal").modal();var t=$(this).attr("rel");$.get("/facturas/"+t).done(function(t){return e(t)?($("#m_factura").val(""),$("#m_paciente").val(""),$("#m_edad").val(""),$("#m_email").val(""),$("#m_direccion").val(""),$("#m_sexo").val(""),$("#m_medico").val(""),void alert("no hay datos")):($("#m_factura").val(t.num_factura),$("#m_paciente").val(t.nombre_completo_cliente),$("#m_edad").val(t.edad),$("#m_email").val(t.correo),$("#m_direccion").val(t.direccion_entrega_sede),$("#m_sexo").val(t.sexo),void $("#m_medico").val(t.medico))})}),$("#formFactura").submit(function(e){e.preventDefault();var t=$("#m_factura").val();$.ajax({type:"PUT",url:"/facturas/"+t,data:$(this).serialize()}).done(function(e){$("#myModal").modal("hide"),$("#paciente").val(e.nombre_completo_cliente),$("#edad").val(e.edad),$("#email").val(e.correo),$("#direccion").val(e.direccion_entrega_sede),$("#sexo").val(e.sexo),$("#medico").val(e.medico)}).fail(function(e){alert("error al salvar información"+e)})}),$("#duplicateBtn").on("click",function(){$("#repeatFactura").modal()})})}(jQuery);
+/*
+ Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+ For licensing, see LICENSE.md or http://ckeditor.com/license
+*/
+(function(a){if("undefined"==typeof a)throw Error("jQuery should be loaded before CKEditor jQuery adapter.");if("undefined"==typeof CKEDITOR)throw Error("CKEditor should be loaded before CKEditor jQuery adapter.");CKEDITOR.config.jqueryOverrideVal="undefined"==typeof CKEDITOR.config.jqueryOverrideVal?!0:CKEDITOR.config.jqueryOverrideVal;a.extend(a.fn,{ckeditorGet:function(){var a=this.eq(0).data("ckeditorInstance");if(!a)throw"CKEditor is not initialized yet, use ckeditor() with a callback.";return a},
+ckeditor:function(g,d){if(!CKEDITOR.env.isCompatible)throw Error("The environment is incompatible.");if(!a.isFunction(g)){var m=d;d=g;g=m}var k=[];d=d||{};this.each(function(){var b=a(this),c=b.data("ckeditorInstance"),f=b.data("_ckeditorInstanceLock"),h=this,l=new a.Deferred;k.push(l.promise());if(c&&!f)g&&g.apply(c,[this]),l.resolve();else if(f)c.once("instanceReady",function(){setTimeout(function(){c.element?(c.element.$==h&&g&&g.apply(c,[h]),l.resolve()):setTimeout(arguments.callee,100)},0)},
+null,null,9999);else{if(d.autoUpdateElement||"undefined"==typeof d.autoUpdateElement&&CKEDITOR.config.autoUpdateElement)d.autoUpdateElementJquery=!0;d.autoUpdateElement=!1;b.data("_ckeditorInstanceLock",!0);c=a(this).is("textarea")?CKEDITOR.replace(h,d):CKEDITOR.inline(h,d);b.data("ckeditorInstance",c);c.on("instanceReady",function(d){var e=d.editor;setTimeout(function(){if(e.element){d.removeListener();e.on("dataReady",function(){b.trigger("dataReady.ckeditor",[e])});e.on("setData",function(a){b.trigger("setData.ckeditor",
+[e,a.data])});e.on("getData",function(a){b.trigger("getData.ckeditor",[e,a.data])},999);e.on("destroy",function(){b.trigger("destroy.ckeditor",[e])});e.on("save",function(){a(h.form).submit();return!1},null,null,20);if(e.config.autoUpdateElementJquery&&b.is("textarea")&&a(h.form).length){var c=function(){b.ckeditor(function(){e.updateElement()})};a(h.form).submit(c);a(h.form).bind("form-pre-serialize",c);b.bind("destroy.ckeditor",function(){a(h.form).unbind("submit",c);a(h.form).unbind("form-pre-serialize",
+c)})}e.on("destroy",function(){b.removeData("ckeditorInstance")});b.removeData("_ckeditorInstanceLock");b.trigger("instanceReady.ckeditor",[e]);g&&g.apply(e,[h]);l.resolve()}else setTimeout(arguments.callee,100)},0)},null,null,9999)}});var f=new a.Deferred;this.promise=f.promise();a.when.apply(this,k).then(function(){f.resolve()});this.editor=this.eq(0).data("ckeditorInstance");return this}});CKEDITOR.config.jqueryOverrideVal&&(a.fn.val=CKEDITOR.tools.override(a.fn.val,function(g){return function(d){if(arguments.length){var m=
+this,k=[],f=this.each(function(){var b=a(this),c=b.data("ckeditorInstance");if(b.is("textarea")&&c){var f=new a.Deferred;c.setData(d,function(){f.resolve()});k.push(f.promise());return!0}return g.call(b,d)});if(k.length){var b=new a.Deferred;a.when.apply(this,k).done(function(){b.resolveWith(m)});return b.promise()}return f}var f=a(this).eq(0),c=f.data("ckeditorInstance");return f.is("textarea")&&c?c.getData():g.call(f)}}))})(window.jQuery);
+(function () {
+    $.ajaxSetup({
+        headers: {
+            'X-XSRF-TOKEN': $('input[name="_token"]').val()
+        }
+    });
+
+
+    function getDate(date) {
+
+        const mydate = new Date(date);
+        const a = moment(new Date());
+        const b = moment(mydate);
+        const years = a.diff(b, 'year');
+
+        b.add(years, 'years');
+        const months = a.diff(b, 'months');
+        b.add(months, 'months');
+        const days = a.diff(b, 'days');
+
+        if (years > 0) {
+            return years + ' A';
+        } else {
+            return months + ' M';
+        }
+    }
+
+    function checkItem(item) {
+
+        items = [10328, 10328, 10332, 10333, 10334, 10335, 10336];
+        if (items.includes(item)) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    function isEmptyObject(obj) {
+
+        if (obj.length && obj.length > 0)
+            return false;
+
+        if (obj.length === 0)
+            return true;
+    }
+
+    $(document).ready(function () {
+        $('.dateclass').inputmask("##/##/####");
+
+        $('#firma2_id').append($('<option>', {
+            value: 'none',
+            text: 'None',
+            attr: 'disabled'
+        }));
+
+        $("#factura").focusout(function () {
+            var id = $(this).val();
+            //alert(id);
+            $.get('/facturas/' + id)
+                .done(function (data) {
+
+                    if (isEmptyObject(data)) {
+                        alert("no hay datos");
+                        $('#factura').val("");
+                        $('#paciente').val("");
+                        $('#edad').val("");
+                        $('#edad2').val("");
+                        $('#email').val("");
+                        $('#direccion').val("");
+                        $('#sexo').val("");
+                        $('#medico').val("");
+                        return;
+                    }
+
+                    if (checkItem(data.examen.item) === false) {
+                        $("#factura").val() === "";
+                        return alert('Esta no es una Biopsia');
+                    }
+
+                    $('#paciente').val(data.nombre_completo_cliente);
+
+                    $('#edad').val(data.edad);
+
+                    $('#email').val(data.correo);
+
+                    $('#direccion').val(data.direccion_entrega_sede);
+
+                    $('#sexo').val(data.sexo);
+
+                    $('#medico').val(data.medico);
+
+                })
+                .fail(function () {
+                    alert("Problemas con el servidor");
+                    $('#factura').val("");
+                    $('#paciente').val("");
+                    $('#edad').val("");
+                    $('#edad2').val("");
+                    $('#email').val("");
+                    $('#direccion').val("");
+                    $('#sexo').val("");
+                    $('#medico').val("");
+                    return;
+                })
+        })
+    });
+
+    $('a.bt-insert').click(function (e) {
+        e.preventDefault();
+        const id = $(this).attr("href");
+        $.get('/plantillas/info/' + id)
+            .done(function (data) {
+                console.log(data);
+                CKEDITOR.instances['informe'].insertHtml(data.body);
+            });
+    });
+
+    $('#ImagesModal').on('shown.bs.modal', function (e) {
+        // Initialize Dropzone
+    });
+
+    $('#topog').inputmask("#99.9");
+
+
+    function save(text) {
+
+        const serialize =  $("#myForm").serialize();
+        const id = $("#factura").val();
+
+        $.ajax({
+            method: "POST",
+            url: "/histo-ang/" + id,
+            data: serialize,
+        }).done(function (data) {
+            console.log(data);
+            toastr.success('La biopsia a sido salvada exitosamente!!', 'Registro Guardado');
+        }).fail(function (data) {
+            console.log(data);
+            toastr.error('El servidor dice:  ' +data.statusText, 'Status: ' + data.status + ' -- '+ data.responseText)
+        });
+    }
+
+    $("#informe").ckeditor(function () {
+
+// Once the editor is loaded, we can add custom commands
+
+        /** Alt + A will alert a greeting message **/
+        // First, we define our custom command
+        this.addCommand('myGreetingCommand', {
+            exec: function (editor, data) {
+                save("inside");
+            }
+        });
+
+        // Then, we set up the key combination
+        this.keystrokeHandler.keystrokes[120 /* A */] = 'myGreetingCommand';
+
+        /** Ctrl + B will alert a good bye message **/
+        this.addCommand('myGoodByeCommand', {
+            exec: function (editor, data) {
+                save("inside!");
+            }
+        });
+
+        this.keystrokeHandler.keystrokes[CKEDITOR.CTRL + 66 /* B */] = 'myGoodByeCommand';
+
+    });
+
+    document.addEventListener("keydown", function (event) {
+        if (event.which == 120) {
+            save("outside")
+        }
+    });
+
+    $('#myForm').submit(function (e) {
+        e.preventDefault();
+        save("outside");
+
+    })
+
+})(jQuery);
+(function(){
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    function isEmptyObject(obj) {
+
+        if (obj.length && obj.length > 0)
+            return false;
+
+        if (obj.length === 0)
+            return true;
+    }
+
+    jQuery(document).ready(function () {
+
+        $('#editModalBtn').on('click',function(){
+            $('#myModal').modal();
+
+            var id = $(this).attr('rel');
+
+            $.get('/facturas/' + id)
+                .done(function (data) {
+
+                    if (isEmptyObject(data)) {
+                        $('#m_factura').val("");
+                        $('#m_paciente').val("");
+                        $('#m_edad').val("");
+                        $('#m_email').val("");
+                        $('#m_direccion').val("");
+                        $('#m_sexo').val("");
+                        $('#m_medico').val("");
+                        alert("no hay datos");
+                        return;
+                    }
+
+                    $('#m_factura').val(data.num_factura);
+
+                    $('#m_paciente').val(data.nombre_completo_cliente);
+
+                    $('#m_edad').val(data.edad);
+
+                    $('#m_email').val(data.correo);
+
+                    $('#m_direccion').val(data.direccion_entrega_sede);
+
+                    $('#m_sexo').val(data.sexo);
+
+                    $('#m_medico').val(data.medico);
+                });
+        });
+
+        $("#formFactura").submit(function (e) {
+            e.preventDefault();
+            var id = $('#m_factura').val();
+
+            $.ajax({
+                type: "PUT",
+                url: "/facturas/" + id,
+                data: $(this).serialize(), // serializes the form's elements.
+            }).done(function(data){
+                $('#myModal').modal('hide');
+                $('#paciente').val(data.nombre_completo_cliente);
+                $('#edad').val(data.edad);
+                $('#email').val(data.correo);
+                $('#direccion').val(data.direccion_entrega_sede);
+                $('#sexo').val(data.sexo);
+                $('#medico').val(data.medico);
+
+            }).fail(function(data){
+                alert('error al salvar información' + data);
+            });
+
+        });
+
+        $('#duplicateBtn').on('click', function () {
+            $('#repeatFactura').modal();
+        })
+    })
+
+})(jQuery);
+//# sourceMappingURL=histopatologia-form-eng.js.map

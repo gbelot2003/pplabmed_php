@@ -49,7 +49,7 @@
                 $('.dataTable').dataTable({
                     processing: true,
                     serverSide: true,
-                    "order": [[ 0, "desc" ]],
+                    "order": [[4, "desc"], [0, "desc"]],
                     ajax: '{!! URL::to(action('HistopatologiaController@listados')) !!}',
                     columns:[
                         {data: 'serial', name: 'histopatologias.serial'},
