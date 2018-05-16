@@ -135,7 +135,7 @@
         }).done(function (data) {
             console.log(data);
             toastr.success('La biopsia a sido salvada exitosamente!!', 'Registro Guardado');
-            window.location = '/histopatologia/ '+ Number(data.serial) + '/edit'
+            window.location = '/histopatologia/ '+ Number(data.factura_id) + '/edit'
         }).fail(function (data) {
             console.log(data);
             toastr.error('El servidor dice:  ' +data.statusText, 'Status: ' + data.status + ' -- '+ data.responseText)

@@ -89,7 +89,7 @@ class HistopatologiaController extends Controller
 
         event(new UpdateHistopatologia($histo));
         flash('Registro Creado', 'success')->important();
-        return redirect()->to(action('HistopatologiaController@edit', $histo->serial));
+        return redirect()->to(action('HistopatologiaController@edit', $histo->factura_id));
     }
 
     public function edit($id)
