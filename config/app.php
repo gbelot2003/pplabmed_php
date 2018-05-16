@@ -245,7 +245,8 @@ return [
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'TFPDF' => Elibyy\TCPDF\Facades\TCPDF::class,
-        'Images' => Intervention\Image\Facades\Image::class
+        'Images' => Intervention\Image\Facades\Image::class,
+        'Pusher' => Pusher\Pusher::class,
     ],
 
 ];

@@ -6,6 +6,7 @@ use Acme\Helpers\SerialHelper;
 use App\Audit;
 use App\CitoSerial;
 use App\Events\OpenCloseFormEvent;
+use App\Events\UpdateHistopatologia;
 use App\Firma;
 use App\Histopatologia;
 use App\Http\Requests\HistopatiaValidation;
@@ -86,6 +87,7 @@ class HistopatologiaController extends Controller
             'user_id' => Auth::user()->id
         ]);
 
+        event(new UpdateHistopatologia($histo));
         flash('Registro Creado', 'success')->important();
         return redirect()->to(action('HistopatologiaController@edit', $histo->serial));
     }
@@ -93,6 +95,12 @@ class HistopatologiaController extends Controller
     public function edit($id)
     {
         $item = Histopatologia::where('serial', $id)->first();
+        $user = Auth::User();
+
+        $object['user_id'] = $user->id;
+        $object['serial'] = $item->serial;
+        $object['id'] = $item->id;
+        $object['username'] = $user->username;
 
         $firmas = Firma::where('status', 1)->pluck('name', 'id');
         $plantillas = Plantilla::where('type', 1)->get();
@@ -110,7 +118,7 @@ class HistopatologiaController extends Controller
         $edate = Carbon::createFromFormat('Y-m-d', $now)->endOfDay();
         $today = Histopatologia::whereBetween('created_at', [$bdate, $edate])->count();
 
-        event(new OpenCloseFormEvent($item));
+
 
         return View('resultados.histopatologia.edit', compact('item', 'plantillas', 'firmas', 'postId', 'i', 'previous', 'next', 'total', 'today', 'first', 'last'));
     }
@@ -119,6 +127,12 @@ class HistopatologiaController extends Controller
     {
         //dd($request->all());
         $item = Histopatologia::findOrFail($id);
+        $user = Auth::User();
+
+        $object['user_id'] = $user->id;
+        $object['serial'] = $item->serial;
+        $object['id'] = $item->id;
+        $object['username'] = $user->username;
 
         $item->muestra_entrega = isset($request['muestra_entrega']) ? $request['muestra_entrega'] = 1 : $request['muestra_entrega'] = 0;
         if ($request->has('informe')) {
@@ -155,6 +169,8 @@ class HistopatologiaController extends Controller
             'details' => $item->serial . ' - Factura ' . $item->facturas->num_factura,
             'user_id' => Auth::user()->id
         ]);
+
+        event(new UpdateHistopatologia($item));
 
         flash('Registro Actualizado', 'success')->important();
         return redirect()->to(action('HistopatologiaController@edit', $item->serial));

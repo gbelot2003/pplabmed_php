@@ -41,6 +41,8 @@
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/camanjs/4.1.2/caman.full.min.js"></script>
     <script src="{{ asset('js/app2.js') }}"></script>
+    <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
+
     <script>
         $('#flash-overlay-modal').modal();
     </script>

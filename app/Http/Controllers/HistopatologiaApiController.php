@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Acme\Helpers\SerialHelper;
 use App\Audit;
+use App\Events\UpdateHistopatologia;
 use App\Histopatologia;
 use App\Http\Requests\HistopatiaValidation;
 use Atlas\Helpers\DateHelper;
@@ -103,6 +104,7 @@ class HistopatologiaApiController extends Controller
             'user_id' => Auth::user()->id
         ]);
 
+        event(new UpdateHistopatologia($item));
         //flash('Registro Actualizado', 'success')->important();
         return $item; //redirect()->to(action('HistopatologiaController@edit', $item->serial));
     }

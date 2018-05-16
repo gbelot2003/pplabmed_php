@@ -18,10 +18,14 @@
                             <a href="#" class="btn btn-default">Registros: {{ $today }}</a>
                             <a class="btn btn-default">Link Images ID: {{ $item->link_id }}</a>
                             @include('resultados.histopatologia.paginador')
-                            <a onclick="window.open('{{ action('PrintController@sobreHistopatologia', $item->id) }}', '_blank', 'location=no,height=570,width=520,menubar=no,status=no,location=no,toolbar=no,scrollbars=yes,directories=no');" class="btn btn-info" alt="Buscar" ><span class="glyphicon glyphicon-envelope"></span></a>
-                            <a onclick="window.open('{{ action('PrintController@formatoHistopatologia', $item->id) }}', '_blank', 'location=no,height=600,width=816,menubar=no,status=no,location=no,toolbar=no,scrollbars=yes,directories=no');" class="btn btn-info" alt="Buscar" ><span class="glyphicon glyphicon-print"></span></a>
-                            <a href="{{ action('HistopatologiaController@create') }}" class="btn btn-info" alt="Crear" ><span class="glyphicon glyphicon-plus"></span></a>
-                            <a href="{{ action('HistopatologiaController@searchPage') }}" class="btn btn-warning" alt="Buscar" ><span class="glyphicon glyphicon-search"></span></a>
+                            <a onclick="window.open('{{ action('PrintController@sobreHistopatologia', $item->id) }}', '_blank', 'location=no,height=570,width=520,menubar=no,status=no,location=no,toolbar=no,scrollbars=yes,directories=no');"
+                               class="btn btn-info" alt="Buscar"><span class="glyphicon glyphicon-envelope"></span></a>
+                            <a onclick="window.open('{{ action('PrintController@formatoHistopatologia', $item->id) }}', '_blank', 'location=no,height=600,width=816,menubar=no,status=no,location=no,toolbar=no,scrollbars=yes,directories=no');"
+                               class="btn btn-info" alt="Buscar"><span class="glyphicon glyphicon-print"></span></a>
+                            <a href="{{ action('HistopatologiaController@create') }}" class="btn btn-info"
+                               alt="Crear"><span class="glyphicon glyphicon-plus"></span></a>
+                            <a href="{{ action('HistopatologiaController@searchPage') }}" class="btn btn-warning"
+                               alt="Buscar"><span class="glyphicon glyphicon-search"></span></a>
                         </div>
                         <h4>Agregar de Histopatología</h4>
                     </div>
@@ -33,7 +37,9 @@
                     </div>
                     <div class="panel-footer">
                         {{--<a onclick="window.open('{{ action('PrintController@formatoHistoatologiaEng', $item->id) }}', '_blank', 'location=no,height=600,width=816,menubar=no,status=no,location=no,toolbar=no,scrollbars=yes,directories=no');" class="btn btn-info" alt="Buscar" ><span class="glyphicon glyphicon-print"></span> ENG</a>--}}
-                        <a class="btn btn-info" alt="Buscar" href="{{ action('HistopatologiasEngController@editOrCreate', $item->serial) }}"><span class="glyphicon glyphicon-print"></span> EN</a>
+                        <a class="btn btn-info" alt="Buscar"
+                           href="{{ action('HistopatologiasEngController@editOrCreate', $item->serial) }}"><span
+                                    class="glyphicon glyphicon-print"></span> EN</a>
 
                     </div>
                 </div>
@@ -54,6 +60,11 @@
                 <label>No. de Biopsia</label><br>
                 <span class="name"><strong style="font-size: 16px">{{ $item->serial }}</strong></span>
             </div>
+            <div class="col-md-3">
+                <label>Usuario Editando</label><br>
+                <span> <strong id="usuarioEditando"></strong></span>
+            </div>
+
         </div>
     </div>
     @include('resultados.citologia._edit_factura_modal')
@@ -71,15 +82,15 @@
             height: 60px;
             padding: 5px;
             color: white;
-            display:none;
+            display: none;
         }
     </style>
 
     <script src="{{ asset('js/histopatologia-form.js') }}"></script>
     <script type="text/javascript">
         // EVENTO CUANDO SE MUEVE EL SCROLL, EL MISMO APLICA TAMBIEN CUANDO SE RESIZA
-        var change= false;
-        $(window).scroll(function(){
+        var change = false;
+        $(window).scroll(function () {
             window_y = $(window).scrollTop(); // VALOR QUE SE HA MOVIDO DEL SCROLL
             scroll_critical = 120; // VALOR DE TU DIV
             if (window_y > scroll_critical) { // SI EL SCROLL HA SUPERADO EL ALTO DE TU DIV
@@ -91,7 +102,23 @@
             }
         });
     </script>
+    <script>
+        Pusher.logToConsole = true;
 
+        var pusher = new Pusher('9d0b26afab9abbcbdcb9', {
+            wsHost: 'ws.pusherapp.com',
+            httpHost: 'sockjs.pusher.com',
+            encrypted: true
+        });
+
+        var channel = pusher.subscribe('histopatologia.{{ $item->serial}}');
+
+        channel.bind('updateHisto', function (data) {
+            location.reload();
+            toastr.success('Bipsia Editada exteriormente!!', 'Registro Guardado', {timeOut: 100000});
+        });
+
+    </script>
 @stop
 
 @section('modals')
