@@ -101,8 +101,7 @@
                 $('#navTag').hide('slow'); // OCULTAR
             }
         });
-    </script>
-    <script>
+
         Pusher.logToConsole = true;
 
         var pusher = new Pusher('9d0b26afab9abbcbdcb9', {
@@ -114,10 +113,17 @@
         var channel = pusher.subscribe('histopatologia.{{ $item->serial}}');
 
         channel.bind('updateHisto', function (data) {
-            location.reload();
-            toastr.success('Bipsia Editada exteriormente!!', 'Registro Guardado', {timeOut: 100000});
-        });
+            usuario = data.user;
+            localUser = '{{ Auth::user()->id }}';
 
+            if (usuario.id == localUser){
+                toastr.success('Bipsia Editada exteriormente!!', 'Registro Guardado', {timeOut: 100000});
+            } else {
+                location.reload();
+            }
+
+
+        });
     </script>
 @stop
 

@@ -26,7 +26,6 @@ class HistopatologiaApiController extends Controller
         $serialHelper = new SerialHelper();
         $request['serial'] = $serialHelper->getSerial(2);
 
-
         if ($request->has('fecha_biopcia')) {
             $fecha_nac = new DateHelper($request->get('fecha_biopcia'));
             $request['fecha_biopcia'] = $fecha_nac->getDate();
@@ -67,6 +66,7 @@ class HistopatologiaApiController extends Controller
     {
         //dd($request->all());
         $item = Histopatologia::findOrFail($id);
+        $user = Auth::user();
 
         $item->muestra_entrega = isset($request['muestra_entrega']) ? $request['muestra_entrega'] = 1 : $request['muestra_entrega'] = 0;
         if ($request->has('informe')) {
@@ -104,7 +104,7 @@ class HistopatologiaApiController extends Controller
             'user_id' => Auth::user()->id
         ]);
 
-        event(new UpdateHistopatologia($item));
+        event(new UpdateHistopatologia($item, $user));
         //flash('Registro Actualizado', 'success')->important();
         return $item; //redirect()->to(action('HistopatologiaController@edit', $item->serial));
     }

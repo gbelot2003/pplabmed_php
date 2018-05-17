@@ -22,10 +22,12 @@ class UpdateHistopatologia  implements ShouldBroadcast
      */
 
     public $object;
+    public $user;
 
-    public function __construct(Histopatologia $object)
+    public function __construct(Histopatologia $object, $user)
     {
         $this->object = $object;
+        $this->user = $user;
     }
 
     /**
