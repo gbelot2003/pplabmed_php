@@ -31,7 +31,7 @@ class ImagesController extends Controller
             $helpers->getImagesForUpload($request);
         }
 
-        return redirect()->to(action('HistopatologiaController@edit', $histo->serial));
+        return redirect()->to(action('HistopatologiaController@edit', $histo->factura_id));
     }
 
     /**
@@ -61,7 +61,7 @@ class ImagesController extends Controller
         }
 
         $images->save();
-        return redirect()->to('/histopatologia/' .$images->histo->serial ."/edit");
+        return redirect()->to('/histopatologia/' .$images->histo->factura_id ."/edit");
 
     }
 
@@ -70,7 +70,7 @@ class ImagesController extends Controller
         $images = Image::findOrfail($id);
         $images->delete();
         flash('La imágen a sido retirada exitosamente', 'success')->important();
-        return redirect()->to('/histopatologia/' .$images->histo->serial ."/edit");
+        return redirect()->to('/histopatologia/' .$images->histo->factura_id ."/edit");
     }
 
 
