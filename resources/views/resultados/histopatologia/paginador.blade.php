@@ -6,7 +6,7 @@
         <a type="button" class="btn btn-info disabled">Anter.</a>
     @else
         <a type="button" class="btn btn-info"
-           href="{{ action('HistopatologiaController@edit', $first->serial) }}"><<</a>
+           href="{{ action('HistopatologiaController@edit', $first->factura_id) }}"><<</a>
         <a type="button" class="btn btn-info prev" href="{{ action('HistopatologiaController@edit', $previous) }}"
            rel="prev">Anter.</a>
     @endif
@@ -19,6 +19,6 @@
     @else
         <a type="button" class="btn btn-info next" href="{{ action('HistopatologiaController@edit', $next) }}"
            rel="next">Sig.</a>
-        <a type="button" class="btn btn-info" href="{{ action('HistopatologiaController@edit', $last->serial) }}">>></a>
+        <a type="button" class="btn btn-info" href="{{ action('HistopatologiaController@edit', $last->factura_id) }}">>></a>
     @endif
 </div>

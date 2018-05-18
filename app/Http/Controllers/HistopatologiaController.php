@@ -106,9 +106,9 @@ class HistopatologiaController extends Controller
         $plantillas = Plantilla::where('type', 1)->get();
         $i = 0;
 
-        $previous = Histopatologia::where('serial', '<', $item->serial)->max('serial');
-        $next = Histopatologia::where('serial', '>', $item->serial)->min('serial');
-        $histo = Histopatologia::orderBy('serial', 'ASC')->get();
+        $previous = Histopatologia::where('factura_id', '<', $item->factura_id)->max('factura_id');
+        $next = Histopatologia::where('factura_id', '>', $item->factura_id)->min('factura_id');
+        $histo = Histopatologia::orderBy('factura_id', 'ASC')->get();
         $total = $histo->count();
         $first = $histo->first();
         $last = $histo->last();
@@ -208,6 +208,7 @@ class HistopatologiaController extends Controller
 
     /**
      * @return mixed
+     * @throws \Exception
      */
     public function listados()
     {
