@@ -20,6 +20,9 @@ use Yajra\Datatables\Datatables;
 
 class HistopatologiaController extends Controller
 {
+    /**
+     * HistopatologiaController constructor.
+     */
     public function __construct()
     {
         //TODO: Remover excepción
@@ -28,13 +31,18 @@ class HistopatologiaController extends Controller
         $this->middleware('ManageHisto')->except(['histoData']);
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         $serial = CitoSerial::findOrFail(2);
         return View('resultados.histopatologia.index', compact('serial'));
     }
 
-
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function create()
     {
         $serialHelper = new SerialHelper();
@@ -48,6 +56,10 @@ class HistopatologiaController extends Controller
         return View('resultados.histopatologia.create', compact('serial', 'firmas', 'plantillas', 'link'));
     }
 
+    /**
+     * @param HistopatiaValidation $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(HistopatiaValidation $request)
     {
         $serialHelper = new SerialHelper();
@@ -92,6 +104,10 @@ class HistopatologiaController extends Controller
         return redirect()->to(action('HistopatologiaController@edit', $histo->factura_id));
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function edit($id)
     {
         $item = Histopatologia::where('factura_id', $id)->first();
@@ -106,8 +122,14 @@ class HistopatologiaController extends Controller
         $plantillas = Plantilla::where('type', 1)->get();
         $i = 0;
 
-        $previous = Histopatologia::where('factura_id', '<', $item->factura_id)->max('factura_id');
-        $next = Histopatologia::where('factura_id', '>', $item->factura_id)->min('factura_id');
+        $previous = Histopatologia::where('factura_id', '<', $item->factura_id)
+            ->orderBy('serial', 'Asc')
+            ->max('factura_id');
+
+        $next = Histopatologia::where('factura_id', '>', $item->factura_id)
+            ->orderBy('serial', 'Asc')
+            ->min('factura_id');
+
         $histo = Histopatologia::orderBy('factura_id', 'ASC')->get();
         $total = $histo->count();
         $first = $histo->first();
@@ -123,6 +145,11 @@ class HistopatologiaController extends Controller
         return View('resultados.histopatologia.edit', compact('item', 'plantillas', 'firmas', 'postId', 'i', 'previous', 'next', 'total', 'today', 'first', 'last'));
     }
 
+    /**
+     * @param HistopatiaValidation $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(HistopatiaValidation $request, $id)
     {
         //dd($request->all());
@@ -382,6 +409,10 @@ class HistopatologiaController extends Controller
         return redirect()->to(action('HistopatologiaController@edit', $histo->id));
     }
 
+    /**
+     * @param $serial
+     * @return \Illuminate\Database\Eloquent\Model|null|static
+     */
     public function findBySerial($serial)
     {
         $histo = Histopatologia::where('serial', $serial)->with('facturas')->first();

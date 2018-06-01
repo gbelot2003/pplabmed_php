@@ -8,7 +8,7 @@ use App\CitologiasEng;
 use App\Firma;
 use Atlas\Helpers\DateHelper;
 use Illuminate\Http\Request;
-use Dedicated\GoogleTranslate;
+use Stichoza\GoogleTranslate\TranslateClient as GoogleTranslate;
 
 class CitologiasEngController extends Controller
 {
@@ -38,27 +38,27 @@ class CitologiasEngController extends Controller
             return View('resultados.citologia.eng.edit', compact('item', 'idCIto', 'firmas'));
 
         } else {
-            $translator = new GoogleTranslate\Translator();
+            $translator = new GoogleTranslate();
 
             if ($cito->diagnostico) {
-                $diagnostico = $translator->setSourceLang('es')
-                    ->setTargetLang('en')
+                $diagnostico = $translator->setSource('es')
+                    ->setTarget('en')
                     ->translate($cito->diagnostico);
             } else {
                 $diagnostico = null;
             }
 
             if ($cito->informe) {
-                $informe = $translator->setSourceLang('es')
-                    ->setTargetLang('en')
+                $informe = $translator->setSource('es')
+                    ->setTarget('en')
                     ->translate($cito->informe);
             } else {
                 $informe = null;
             }
 
             if ($cito->otros_b != null) {
-                $otros = $translator->setSourceLang('es')
-                    ->setTargetLang('en')
+                $otros = $translator->setSource('es')
+                    ->setTarget('en')
                     ->translate($cito->otros_b);
             } else {
                 $otros = null;

@@ -184,7 +184,6 @@ return [
         Yajra\Datatables\DatatablesServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
         Crabbly\FPDF\FpdfServiceProvider::class,
-        Dedicated\GoogleTranslate\GoogleTranslateProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Elibyy\TCPDF\ServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,

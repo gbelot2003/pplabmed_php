@@ -9,7 +9,7 @@ use App\HistopatologiasEng;
 use App\Plantilla;
 use Atlas\Helpers\DateHelper;
 use Illuminate\Http\Request;
-use Dedicated\GoogleTranslate;
+use Stichoza\GoogleTranslate\TranslateClient as GoogleTranslate;
 use Illuminate\Support\Facades\Auth;
 
 class HistopatologiasEngController extends Controller
@@ -38,29 +38,29 @@ class HistopatologiasEngController extends Controller
 
 
         } else {
-            $translator = new GoogleTranslate\Translator();
+            $translator = new GoogleTranslate;
 
             $histo->muestra_entrega = isset($request['muestra_entrega']) ? $request['muestra_entrega'] = 1 : $request['muestra_entrega'] = 0;
 
             if ($histo->diagnostico) {
-                $diagnostico = $translator->setSourceLang('es')
-                    ->setTargetLang('en')
+                $diagnostico = $translator->setSource('es')
+                    ->setTarget('en')
                     ->translate($histo->diagnostico);
             } else {
                 $diagnostico = null;
             }
 
             if ($histo->informe) {
-                $informe = $translator->setSourceLang('es')
-                    ->setTargetLang('en')
+                $informe = $translator->setSource('es')
+                    ->setTarget('en')
                     ->translate($histo->informe, false);
             } else {
                 $informe = null;
             }
 
             if ($histo->muestra) {
-                $muestra = $translator->setSourceLang('es')
-                    ->setTargetLang('en')
+                $muestra = $translator->setSource('es')
+                    ->setTarget('en')
                     ->translate($histo->muestra);
             } else {
                 $muestra = null;
