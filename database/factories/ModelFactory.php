@@ -13,7 +13,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-$autoIncrement = autoIncrement();
+//$autoIncrement = autoIncrement();
 
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
