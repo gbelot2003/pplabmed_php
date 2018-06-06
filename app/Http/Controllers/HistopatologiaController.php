@@ -341,7 +341,6 @@ class HistopatologiaController extends Controller
             }
         }
 
-
         if (\request()->has('serial')) {
             $pacesholder = \request()->get('serial');
             $query->where('serial', $pacesholder);
@@ -401,7 +400,6 @@ class HistopatologiaController extends Controller
                 $q->Where('medico', 'LIKE', '%' . $pacesholder . '%');
             });
         }
-
 
         if (\request()->has('topog')) {
             $pacesholder = \request()->get('topog');

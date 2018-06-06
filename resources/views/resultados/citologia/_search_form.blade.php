@@ -1,4 +1,27 @@
 <div class="row">
+    <div class="col-md-3 form-group">
+        <label>Fecha de Informe Desde</label>
+        <input name="fecha_informe_desde" type="text" class="form-control dateclass" tabindex="4">
+    </div>
+
+    <div class="col-md-3 form-group">
+        <label>Fecha de Informe Hasta</label>
+        <input name="fecha_informe_hasta" type="text" class="form-control dateclass" tabindex="4">
+    </div>
+
+    {{-- Fécha de Muestra --}}
+    <div class="col-md-3 form-group  {{ $errors->has('fecha_muestra_desde') ? ' has-error' : '' }}">
+        <label>Fecha de Muestra</label>
+        {{ Form::text('fecha_muestra_desde', null, ['class' => 'form-control dateclass', 'id' => 'fechamuestra']) }}
+    </div>
+
+    <div class="col-md-3 form-group  {{ $errors->has('fecha_muestra_hasta') ? ' has-error' : '' }}">
+        <label>Fecha de Muestra</label>
+        {{ Form::text('fecha_muestra_hasta', null, ['class' => 'form-control dateclass', 'id' => 'fechamuestra']) }}
+    </div>
+</div>
+
+<div class="row">
     <div class="form-group col-md-2">
         <label>Numero Serial</label>
         {!! Form::text('serial', null, ['class' => 'form-control']) !!}
@@ -116,19 +139,7 @@
         {{ Form::text('fup', null, ['class' => 'form-control dateclass', 'id' => 'fup']) }}
     </div>
 
-    <div class="col-md-3 form-group">
-        <label>Fecha de Informe</label>
-        <input name="fecha_informe" type="text"
-               class="form-control dateclass"
-               tabindex="4"
-        >
-    </div>
 
-    {{-- Fécha de Muestra --}}
-    <div class="col-md-3 form-group  {{ $errors->has('fecha_muestra') ? ' has-error' : '' }}">
-        <label>Fecha de Muestra</label>
-        {{ Form::text('fecha_muestra', null, ['class' => 'form-control dateclass', 'id' => 'fechamuestra']) }}
-    </div>
 </div>
 
 <div class="row">

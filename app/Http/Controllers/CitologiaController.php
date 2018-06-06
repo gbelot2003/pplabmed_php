@@ -33,8 +33,9 @@ CitologiaController extends Controller
      */
     public function index()
     {
-        $serial = CitoSerial::findOrFail(1);
-        return View('resultados.citologia.index', compact('serial'));
+        $idCIto = Categoria::where('status', 1)->pluck('name', 'id');
+        $firmas = Firma::where('status', 1)->pluck('name', 'id');
+        return View('resultados.citologia.search_page', compact('idCIto', 'firmas'));
     }
 
     /**
@@ -256,6 +257,52 @@ CitologiaController extends Controller
     protected function performSearchQuery($query)
     {
 
+        if (\request()->has('fecha_informe_desde') || \request()->has('fecha_informe_hasta')) {
+
+            $pacesholderA = \request()->get('fecha_informe_desde');
+            $pacesholderb = \request()->get('fecha_informe_hasta');
+
+            if($pacesholderA != null){
+                $muestraA = new DateHelper($pacesholderA);
+            }
+
+            if($pacesholderb != null){
+                $muestraB = new DateHelper($pacesholderb);
+            } else {
+                $muestraB = new DateHelper($pacesholderA);
+            }
+
+            if($muestraA && $muestraB){
+                //dd($muestraA->getDate());
+                $query->whereBetween('fecha_informe', [$muestraA->getDate(), $muestraB->getDate()]);
+            } else{
+                $query->where('fecha_informe', $muestraA);
+            }
+        }
+
+
+        if (\request()->has('fecha_muestra_desde') || \request()->has('fecha_muestra_hasta')) {
+
+            $pacesholderA = \request()->get('fecha_muestra_desde');
+            $pacesholderb = \request()->get('fecha_muestra_hasta');
+
+            if($pacesholderA != null){
+                $muestraA = new DateHelper($pacesholderA);
+            }
+
+            if($pacesholderb != null){
+                $muestraB = new DateHelper($pacesholderb);
+            } else {
+                $muestraB = new DateHelper($pacesholderA);
+            }
+
+            if($muestraA && $muestraB){
+                $query->whereBetween('fecha_muestra', [$muestraA->getDate(), $muestraB->getDate()]);
+            } else{
+                $query->where('fecha_muestra', $muestraA);
+            }
+        }
+
         if (\request()->has('serial')) {
             $pacesholder = \request()->get('serial');
             $query->where('serial', $pacesholder);
@@ -317,7 +364,7 @@ CitologiaController extends Controller
 
         if (\request()->has('otros_a')) {
             $pacesholder = \request()->get('otros_a');
-            $query->where('otros_a', $pacesholder);
+            $query->where('otros_a',  'LIKE', '%' . $pacesholder . '%');
         }
 
         if (\request()->has('icitologia_id')) {
@@ -371,7 +418,7 @@ CitologiaController extends Controller
 
         if (\request()->has('otros_b')) {
             $pacesholder = \request()->get('otros_b');
-            $query->where('otros_b', $pacesholder);
+            $query->where('otros_b',  'LIKE', '%' . $pacesholder . '%');
         }
 
         if (\request()->has('informe')) {
