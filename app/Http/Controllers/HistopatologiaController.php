@@ -37,7 +37,9 @@ class HistopatologiaController extends Controller
     public function index()
     {
         $serial = CitoSerial::findOrFail(2);
-        return View('resultados.histopatologia.index', compact('serial'));
+        //return View('resultados.histopatologia.index', compact('serial'));
+        $firmas = Firma::where('status', 1)->pluck('name', 'id');
+        return View('resultados.histopatologia.search_page', compact('firmas'));
     }
 
     /**
@@ -218,6 +220,7 @@ class HistopatologiaController extends Controller
      */
     public function processForm(Request $request)
     {
+        //dd($request->all());
         $firmas = Firma::where('status', 1)->pluck('name', 'id');
         $plantillas = Plantilla::all();
         $i = 0;
@@ -268,6 +271,77 @@ class HistopatologiaController extends Controller
      */
     protected function performSearchQuery($query)
     {
+        /**
+         * Si la fecha hasta es null, entonces es = a desde
+         */
+
+        if (\request()->has('fecha_informe_inicio') || \request()->has('fecha_informe_final')) {
+
+            $pacesholderA = \request()->get('fecha_informe_inicio');
+            $pacesholderb = \request()->get('fecha_informe_final');
+
+            if($pacesholderA != null){
+                $muestraA = new DateHelper($pacesholderA);
+            }
+
+            if($pacesholderb != null){
+                $muestraB = new DateHelper($pacesholderb);
+            } else {
+                $muestraB = new DateHelper($pacesholderA);
+            }
+
+            if($muestraA && $muestraB){
+                $query->whereBetween('fecha_informe', [$muestraA->getDate(), $muestraB->getDate()]);
+            } else{
+                $query->where('fecha_informe', $muestraA);
+            }
+        }
+
+        if (\request()->has('fecha_biopcia_inicio') || \request()->has('fecha_biopcia_final')) {
+
+            $pacesholderA = \request()->get('fecha_biopcia_inicio');
+            $pacesholderb = \request()->get('fecha_biopcia_final');
+
+            if($pacesholderA != null){
+                $muestraA = new DateHelper($pacesholderA);
+            }
+
+            if($pacesholderb != null){
+                $muestraB = new DateHelper($pacesholderb);
+            } else {
+                $muestraB = new DateHelper($pacesholderA);
+            }
+
+            if($muestraA && $muestraB){
+                $query->whereBetween('fecha_biopcia', [$muestraA->getDate(), $muestraB->getDate()]);
+            } else{
+                $query->where('fecha_biopcia', $muestraA);
+            }
+        }
+
+        if (\request()->has('fecha_muestra_inicio') || \request()->has('fecha_muestra_final')) {
+
+            $pacesholderA = \request()->get('fecha_muestra_inicio');
+            $pacesholderb = \request()->get('fecha_muestra_final');
+
+            if($pacesholderA != null){
+                $muestraA = new DateHelper($pacesholderA);
+            }
+
+            if($pacesholderb != null){
+                $muestraB = new DateHelper($pacesholderb);
+            } else {
+                $muestraB = new DateHelper($pacesholderA);
+            }
+
+            if($muestraA && $muestraB){
+                $query->whereBetween('fecha_muestra', [$muestraA->getDate(), $muestraB->getDate()]);
+            } else{
+                $query->where('fecha_muestra', $muestraA);
+            }
+        }
+
+
         if (\request()->has('serial')) {
             $pacesholder = \request()->get('serial');
             $query->where('serial', $pacesholder);
@@ -280,8 +354,9 @@ class HistopatologiaController extends Controller
 
         if (\request()->has('nombre_completo_cliente')) {
             $pacesholder = \request()->get('nombre_completo_cliente');
+            //dd($pacesholder);
             $query->whereHas('facturas', function ($q) use ($pacesholder) {
-                $q->Where('nombre_completo_cliente', $pacesholder);
+                $q->Where('nombre_completo_cliente', 'LIKE', '%' . $pacesholder . '%');
             });
         }
 
@@ -361,25 +436,6 @@ class HistopatologiaController extends Controller
         if (\request()->has('muestra')) {
             $pacesholder = \request()->get('muestra');
             $query->where('muestra', 'LIKE', '%' . $pacesholder . '%');
-        }
-
-
-        if (\request()->has('fecha_informe')) {
-            $pacesholder = \request()->get('fecha_informe');
-            $muestra = new DateHelper($pacesholder);
-            $query->where('fecha_informe', $muestra->getDate());
-        }
-
-        if (\request()->has('fecha_biopcia')) {
-            $pacesholder = \request()->get('fecha_biopcia');
-            $muestra = new DateHelper($pacesholder);
-            $query->where('fecha_biopcia', $muestra->getDate());
-        }
-
-        if (\request()->has('fecha_muestra')) {
-            $pacesholder = \request()->get('fecha_muestra');
-            $muestra = new DateHelper($pacesholder);
-            $query->where('fecha_muestra', $muestra->getDate());
         }
 
         if (\request()->has('informe')) {

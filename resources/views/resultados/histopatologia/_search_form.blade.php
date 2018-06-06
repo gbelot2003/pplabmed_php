@@ -1,4 +1,62 @@
 <div class="row">
+    <div class="col-md-3  form-group  {{ $errors->has('fecha_informe_inicio') ? ' has-error' : '' }}">
+        <label><strong>Fecha de Informe desde</strong></label>
+        <input name="fecha_informe_inicio" type="text"
+               class="form-control dateclass"
+               tabindex="4"
+        />
+    </div>
+
+    <div class="col-md-3 form-group  {{ $errors->has('fecha_informe_final') ? ' has-error' : '' }}">
+        <label><strong>Fecha de Informe Hasta</strong></label>
+        <input name="fecha_informe_final" type="text"
+               class="form-control dateclass"
+               tabindex="5"
+        >
+    </div>
+
+
+    <div class="col-md-3 form-group  {{ $errors->has('fecha_biopcia_inicio') ? ' has-error' : '' }}">
+        <label>Fecha de Biopsia</label>
+        <input name="fecha_biopcia_inicio"  type="text"
+               class="form-control dateclass"
+               tabindex="5"
+               value="{{ isset($item->fecha_biopcia) ? $item->fecha_biopcia->format('d/m/Y') : null }}"
+        >
+    </div>
+
+    <div class="col-md-3 form-group  {{ $errors->has('fecha_biopcia_final') ? ' has-error' : '' }}">
+        <label>Fecha de Biopsia Hasta</label>
+        <input name="fecha_biopcia_final"  type="text"
+               class="form-control dateclass"
+               tabindex="5"
+               value="{{ isset($item->fecha_biopcia) ? $item->fecha_biopcia->format('d/m/Y') : null }}"
+        >
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3 form-group  {{ $errors->has('fecha_muestra_inicio') ? ' has-error' : '' }}">
+        <label>Fecha de Muestra Desde</label>
+        <input name="fecha_muestra_inicio" type="text"
+               class="form-control dateclass"
+               tabindex="6"
+               value="{{ isset($item->fecha_muestra) ? $item->fecha_muestra->format('d/m/Y') : null }}"
+        >
+    </div>
+
+    <div class="col-md-3 form-group  {{ $errors->has('fecha_muestra_final') ? ' has-error' : '' }}">
+        <label>Fecha de Muestra Hasta</label>
+        <input name="fecha_muestra_final" type="text"
+               class="form-control dateclass"
+               tabindex="6"
+               value="{{ isset($item->fecha_muestra) ? $item->fecha_muestra->format('d/m/Y') : null }}"
+        >
+    </div>
+</div>
+
+
+<div class="row">
     <div class="form-group col-md-2">
         <label>Numero Serial</label>
         {!! Form::text('serial', null, ['class' => 'form-control']) !!}
@@ -86,19 +144,16 @@
 
 <div class="row">
 
-    <div class="col-md-3 form-group  {{ $errors->has('fecha_informe') ? ' has-error' : '' }}">
-        <label>Fecha de Informe</label>
-        <input name="fecha_informe" type="text"
-               class="form-control dateclass"
-               tabindex="4"
-        >
-    </div>
-
-
     <div class="col-md-4 form-group {{ $errors->has('firma_id') ? ' has-error' : '' }}">
         <label>Firma</label>
         {{ Form::select('firma_id', $firmas, null, ['placeholder' => 'None', 'class' => 'form-control', 'id' => 'firma_id']) }}
     </div>
+
+    <div class="col-md-4 form-group {{ $errors->has('firma2_id') ? ' has-error' : '' }}">
+        <label>Firma 2</label>
+        {{ Form::select('firma2_id', $firmas, null, ['placeholder' => 'None', 'class' => 'form-control', 'id' => 'firma2_id']) }}
+    </div>
+
 
     <div class="col-md-3 form-group {{ $errors->has('topog') ? ' has-error' : '' }}">
         <label>Topología</label>
@@ -107,35 +162,8 @@
 
 </div>
 
-
 <div class="row">
-
-    <div class="col-md-3 form-group  {{ $errors->has('fecha_biopcia') ? ' has-error' : '' }}">
-        <label>Fecha de Biopsia</label>
-        <input name="fecha_biopcia"  type="text"
-               class="form-control dateclass"
-               tabindex="5"
-               value="{{ isset($item->fecha_biopcia) ? $item->fecha_biopcia->format('d/m/Y') : null }}"
-        >
-    </div>
-
-    <div class="col-md-4 form-group {{ $errors->has('firma2_id') ? ' has-error' : '' }}">
-        <label>Firma 2</label>
-        {{ Form::select('firma2_id', $firmas, null, ['placeholder' => 'None', 'class' => 'form-control', 'id' => 'firma2_id']) }}
-    </div>
-
-    <div class="col-md-3 form-group  {{ $errors->has('fecha_muestra') ? ' has-error' : '' }}">
-        <label>Fecha de Muestra</label>
-        <input name="fecha_muestra" type="text"
-               class="form-control dateclass"
-               tabindex="6"
-               value="{{ isset($item->fecha_muestra) ? $item->fecha_muestra->format('d/m/Y') : null }}"
-        >
-    </div>
-
-</div>
-
-<div class="row">
+    <br>
     <div class="col-md-12 form-group  {{ $errors->has('fecha_muestra') ? ' has-error' : '' }}" tabindex="8">
         {{ Form::textarea('informe', null, ['class' => 'textarea form-control ckeditor', 'id' => 'informe', 'tabindex' => 8]) }}
     </div>
