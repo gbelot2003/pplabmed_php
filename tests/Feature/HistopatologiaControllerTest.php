@@ -2,6 +2,8 @@
 
 namespace Tests\Feature;
 
+use App\Permission;
+use App\Role;
 use App\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
@@ -23,13 +25,13 @@ class HistopatologiaControllerTest extends TestCase
     public function formulario_de_filtro_de_busqueda_existe()
     {
         $user = factory(User::class)->create();
+        $admin = factory(Role::class)->create(['name' => 'admin']);
+        $perm = factory(Permission::class)->create(['name' => 'manage-histo']);
 
-        $role = Role::findOrFail(1);
-        $role->perms()->sync($request->input('perms_lists'));
+        $admin->attachPermission($perm);
+        $user->roles()->attach($admin->id); // id only
 
-        $this->actingAs($user)
-            ->withSession(['foo' => 'bar'])
-            ->visit('/histopatologia')
-            ->see('Registros de Histopatologia');
+
+        $this->assertEquals($user->id, 1);
     }
 }

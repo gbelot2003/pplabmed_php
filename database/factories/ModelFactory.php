@@ -13,30 +13,46 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-//$autoIncrement = autoIncrement();
+$factory->define(App\Role::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->name,
+        'display_name' => $faker->name,
+        'description' =>(string) $faker->sentence(2)
+    ];
+});
+
+
+$factory->define(App\Permission::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->name,
+        'display_name' => $faker->name,
+        'description' =>(string) $faker->sentence(2)
+    ];
+});
+
 
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
-        'username' => $faker->name,
+        'username' => (string) $faker->name,
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
-        'status' => rand(0, 1),
+        'status' => 1,
         'remember_token' => str_random(10),
     ];
 });
 
-
-$factory->define(App\Examenes::class, function (Faker\Generator $faker){
+$factory->define(App\Examenes::class, function (Faker\Generator $faker) {
     return [
         'num_factura' => rand(100, 200),
         'item' => rand(100, 200),
-        'nombre_examen' => $faker->words()
+        'nombre_examen' => $faker->words
     ];
 });
 
-$factory->define(App\Factura::class, function (Faker\Generator $faker){
+
+$factory->define(App\Factura::class, function (Faker\Generator $faker) {
     return [
         'num_factura' => rand(100, 200),
         'num_cedula' => $faker->randomNumber(),
@@ -50,5 +66,7 @@ $factory->define(App\Factura::class, function (Faker\Generator $faker){
         'sexo' => $faker->title()
     ];
 });
+
+
 
 
