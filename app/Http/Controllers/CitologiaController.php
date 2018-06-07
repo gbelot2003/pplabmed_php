@@ -107,7 +107,7 @@ CitologiaController extends Controller
      */
     public function edit($id)
     {
-        $item = Citologia::where('serial', $id)->first();
+        $item = Citologia::where('factura_id', $id)->first();
 
         $idCIto = Categoria::where('status', 1)->pluck('name', 'id');
         $firmas = Firma::where('status', 1)->pluck('name', 'id');
@@ -241,7 +241,7 @@ CitologiaController extends Controller
 
         return Datatables::of($items)
             ->addColumn('href', function ($items) {
-                return '<a href="citologias/' . $items->serial . '/edit" class="btn btn-xs btn-primary">Ver Detalle</a>';
+                return '<a href="citologias/' . $items->factura_id . '/edit" class="btn btn-xs btn-primary">Ver Detalle</a>';
             })
             ->addColumn('finforme', function ($items) {
                 return $items->fecha_informe->format('d/m/Y');
