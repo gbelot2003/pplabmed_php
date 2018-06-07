@@ -98,7 +98,7 @@ CitologiaController extends Controller
 
         flash('Registro Creado', 'success')->important();
 
-        return redirect()->to(action('CitologiaController@edit', $cito->serial));
+        return redirect()->to(action('CitologiaController@edit', $cito->factura_id));
     }
 
     /**
