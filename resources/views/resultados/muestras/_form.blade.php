@@ -1,4 +1,5 @@
 <div class="row">
+
     {{--Serial--}}
     <div class="col-md-3 form-group {{ $errors->has('serial') ? ' has-error' : '' }}">
         <label>No. de Biopsia</label>
@@ -6,6 +7,7 @@
         {{ Form::number('serial', isset($item->facturas->name) ? $item->facturas->name : null,
         ['class' => 'form-control box-style yellow', 'id' => 'serial', 'tabindex' => 1,'require', 'placeholder' => 'Serial'] ) }}
     </div>
+
 
     <div class="col-md-4">
         <label>Nombre</label>
@@ -17,9 +19,14 @@
         <label>Firma</label>
         {{ Form::select('firma_id', $firmas, null, ['class' => 'form-control', 'tabindex' => 2]) }}
     </div>
+
+
 </div>
 
 <div class="row {{ $errors->has('informe') ? ' has-error' : '' }}">
+
+
+
     <div class="col-md-12">
         <ul class="nav nav-tabs">
             @foreach($plantillas as $plantilla)

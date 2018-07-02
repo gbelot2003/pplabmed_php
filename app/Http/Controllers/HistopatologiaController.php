@@ -415,7 +415,7 @@ class HistopatologiaController extends Controller
      */
     public function findBySerial($serial)
     {
-        $histo = Histopatologia::where('serial', $serial)->with('facturas')->first();
+        $histo = Histopatologia::where('factura_id', $serial)->with('facturas')->first();
         return $histo;
     }
 

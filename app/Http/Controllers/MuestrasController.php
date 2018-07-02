@@ -103,6 +103,7 @@ class MuestrasController extends Controller
     {
         $items = Muestra::select([
             'muestras.id',
+            'muestras.factura_id',
             'muestras.serial',
             'firmas.name as name',
             'facturas.nombre_completo_cliente',
@@ -110,7 +111,7 @@ class MuestrasController extends Controller
         ])
             ->Join('firmas', 'muestras.firma_id', '=', 'firmas.id')
             ->Join('histopatologias', 'histopatologias.serial', '=', 'muestras.serial')
-            ->Join('facturas', 'factura_id', '=', 'facturas.num_factura')
+            ->Join('facturas', 'histopatologias.factura_id', '=', 'facturas.num_factura')
             ->orderBy('serial', 'DESC')
             ->limit(1500)
             ->get();

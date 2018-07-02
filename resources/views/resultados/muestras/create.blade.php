@@ -34,9 +34,15 @@
                             <div class="row">
                                 {{--Serial--}}
                                 <div class="col-md-3 form-group {{ $errors->has('serial') ? ' has-error' : '' }}">
-                                    <label>No. de Biopsia</label>
+                                    <label>No. de Factura</label>
+                                    {{ Form::number('factura_id', isset($item->facturas->name) ? $item->facturas->name : null,
+                                    ['class' => 'form-control box-style yellow', 'id' => 'factura_id', 'tabindex' => 1,'require', 'placeholder' => 'Factura'] ) }}
+                                </div>
+
+                                <div class="col-md-3 form-group {{ $errors->has('serial') ? ' has-error' : '' }}">
+                                    <label>No. de Serial</label>
                                     {{ Form::number('serial', isset($item->facturas->name) ? $item->facturas->name : null,
-                                    ['class' => 'form-control box-style yellow', 'id' => 'serial', 'tabindex' => 1,'require', 'placeholder' => 'Serial'] ) }}
+                                    ['class' => 'form-control box-style', 'id' => 'serial', 'tabindex' => 1,'require', 'placeholder' => 'Serial'] ) }}
                                 </div>
 
                                 <div class="col-md-4">
@@ -117,12 +123,13 @@
             });
 
             $(document).ready(function () {
-                $('#serial').focusout(function(){
+                $('#factura_id').focusout(function(){
                     var id = $(this).val();
 
                     $.get('/histo/serial/' + id)
                         .done(function (data) {
-                            console.log(data.facturas.nombre_completo_cliente)
+                            console.log(data.facturas.nombre_completo_cliente);
+                            $('#serial').val(data.serial);
                             $('#nombre').val(data.facturas.nombre_completo_cliente);
                         })
                 });
