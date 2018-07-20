@@ -7,7 +7,7 @@ use App\Muestra;
 use App\MuestrasEng;
 use App\Plantilla;
 use Illuminate\Http\Request;
-use Dedicated\GoogleTranslate;
+use Stichoza\GoogleTranslate\TranslateClient as GoogleTranslate;
 
 class MuestrasEngController extends Controller
 {
@@ -35,7 +35,7 @@ class MuestrasEngController extends Controller
 
         } else {
 
-            $translator = new GoogleTranslate\Translator();
+            $translator = new GoogleTranslate();
 
             if ($muestra->body) {
                 $body = $translator->setSourceLang('es')
