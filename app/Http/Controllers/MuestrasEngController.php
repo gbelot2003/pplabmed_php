@@ -38,8 +38,8 @@ class MuestrasEngController extends Controller
             $translator = new GoogleTranslate();
 
             if ($muestra->body) {
-                $body = $translator->setSourceLang('es')
-                    ->setTargetLang('en')
+                $body = $translator->setSource('es')
+                    ->setTarget('en')
                     ->translate($muestra->body, false);
             }
 
