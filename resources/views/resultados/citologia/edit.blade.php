@@ -32,7 +32,7 @@
                     </div>
                     <div class="panel-footer">
                         {{--<a onclick="window.open('{{ action('PrintController@formatoCitologiasEng', $item->id) }}', '_blank', 'location=no,height=755.90,width=699.21,menubar=no,status=no,location=no,toolbar=no,scrollbars=yes,directories=no');" class="btn btn-info" alt="Buscar" ><span class="glyphicon glyphicon-print"></span> EN</a>--}}
-                        <a class="btn btn-info" alt="Buscar" href="{{ action('CitologiasEngController@editOrCreate', $item->serial) }}"><span class="glyphicon glyphicon-print"></span> EN</a>
+                        <a class="btn btn-info" alt="Buscar" href="{{ action('CitologiasEngController@editOrCreate', $item->factura_id) }}"><span class="glyphicon glyphicon-print"></span> EN</a>
 
                     </div>
                 </div>

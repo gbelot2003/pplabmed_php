@@ -21,14 +21,14 @@ class CitologiasEngController extends Controller
         $this->middleware('ManageCito');
     }
 
-    public function editOrCreate($serial)
+    public function editOrCreate($factura_id)
     {
-        $cito = Citologia::where('serial', $serial)->first();
+        $cito = Citologia::where('factura_id', $factura_id)->first();
 
         $idCIto = Categoria::where('status', 1)->pluck('name', 'id');
         $firmas = Firma::where('status', 1)->pluck('name', 'id');
 
-        $citoEng = CitologiasEng::where('serial', $serial)->first();
+        $citoEng = CitologiasEng::where('factura_id', $factura_id)->first();
 
 
         if (count($citoEng) > 0) {
