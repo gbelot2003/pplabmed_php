@@ -27,15 +27,15 @@
 
             <span class="diagnostico-clinico-etiqueta parte"><strong>CLINICAL DIAGNOSTIC:</strong> {{ $diagnostico }}</span>
 
-            <span class="fur-etiqueta parte">F.U.R.: <strong>{{ isset($items->fur) ? $items->fur->formatLocalized('%d/%m/%Y') : "" }}</strong></span>
-            <span class="fup-etiqueta parte">F.U.P.: <strong>{{ isset($items->fup) ?  $items->fup->formatLocalized('%d/%m/%Y') : ""}}</strong></span>
+            <span class="fur-etiqueta parte">F.U.R.: <strong>{{ isset($items->fur) ? $items->fur->formatLocalized('%m/%d/%Y') : "" }}</strong></span>
+            <span class="fup-etiqueta parte">F.U.P.: <strong>{{ isset($items->fup) ?  $items->fup->formatLocalized('%m/%d/%Y') : ""}}</strong></span>
             <span class="gravidad-etiqueta parte">GRAVIDAD: <strong>{{ $items->gravidad }}</strong></span>
             <span class="para-etiqueta parte">TO: <strong>{{ $items->para }}</strong></span>
             <span class="aborto-etiqueta parte">ABORTION: <strong>{{ $items->abortos }}</strong></span>
 
             <span class="material-enviado-etiqueta parte">MATERIAL SENT: <strong>{{ $material }}</strong></span>
 
-            <span class="fecha-muestra-etiqueta parte">DATE OF SAMPLING: <strong>{{ isset($items->fecha_muestra) ? $items->fecha_muestra->formatLocalized('%d/%m/%Y') : "" }}</strong></span>
+            <span class="fecha-muestra-etiqueta parte">DATE OF SAMPLING: <strong>{{ isset($items->fecha_muestra) ? $items->fecha_muestra->formatLocalized('%m/%d/%Y') : "" }}</strong></span>
             <span class="medico-etiqueta parte">MEDICAL SENDER:  <strong>{{ $items->facturas->medico }}</strong></span>
             <hr class="parte linea">
             <span class="factura-etiqueta parte">{{ $items->serial }}</span>
@@ -48,7 +48,7 @@
             <span class="mm menor">Vaginal cytology is a helpful method to select and detect patients with premalignant and malignant lesions of the genital area. It should not be used as the sole method for diagnosing genital cancer. False positive and false negative results can occur. If you have any questions about your exam, it is suggested to consult your doctor.</span>
             @endif
 
-            <span class="fecha-informe-etiqueta parte">Report date<br>{{ isset($items->fecha_informe) ? $items->fecha_informe->formatLocalized('%d/%m/%Y') : "" }}</span>
+            <span class="fecha-informe-etiqueta parte">Report date<br>{{ isset($items->fecha_informe) ? $items->fecha_informe->formatLocalized('%m/%d/%Y') : "" }}</span>
 
             <div class="firma-1 parte">
                 <div>{{ $items->firma->name }}</div>
