@@ -21,14 +21,14 @@ class HistopatologiasEngController extends Controller
         $this->middleware('ManageHisto');
     }
 
-    public function editOrCreate($serial)
+    public function editOrCreate($factura_id)
     {
-        $histo = Histopatologia::where('serial', $serial)->first();
+        $histo = Histopatologia::where('factura_id', $factura_id)->first();
         $firmas = Firma::where('status', 1)->pluck('name', 'id');
         $plantillas = Plantilla::all();
         $i = 0;
 
-        $histoEng = HistopatologiasEng::where('serial', $serial)->first();
+        $histoEng = HistopatologiasEng::where('factura_id', $factura_id)->first();
 
         if (count($histoEng) > 0) {
 

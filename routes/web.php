@@ -95,8 +95,8 @@ Route::group(['middleware' => 'auth'], function(){
     /**
      * Version Ingles de Formulario
      */
-    Route::get('histo-eng/{serial}', 'HistopatologiasEngController@editOrCreate');
-    Route::post('histo-ang/{serial}', 'HistopatologiasEngController@updateTrans');
+    Route::get('histo-eng/{factura_id}', 'HistopatologiasEngController@editOrCreate');
+    Route::post('histo-ang/{factura_id}', 'HistopatologiasEngController@updateTrans');
 
     /**
      * Ruta de busqueda por serial
