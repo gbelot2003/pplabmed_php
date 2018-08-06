@@ -119,8 +119,7 @@ class HistopatologiaController extends Controller
         } else {
 
             $user = Auth::User();
-            $item->io = 1;
-            $item->update();
+
 
             $object['user_id'] = $user->id;
             $object['serial'] = $item->serial;
@@ -149,7 +148,10 @@ class HistopatologiaController extends Controller
             $edate = Carbon::createFromFormat('Y-m-d', $now)->endOfDay();
             $today = Histopatologia::whereBetween('created_at', [$bdate, $edate])->count();
 
+            $item->io = 1;
+            $item->user_id = Auth::id();
 
+            $item->update();
 
             return View('resultados.histopatologia.edit', compact('item', 'plantillas', 'firmas', 'postId', 'i', 'previous', 'next', 'total', 'today', 'first', 'last'));
         }
