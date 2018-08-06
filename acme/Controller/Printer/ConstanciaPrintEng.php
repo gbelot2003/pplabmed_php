@@ -5,7 +5,7 @@ namespace Acme\Controller\Printer;
 use Acme\Helpers\PdfStringConversor;
 use Acme\Controller\Printer\Bases\PDFConstancia as PDF;
 use App\MuestrasEng;
-use Dedicated\GoogleTranslate;
+use Stichoza\GoogleTranslate\TranslateClient as GoogleTranslate;
 
 class ConstanciaPrintEng
 {

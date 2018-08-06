@@ -5,7 +5,7 @@ namespace Acme\Controller\Printer;
 use Acme\Controller\Printer\Bases\PDFENG;
 use Acme\Helpers\PdfStringConversor;
 use App\Histopatologia;
-use Dedicated\GoogleTranslate;
+use Stichoza\GoogleTranslate\TranslateClient as GoogleTranslate;
 
 class HistoPrinConfigEng {
     function __construct()
@@ -298,11 +298,11 @@ class HistoPrinConfigEng {
      */
     protected function TranslateText(Histopatologia $data)
     {
-        $translator = new GoogleTranslate\Translator();
+        $translator = new GoogleTranslate();
 
         if ($data->diagnostico) {
-            $diagnostico = $translator->setSourceLang('es')
-                ->setTargetLang('en')
+            $diagnostico = $translator->setSource('es')
+                ->setTarget('en')
                 ->translate($data->diagnostico);
         } else {
             $diagnostico = null;
@@ -310,8 +310,8 @@ class HistoPrinConfigEng {
 
         if ($data->informe) {
             $tinforme = strtr($data->informe, ["<br />" => "(ADA)"]);
-            $pinforme = $translator->setSourceLang('es')
-                ->setTargetLang('en')
+            $pinforme = $translator->setSource('es')
+                ->setTarget('en')
                 ->translate($tinforme, false);
             $informe = nl2br(strtr($pinforme, ["(ADA)" => "\n"]));
         } else {
@@ -319,8 +319,8 @@ class HistoPrinConfigEng {
         }
 
         if ($data->muestra) {
-            $muestra = $translator->setSourceLang('es')
-                ->setTargetLang('en')
+            $muestra = $translator->setSource('es')
+                ->setTarget('en')
                 ->translate($data->muestra);
         } else {
             $muestra = null;
