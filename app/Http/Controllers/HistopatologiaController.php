@@ -110,7 +110,7 @@ class HistopatologiaController extends Controller
      */
     public function edit($id)
     {
-        $item = Histopatologia::where('factura_id', $id)->first();
+        $item = Histopatologia::where('id', $id)->first();
         $user = Auth::User();
 
         $object['user_id'] = $user->id;
@@ -122,15 +122,15 @@ class HistopatologiaController extends Controller
         $plantillas = Plantilla::where('type', 1)->get();
         $i = 0;
 
-        $previous = Histopatologia::where('factura_id', '<', $item->factura_id)
-            ->orderBy('serial', 'Asc')
-            ->max('factura_id');
+        $previous = Histopatologia::where('id', '<', $item->id)
+            ->orderBy('id', 'Asc')
+            ->max('id');
 
-        $next = Histopatologia::where('factura_id', '>', $item->factura_id)
-            ->orderBy('serial', 'Asc')
-            ->min('factura_id');
+        $next = Histopatologia::where('id', '>', $item->id)
+            ->orderBy('id', 'Asc')
+            ->min('id');
 
-        $histo = Histopatologia::orderBy('factura_id', 'ASC')->get();
+        $histo = Histopatologia::orderBy('id', 'ASC')->get();
         $total = $histo->count();
         $first = $histo->first();
         $last = $histo->last();
@@ -254,7 +254,7 @@ class HistopatologiaController extends Controller
 
         return Datatables::of($items)
             ->addColumn('href', function ($items) {
-                return '<a href="histopatologia/' . $items->factura_id . '/edit" class="btn btn-xs btn-primary">Ver Detalle</a>';
+                return '<a href="histopatologia/' . $items->id . '/edit" class="btn btn-xs btn-primary">Ver Detalle</a>';
             })
             ->addColumn('finforme', function ($items) {
                 return $items->fecha_informe->format('d/m/Y');
