@@ -36,11 +36,11 @@
                         {!!  Form::close() !!}
                     </div>
                     <div class="panel-footer">
-                        @if($item->io == 1 && $item->user_id === $user->id)
+
                             <a class="btn btn-info" alt="Buscar"
                                href="{{ action('HistopatologiasEngController@editOrCreate', $item->factura_id) }}"><span
                                         class="glyphicon glyphicon-print"></span> ENG</a>
-                        @endif
+
 
                     </div>
                 </div>
