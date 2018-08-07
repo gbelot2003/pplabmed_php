@@ -62,6 +62,9 @@ class HistopatologiaController extends Controller
      */
     public function store(HistopatiaValidation $request)
     {
+
+        dd($request);
+        
         $serialHelper = new SerialHelper();
         $request['serial'] = $serialHelper->getSerial(2);
 
@@ -101,7 +104,8 @@ class HistopatologiaController extends Controller
 
         event(new UpdateHistopatologia($histo));
         flash('Registro Creado', 'success')->important();
-        return redirect()->to(action('HistopatologiaController@edit', $histo->id));
+        return $histo->id;
+        //return redirect()->to(action('HistopatologiaController@edit', $histo->id));
     }
 
     /**
@@ -112,79 +116,36 @@ class HistopatologiaController extends Controller
     {
         $item = Histopatologia::where('id', $id)->first();
 
-        if($item->io == 1 && $item->users->id != Auth::id()){
+        $user = Auth::User();
 
-            $user = Auth::User();
+        $object['user_id'] = $user->id;
+        $object['serial'] = $item->serial;
+        $object['id'] = $item->id;
+        $object['username'] = $user->username;
 
+        $firmas = Firma::where('status', 1)->pluck('name', 'id');
+        $plantillas = Plantilla::where('type', 1)->get();
+        $i = 0;
 
-            $object['user_id'] = $user->id;
-            $object['serial'] = $item->serial;
-            $object['id'] = $item->id;
-            $object['username'] = $user->username;
+        $previous = Histopatologia::where('id', '<', $item->id)
+            ->orderBy('id', 'Asc')
+            ->max('id');
 
-            $firmas = Firma::where('status', 1)->pluck('name', 'id');
-            $plantillas = Plantilla::where('type', 1)->get();
-            $i = 0;
+        $next = Histopatologia::where('id', '>', $item->id)
+            ->orderBy('id', 'Asc')
+            ->min('id');
 
-            $previous = Histopatologia::where('id', '<', $item->id)
-                ->orderBy('id', 'Asc')
-                ->max('id');
+        $histo = Histopatologia::orderBy('id', 'ASC')->get();
+        $total = $histo->count();
+        $first = $histo->first();
+        $last = $histo->last();
 
-            $next = Histopatologia::where('id', '>', $item->id)
-                ->orderBy('id', 'Asc')
-                ->min('id');
+        $now = date("Y-m-d");
+        $bdate = Carbon::createFromFormat('Y-m-d', $now)->startOfDay();
+        $edate = Carbon::createFromFormat('Y-m-d', $now)->endOfDay();
+        $today = Histopatologia::whereBetween('created_at', [$bdate, $edate])->count();
 
-            $histo = Histopatologia::orderBy('id', 'ASC')->get();
-            $total = $histo->count();
-            $first = $histo->first();
-            $last = $histo->last();
-
-            $now = date("Y-m-d");
-            $bdate = Carbon::createFromFormat('Y-m-d', $now)->startOfDay();
-            $edate = Carbon::createFromFormat('Y-m-d', $now)->endOfDay();
-            $today = Histopatologia::whereBetween('created_at', [$bdate, $edate])->count();
-
-            return View('resultados.histopatologia.edit', compact('item', 'plantillas', 'firmas', 'postId', 'i', 'previous', 'next', 'total', 'today', 'first', 'last' , 'user'));
-
-        } else {
-
-            $user = Auth::User();
-
-
-            $object['user_id'] = $user->id;
-            $object['serial'] = $item->serial;
-            $object['id'] = $item->id;
-            $object['username'] = $user->username;
-
-            $firmas = Firma::where('status', 1)->pluck('name', 'id');
-            $plantillas = Plantilla::where('type', 1)->get();
-            $i = 0;
-
-            $previous = Histopatologia::where('id', '<', $item->id)
-                ->orderBy('id', 'Asc')
-                ->max('id');
-
-            $next = Histopatologia::where('id', '>', $item->id)
-                ->orderBy('id', 'Asc')
-                ->min('id');
-
-            $histo = Histopatologia::orderBy('id', 'ASC')->get();
-            $total = $histo->count();
-            $first = $histo->first();
-            $last = $histo->last();
-
-            $now = date("Y-m-d");
-            $bdate = Carbon::createFromFormat('Y-m-d', $now)->startOfDay();
-            $edate = Carbon::createFromFormat('Y-m-d', $now)->endOfDay();
-            $today = Histopatologia::whereBetween('created_at', [$bdate, $edate])->count();
-
-            $item->io = 1;
-            $item->user_id = Auth::id();
-
-            $item->update();
-
-            return View('resultados.histopatologia.edit', compact('item', 'plantillas', 'firmas', 'postId', 'i', 'previous', 'next', 'total', 'today', 'first', 'last', 'user'));
-        }
+        return View('resultados.histopatologia.edit', compact('item', 'plantillas', 'firmas', 'postId', 'i', 'previous', 'next', 'total', 'today', 'first', 'last' , 'user'));
 
 
     }

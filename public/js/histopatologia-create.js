@@ -146,7 +146,7 @@ this,k=[],f=this.each(function(){var b=a(this),c=b.data("ckeditorInstance");if(b
         }).done(function (data) {
             console.log(data);
             toastr.success('La biopsia a sido salvada exitosamente!!', 'Registro Guardado');
-            window.location = '/histopatologia/ '+ Number(data.factura_id) + '/edit'
+            window.location = '/histopatologia/ '+ Number(data.id) + '/edit'
         }).fail(function (data) {
             console.log(data);
             toastr.error('El servidor dice:  ' +data.statusText, 'Status: ' + data.status + ' -- '+ data.responseText)
