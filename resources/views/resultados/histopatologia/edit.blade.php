@@ -36,8 +36,11 @@
                         {!!  Form::close() !!}
                     </div>
                     <div class="panel-footer">
-                        <a class="btn btn-info" alt="Buscar"
-                           href="{{ action('HistopatologiasEngController@editOrCreate', $item->factura_id) }}"><span class="glyphicon glyphicon-print"></span> ENG</a>
+                        @if($item->io == 1 && $item->user_id === $user->id)
+                            <a class="btn btn-info" alt="Buscar"
+                               href="{{ action('HistopatologiasEngController@editOrCreate', $item->factura_id) }}"><span
+                                        class="glyphicon glyphicon-print"></span> ENG</a>
+                        @endif
 
                     </div>
                 </div>
@@ -114,7 +117,7 @@
             usuario = data.user;
             localUser = '{{ Auth::user()->id }}';
 
-            if (usuario.id == localUser){
+            if (usuario.id == localUser) {
                 toastr.success('Bipsia Editada exteriormente!!', 'Registro Guardado', {timeOut: 100000});
             } else {
                 location.reload();

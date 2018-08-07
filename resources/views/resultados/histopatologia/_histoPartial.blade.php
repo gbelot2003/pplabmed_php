@@ -125,7 +125,12 @@
         <button type="submit" id="submit" class="btn btn-primary">Guardar</button>
     </div>
 </div>
+@else
+    <div class="col-md-12">
+        <span class="text-right">El Usuario <b>{{ $user->username }}</b> tiene esta sesión abierta</span>
+    </div>
 @endif
+
 <script src="/js/ckeditor/ckeditor.js"></script>
 <script>
     CKEDITOR.config.enterMode = 2;
