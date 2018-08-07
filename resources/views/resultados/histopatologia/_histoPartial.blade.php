@@ -117,6 +117,7 @@
     @include('resultados.histopatologia.image._images')
 </div>
 
+@if($item->io == 1 && $item->user_id === $user->id)
 <div class="col-md-12">
     <div class="text-right">
         <br>
@@ -124,6 +125,7 @@
         <button type="submit" id="submit" class="btn btn-primary">Guardar</button>
     </div>
 </div>
+@endif
 <script src="/js/ckeditor/ckeditor.js"></script>
 <script>
     CKEDITOR.config.enterMode = 2;

@@ -37,8 +37,7 @@
                     </div>
                     <div class="panel-footer">
                         <a class="btn btn-info" alt="Buscar"
-                           href="{{ action('HistopatologiasEngController@editOrCreate', $item->factura_id) }}"><span
-                                    class="glyphicon glyphicon-print"></span> ENG</a>
+                           href="{{ action('HistopatologiasEngController@editOrCreate', $item->factura_id) }}"><span class="glyphicon glyphicon-print"></span> ENG</a>
 
                     </div>
                 </div>

@@ -114,7 +114,37 @@ class HistopatologiaController extends Controller
 
         if($item->io == 1 && $item->users->id != Auth::id()){
 
-            return $item;
+            $user = Auth::User();
+
+
+            $object['user_id'] = $user->id;
+            $object['serial'] = $item->serial;
+            $object['id'] = $item->id;
+            $object['username'] = $user->username;
+
+            $firmas = Firma::where('status', 1)->pluck('name', 'id');
+            $plantillas = Plantilla::where('type', 1)->get();
+            $i = 0;
+
+            $previous = Histopatologia::where('id', '<', $item->id)
+                ->orderBy('id', 'Asc')
+                ->max('id');
+
+            $next = Histopatologia::where('id', '>', $item->id)
+                ->orderBy('id', 'Asc')
+                ->min('id');
+
+            $histo = Histopatologia::orderBy('id', 'ASC')->get();
+            $total = $histo->count();
+            $first = $histo->first();
+            $last = $histo->last();
+
+            $now = date("Y-m-d");
+            $bdate = Carbon::createFromFormat('Y-m-d', $now)->startOfDay();
+            $edate = Carbon::createFromFormat('Y-m-d', $now)->endOfDay();
+            $today = Histopatologia::whereBetween('created_at', [$bdate, $edate])->count();
+
+            return View('resultados.histopatologia.edit', compact('item', 'plantillas', 'firmas', 'postId', 'i', 'previous', 'next', 'total', 'today', 'first', 'last' , 'user'));
 
         } else {
 
@@ -153,7 +183,7 @@ class HistopatologiaController extends Controller
 
             $item->update();
 
-            return View('resultados.histopatologia.edit', compact('item', 'plantillas', 'firmas', 'postId', 'i', 'previous', 'next', 'total', 'today', 'first', 'last'));
+            return View('resultados.histopatologia.edit', compact('item', 'plantillas', 'firmas', 'postId', 'i', 'previous', 'next', 'total', 'today', 'first', 'last', 'user'));
         }
 
 
