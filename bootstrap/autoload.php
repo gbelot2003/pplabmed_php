@@ -1,7 +1,7 @@
 <?php
 
 define('LARAVEL_START', microtime(true));
-
+ini_set('memory_limit', '512M');
 /*
 |--------------------------------------------------------------------------
 | Register The Composer Auto Loader
