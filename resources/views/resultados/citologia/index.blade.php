@@ -50,7 +50,7 @@
                 $('.dataTable').dataTable({
                     processing: true,
                     serverSide: true,
-                    "order": [[ 0, "desc" ]],
+                    "order": [[5, "desc"], [0, "desc"]],
                     ajax: '{!! URL::to(action('CitologiaController@listados')) !!}',
                     columns:[
                         {data: 'serial', name: 'citologias.serial'},

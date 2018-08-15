@@ -124,6 +124,31 @@
         <button type="submit" id="submit" class="btn btn-primary">Guardar</button>
     </div>
 </div>
+
+{{--@if(isset($item))
+    @if($item->io === 1 && $item->user_id === $user->id)
+    <div class="col-md-12">
+        <div class="text-right">
+            <br>
+            <a class="btn btn-info" href="{{ action('HistopatologiaController@index') }}">Cancelar</a>
+            <button type="submit" id="submit" class="btn btn-primary">Guardar</button>
+        </div>
+    </div>
+    @else
+        <div class="col-md-12">
+            <span class="text-right">El Usuario <b>{{ $item->users->username }}</b> tiene esta sesión abierta</span>
+        </div>
+    @endif
+@else
+    <div class="col-md-12">
+        <div class="text-right">
+            <br>
+            <a class="btn btn-info" href="{{ action('HistopatologiaController@index') }}">Cancelar</a>
+            <button type="submit" id="submit" class="btn btn-primary">Guardar</button>
+        </div>
+    </div>s
+@endif--}}
+
 <script src="/js/ckeditor/ckeditor.js"></script>
 <script>
     CKEDITOR.config.enterMode = 2;

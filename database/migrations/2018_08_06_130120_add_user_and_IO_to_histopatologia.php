@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddFacturasToMuestrasEng extends Migration
+class AddUserAndIOToHistopatologia extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class AddFacturasToMuestrasEng extends Migration
      */
     public function up()
     {
-        Schema::table('muestras_engs', function (Blueprint $table) {
-            $table->integer('factura_id')->nullable();
+        Schema::table('histopatologias', function (Blueprint $table) {
+            $table->integer('user_id')->default(1)->nullable();
+            $table->integer('io')->default(0)->nullable();
         });
     }
 }

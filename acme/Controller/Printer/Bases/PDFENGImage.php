@@ -86,7 +86,7 @@ class PDFENGImage extends baseFpdf
 
         if($this->data->fecha_biopcia){
             $this->SetFont('Helvetica', '', 10);
-            $this->Cell(20, 5, $this->data->fecha_biopcia->formatLocalized('%d/%m/%Y'), 0, 0, 'L');
+            $this->Cell(20, 5, $this->data->fecha_biopcia->formatLocalized('%m/%d/%Y'), 0, 0, 'L');
         }
 
 
@@ -113,7 +113,7 @@ class PDFENGImage extends baseFpdf
 
         $this->SetFont('Helvetica', '', 10);
         if($this->data->fecha_muestra){
-            $this->Cell(78, 5, $this->data->fecha_muestra->formatLocalized('%d/%m/%Y'), 0, 0, 'L');
+            $this->Cell(78, 5, $this->data->fecha_muestra->formatLocalized('%m/%d/%Y'), 0, 0, 'L');
         } else {
             $this->Cell(125, 5, " ", 0, 0, 'L');
         }
@@ -203,7 +203,7 @@ class PDFENGImage extends baseFpdf
             $this->ln();
 
             $this->SetFont('Helvetica', 'B', 10);
-            $this->Cell(45, 5, $this->data->fecha_informe->formatLocalized('%d/%m/%Y') , 0, '');
+            $this->Cell(45, 5, $this->data->fecha_informe->formatLocalized('%m/%d/%Y') , 0, '');
 
             $this->SetFont('Helvetica', '', 10);
             $this->Cell($side, 5, $this->data->firma->collegiate , 0, 0, 'C');

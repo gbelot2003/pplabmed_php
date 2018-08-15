@@ -62,6 +62,9 @@ class HistopatologiaController extends Controller
      */
     public function store(HistopatiaValidation $request)
     {
+
+        dd($request);
+        
         $serialHelper = new SerialHelper();
         $request['serial'] = $serialHelper->getSerial(2);
 
@@ -101,7 +104,8 @@ class HistopatologiaController extends Controller
 
         event(new UpdateHistopatologia($histo));
         flash('Registro Creado', 'success')->important();
-        return redirect()->to(action('HistopatologiaController@edit', $histo->factura_id));
+        return $histo->id;
+        //return redirect()->to(action('HistopatologiaController@edit', $histo->id));
     }
 
     /**
@@ -110,7 +114,8 @@ class HistopatologiaController extends Controller
      */
     public function edit($id)
     {
-        $item = Histopatologia::where('factura_id', $id)->first();
+        $item = Histopatologia::where('id', $id)->first();
+
         $user = Auth::User();
 
         $object['user_id'] = $user->id;
@@ -122,15 +127,15 @@ class HistopatologiaController extends Controller
         $plantillas = Plantilla::where('type', 1)->get();
         $i = 0;
 
-        $previous = Histopatologia::where('factura_id', '<', $item->factura_id)
-            ->orderBy('serial', 'Asc')
-            ->max('factura_id');
+        $previous = Histopatologia::where('id', '<', $item->id)
+            ->orderBy('id', 'Asc')
+            ->max('id');
 
-        $next = Histopatologia::where('factura_id', '>', $item->factura_id)
-            ->orderBy('serial', 'Asc')
-            ->min('factura_id');
+        $next = Histopatologia::where('id', '>', $item->id)
+            ->orderBy('id', 'Asc')
+            ->min('id');
 
-        $histo = Histopatologia::orderBy('factura_id', 'ASC')->get();
+        $histo = Histopatologia::orderBy('id', 'ASC')->get();
         $total = $histo->count();
         $first = $histo->first();
         $last = $histo->last();
@@ -140,9 +145,9 @@ class HistopatologiaController extends Controller
         $edate = Carbon::createFromFormat('Y-m-d', $now)->endOfDay();
         $today = Histopatologia::whereBetween('created_at', [$bdate, $edate])->count();
 
+        return View('resultados.histopatologia.edit', compact('item', 'plantillas', 'firmas', 'postId', 'i', 'previous', 'next', 'total', 'today', 'first', 'last' , 'user'));
 
 
-        return View('resultados.histopatologia.edit', compact('item', 'plantillas', 'firmas', 'postId', 'i', 'previous', 'next', 'total', 'today', 'first', 'last'));
     }
 
     /**
@@ -154,6 +159,7 @@ class HistopatologiaController extends Controller
     {
         //dd($request->all());
         $item = Histopatologia::findOrFail($id);
+        $item->io = 0;
         $user = Auth::User();
 
         $object['user_id'] = $user->id;
@@ -254,7 +260,7 @@ class HistopatologiaController extends Controller
 
         return Datatables::of($items)
             ->addColumn('href', function ($items) {
-                return '<a href="histopatologia/' . $items->factura_id . '/edit" class="btn btn-xs btn-primary">Ver Detalle</a>';
+                return '<a href="histopatologia/' . $items->id . '/edit" class="btn btn-xs btn-primary">Ver Detalle</a>';
             })
             ->addColumn('finforme', function ($items) {
                 return $items->fecha_informe->format('d/m/Y');

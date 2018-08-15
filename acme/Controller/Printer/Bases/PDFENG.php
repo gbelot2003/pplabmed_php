@@ -4,7 +4,7 @@ namespace Acme\Controller\Printer\Bases;
 
 use Acme\Helpers\PdfStringConversor;
 use Elibyy\TCPDF\TCPDFHelper as baseFpdf;
-
+use Stichoza\GoogleTranslate\TranslateClient as GoogleTranslate;
 
 class PDFENG extends baseFpdf
 {
@@ -202,19 +202,46 @@ class PDFENG extends baseFpdf
             $this->ln();
 
             $this->SetFont('Helvetica', 'B', 10);
-            $this->Cell(45, 5, $this->data->fecha_informe->formatLocalized('%d/%m/%Y') , 0, '');
+            $this->Cell(45, 5, $this->data->fecha_informe->formatLocalized('%m/%d/%Y') , 0, '');
 
             $this->SetFont('Helvetica', '', 10);
-            $this->Cell($side, 5, $this->data->firma->collegiate , 0, 0, 'C');
+
+            $translator = new GoogleTranslate();
+            $colegiado1 = $translator->setSource('es')
+                ->setTarget('en')
+                ->translate($this->data->firma->collegiate);
+
+
+            $this->Cell($side, 5, $colegiado1 , 0, 0, 'C');
+
             if (isset($this->data->firma2)) {
-                $this->Cell(75, 5, $this->data->firma2->collegiate, 0, 0, 'C');
+                $translator = new GoogleTranslate();
+                $colegiado = $translator->setSource('es')
+                    ->setTarget('en')
+                    ->translate($this->data->firma2->collegiate);
+
+                $this->Cell(75, 5, $colegiado, 0, 0, 'C');
             }
             if ($this->data->firma->extra){
                 $this->ln();
                 $this->Cell(45, 5, "" , 0, '');
-                $this->Cell($side, 5, $this->data->firma->extra ,0, 0, 'C');
+
+                $translator = new GoogleTranslate();
+                $extra1 = $translator->setSource('es')
+                    ->setTarget('en')
+                    ->translate($this->data->firma->extra);
+
+                $this->Cell($side, 5, $extra1 ,0, 0, 'C');
+
+
                 if (isset($this->data->firma2->extra)){
-                    $this->Cell(75, 5, $this->data->firma2->extra , 0, 0, 'C');
+
+                    $translator = new GoogleTranslate();
+                    $colegiadoX = $translator->setSource('es')
+                        ->setTarget('en')
+                        ->translate($this->data->firma2->extra);
+
+                    $this->Cell(75, 5, $colegiadoX , 0, 0, 'C');
                 }
                 $this->ln();
             }
