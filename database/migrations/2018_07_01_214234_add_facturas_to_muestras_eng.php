@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddOrderColumnToImages extends Migration
+class AddFacturasToMuestrasEng extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddOrderColumnToImages extends Migration
      */
     public function up()
     {
-        Schema::table('images', function (Blueprint $table) {
-            $table->integer('order')->nullable();
+        Schema::table('muestras_engs', function (Blueprint $table) {
+            $table->integer('factura_id')->nullable();
         });
     }
 }

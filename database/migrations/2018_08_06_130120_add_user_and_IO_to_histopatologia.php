@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddOrderColumnToImages extends Migration
+class AddUserAndIOToHistopatologia extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class AddOrderColumnToImages extends Migration
      */
     public function up()
     {
-        Schema::table('images', function (Blueprint $table) {
-            $table->integer('order')->nullable();
+        Schema::table('histopatologias', function (Blueprint $table) {
+            $table->integer('user_id')->default(1)->nullable();
+            $table->integer('io')->default(0)->nullable();
         });
     }
 }

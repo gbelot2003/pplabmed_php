@@ -8,9 +8,10 @@ use Acme\Controller\Printer\Formulario\HistoForm1Eng;
 use Acme\Controller\Printer\Formulario\HistoForm1EngImage;
 use Acme\Controller\Printer\Formulario\HistoForm2;
 use App\Citologia;
+use App\CitologiasEng;
 use App\Histopatologia;
 use App\HistopatologiasEng;
-use Dedicated\GoogleTranslate;
+use Stichoza\GoogleTranslate\TranslateClient as GoogleTranslate;
 
 
 class PrintController extends Controller
@@ -37,28 +38,28 @@ class PrintController extends Controller
 
     public function formatoCitologiasEng($id)
     {
-        $items = Citologia::with('facturas')->findOrFail($id);
-        $translator = new GoogleTranslate\Translator();
+        $items = CitologiasEng::with('facturas')->findOrFail($id);
+        $translator = new GoogleTranslate();
 
         if ($items->diagnostico) {
-            $diagnostico = $translator->setSourceLang('es')
-                ->setTargetLang('en')
+            $diagnostico = $translator->setSource('es')
+                ->setTarget('en')
                 ->translate($items->diagnostico);
         } else {
             $diagnostico = null;
         }
 
         if ($items->informe) {
-            $informe = $translator->setSourceLang('es')
-                ->setTargetLang('en')
+            $informe = $translator->setSource('es')
+                ->setTarget('en')
                 ->translate($items->informe);
         } else {
             $informe = null;
         }
 
         if ($items->otros_b) {
-            $material = $translator->setSourceLang('es')
-                ->setTargetLang('en')
+            $material = $translator->setSource('es')
+                ->setTarget('en')
                 ->translate($items->otros_b);
         } else {
             $material = null;

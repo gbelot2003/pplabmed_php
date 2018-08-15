@@ -21,14 +21,14 @@ class HistopatologiasEngController extends Controller
         $this->middleware('ManageHisto');
     }
 
-    public function editOrCreate($serial)
+    public function editOrCreate($id)
     {
-        $histo = Histopatologia::where('serial', $serial)->first();
+        $histo = Histopatologia::where('id', $id)->first();
         $firmas = Firma::where('status', 1)->pluck('name', 'id');
         $plantillas = Plantilla::all();
         $i = 0;
 
-        $histoEng = HistopatologiasEng::where('serial', $serial)->first();
+        $histoEng = HistopatologiasEng::where('serial', $histo->serial)->first();
 
         if (count($histoEng) > 0) {
 
@@ -132,6 +132,6 @@ class HistopatologiasEngController extends Controller
         ]);
 
         flash('Registro Actualizado', 'success')->important();
-        return redirect()->to(action('HistopatologiasEngController@editOrCreate', $item->serial));
+        return redirect()->to(action('HistopatologiasEngController@editOrCreate', $item->id));
     }
 }

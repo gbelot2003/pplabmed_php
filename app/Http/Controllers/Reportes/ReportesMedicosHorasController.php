@@ -31,6 +31,8 @@ class ReportesMedicosHorasController extends Controller
 
     public function results(Request $request)
     {
+        ini_set('max_execution_time', 300); //300 seconds = 5 minutes
+
         $cito1 = new Citologia();
         $cito2 = new Citologia();
         $histo1 = new Histopatologia();

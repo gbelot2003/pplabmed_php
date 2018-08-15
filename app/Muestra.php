@@ -16,7 +16,7 @@ class Muestra extends Model
      * @var array
      */
     protected $fillable = [
-        'serial', 'firma_id', 'body', 'nombre'
+        'serial', 'firma_id', 'body', 'nombre', 'factura_id'
     ];
 
     /**

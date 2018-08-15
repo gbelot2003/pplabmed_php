@@ -99,7 +99,7 @@ CitologiaController extends Controller
 
         flash('Registro Creado', 'success')->important();
 
-        return redirect()->to(action('CitologiaController@edit', $cito->serial));
+        return redirect()->to(action('CitologiaController@edit', $cito->id));
     }
 
     /**
@@ -108,15 +108,16 @@ CitologiaController extends Controller
      */
     public function edit($id)
     {
-        $item = Citologia::where('serial', $id)->first();
+        $item = Citologia::where('id', $id)->first();
 
         $idCIto = Categoria::where('status', 1)->pluck('name', 'id');
         $firmas = Firma::where('status', 1)->pluck('name', 'id');
 
 
-        $CitoList = Citologia::orderBy('serial', 'ASC')->get();
-        $previous = Citologia::where('serial', '<', $item->serial)->max('serial');
-        $next = Citologia::where('serial', '>', $item->serial)->min('serial');
+        $CitoList = Citologia::orderBy('id', 'ASC')->get();
+
+        $previous = Citologia::where('id', '<', $item->id)->max('id');
+        $next = Citologia::where('id', '>', $item->id)->min('id');
 
 
         $total = $CitoList->count();
@@ -242,7 +243,7 @@ CitologiaController extends Controller
 
         return Datatables::of($items)
             ->addColumn('href', function ($items) {
-                return '<a href="citologias/' . $items->serial . '/edit" class="btn btn-xs btn-primary">Ver Detalle</a>';
+                return '<a href="citologias/' . $items->id . '/edit" class="btn btn-xs btn-primary">Ver Detalle</a>';
             })
             ->addColumn('finforme', function ($items) {
                 return $items->fecha_informe->format('d/m/Y');

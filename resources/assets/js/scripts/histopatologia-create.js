@@ -26,7 +26,8 @@
 
     function checkItem(item) {
 
-        items = [10328, 10328, 10332, 10333, 10334, 10335, 10336];
+        items = [10328, 10328, 10332, 10333, 10334, 10335, 10336, 11576, 11577, 11578, 11579, 11580, 11581, 11582, 11583,11584,
+            11585, 11586, 11587, 11588, 11589];
         if (items.includes(item)) {
             return false;
         }
@@ -135,7 +136,7 @@
         }).done(function (data) {
             console.log(data);
             toastr.success('La biopsia a sido salvada exitosamente!!', 'Registro Guardado');
-            window.location = '/histopatologia/ '+ Number(data.factura_id) + '/edit'
+            window.location = '/histopatologia/ '+ Number(data.id) + '/edit'
         }).fail(function (data) {
             console.log(data);
             toastr.error('El servidor dice:  ' +data.statusText, 'Status: ' + data.status + ' -- '+ data.responseText)
