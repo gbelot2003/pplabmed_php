@@ -29,7 +29,7 @@
         items = [10321, 10328, 10332, 10333, 10334, 10335, 10336, 11576, 11577, 11578, 11579, 11580, 11581, 11582, 11583,11584,
             11585, 11586, 11587, 11588, 11589];
         if (items.includes(item)) {
-            console.log(item);
+
             return false;
         }
         else {
@@ -77,6 +77,7 @@
 
                     if (checkItem(data.examen.item) === false) {
                         $("#factura").val() === "";
+                        console.log(data.examen.item);
                         return alert('Esta no es una Biopsia');
                     }
 
