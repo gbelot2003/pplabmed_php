@@ -231,7 +231,7 @@ class PDFENG extends baseFpdf
                     ->setTarget('en')
                     ->translate($this->data->firma->extra);
 
-                $this->Cell($side, 5, $extra1 ,0, 0, 'C');
+                $this->Cell($side, 5, "PATHOLOGIST" ,0, 0, 'C');
 
 
                 if (isset($this->data->firma2->extra)){
@@ -241,7 +241,7 @@ class PDFENG extends baseFpdf
                         ->setTarget('en')
                         ->translate($this->data->firma2->extra);
 
-                    $this->Cell(75, 5, $colegiadoX , 0, 0, 'C');
+                    $this->Cell(75, 5, "PATHOLOGIST" , 0, 0, 'C');
                 }
                 $this->ln();
             }
