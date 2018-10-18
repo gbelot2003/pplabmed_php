@@ -75,7 +75,7 @@ class PDFENG extends baseFpdf
         $this->Cell(22, 5, $this->ConvertCharacters->convert('DOCTOR: '), 0, 0, 'L');
 
         $this->SetFont('Helvetica', '', 10);
-        $this->Cell(118, 5, $this->ConvertCharacters->convert(strtoupper($this->data->facturas->medico)), 0, 0, 'L');
+        $this->Cell(118, 5, strtoupper($this->data->facturas->medico), 0, 0, 'L');
 
         /**
          * Fecha de Biopsia
