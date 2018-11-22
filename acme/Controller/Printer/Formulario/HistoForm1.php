@@ -35,13 +35,13 @@ class HistoForm1
         $pdf = new PDF($orientation = 'P', $unit = 'mm', $size = 'Letter', $ftitle = $ftitle, $data);
         $pdf->SetHeaderMargin(28);
         $pdf->setFooterMargin(20);
-        $pdf->SetMargins(5, 35, 5);
+        $pdf->SetMargins(5, 40, 5);
         $pdf->setImageScale(1.63);
 
         $pdf->SetLeftMargin(5);
         $pdf->SetRightMargin(5);
 
-        $pdf->SetTopMargin(75);
+        $pdf->SetTopMargin(85);
 
         $pdf->AddPage();
 

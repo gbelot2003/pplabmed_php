@@ -190,7 +190,7 @@ class PDFENG extends baseFpdf
         }
 
         if($this->isLastPage == true){
-            $this->SetY(-58);
+            $this->SetY(-78);
             $this->Cell(45, 5, "Report Date:" , 0, '');
             $this->SetFont('Helvetica', 'B', 11);
 
@@ -248,7 +248,7 @@ class PDFENG extends baseFpdf
         }
 
         // Position at 1.5 cm from bottom
-        $this->SetY(-51);
+        $this->SetY(-61);
         // Helvetica italic 8
         $this->SetFont('Helvetica','I',8);
         // Page number

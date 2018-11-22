@@ -28,8 +28,9 @@ class PDF extends baseFpdf
         /**
          * Cabezera
          */
+
         $this->SetFont('Helvetica', '', 14);
-        $this->Cell(205, 10, "REPORTE DE HISTOPATOLOGÍA", 0,  0, 'C');
+        $this->Cell(205, 10, "REPORTE DE HISTOPATOLOGÍA", 1,  0, 'C');
 
         /**
          * Salto
@@ -196,8 +197,8 @@ class PDF extends baseFpdf
         }
 
         if($this->isLastPage) {
-            $this->SetY(-58);
-            $this->Cell(45, 5, "Fecha de Informe:" , 0, '');
+            $this->SetY(-78);
+            $this->Cell(45, 5, "Fecha de Informe:" , 1, '');
             $this->SetFont('Helvetica', 'B', 11);
 
             $this->Cell($side, 5, $this->data->firma->name , 0, 0, 'C');
@@ -227,7 +228,7 @@ class PDF extends baseFpdf
         }
 
         // Position at 1.5 cm from bottom
-        $this->SetY(-51);
+        $this->SetY(-61);
         // Helvetica italic 8
         $this->SetFont('Helvetica','I',8);
         // Page number
