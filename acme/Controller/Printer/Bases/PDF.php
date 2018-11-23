@@ -143,7 +143,7 @@ class PDF extends baseFpdf
         /**
          * Material Estudiado
          */
-        $this->setY(65);
+        $this->setY(68);
         $this->SetFont('Helvetica', 'B', 10);
         $this->Cell(41, 5, $this->ConvertCharacters->convert('MATERIAL ESTUDIADO') .': ', 0, 0, 'L', 0, 1, 32, 53, false, 0, false, true, '', 'B');
 
