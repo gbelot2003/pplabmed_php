@@ -41,7 +41,7 @@ class HistoForm1
         $pdf->SetLeftMargin(5);
         $pdf->SetRightMargin(5);
 
-        $pdf->SetTopMargin(85);
+        $pdf->SetTopMargin(90);
 
         $pdf->AddPage();
 

@@ -160,7 +160,7 @@ class PDF extends baseFpdf
         /**
          * Numero de Biopsia
          */
-        $this->setY(70);
+        $this->setY(77);
 
         $this->SetFont('Helvetica', 'B', 10);
         $this->Cell(165, 5, $this->ConvertCharacters->convert('No. BIOPSIA') .': ', 0, 0, 'R');
