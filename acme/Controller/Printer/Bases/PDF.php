@@ -29,8 +29,8 @@ class PDF extends baseFpdf
          * Cabezera
          */
 
-        $this->SetFont('Helvetica', '', 14);
-        $this->Cell(205, 10, "REPORTE DE HISTOPATOLOGÍA", 0,  0, 'C');
+        //$this->SetFont('Helvetica', '', 14);
+        //$this->Cell(205, 10, "REPORTE DE HISTOPATOLOGÍA", 0,  0, 'C');
 
         /**
          * Salto
