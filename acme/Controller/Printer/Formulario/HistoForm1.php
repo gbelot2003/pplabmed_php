@@ -31,7 +31,7 @@ class HistoForm1
 
     public function printPdfHitoReport(Histopatologia $data)
     {
-        $ftitle = $data->serial . "-" . $data->fecha_informe->format('Y');
+        $ftitle = $data->serial . "-" . $data->fecha_biopcia->format('Y'); // Cambiar a fecha_informe
         $pdf = new PDF($orientation = 'P', $unit = 'mm', $size = 'Letter', $ftitle = $ftitle, $data);
         $pdf->SetHeaderMargin(33);
         $pdf->setFooterMargin(20);
