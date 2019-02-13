@@ -16,6 +16,8 @@ class CreateHistopatologiasTable extends Migration
         Schema::create('histopatologias', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('serial');
+            $table->boolean('locked_at', false)->nullable();
+            $table->integer('locked_user')->nullable();
             $table->integer('factura_id');
             $table->integer('link_id')->unique();
             $table->string('topog')->nullable();

@@ -12,6 +12,7 @@ use App\Histopatologia;
 use App\Http\Requests\HistopatiaValidation;
 use App\LinkImage;
 use App\Plantilla;
+use App\User;
 use Atlas\Helpers\DateHelper;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -43,70 +44,70 @@ class HistopatologiaController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function create()
-    {
-        $serialHelper = new SerialHelper();
-        $serial = $serialHelper->getSerial(2);
-        $link = LinkImage::create([
-            'user_id' => Auth::user()->id
-        ]);
+     public function create()
+     {
+         $serialHelper = new SerialHelper();
+         $serial = $serialHelper->getSerial(2);
+         $link = LinkImage::create([
+             'user_id' => Auth::user()->id
+         ]);
 
-        $firmas = Firma::where('status', 1)->pluck('name', 'id');
-        $plantillas = Plantilla::where('type', 1)->get();
-        return View('resultados.histopatologia.create', compact('serial', 'firmas', 'plantillas', 'link'));
-    }
+         $firmas = Firma::where('status', 1)->pluck('name', 'id');
+         $plantillas = Plantilla::where('type', 1)->get();
+         return View('resultados.histopatologia.create', compact('serial', 'firmas', 'plantillas', 'link'));
+     }
 
     /**
      * @param HistopatiaValidation $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(HistopatiaValidation $request)
-    {
+    /* public function store(HistopatiaValidation $request)
+     {
 
-        dd($request);
-        
-        $serialHelper = new SerialHelper();
-        $request['serial'] = $serialHelper->getSerial(2);
+         dd($request);
+
+         $serialHelper = new SerialHelper();
+         $request['serial'] = $serialHelper->getSerial(2);
 
 
-        if ($request->has('fecha_biopcia')) {
-            $fecha_nac = new DateHelper($request->get('fecha_biopcia'));
-            $request['fecha_biopcia'] = $fecha_nac->getDate();
-        }
+         if ($request->has('fecha_biopcia')) {
+             $fecha_nac = new DateHelper($request->get('fecha_biopcia'));
+             $request['fecha_biopcia'] = $fecha_nac->getDate();
+         }
 
-        if ($request->has('fecha_muestra')) {
-            $fecha_nac = new DateHelper($request->get('fecha_muestra'));
-            $request['fecha_muestra'] = $fecha_nac->getDate();
-        }
+         if ($request->has('fecha_muestra')) {
+             $fecha_nac = new DateHelper($request->get('fecha_muestra'));
+             $request['fecha_muestra'] = $fecha_nac->getDate();
+         }
 
-        if ($request->has('fecha_informe')) {
-            $fecha_nac = new DateHelper($request->get('fecha_informe'));
-            $request['fecha_informe'] = $fecha_nac->getDate();
-        }
+         if ($request->has('fecha_informe')) {
+             $fecha_nac = new DateHelper($request->get('fecha_informe'));
+             $request['fecha_informe'] = $fecha_nac->getDate();
+         }
 
-        if ($request->has('firma2_id')) {
-            $val = $request->get('firma2_id');
-            if ($val === 'none') {
-                $request['firma2_id'] = null;
-            }
-        }
+         if ($request->has('firma2_id')) {
+             $val = $request->get('firma2_id');
+             if ($val === 'none') {
+                 $request['firma2_id'] = null;
+             }
+         }
 
-        $histo = Histopatologia::create($request->all());
-        $histo->facturas->update($request->all());
-        $serialHelper->setSerial($request->input('serial'), 2);
+         $histo = Histopatologia::create($request->all());
+         $histo->facturas->update($request->all());
+         $serialHelper->setSerial($request->input('serial'), 2);
 
-        Audit::create([
-            'title' => 'Biopsias',
-            'action' => 'creación',
-            'details' => $histo->serial . ' - Factura ' . $histo->facturas->num_factura,
-            'user_id' => Auth::user()->id
-        ]);
+         Audit::create([
+             'title' => 'Biopsias',
+             'action' => 'creación',
+             'details' => $histo->serial . ' - Factura ' . $histo->facturas->num_factura,
+             'user_id' => Auth::user()->id
+         ]);
 
-        event(new UpdateHistopatologia($histo));
-        flash('Registro Creado', 'success')->important();
-        return $histo->id;
-        //return redirect()->to(action('HistopatologiaController@edit', $histo->id));
-    }
+         event(new UpdateHistopatologia($histo));
+         flash('Registro Creado', 'success')->important();
+         return $histo->id;
+         //return redirect()->to(action('HistopatologiaController@edit', $histo->id));
+     }*/
 
     /**
      * @param $id
@@ -117,6 +118,20 @@ class HistopatologiaController extends Controller
         $item = Histopatologia::where('id', $id)->first();
 
         $user = Auth::User();
+
+        // si el campo locked_at esta en on y este usaurio es locked_user
+        if ($item->locked_at === true) {
+            if ($item->locked_user != $user->id) {
+                $luser = User::findOrFail($item->locked_user);
+
+                flash('Este registro esta siendo actualizado por: ' . $luser->username, 'warning')->important();
+                return redirect()->to('/histopatologia');
+            }
+        } else {
+            $item->locked_at = true;
+            $item->locked_user = Auth::Id();
+            $item->update();
+        }
 
         $object['user_id'] = $user->id;
         $object['serial'] = $item->serial;
@@ -145,7 +160,7 @@ class HistopatologiaController extends Controller
         $edate = Carbon::createFromFormat('Y-m-d', $now)->endOfDay();
         $today = Histopatologia::whereBetween('created_at', [$bdate, $edate])->count();
 
-        return View('resultados.histopatologia.edit', compact('item', 'plantillas', 'firmas', 'postId', 'i', 'previous', 'next', 'total', 'today', 'first', 'last' , 'user'));
+        return View('resultados.histopatologia.edit', compact('item', 'plantillas', 'firmas', 'postId', 'i', 'previous', 'next', 'total', 'today', 'first', 'last', 'user'));
 
 
     }
@@ -361,7 +376,7 @@ class HistopatologiaController extends Controller
 
         if (\request()->has('diagnostico')) {
             $pacesholder = \request()->get('diagnostico');
-            $query->where('diagnostico', 'LIKE', '%' . $pacesholder .'%');
+            $query->where('diagnostico', 'LIKE', '%' . $pacesholder . '%');
         }
 
         if (\request()->has('muestra')) {

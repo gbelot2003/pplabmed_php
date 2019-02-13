@@ -66,7 +66,8 @@ class HistopatologiaApiController extends Controller
     {
         //dd($request->all());
         $item = Histopatologia::findOrFail($id);
-        $item->io = 0;
+        $item->locked_at = false;
+        $item->locked_user = null;
         $user = Auth::user();
 
         $item->muestra_entrega = isset($request['muestra_entrega']) ? $request['muestra_entrega'] = 1 : $request['muestra_entrega'] = 0;
