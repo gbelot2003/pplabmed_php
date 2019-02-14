@@ -116,7 +116,7 @@ class HistopatologiaController extends Controller
     public function edit($id)
     {
         $item = Histopatologia::where('id', $id)->first();
-
+        $locked = false;
         $user = Auth::User();
 
         // si el campo locked_at esta en on y este usaurio es locked_user
@@ -125,7 +125,8 @@ class HistopatologiaController extends Controller
                 $luser = User::findOrFail($item->locked_user);
 
                 flash('Este registro esta siendo actualizado por: ' . $luser->username, 'warning')->important();
-                return redirect()->to('/histopatologia');
+                //return redirect()->to('/histopatologia');
+                $locked = true;
             }
         } else {
             $item->locked_at = true;
@@ -160,7 +161,8 @@ class HistopatologiaController extends Controller
         $edate = Carbon::createFromFormat('Y-m-d', $now)->endOfDay();
         $today = Histopatologia::whereBetween('created_at', [$bdate, $edate])->count();
 
-        return View('resultados.histopatologia.edit', compact('item', 'plantillas', 'firmas', 'postId', 'i', 'previous', 'next', 'total', 'today', 'first', 'last', 'user'));
+        return View('resultados.histopatologia.edit', compact('item', 'plantillas', 'firmas',
+            'postId', 'i', 'previous', 'next', 'total', 'today', 'first', 'last', 'user', 'locked'));
 
 
     }

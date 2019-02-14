@@ -32,7 +32,7 @@
                     <div class="panel-body" id="app">
                         {!! Form::model($item, ['action' => ['HistopatologiaController@update', $item->id], 'id' => 'myForm', 'method' => 'PATCH']) !!}
                         @include('resultados.histopatologia._faturasPartial')
-                        @include('resultados.histopatologia._histoPartial')
+                        @include('resultados.histopatologia._histoPartial', ['locked' => $locked])
                         {!!  Form::close() !!}
                     </div>
                     <div class="panel-footer">

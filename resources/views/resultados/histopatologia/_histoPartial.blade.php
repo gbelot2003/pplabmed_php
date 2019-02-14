@@ -121,7 +121,9 @@
     <div class="text-right">
         <br>
         <a class="btn btn-info" href="{{ action('HistopatologiaController@index') }}">Cancelar</a>
+        @if($locked != true)
         <button type="submit" id="submit" class="btn btn-primary">Guardar</button>
+        @endif
     </div>
 </div>
 
