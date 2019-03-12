@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Firma extends Model
 {
-    protected $fillable = ['name', 'code','status', 'extra'];
+    protected $fillable = ['name', 'code','status', 'extra', 'collegiate'];
 }
