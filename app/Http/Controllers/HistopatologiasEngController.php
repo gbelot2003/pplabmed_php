@@ -25,8 +25,11 @@ class HistopatologiasEngController extends Controller
     {
         $histo = Histopatologia::where('id', $id)->first();
         $firmas = Firma::where('status', 1)->pluck('name', 'id');
-        $plantillas = Plantilla::all();
+        $plantillas = Plantilla::where('type', 1)->get();
         $i = 0;
+
+        $locked = false;
+        $user = Auth::User();
 
         $histoEng = HistopatologiasEng::where('serial', $histo->serial)->first();
 
@@ -34,7 +37,7 @@ class HistopatologiasEngController extends Controller
 
             $item = $histoEng;
 
-            return View('resultados.histopatologia.eng.edit', compact('item', 'plantillas', 'firmas', 'postId', 'i'));
+            return View('resultados.histopatologia.eng.edit', compact('item', 'plantillas', 'firmas', 'postId', 'i', 'user', 'locked'));
 
 
         } else {

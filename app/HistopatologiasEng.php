@@ -12,7 +12,8 @@ class HistopatologiasEng extends Model
      */
     protected $fillable = [
         'serial', 'factura_id', 'link_id', 'topog', 'mor1', 'mor2', 'firma_id', 'firma2_id',
-        'muestra', 'diagnostico', 'fecha_informe', 'fecha_biopcia', 'fecha_muestra', 'informe', 'muestra_entrega'
+        'muestra', 'diagnostico', 'fecha_informe', 'fecha_biopcia', 'fecha_muestra', 'informe', 'muestra_entrega',
+        'locked_at', 'locked_user'
     ];
 
     /**
@@ -25,7 +26,10 @@ class HistopatologiasEng extends Model
      * Protected $cast, Casting to boolean response the chechboxes
      * @var array
      */
-    protected $casts = ['muestra_entrega' => 'boolean'];
+    protected $casts = [
+        'muestra_entrega' => 'boolean',
+        'locked_at' => 'boolean'
+    ];
 
     /**
      * Relacion Facturas Citología
@@ -61,9 +65,20 @@ class HistopatologiasEng extends Model
         return $serial;
     }
 
-
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function images()
     {
         return $this->hasMany(Image::class, 'link_id', 'link_id');
+    }
+
+    /**
+     * return user relationship
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public  function users()
+    {
+        return $this->belongsTo(User::class, 'locked_user', 'id');
     }
 }
