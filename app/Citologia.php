@@ -9,6 +9,11 @@ class Citologia extends Model
 {
 
     /**
+     * @var string
+     */
+    protected $table = "citologias";
+
+    /**
      * Mass Assing protection filter
      * @var array
      *
@@ -87,6 +92,14 @@ class Citologia extends Model
         return $serial;
     }
 
+    /**
+     * return user relationship
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public  function users()
+    {
+        return $this->belongsTo(User::class, 'locked_user', 'id');
+    }
 }
 
 

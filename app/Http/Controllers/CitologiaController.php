@@ -10,6 +10,7 @@ use App\Citologia;
 use App\CitoSerial;
 use App\Firma;
 use App\Http\Requests\CitologiaValidate;
+use App\User;
 use Atlas\Helpers\DateHelper;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
