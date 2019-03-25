@@ -76,18 +76,18 @@ class HistopatologiaApiController extends Controller
         }
 
         if ($request->has('fecha_biopcia')) {
-            $fecha_nac = new DateHelper($request->get('fecha_biopcia'));
-            $request['fecha_biopcia'] = $fecha_nac->getDate();
+            $fecha = new DateHelper($request->get('fecha_biopcia'));
+            $request['fecha_biopcia'] = $fecha->getDate();
         }
 
         if ($request->has('fecha_muestra')) {
-            $fecha_nac = new DateHelper($request->get('fecha_muestra'));
-            $request['fecha_muestra'] = $fecha_nac->getDate();
+            $fecha = new DateHelper($request->get('fecha_muestra'));
+            $request['fecha_muestra'] = $fecha->getDate();
         }
 
         if ($request->has('fecha_informe')) {
-            $fecha_nac = new DateHelper($request->get('fecha_informe'));
-            $request['fecha_informe'] = $fecha_nac->getDate();
+            $fecha = new DateHelper($request->get('fecha_informe'));
+            $request['fecha_informe'] = $fecha->getDate();
         }
 
         if ($request->has('firma2_id')) {
