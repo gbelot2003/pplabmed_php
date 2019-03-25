@@ -148,9 +148,9 @@
     <div class="text-right">
         <br>
         <a class="btn btn-info" href="{{ action('CitologiaController@index') }}">Cancelar/Listado</a>
-        @if($locked != true)
+        {{--@if($locked != true)--}}
             <button type="submit" class="btn btn-primary">Guardar</button>
-        @endif
+        {{--@endif--}}
     </div>
 </div>
 <style>

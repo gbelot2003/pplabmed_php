@@ -118,7 +118,7 @@ CitologiaController extends Controller
         $user = Auth::User();
 
         // si el campo locked_at esta en on y este usaurio es locked_user
-        if ($item->locked_at === true) {
+       /* if ($item->locked_at === true) {
             if ($item->locked_user != $user->id) {
                 $luser = User::findOrFail($item->locked_user);
 
@@ -129,7 +129,7 @@ CitologiaController extends Controller
             $item->locked_at = true;
             $item->locked_user = Auth::Id();
             $item->update();
-        }
+        }*/
 
 
         $CitoList = Citologia::orderBy('id', 'ASC')->get();

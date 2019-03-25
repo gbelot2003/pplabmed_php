@@ -1,4 +1,4 @@
-{{ $locked =  \Acme\Helpers\Locking::lockedHisto($item, $user) }}
+
 <div class="row">
 
     <div class="col-md-8 form-group  {{ $errors->has('diagnostico') ? ' has-error' : '' }}">
@@ -122,9 +122,8 @@
     <div class="text-right">
         <br>
         <a class="btn btn-info" href="{{ action('HistopatologiaController@index') }}">Cancelar</a>
-        @if($locked != true)
+
             <button type="submit" id="submit" class="btn btn-primary">Guardar</button>
-        @endif
     </div>
 </div>
 
