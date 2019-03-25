@@ -45,7 +45,7 @@
     {{-- F.U.P --}}
     <div class="col-md-3 form-group  {{ $errors->has('fup') ? ' has-error' : '' }}">
         <label>F.U.P.</label>
-        <input name="fup"  type="text"
+        <input name="fup" type="text"
                class="form-control dateclass"
                tabindex="7"
                value="{{ isset($item->fup) ? $item->fup->format('d/m/Y') : null }}"
@@ -119,13 +119,13 @@
     {{-- Fécha de Informe --}}
     <div class="col-md-3 form-group  {{ $errors->has('fecha_informe') ? ' has-error' : '' }}">
         <label>Fecha de Informe</label>
-        <input name="fecha_informe"  type="text"
+        <input name="fecha_informe" type="text"
                class="form-control dateclass"
                tabindex="12"
                value="{{ isset($item->fecha_informe) ? $item->fecha_informe->format('d/m/Y') : date("d/m/Y") }}"
                id="">
     </div>
-    
+
     {{-- Otros --}}
     <div class="col-md-12 form-group  {{ $errors->has('otros_b') ? ' has-error' : '' }}">
         <label>Otros</label>
@@ -148,27 +148,29 @@
     <div class="text-right">
         <br>
         <a class="btn btn-info" href="{{ action('CitologiaController@index') }}">Cancelar/Listado</a>
-        <button type="submit" class="btn btn-primary">Guardar</button>
+        @if($locked != true)
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        @endif
     </div>
 </div>
 <style>
-    .dateclass{
-        width:100%;
+    .dateclass {
+        width: 100%;
     }
 
-    .dateclass.placeholderclass::before{
-        width:100%;
-        content:attr(placeholder);
-        background-color:#FFFFFF;
+    .dateclass.placeholderclass::before {
+        width: 100%;
+        content: attr(placeholder);
+        background-color: #FFFFFF;
     }
 
-    .dateclass.placeholderclass:hover::before{
-        width:0%;
-        content:"";
+    .dateclass.placeholderclass:hover::before {
+        width: 0%;
+        content: "";
     }
 </style>
 <script src="/js/ckeditor/ckeditor.js"></script>
 <script>
     CKEDITOR.config.enterMode = 2;
-    CKEDITOR.config.keystrokes = [[ 120, 'save' ]];
+    CKEDITOR.config.keystrokes = [[120, 'save']];
 </script>
