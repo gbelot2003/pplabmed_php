@@ -15,14 +15,18 @@ class Citologia extends Model
      */
     protected $fillable = ['factura_id', 'deteccion_cancer', 'indice_maduracion', 'otros_a', 'diagnostico',
         'fur', 'fup', 'gravidad', 'para', 'abortos', 'icitologia_id', 'firma_id', 'fecha_informe', 'informe',
-        'otros_b', 'firma2_id', 'fecha_muestra', 'mm', 'user_id', 'serial'];
+        'otros_b', 'firma2_id', 'fecha_muestra', 'mm', 'user_id', 'serial', 'locked_at', 'locked_user'];
 
 
     /**
      * Protected $cast, Casting to boolean response the chechboxes
      * @var array
      */
-    protected $casts = ['mm' => 'boolean', 'deteccion_cancer' => 'boolean', 'indice_maduracion' => 'boolean'];
+    protected $casts = [
+        'mm' => 'boolean',
+        'deteccion_cancer' => 'boolean',
+        'indice_maduracion' => 'boolean',
+        'locked_at' => 'boolean'];
 
     /**
      * Protected dates format to Carbon

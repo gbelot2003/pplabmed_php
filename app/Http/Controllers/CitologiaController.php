@@ -12,7 +12,7 @@ use App\Firma;
 use App\Http\Requests\CitologiaValidate;
 use Atlas\Helpers\DateHelper;
 use Carbon\Carbon;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 
@@ -112,6 +112,23 @@ CitologiaController extends Controller
         $idCIto = Categoria::where('status', 1)->pluck('name', 'id');
         $firmas = Firma::where('status', 1)->pluck('name', 'id');
 
+        $locked = false;
+        $user = Auth::User();
+
+        // si el campo locked_at esta en on y este usaurio es locked_user
+        if ($item->locked_at === true) {
+            if ($item->locked_user != $user->id) {
+                $luser = User::findOrFail($item->locked_user);
+
+                flash('Este registro esta siendo actualizado por: ' . $luser->username, 'warning')->important();
+                $locked = true;
+            }
+        } else {
+            $item->locked_at = true;
+            $item->locked_user = Auth::Id();
+            $item->update();
+        }
+
 
         $CitoList = Citologia::orderBy('id', 'ASC')->get();
 
@@ -128,7 +145,7 @@ CitologiaController extends Controller
         $edate = Carbon::createFromFormat('Y-m-d', $now)->endOfDay();
         $today = Citologia::whereBetween('created_at', [$bdate, $edate])->count();
 
-        return View('resultados.citologia.edit', compact('item', 'idCIto', 'firmas', 'gravidad', 'previous', 'next', 'total', 'today', 'first', 'last'));
+        return View('resultados.citologia.edit', compact('item', 'idCIto', 'firmas', 'gravidad', 'previous', 'next', 'total', 'today', 'first', 'last', 'locked'));
     }
 
     /**
