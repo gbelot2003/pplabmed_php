@@ -16,6 +16,8 @@ class CreateCitologiasTable extends Migration
         Schema::create('citologias', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('serial');
+            $table->boolean('locked_at', false)->nullable();
+            $table->integer('locked_user')->nullable();
             $table->integer('factura_id');
             $table->boolean('deteccion_cancer')->nullable();
             $table->boolean('indice_maduracion')->nullable();
