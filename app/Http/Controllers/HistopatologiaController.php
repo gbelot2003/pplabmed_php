@@ -54,7 +54,9 @@ class HistopatologiaController extends Controller
 
          $firmas = Firma::where('status', 1)->pluck('name', 'id');
          $plantillas = Plantilla::where('type', 1)->get();
-         return View('resultados.histopatologia.create', compact('serial', 'firmas', 'plantillas', 'link'));
+         $locked = false;
+
+         return View('resultados.histopatologia.create', compact('serial', 'firmas', 'plantillas', 'link', 'locked'));
      }
 
     /**

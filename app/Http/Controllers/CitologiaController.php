@@ -47,8 +47,9 @@ CitologiaController extends Controller
         $serial = $serialHelper->getSerial(1);
         $idCIto = Categoria::where('status', 1)->pluck('name', 'id');
         $firmas = Firma::where('status', 1)->pluck('name', 'id');
+        $locked = false;
 
-        return View('resultados.citologia.create', compact('idCIto', 'firmas', 'gravidad', 'serial'));
+        return View('resultados.citologia.create', compact('idCIto', 'firmas', 'gravidad', 'serial', 'locked'));
     }
 
     /**
