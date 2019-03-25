@@ -158,6 +158,10 @@ CitologiaController extends Controller
     {
         $cito = Citologia::findOrFail($id);
 
+        $cito->locked_at = false;
+        $cito->locked_user = null;
+        $user = Auth::user();
+
         $cito->deteccion_cancer = isset($request['deteccion_cancer']) ? $request['deteccion_cancer'] = 1 : $request['deteccion_cancer'] = 0;
         $cito->indice_maduracion = isset($request['indice_maduracion']) ? $request['indice_maduracion'] = 1 : $request['indice_maduracion'] = 0;
         $cito->mm = isset($request['mm']) ? $request['mm'] = 1 : $request['mm'] = 0;
@@ -200,7 +204,7 @@ CitologiaController extends Controller
 
         flash('Registro Actualizado', 'success')->important();
 
-        return redirect()->back();
+        return redirect()->to('/citologias');
     }
 
     /**
