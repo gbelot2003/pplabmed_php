@@ -118,23 +118,8 @@ class HistopatologiaController extends Controller
     public function edit($id)
     {
         $item = Histopatologia::where('id', $id)->first();
-        $locked = false;
         $user = Auth::User();
 
-        // si el campo locked_at esta en on y este usaurio es locked_user
-        if ($item->locked_at === true) {
-            if ($item->locked_user != $user->id) {
-                $luser = User::findOrFail($item->locked_user);
-
-                flash('Este registro esta siendo actualizado por: ' . $luser->username, 'warning')->important();
-                //return redirect()->to('/histopatologia');
-                $locked = true;
-            }
-        } else {
-            $item->locked_at = true;
-            $item->locked_user = Auth::Id();
-            $item->update();
-        }
 
         $object['user_id'] = $user->id;
         $object['serial'] = $item->serial;
@@ -164,7 +149,7 @@ class HistopatologiaController extends Controller
         $today = Histopatologia::whereBetween('created_at', [$bdate, $edate])->count();
 
         return View('resultados.histopatologia.edit', compact('item', 'plantillas', 'firmas',
-            'postId', 'i', 'previous', 'next', 'total', 'today', 'first', 'last', 'user', 'locked'));
+            'postId', 'i', 'previous', 'next', 'total', 'today', 'first', 'last', 'user'));
 
 
     }
@@ -246,6 +231,7 @@ class HistopatologiaController extends Controller
         $firmas = Firma::where('status', 1)->pluck('name', 'id');
         $plantillas = Plantilla::all();
         $i = 0;
+        $user = Auth::User();
 
         $query = Histopatologia::with('facturas');
 
@@ -254,7 +240,7 @@ class HistopatologiaController extends Controller
         $items = $query->paginate(1)->appends(\Request::all());
         $i = 0;
 
-        return View('resultados.histopatologia.search_results', compact('items', 'plantillas', 'firmas', 'postId', 'i', 'today'));
+        return View('resultados.histopatologia.search_results', compact('items', 'plantillas', 'firmas', 'postId', 'i', 'today', 'user'));
 
     }
 
