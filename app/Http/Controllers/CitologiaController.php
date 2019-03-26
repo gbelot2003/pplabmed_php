@@ -205,7 +205,8 @@ CitologiaController extends Controller
 
         flash('Registro Actualizado', 'success')->important();
 
-        return redirect()->to('/citologias');
+        return redirect()->back();
+       // return redirect()->to('/citologias');
     }
 
     /**
