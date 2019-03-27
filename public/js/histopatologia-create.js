@@ -35,9 +35,9 @@ this,k=[],f=this.each(function(){var b=a(this),c=b.data("ckeditorInstance");if(b
     }
 
     function checkItem(item) {
-
+        console.log(item);
         items = [10328, 10328, 10332, 10333, 10334, 10335, 10336, 11576, 11577, 11578, 11579, 11580, 11581, 11582, 11583,11584,
-            11585, 11586, 11587, 11588, 11589];
+            11585, 11586, 11587, 11588, 11589, 10327];
         if (items.includes(item)) {
             return false;
         }
@@ -84,6 +84,7 @@ this,k=[],f=this.each(function(){var b=a(this),c=b.data("ckeditorInstance");if(b
                         return;
                     }
 
+                    //console.log(data.examen);
                     if (checkItem(data.examen.item) === false) {
                         $("#factura").val() === "";
                         return alert('Esta no es una Biopsia');
