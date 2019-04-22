@@ -2,10 +2,21 @@
 
 namespace Acme\Helpers;
 
-class PdfStringConversor {
+class PdfStringConversor
+{
 
     public function convert($string)
     {
-        return iconv('UTF-8', 'windows-1252//IGNORE', $string);
+        $encoding = mb_detect_encoding($string, mb_detect_order(), false);
+
+        if ($encoding == "UTF-8") {
+            $string = mb_convert_encoding($text, 'UTF-8', 'UTF-8');
+        }
+
+        $out = iconv(mb_detect_encoding($string, mb_detect_order(), false), "UTF-8//IGNORE", $text);
+
+        return $out;
+        //return iconv('UTF-8', 'windows-1252//IGNORE', $string);
     }
+
 }
