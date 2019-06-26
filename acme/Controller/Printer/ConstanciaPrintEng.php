@@ -40,7 +40,7 @@ class ConstanciaPrintEng
         /**
          * Salto
          */
-        $pdf->ln(175);
+        $pdf->ln(150);
         $pdf->SetFont('Helvetica', 'B', 13);
         $pdf->Cell(75, 5, $data->firma->name , 0, 0, 'C');
         $pdf->ln();

@@ -13,3 +13,4 @@ Homestead.yaml
 /storage/database.sqlite
 16_05_18.sql
 06_08_2018.sql
+/laradock
