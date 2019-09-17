@@ -20,7 +20,7 @@ class MuestrasEngController extends Controller
     {
 
         $firmas = Firma::where('status', 1)->pluck('name', 'id');
-        $plantillas = Plantilla::where('type', 2)->get();
+        $plantillas = Plantilla::where('type', 2)->where('status', 1)->get();
 
         $muestra = Muestra::findOrFail($id);
 

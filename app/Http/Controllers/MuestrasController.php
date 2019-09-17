@@ -36,8 +36,7 @@ class MuestrasController extends Controller
     public function create()
     {
         $firmas = Firma::where('status', 1)->pluck('name', 'id');
-        $plantillas = Plantilla::where('type', 2)->get();
-
+        $plantillas = Plantilla::where('type', 2)->where('status', 1)->get();
         return View('resultados.muestras.create', compact('firmas', 'plantillas'));
     }
 
@@ -75,8 +74,7 @@ class MuestrasController extends Controller
         $items = Muestra::findOrFail($id);
         $firmas = Firma::where('status', 1)->pluck('name', 'id');
 
-        $plantillas = Plantilla::where('type', 2)->get();
-
+        $plantillas = Plantilla::where('type', 2)->where('status', 1)->get();
         return View('resultados.muestras.edit', compact('firmas', 'items', 'plantillas'));
     }
 
