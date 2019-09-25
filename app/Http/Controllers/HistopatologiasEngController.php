@@ -21,6 +21,15 @@ class HistopatologiasEngController extends Controller
         $this->middleware('ManageHisto');
     }
 
+    /**
+     * @param $string
+     * @return string
+     */
+    private function cleanText($string){
+
+          return trim(html_entity_decode($string, ENT_COMPAT, 'UTF-8'));
+    }
+
     public function editOrCreate($id)
     {
         $histo = Histopatologia::where('id', $id)->first();
@@ -42,33 +51,36 @@ class HistopatologiasEngController extends Controller
 
         } else {
             $translator = new GoogleTranslate;
+            $translator->setSource('es')
+                ->setTarget('en');
 
             $histo->muestra_entrega = isset($request['muestra_entrega']) ? $request['muestra_entrega'] = 1 : $request['muestra_entrega'] = 0;
 
             if ($histo->diagnostico) {
-                $diagnostico = $translator->setSource('es')
-                    ->setTarget('en')
-                    ->translate($histo->diagnostico);
+                //$diagnostico = $translator->translate($histo->diagnostico);
+                $diagnostico = null;
             } else {
                 $diagnostico = null;
             }
 
-            if ($histo->informe) {
-                $informe = $translator->setSource('es')
-                    ->setTarget('en')
-                    ->translate($histo->informe, false);
-            } else {
-                $informe = null;
-            }
-
             if ($histo->muestra) {
-                $muestra = $translator->setSource('es')
-                    ->setTarget('en')
-                    ->translate($histo->muestra);
+                //$muestra = $translator->translate($histo->muestra);
+                $muestra = null;
             } else {
                 $muestra = null;
             }
 
+            if ($histo->informe) {
+
+                $factor = $this->cleanText($histo->informe);
+                $informe = $translator->translate($factor);
+
+            } else {
+                $informe = null;
+            }
+
+
+           dd($informe);
             $item = HistopatologiasEng::create([
                 'serial' => $histo->serial,
                 'factura_id' => $histo->factura_id,
@@ -137,4 +149,6 @@ class HistopatologiasEngController extends Controller
         flash('Registro Actualizado', 'success')->important();
         return redirect()->to(action('HistopatologiasEngController@editOrCreate', $item->id));
     }
+
+
 }

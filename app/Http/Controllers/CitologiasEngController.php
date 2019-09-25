@@ -21,6 +21,15 @@ class CitologiasEngController extends Controller
         $this->middleware('ManageCito');
     }
 
+    /**
+     * @param $string
+     * @return string
+     */
+    private function cleanText($string){
+
+        return trim(html_entity_decode($string, ENT_COMPAT, 'UTF-8'));
+    }
+
     public function editOrCreate($factura_id)
     {
         $cito = Citologia::where('factura_id', $factura_id)->first();
@@ -49,9 +58,10 @@ class CitologiasEngController extends Controller
             }
 
             if ($cito->informe) {
+                $factor = $this->cleanText($cito->informe);
                 $informe = $translator->setSource('es')
                     ->setTarget('en')
-                    ->translate($cito->informe);
+                    ->translate($factor);
             } else {
                 $informe = null;
             }
