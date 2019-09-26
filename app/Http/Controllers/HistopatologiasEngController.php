@@ -25,9 +25,10 @@ class HistopatologiasEngController extends Controller
      * @param $string
      * @return string
      */
-    private function cleanText($string){
+    private function cleanText($string)
+    {
 
-          return trim(html_entity_decode($string, ENT_COMPAT, 'UTF-8'));
+        return trim(html_entity_decode($string, ENT_COMPAT, 'UTF-8'));
     }
 
     public function editOrCreate($id)
@@ -57,15 +58,14 @@ class HistopatologiasEngController extends Controller
             $histo->muestra_entrega = isset($request['muestra_entrega']) ? $request['muestra_entrega'] = 1 : $request['muestra_entrega'] = 0;
 
             if ($histo->diagnostico) {
-                //$diagnostico = $translator->translate($histo->diagnostico);
-                $diagnostico = null;
+                $diagnostico = $translator->translate($histo->diagnostico);
+
             } else {
                 $diagnostico = null;
             }
 
             if ($histo->muestra) {
-                //$muestra = $translator->translate($histo->muestra);
-                $muestra = null;
+                $muestra = $translator->translate($histo->muestra);
             } else {
                 $muestra = null;
             }
@@ -80,7 +80,7 @@ class HistopatologiasEngController extends Controller
             }
 
 
-           dd($informe);
+            //dd($informe);
             $item = HistopatologiasEng::create([
                 'serial' => $histo->serial,
                 'factura_id' => $histo->factura_id,
