@@ -15,6 +15,15 @@ class MuestrasEngController extends Controller
     {
     }
 
+    /**
+     * @param $string
+     * @return string
+     */
+    private function cleanText($string)
+    {
+        return trim(html_entity_decode($string, ENT_COMPAT, 'UTF-8'));
+    }
+
     //Pasamos el id de muestras, y revisamios contra muestra_id
     public function editOrCreate($id)
     {
@@ -37,10 +46,13 @@ class MuestrasEngController extends Controller
 
             $translator = new GoogleTranslate();
 
+
+
             if ($muestra->body) {
+                $factor = $this->cleanText($muestra->body);
                 $body = $translator->setSource('es')
                     ->setTarget('en')
-                    ->translate($muestra->body, false);
+                    ->translate($factor);
             }
 
             $items = MuestrasEng::create([
