@@ -22,7 +22,7 @@ class PlantillasController extends Controller
      */
     public function index()
     {
-        $items = Plantilla::orderBy('id', 'DESC')->paginate(10);
+        $items = Plantilla::orderBy('id', 'DESC')->get();
         return View('plantillas.index', compact('items'));
     }
 
