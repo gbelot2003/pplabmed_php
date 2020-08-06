@@ -110,7 +110,7 @@ class MuestrasController extends Controller
             ->Join('firmas', 'muestras.firma_id', '=', 'firmas.id')
             ->Join('histopatologias', 'histopatologias.serial', '=', 'muestras.serial')
             ->Join('facturas', 'histopatologias.factura_id', '=', 'facturas.num_factura')
-            ->orderBy('serial', 'DESC')
+            ->orderBy('muestras.id', 'DESC')
             ->limit(1500)
             ->get();
 
