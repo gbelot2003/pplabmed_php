@@ -52,7 +52,7 @@
                     columns:[
                         {data: 'id', name: 'id'},
                         {data: 'name', name: 'firmas.name'},
-                        {data: 'nombre_completo_cliente', name: 'nombre_completo_cliente'},
+                        {data: 'nombre', name: 'nombre'},
                         {data: 'created_at', name: 'created_at'},
                         {data: 'href', name: 'href',  "searchable": false},
 
